@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>6학년용 웹 퀴즈 프로그램</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
+    #quiz-container { width:90%; max-width:600px; text-align:center; padding:10px 0; }
+    .question-box,.input-box { padding:20px; border-radius:12px; color:#fff; transition:background-color .5s; }
+    .input-box { background:#6B5B95; }
+    .answer-section { margin-top:20px; }
+    button { margin:5px; padding:10px 20px; font-size:32px; border:none; border-radius:8px; cursor:pointer; font-family:inherit; }
+    input[type="text"] { padding:8px; font-size:32px; border-radius:5px; border:2px solid #ccc; width:80%; font-family:inherit; text-align:center; margin-bottom:20px; }
+    #result { font-size:40px; margin-top:30px; color:#333; background:#F7CAC9; padding:20px; border-radius:12px; }
+    #feedback { min-height:50px; margin-top:15px; font-size:36px; }
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <div id="name-input-area" class="input-box">
+      <input type="text" id="name-input" placeholder="이름 입력" />
+      <button id="start-btn">시작</button>
+    </div>
+
+    <div id="question-number" style="display:none;"></div>
+    <div id="question-text" class="question-box" style="display:none;"></div>
+    <div id="answer-area" class="answer-section" style="display:none;"></div>
+    <div id="feedback" style="display:none;"></div>
+    <div id="result" style="display:none;"></div>
+  </div>
+
+  <script>
+  'use strict';
+
+  const nameInputArea   = document.getElementById('name-input-area');
+  const nameInput       = document.getElementById('name-input');
+  const startBtn        = document.getElementById('start-btn');
+  const questionNumberEl= document.getElementById('question-number');
+  const questionTextEl  = document.getElementById('question-text');
+  const answerAreaEl    = document.getElementById('answer-area');
+  const feedbackEl      = document.getElementById('feedback');
+  const resultEl        = document.getElementById('result');
+
+  const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
+  const questions = [
+    { type:'ox',   question:'사마리아 사람들은 겉으로는 성전 짓기를 돕겠다고 했지만, 실제로는 유다 사람들을 방해했다.', answer:'O' },
+    { type:'fill', question:'(__________________) (역대상 28:10)', answer:'그런즉 이제 너는 삼갈지어다 여호와께서 너를 택하여 성전의 건물을 건축하게 하셨으니 힘써 행할지니라 하니라' },
+    { type:'mcq',  question:'성전 공사가 중단되었던 가장 큰 이유는 무엇일까요?', options:['A. 일할 사람이 없어서','B. 왕이 공사를 멈추라는 명령을 내렸기 때문에','C. 날씨가 너무 더워서','D. 돈이 부족해서'], answer:'B. 왕이 공사를 멈추라는 명령을 내렸기 때문에'},
+    { type:'mcq',  question:'성전 공사가 다시 시작될 수 있었던 이유는 무엇인가요?', options:['A. 유다 백성이 몰래 다시 지었기 때문에','B. 왕이 무서워서 사마리아인이 도망갔기 때문에','C. 선지자 학개와 스가랴가 말씀으로 격려했고, 다리오 왕이 다시 허락해 주었기 때문에','D. 새로운 왕이 유다를 좋아했기 때문에'], answer:'C. 선지자 학개와 스가랴가 말씀으로 격려했고, 다리오 왕이 다시 허락해 주었기 때문에' },
+    { type:'short',question:'성전이 완성된 후, 사람들이 가장 기뻐하며 지킨 절기는 무엇인가요?', answer:'유월절' },
+    { type:'any',  question:'9과를 공부하며 느낀 점을 써주세요. 1줄 이상 써주세요?' }
+  ];
+
+  let participantName = '';
+  let current = 0;
+  let score = 0;
+
+  startBtn.addEventListener('click', startGame);
+  nameInput.addEventListener('keydown', (event) => { if (event.key === 'Enter') startGame(); });
+
+  // 정규화 함수: 전각/반각, 대소문자, 구두점·공백 제거, 한글 쌍자음 단자음화
+  function normalize(str) {
+    if (!str) return '';
+    let out = str.normalize('NFKC').toLowerCase();
+
+    const map = { 'ㄲ':'ㄱ', 'ㄸ':'ㄷ', 'ㅃ':'ㅂ', 'ㅆ':'ㅅ', 'ㅉ':'ㅈ' };
+    out = out.split('').map(ch => map[ch] ?? ch).join('');
+
+    out = out.replace(/[\p{P}\p{S}]/gu, ''); // 구두점·기호 제거
+    out = out.replace(/\s+/g, '');           // 모든 공백 제거
+    return out;
+  }
+
+  // 비교 함수
+  function isSameAnswer(user, gold) {
+    return normalize(user) === normalize(gold);
+  }
+
+  function startGame() {
+    const nameVal = nameInput.value.trim();
+    if (!nameVal) return alert('이름을 입력해주세요');
+
+    participantName = nameVal;
+    nameInputArea.style.display = 'none';
+    questionNumberEl.style.display = 'block';
+    questionTextEl.style.display = 'block';
+    answerAreaEl.style.display = 'block';
+    feedbackEl.style.display = 'block';
+    showQuestion();
+  }
+
+  function showQuestion() {
+    feedbackEl.textContent = '';
+    const q = questions[current];
+
+    questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+    questionTextEl.style.backgroundColor = themes[current % themes.length];
+    questionTextEl.textContent = q.question;
+
+    answerAreaEl.innerHTML = '';
+
+    if (q.type === 'ox') {
+      ['O','X'].forEach(opt => {
+        answerAreaEl.appendChild(createButton(opt, () => processAnswer(opt)));
+      });
+    } else if (q.type === 'mcq') {
+      q.options.forEach(opt => {
+        const btn = createButton(opt, () => processAnswer(opt));
+        btn.style.cssText = 'display:block; width:90%; margin:10px auto;';
+        answerAreaEl.appendChild(btn);
+      });
+    } else {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = `${q.type}-input`;
+      answerAreaEl.appendChild(input);
+
+      const submitBtn = createButton('제출', () => processAnswer(input.value));
+      answerAreaEl.appendChild(submitBtn);
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') processAnswer(input.value);
+      });
+      input.focus();
+    }
+  }
+
+  function createButton(text, onClick) {
+    const btn = document.createElement('button');
+    btn.textContent = text;
+    btn.addEventListener('click', onClick);
+    return btn;
+  }
+
+  function processAnswer(userAns) {
+    if (answerAreaEl.querySelector('button:disabled')) return;
+
+    const q = questions[current];
+    const trimmedUserAns = userAns ? userAns.trim() : '';
+    let isCorrect = false;
+
+    if (q.type === 'any') {
+      isCorrect = trimmedUserAns.length > 0;        // 자유서술은 빈칸만 아니면 OK
+    } else {
+      isCorrect = isSameAnswer(trimmedUserAns, q.answer); // 정규화 비교
+    }
+
+    feedbackEl.textContent = isCorrect ? '정답입니다! ✅' : '틀렸습니다! ❌';
+    if (isCorrect) score++;
+
+    answerAreaEl.querySelectorAll('button, input').forEach(el => el.disabled = true);
+    showNextButton();
+  }
+
+  function showNextButton() {
+    const isLastQuestion = current === questions.length - 1;
+    const buttonText = isLastQuestion ? '결과 보기' : '다음 문제';
+
+    const nextBtn = createButton(buttonText, () => {
+      if (isLastQuestion) {
+        showResult();
+      } else {
+        current++;
+        showQuestion();
+      }
+      nextBtn.remove();
+    });
+    nextBtn.style.cssText = 'display:block; margin:20px auto;';
+    feedbackEl.parentNode.insertBefore(nextBtn, feedbackEl.nextSibling);
+  }
+
+  function showResult() {
+    questionNumberEl.style.display = 'none';
+    questionTextEl.style.display = 'none';
+    answerAreaEl.style.display = 'none';
+    feedbackEl.style.display = 'none';
+
+    resultEl.style.display = 'block';
+    resultEl.innerHTML = `${participantName}님<br>9과 퀴즈: ${score} / ${questions.length}점`;
+  }
+  </script>
+</body>
+</html>

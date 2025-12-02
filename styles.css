@@ -101,49 +101,64 @@ section form {
 /* =========================================
    4. SECTION SPECIFIC STYLES
    ========================================= */
-
-/* --- Hero Section (콤팩트 모드 적용) --- */
+/* --- Hero Section (콤팩트 & 중앙 정렬 수정판) --- */
 .hero-section {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0; /* 기존 30px에서 0으로 변경하여 간격을 없앰*/
+  justify-content: center; /* 전체 덩어리(이미지+글자)를 화면 정중앙에 배치 */
+  align-items: center;     /* 수직 중앙 정렬 */
+  gap: 60px;               /* 이미지와 텍스트 사이 간격*/
   
-  /* [중요] 한 화면에 보이기 위해 패딩 대폭 축소 */
-  padding-top: 40px; 
-  padding-bottom: 40px;
-  
-  /* 화면 높이가 작은 노트북 등에서 짤리지 않게 최소 높이 설정 */
+  padding-top: 60px; 
+  padding-bottom: 60px;
   min-height: auto; 
 }
 
+/* 이미지 영역 */
+.hero-section .headshot {
+  flex: 0 0 auto; /* 이미지 크기만큼만 공간 차지 (늘어나지 않음) */
+  display: flex;
+  justify-content: flex-end; /* 이미지를 텍스트 쪽으로 붙임 */
+}
+
+.hero-section .headshot img {
+  width: 100%;
+  max-width: 260px; /* 프로필 사진 크기 */
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 텍스트 영역 */
 .hero-section .text {
-  flex: 0 1 600px;
+  flex: 0 1 auto; 
+  max-width: 600px;
   text-align: left;
+  
+  /* [핵심 수정] 공통 스타일의 margin: auto를 무력화하여 옆으로 밀리는 현상 방지 */
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .hero-section .text h2 {
-  font-size: 40px; /* 폰트 사이즈 살짝 줄임 */
-  text-align: left;
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-align: left; /* 제목 왼쪽 정렬 확실히 지정 */
   margin-left: 0;
-  margin-bottom: 20px; /* 제목 아래 여백 줄임 */
 }
 
 .hero-section .text p {
-  margin-bottom: 50px; /* 본문 아래 여백 줄임 */
+  margin-bottom: 20px;
   line-height: 1.5;
 }
 
-/* 링크 그룹들 간격 축소 */
+/* 링크 그룹 간격 */
 .hero-section .text .links,
 .hero-section .text .links-2,
 .hero-section .text .links-3 {
-  margin-top: 10
-  px; /* [중요] 25px -> 10px로 줄여서 위로 당김 */
+  margin-top: 10px;
 }
 
-/* 링크 버튼들을 한 줄에 더 많이 보이게 하려면 flex 사용 가능하지만, 
-   현재 구조 유지하되 마진만 줄임 */
+/* 버튼 스타일 (기존 유지) */
 .hero-section .text .links a,
 .hero-section .text .links-2 a,
 .hero-section .text .links-3 a,
@@ -152,13 +167,13 @@ section form {
 .biblequiz-section .text .links a,
 .contact-section .text .links a  {
   display: inline-block;
-  padding: 4px 10px; /* 버튼 내부 패딩 약간 축소 */
+  padding: 4px 10px;
   border: 2px solid var(--link-color);
   border-radius: 5px;
-  margin-right: 8px;
-  margin-bottom: 5px; /* 버튼 아래 여백 축소 */
+  margin-right: 6px;
+  margin-bottom: 5px;
   transition: .1s;
-  font-size: 15px; /* 글자 크기 살짝 조절 */
+  font-size: 15px;
 }
 
 .hero-section .text .links a:hover,
@@ -170,20 +185,6 @@ section form {
 .contact-section .text .links a  {
   color: var(--text-color);
   border: 2px solid var(--text-color);
-}
-
-.hero-section .headshot {
-  flex: 0 1 600px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.hero-section .headshot img {
-  width: 100%;
-  max-width: 280px; /* [중요] 이미지 크기를 350px -> 280px로 줄임 */
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 /* --- Skills Section (위로 당기기) --- */
@@ -359,32 +360,26 @@ section form {
 /* =========================================
    5. RESPONSIVE DESIGN (Mobile)
    ========================================= */
-@media (max-width: 850px) {
-  .hero-section .text h2 {
-    font-size: 35px;
-  }
-}
-
+/* --- Mobile Responsive (모바일에서는 세로 배치) --- */
 @media (max-width: 768px) {
   section {
     padding: 60px 20px;
   }
-  
-  /* 모바일에서는 Skills 섹션도 패딩을 다시 줌 */
   .skills-section {
     padding-top: 60px; 
   }
 
   .hero-section {
-    flex-direction: column-reverse;
+    flex-direction: column; /* 모바일: 이미지 위, 텍스트 아래 */
     text-align: center;
     gap: 30px;
     padding-top: 40px;
   }
   
   .hero-section .text {
-    flex: auto;
     text-align: center;
+    /* 모바일에서는 중앙 정렬을 위해 마진 리셋 해제 또는 auto 사용 가능하지만, 
+       flex column 구조라 0으로 둬도 무방함 */
   }
   
   .hero-section .text h2 {
@@ -400,12 +395,11 @@ section form {
   }
   
   .hero-section .headshot {
-    flex: auto;
     justify-content: center;
   }
 
   .hero-section .headshot img {
-    width: 220px; /* 모바일 이미지 더 작게 */
+    width: 220px;
   }
 
   .group {
@@ -413,7 +407,6 @@ section form {
     text-align: center;
     gap: 30px;
   }
-  
   .contact-section .group {
     flex-direction: column;
   }

@@ -1,11 +1,11 @@
 /* =========================================
-   1. GLOBAL & RESET
+   1. GLOBAL & RESET & VARIABLES
    ========================================= */
 :root {
   --text-color: #1a1c20;
   --link-color: #4a76ee;
   --background-color: #ffffff;
-  --section-bg-even: #f6f8fa; /* 짝수 섹션 배경색 (연한 회색) */
+  --section-bg-even: #f6f8fa; /* 짝수 섹션용 연한 회색 */
 }
 
 * {
@@ -22,10 +22,8 @@ body {
   font-family: 'Poppins', sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
-  
-  /* 화면 너비를 100%로 설정하여 배경색이 꽉 차게 함 */
   width: 100%;
-  overflow-x: hidden; /* 가로 스크롤 방지 */
+  overflow-x: hidden; 
 }
 
 a {
@@ -40,10 +38,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 70px; /* 네비게이션 높이 약간 축소 (80px -> 70px) */
   padding: 0 50px;
-  
-  /* 네비게이션도 중앙 정렬을 위해 max-width 설정 */
   max-width: 1400px; 
   margin: 0 auto;
 }
@@ -71,32 +67,28 @@ nav .right a span {
 }
 
 /* =========================================
-   3. COMMON SECTION STYLES (Zebra Striping)
+   3. COMMON SECTION STYLES
    ========================================= */
 section {
-  /* Margin을 없애고 Padding으로 간격 조절 (배경색 끊김 방지) */
   margin: 0;
-  padding: 100px 50px; 
+  padding: 80px 50px; /* 기본 패딩 */
   width: 100%;
 }
 
-/* 짝수 번째 섹션 배경색 변경 (회색) */
+/* 짝수 번째 섹션 배경색 변경 */
 section:nth-of-type(even) {
   background-color: var(--section-bg-even);
 }
 
-/* 섹션 제목 공통 스타일 */
 section h2 {
   font-size: 35px;
-  margin-bottom: 40px;
-  text-align: center; /* 제목 중앙 정렬 */
+  margin-bottom: 30px;
+  text-align: center;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* 내용물이 너무 퍼지지 않게 중앙 정렬하는 공통 클래스 */
-/* .group, .text, .cells 등이 1200px 안에서 정렬되도록 함 */
 section .group,
 section .cells,
 section > .text, 
@@ -110,60 +102,61 @@ section form {
    4. SECTION SPECIFIC STYLES
    ========================================= */
 
-/* --- Hero Section --- */
-.hero-section {
-  /* Hero는 Flexbox를 사용하므로 별도 정렬 처리 */
-  display: flex;
-  justify-content: center; /* 내부 컨텐츠 중앙 정렬 */
-}
-
-/* Hero 내부 컨텐츠 래퍼 역할을 하는 가상 설정 */
-.hero-section > * {
-  /* Flex item들이 너무 벌어지지 않게 제한 */
-  max-width: 600px; 
-}
-
-/* 실제 Hero 레이아웃 재정의 (중앙 정렬 유지를 위해) */
+/* --- Hero Section (콤팩트 모드 적용) --- */
 .hero-section {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  padding-top: 50px; /* 상단 여백 조정 */
+  align-items: center;
+  gap: 30px;
+  
+  /* [중요] 한 화면에 보이기 위해 패딩 대폭 축소 */
+  padding-top: 40px; 
+  padding-bottom: 40px;
+  
+  /* 화면 높이가 작은 노트북 등에서 짤리지 않게 최소 높이 설정 */
+  min-height: auto; 
 }
 
-/* Hero 안의 텍스트와 이미지 영역 크기 배분 */
 .hero-section .text {
-  flex: 1;
-  max-width: 650px; /* 텍스트 영역 최대 너비 */
+  flex: 0 1 600px;
+  text-align: left;
 }
 
 .hero-section .text h2 {
-  font-size: 45px;
-  text-align: left; /* Hero 제목은 왼쪽 정렬 유지 */
+  font-size: 40px; /* 폰트 사이즈 살짝 줄임 */
+  text-align: left;
   margin-left: 0;
+  margin-bottom: 20px; /* 제목 아래 여백 줄임 */
 }
 
-/* 링크 버튼 스타일 통합 */
+.hero-section .text p {
+  margin-bottom: 50px; /* 본문 아래 여백 줄임 */
+  line-height: 1.5;
+}
+
+/* 링크 그룹들 간격 축소 */
 .hero-section .text .links,
 .hero-section .text .links-2,
-.hero-section .text .links-3,
-.checkup-section .text .links,
-.biblequiz-section .text .links {
-  margin-top: 25px;
+.hero-section .text .links-3 {
+  margin-top: 10
+  px; /* [중요] 25px -> 10px로 줄여서 위로 당김 */
 }
 
+/* 링크 버튼들을 한 줄에 더 많이 보이게 하려면 flex 사용 가능하지만, 
+   현재 구조 유지하되 마진만 줄임 */
 .hero-section .text .links a,
 .hero-section .text .links-2 a,
 .hero-section .text .links-3 a,
 .checkup-section .text .links a,
 .biblequiz-section .text .links a {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 4px 10px; /* 버튼 내부 패딩 약간 축소 */
   border: 2px solid var(--link-color);
   border-radius: 5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-right: 8px;
+  margin-bottom: 5px; /* 버튼 아래 여백 축소 */
   transition: .1s;
+  font-size: 15px; /* 글자 크기 살짝 조절 */
 }
 
 .hero-section .text .links a:hover,
@@ -176,23 +169,29 @@ section form {
 }
 
 .hero-section .headshot {
-  flex: 1;
+  flex: 0 1 400px;
   display: flex;
-  justify-content: center; /* 이미지 중앙 정렬 */
-  max-width: 450px;
+  justify-content: flex-start;
 }
 
 .hero-section .headshot img {
   width: 100%;
-  max-width: 350px;
+  max-width: 280px; /* [중요] 이미지 크기를 350px -> 280px로 줄임 */
+  height: auto;
   border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 살짝 그림자 추가 */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* --- Skills Section --- */
+/* --- Skills Section (위로 당기기) --- */
+.skills-section {
+  /* [중요] Hero 섹션과 가까워지도록 상단 패딩 제거 또는 축소 */
+  padding-top: 40px; 
+  padding-bottom: 60px;
+}
+
 .skills-section .text {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .skills-section .cells {
@@ -202,41 +201,41 @@ section form {
 }
 
 .skills-section .cells .cell {
-  background-color: #fff; /* 회색 배경 위에서도 잘 보이게 흰색 카드 처리 */
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  width: 200px;
-  padding: 15px 20px;
-  margin: 10px;
+  gap: 8px;
+  width: 160px; /* 카드 너비 약간 축소 */
+  padding: 12px 15px;
+  margin: 8px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 카드 입체감 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .skills-section .cells .cell img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   object-fit: contain;
 }
 
 .skills-section .cells .cell span {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 
-/* --- Common Layout for Testimony, Checkup, NEWSTART, BibleQuiz --- */
+/* --- Common Layout (Testimony, Checkup, NEWSTART, BibleQuiz) --- */
 .group {
   display: flex;
   align-items: center;
   gap: 50px;
-  justify-content: center; /* 내용 중앙 정렬 */
+  justify-content: center;
 }
 
 .person-details {
   text-align: center;
-  flex: 0 0 250px; /* 너비 고정 */
+  flex: 0 0 250px;
 }
 
 .person-details img {
@@ -245,7 +244,7 @@ section form {
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 15px;
-  border: 5px solid rgba(255,255,255,0.5); /* 사진 테두리 장식 */
+  border: 5px solid rgba(255,255,255,0.5);
 }
 
 .person-details p {
@@ -264,9 +263,15 @@ section form {
   line-height: 1.6;
 }
 
+/* Checkup & BibleQuiz Links Spacing */
+.checkup-section .text .links,
+.biblequiz-section .text .links {
+  margin-top: 25px;
+}
+
 /* --- Contact Section --- */
 .contact-section .group {
-  align-items: flex-start; /* 위쪽 정렬 */
+  align-items: flex-start;
 }
 
 .contact-section .group .text {
@@ -279,7 +284,7 @@ section form {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #fff; /* 폼 배경 흰색 */
+  background: #fff;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -322,7 +327,6 @@ section form {
   transform: translateY(-2px);
 }
 
-
 /* =========================================
    5. RESPONSIVE DESIGN (Mobile)
    ========================================= */
@@ -333,48 +337,56 @@ section form {
 }
 
 @media (max-width: 768px) {
-  /* 섹션 패딩 줄임 */
   section {
     padding: 60px 20px;
   }
+  
+  /* 모바일에서는 Skills 섹션도 패딩을 다시 줌 */
+  .skills-section {
+    padding-top: 60px; 
+  }
 
-  /* Hero 모바일 레이아웃 */
   .hero-section {
     flex-direction: column-reverse;
     text-align: center;
-    align-items: center;
+    gap: 30px;
+    padding-top: 40px;
+  }
+  
+  .hero-section .text {
+    flex: auto;
+    text-align: center;
   }
   
   .hero-section .text h2 {
     text-align: center;
   }
-  
-  /* 링크 버튼들도 가운데 정렬 */
+
   .hero-section .text .links,
   .hero-section .text .links-2,
   .hero-section .text .links-3 {
-    display: flex;
     justify-content: center;
+    display: flex;
     flex-wrap: wrap;
+  }
+  
+  .hero-section .headshot {
+    flex: auto;
+    justify-content: center;
   }
 
   .hero-section .headshot img {
-    width: 250px;
+    width: 220px; /* 모바일 이미지 더 작게 */
   }
 
-  /* 공통 그룹 레이아웃 세로 변경 */
   .group {
     flex-direction: column;
     text-align: center;
     gap: 30px;
   }
-
+  
   .contact-section .group {
     flex-direction: column;
-  }
-  
-  .contact-section form {
-    width: 100%;
   }
 }
 
@@ -384,10 +396,10 @@ section form {
   }
 
   nav .right a span {
-    display: none; /* 모바일에서 텍스트 숨김 */
+    display: none;
   }
   
   .skills-section .cells .cell {
-    width: 100%; /* 모바일에서 스킬 카드 꽉 차게 */
+    width: 100%;
   }
 }

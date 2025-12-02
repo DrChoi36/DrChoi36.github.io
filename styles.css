@@ -189,8 +189,8 @@ section form {
 /* --- Skills Section (위로 당기기) --- */
 .skills-section {
   /* [중요] Hero 섹션과 가까워지도록 상단 패딩 제거 또는 축소 */
-  padding-top: 60px; 
-  padding-bottom: 60px;
+  padding-top: 80px; 
+  padding-bottom: 80px;
 }
 
 .skills-section .text {
@@ -433,3 +433,4 @@ section form {
   }
 
 }
+

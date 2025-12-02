@@ -107,7 +107,7 @@ section form {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  gap: 0; /* 기존 30px에서 0으로 변경하여 간격을 없앰*/
   
   /* [중요] 한 화면에 보이기 위해 패딩 대폭 축소 */
   padding-top: 40px; 
@@ -173,7 +173,7 @@ section form {
 }
 
 .hero-section .headshot {
-  flex: 0 1 400px;
+  flex: 0 1 600px;
   display: flex;
   justify-content: flex-start;
 }
@@ -434,5 +434,17 @@ section form {
 
 }
 
+/* --- Top Link Icon Style --- */
+h2 .top-link {
+  font-size: 20px; /* 제목보다 작게 설정 (h2는 35px임) */
+  margin-left: 10px; /* 제목과 아이콘 사이 간격 */
+  color: #ccc; /* 너무 튀지 않게 연한 회색 (원하는 색으로 변경 가능) */
+  vertical-align: middle;
+  transition: .2s;
+}
 
-
+/* 마우스 올렸을 때 효과 */
+h2 .top-link:hover {
+  color: var(--link-color); /* 파란색(링크색)으로 변경 */
+  transform: translateY(-3px); /* 살짝 위로 올라가는 애니메이션 */
+}

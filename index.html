@@ -3,17 +3,23 @@
 <head>
   <meta property="og:title" content="Dr. Choi's Portfolio">
   <meta property="og:description" content="Physician who loves data. Exploring medicine and data to advance human health.">
-  <meta property="og:image" content="https://drchoi36.github.io/images/hero-headshot.webp"> <meta property="og:url" content="https://drchoi36.github.io/">
+  <meta property="og:image" content="https://drchoi36.github.io/images/hero-headshot.webp"> 
+  <meta property="og:url" content="https://drchoi36.github.io/">
+  
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="styles.css">
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <title>Dr. Choi's Portfolio</title>
 </head>
@@ -38,7 +44,8 @@
   </nav>
 
   <main>
-    <section id="top" class="hero-section">
+    <section id="top" class="hero-section" data-aos="fade-up">
+      
       <div class="headshot">
         <img src="images/hero-headshot.webp" alt="Dr Choi headshot"> 
       </div>
@@ -84,7 +91,7 @@
       </div> 
     </section>
 
-    <section id="skills" class="skills-section">
+    <section id="skills" class="skills-section" data-aos="fade-up">
       <h2>Skills</h2>
       <div class="text">
         Knowing is not enough; we must apply.
@@ -118,7 +125,7 @@
       </div>
     </section>
 
-    <section id="testimony" class="testimony-section">
+    <section id="testimony" class="testimony-section" data-aos="fade-up">
       <h2>Testimony <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
       <div class="group">
         <div class="person-details">
@@ -132,7 +139,7 @@
       </div>
     </section>
 
-    <section id="checkup" class="checkup-section">
+    <section id="checkup" class="checkup-section" data-aos="fade-up">
       <h2>NEWSTART checkup <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
       <div class="group"> 
         <div class="text">
@@ -148,7 +155,7 @@
       </div>
     </section>
 
-    <section id="newstart" class="newstart-section">
+    <section id="newstart" class="newstart-section" data-aos="fade-up">
       <h2>NEWSTART <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
       <div class="group">
         <div class="text">
@@ -163,7 +170,7 @@
       </div>
     </section>
 
-    <section id="biblequiz" class="biblequiz-section">
+    <section id="biblequiz" class="biblequiz-section" data-aos="fade-up">
       <h2>Bible Quiz <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
       <div class="group">
         <div class="text">
@@ -178,7 +185,7 @@
       </div>
     </section>
 
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" data-aos="fade-up">
       <h2>Contact <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
       <div class="group">
         
@@ -205,13 +212,17 @@
     </section>
 
   </main>
+  
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 Dr. Choi. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script>
+    AOS.init();
+  </script>
+
 </body>
-
 </html>
-

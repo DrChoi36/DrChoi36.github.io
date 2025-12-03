@@ -10,7 +10,7 @@ This is the personal portfolio website of **Dr. Choi**, a pediatriction. This pr
 
 ## 📸 Screenshots
 
-![Hero Section](images/hero-headshot.webp)
+![Preview](images/preview.png)
 *The main landing page featuring a clean, responsive design.*
 
 ---

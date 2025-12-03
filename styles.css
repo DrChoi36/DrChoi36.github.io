@@ -357,6 +357,91 @@ section form {
   transform: translateY(-2px);
 }
 
+/* --- Top Link Icon Style & Tooltip --- */
+h2 .top-link {
+  position: relative; /* 말풍선 위치의 기준점 */
+  font-size: 20px;
+  margin-left: 10px;
+  color: #ccc;
+  vertical-align: middle;
+  transition: .2s;
+}
+
+/* 마우스 올렸을 때 아이콘 효과 */
+h2 .top-link:hover {
+  color: var(--link-color);
+  transform: translateY(-3px);
+}
+
+/* [추가된 기능] 마우스 올렸을 때 'to top' 글자 나오게 하기 */
+h2 .top-link:hover::after {
+  content: "to top"; /* 보여줄 텍스트 */
+  
+  /* 위치 및 크기 설정 */
+  position: absolute;
+  bottom: 100%; /* 아이콘 바로 위에 배치 */
+  left: 50%;
+  transform: translateX(-50%); /* 정확히 중앙 정렬 */
+  
+  /* 디자인 꾸미기 */
+  background-color: #333; /* 검은색 배경 */
+  color: #fff;            /* 흰색 글자 */
+  padding: 5px 8px;       /* 내부 여백 */
+  font-size: 12px;        /* 글자 크기 */
+  border-radius: 4px;     /* 둥근 모서리 */
+  white-space: nowrap;    /* 줄바꿈 방지 */
+  pointer-events: none;   /* 글자가 마우스 클릭 방해하지 않게 설정 */
+  
+  /* 부드럽게 나타나는 효과 (선택사항) */
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+/* 말풍선 등장 애니메이션 */
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+}
+
+/* =========================================
+   Custom Button Tooltips (HTML의 data-tooltip 내용을 보여줌)
+   ========================================= */
+/* 툴팁을 가진 링크 버튼 설정 */
+.links a[data-tooltip] {
+  position: relative; /* 말풍선의 기준점 */
+}
+
+/* 마우스 올렸을 때 말풍선 등장 */
+.links a[data-tooltip]:hover::after {
+  content: attr(data-tooltip); /* HTML에 적힌 문구를 가져옴 (핵심!) */
+  
+  /* 위치 및 디자인 (이전 to top 스타일과 통일) */
+  position: absolute;
+  bottom: 100%;       /* 버튼 바로 위에 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px; /* 버튼과 말풍선 사이 간격 */
+  
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;        /* 다른 요소보다 위에 보이게 함 */
+  
+  /* 애니메이션 */
+  opacity: 0;
+  animation: tooltipFade 0.3s forwards;
+}
+
+/* 등장 애니메이션 정의 */
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+
 /* =========================================
    5. RESPONSIVE DESIGN (Mobile)
    ========================================= */

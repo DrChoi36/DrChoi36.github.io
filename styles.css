@@ -81,6 +81,9 @@ nav .right a span {
    3. COMMON SECTION STYLES
    ========================================= */
 section {
+  /* [핵심 수정] 링크 이동 시 네비게이션 높이(70px)보다 조금 더 여유를 두고 멈추게 함 */
+  scroll-margin-top: 100px; 
+  
   margin: 0;
   padding: 80px 50px; /* 기본 패딩 */
   width: 100%;

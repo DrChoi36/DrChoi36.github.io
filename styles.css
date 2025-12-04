@@ -179,6 +179,7 @@ section form {
 .checkup-section .text .links a,
 .newstart-section .text .links a,
 .biblequiz-section .text .links a,
+.fluid-section .text .links a,
 .contact-section .text .links a  {
   display: inline-block;
   padding: 4px 10px;
@@ -196,6 +197,7 @@ section form {
 .checkup-section .text .links a:hover,
 .newstart-section .text .links a:hover,
 .biblequiz-section .text .links a:hover, 
+.fluid-section .text .links a:hover,
 .contact-section .text .links a  {
   color: var(--text-color);
   border: 2px solid var(--text-color);
@@ -285,7 +287,8 @@ section form {
 /* Checkup & NESTART & BibleQuiz Links Spacing */
 .checkup-section .text .links,
 .newstart-section .text .links,
-.biblequiz-section .text .links {
+.biblequiz-section .text .links 
+.fluid-section .text .links{
   margin-top: 25px;
 }
 

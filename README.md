@@ -44,11 +44,13 @@ This is the personal portfolio website of **Dr. Choi**, a pediatriction. This pr
 /
 ├── index.html          # Main landing page
 ├── styles.css          # Global styles & Responsive layout
-├── NEWSTART_checklist_gemini02.html  # Health Checklist Project
-├── quiz_app_children_normalize.html  # Bible Quiz Project
 ├── README.md           # Project documentation
 └── images/             # Image assets (logos, headshots, favicon)
     ├── hero-headshot.webp
     ├── javascript-logo.webp
     ├── ...
     └── favicon.ico
+└── pages/             # Progjects & contents
+    ├── NEWSTART_checklist_gemini02.html  # Health Checklist Project
+    ├── NEWSTART_ebook_2nd.html # NESTART contents
+    └── quiz_app_children_normalize.html  # Bible Quiz Project

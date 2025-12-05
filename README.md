@@ -52,6 +52,8 @@ This is the personal portfolio website of **Dr. Choi**, a pediatriction. This pr
     └── favicon.ico
 └── pages/             # Progjects & contents
     ├── NEWSTART_checklist_gemini02.html  # Health Checklist Project
-    ├── NEWSTART_ebook_2nd.html           # NESTART contents
+    ├── NEWSTART_ebook_2nd.html           # NEWSTART contents
+    ├── quiz_newstart.html                # NEWSTART Quiz Project
     ├── quiz_app_children_normalize.html  # Bible Quiz Project
+    ├── quiz_ai_normalize.html            # AI Quiz Project
     └── fluid_calculator.html             # Fluid calculator Project

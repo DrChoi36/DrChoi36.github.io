@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM Style Flashcards v4</title>
+    <style>
+        /* 1. 기본 스타일 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        /* 2. 메인 컨테이너 */
+        #quiz-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            position: relative; /* 카운터 위치 잡기 위해 */
+        }
+
+        /* 3. 카드 영역 */
+        .card-wrapper {
+            perspective: 1000px;
+            width: 500px;
+            height: 300px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* 카드 번호 표시 (새로 추가됨) */
+        #card-counter {
+            position: absolute;
+            top: -40px; /* 카드 바로 위 */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+            background-color: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+
+        /* 4. 실제 카드 */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* 5. 앞/뒷면 공통 */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        .card-front {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #fafafa;
+        }
+
+        /* 텍스트 스타일 */
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.5;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
+        }
+
+        .answer-text {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* 6. 네비게이션 버튼 */
+        .nav-btn {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .nav-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 7. 안내 및 완료 화면 */
+        .instructions {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #888;
+            background: #e9ecef;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        #completion-message {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        #completion-message h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        #restart-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quiz-container">
+        
+        <!-- 왼쪽 버튼 -->
+        <button class="nav-btn" onclick="prevCard()">❮</button>
+
+        <!-- 중앙 카드 -->
+        <div class="card-wrapper" onclick="flipCard()">
+            <!-- 카드 카운터 (예: 1 / 30) -->
+            <div id="card-counter">1 / 30</div>
+
+            <div class="card-inner" id="card-inner">
+                <!-- 앞면 -->
+                <div class="card-face card-front">
+                    <div class="label">Question</div>
+                    <div class="question-text" id="question-text">Loading...</div>
+                </div>
+                <!-- 뒷면 -->
+                <div class="card-face card-back">
+                    <div class="label">Answer & Explanation</div>
+                    <div class="answer-text" id="answer-text">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽 버튼 -->
+        <button class="nav-btn" onclick="nextCard()">❯</button>
+    </div>
+
+    <div class="instructions" id="instructions">
+        [Space]: 뒤집기 / [⬅️]: 이전 / [➡️]: 다음
+    </div>
+
+    <div id="completion-message">
+        <h1>Thank You!</h1>
+        <p>모든 학습을 완료했습니다.</p>
+        <br>
+        <button id="restart-btn" onclick="restartQuiz()">처음으로 돌아가기</button>
+    </div>
+
+    <script>
+        // ==========================================
+        // 30개 문제 데이터 (JSON)
+        // ==========================================
+        const quizData = [
+            {
+                "question": "일상 활동 후 충분히 회복되지 않아 기운이 없고 무기력한 상태를 무엇이라 하나요?",
+                "answer": "피로(Fatigue)입니다."
+            },
+            {
+                "question": "피로와 스트레스가 누적되어 의욕을 잃고 극심한 탈진에 빠지는 현상을 무엇이라 하나요?",
+                "answer": "번아웃 증후군(Burnout Syndrome)입니다."
+            },
+            {
+                "question": "매슬로우의 욕구 이론을 바탕으로, 번아웃을 예방하기 위해 가장 상위 단계에서 추구해야 할 욕구는?",
+                "answer": "자아 초월 욕구(타인을 돕고 외부와 연결되고자 하는 욕구)입니다."
+            },
+            {
+                "question": "데일 카네기는 휴식을 무엇이라고 정의했나요?",
+                "answer": "'휴식은 곧 회복이다'라고 정의했습니다."
+            },
+            {
+                "question": "영어 단어 'Rest'와 'Relaxation'의 차이점은 무엇인가요?",
+                "answer": "Rest는 정적 휴식(수면 등), Relaxation은 동적 휴식(취미, 산책 등)을 의미합니다."
+            },
+            {
+                "question": "멍하니 있거나 쉴 때 활성화되며, 창의성과 자기 성찰을 돕는 뇌의 신경망은?",
+                "answer": "기본 모드 네트워크(Default Mode Network, DMN)입니다."
+            },
+            {
+                "question": "휴식 중 뇌의 연결성이 높은 사람들에게서 나타나는 특징은?",
+                "answer": "기억력, 인지 능력, 공감 능력 및 도덕적 판단력이 더 높습니다."
+            },
+            {
+                "question": "수면 부족이 암 발생 위험을 높이는 이유는 무엇인가요?",
+                "answer": "암세포를 공격하는 자연살상세포(NK cell)의 기능이 저하되기 때문입니다."
+            },
+            {
+                "question": "성인의 하루 권장 수면 시간은 몇 시간인가요?",
+                "answer": "7~8시간입니다."
+            },
+            {
+                "question": "낮잠을 잘 때, 밤 수면을 방해하지 않으면서 회복에 효과적인 적정 시간은?",
+                "answer": "1시간 이내(보통 짧은 낮잠)입니다."
+            },
+            {
+                "question": "TV, 스마트폰 등 자극적인 매체와 거리를 두어 뇌를 쉬게 하는 방법을 무엇이라 하나요?",
+                "answer": "디지털 디톡스(Digital Detox)입니다."
+            },
+            {
+                "question": "슈테판 클라인은 스트레스가 시간이 없어서가 아니라 '이것'을 못한다고 느낄 때 생긴다고 했습니다. '이것'은?",
+                "answer": "시간에 대한 통제(자신의 시간을 스스로 다루는 것)입니다."
+            },
+            {
+                "question": "성경적 관점에서 하루의 시작은 언제로 보나요?",
+                "answer": "저녁(밤)입니다. (휴식을 먼저 취하고 활동을 시작하는 구조)"
+            },
+            {
+                "question": "깨어 있는 시간이 길어질수록 뇌에 쌓이는 수면 욕구를 무엇이라 하나요?",
+                "answer": "수면 압력(Sleep Pressure)입니다."
+            },
+            {
+                "question": "수면을 유도하고 활성산소를 제거하며 면역력을 높이는 호르몬은?",
+                "answer": "멜라토닌(Melatonin)입니다."
+            },
+            {
+                "question": "멜라토닌 분비가 최고조에 달하는 시간대는 언제인가요?",
+                "answer": "새벽 3시경입니다."
+            },
+            {
+                "question": "성장호르몬은 수면 중 언제 가장 많이 분비되나요?",
+                "answer": "잠든 후 1~2시간 내(깊은 잠 단계)에 가장 많이 분비됩니다."
+            },
+            {
+                "question": "수면의 단계 중 꿈을 꾸며 기억과 감정을 조절하고 창의성에 관여하는 단계는?",
+                "answer": "렘수면(REM) 단계입니다."
+            },
+            {
+                "question": "잠든 후 첫 90분 동안 나타나는 가장 깊은 잠의 구간을 무엇이라 부르나요?",
+                "answer": "수면의 골든 타임(Golden Time)입니다."
+            },
+            {
+                "question": "오후 3~4시경 일주기 리듬에 의해 각성도가 떨어져 졸음이 오는 현상은?",
+                "answer": "미드애프터눈 딥(Midafternoon dip) 또는 웨이크풀니스 딥입니다."
+            },
+            {
+                "question": "우리 몸의 생체 리듬 중 약 7일(일주일) 주기로 변하는 리듬을 무엇이라 하나요?",
+                "answer": "서카셉탄 리듬(Circaseptan rhythm)입니다."
+            },
+            {
+                "question": "일주일 주기의 휴식(안식일)이 주는 건강상의 이점은?",
+                "answer": "피로도가 가장 낮고 수면의 질이 높아지며, 생체 리듬 회복에 도움을 줍니다."
+            },
+            {
+                "question": "수면 부족 시 식욕과 관련된 호르몬 변화는 어떻게 일어나나요?",
+                "answer": "식욕 억제 호르몬(렙틴)은 줄고, 식욕 자극 호르몬(그렐린)은 늘어납니다."
+            },
+            {
+                "question": "수면 중 뇌척수액이 뇌에서 청소해주는 치매 유발 독성 물질은?",
+                "answer": "베타 아밀로이드입니다."
+            },
+            {
+                "question": "건강한 수면을 위해 피해야 할 침실 환경 요소는?",
+                "answer": "소음, 너무 밝은 조명, 부적절한 온도입니다."
+            },
+            {
+                "question": "잠자리에 들고 20분 내에 잠이 오지 않을 때 올바른 대처법은?",
+                "answer": "일어나서 다른 장소에서 책을 읽거나 이완하다가 잠이 오면 다시 눕습니다."
+            },
+            {
+                "question": "연구에 따른 건강 유지를 위한 가장 이상적인 취침 시간은?",
+                "answer": "밤 10시 이전입니다."
+            },
+            {
+                "question": "휴식의 정신적 방법 중, 마음의 평안을 위해 버려야 할 태도는?",
+                "answer": "끝없는 욕심, 미움, 죄책감입니다."
+            },
+            {
+                "question": "렘수면과 논렘수면은 대략 몇 분 주기로 반복되나요?",
+                "answer": "약 90분 주기로 반복됩니다."
+            },
+            {
+                "question": "문서에서 말하는 진정한 휴식을 완성하는 최고의 힘(태도)은?",
+                "answer": "이웃을 사랑하고 봉사하며 신뢰(신앙)를 가지는 삶입니다."
+            }
+        ];
+
+        // ==========================================
+        // 로직
+        // ==========================================
+        let currentCardIndex = 0;
+        const cardInner = document.getElementById('card-inner');
+        const questionText = document.getElementById('question-text');
+        const answerText = document.getElementById('answer-text');
+        const cardCounter = document.getElementById('card-counter'); // 카운터 엘리먼트
+        
+        const quizContainer = document.getElementById('quiz-container');
+        const instructions = document.getElementById('instructions');
+        const completionMessage = document.getElementById('completion-message');
+
+        function loadCard(index) {
+            // 카드 리셋 (항상 앞면으로)
+            cardInner.classList.remove('flipped');
+
+            // 텍스트 업데이트 (애니메이션 딜레이)
+            setTimeout(() => {
+                questionText.innerHTML = quizData[index].question;
+                answerText.innerHTML = quizData[index].answer;
+                
+                // [NEW] 카운터 업데이트
+                cardCounter.textContent = `${index + 1} / ${quizData.length}`;
+            }, 150);
+        }
+
+        function flipCard() {
+            cardInner.classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            if (currentCardIndex < quizData.length - 1) {
+                currentCardIndex++;
+                loadCard(currentCardIndex);
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                loadCard(currentCardIndex);
+            }
+        }
+
+        function finishQuiz() {
+            quizContainer.style.display = 'none';
+            instructions.style.display = 'none';
+            completionMessage.style.display = 'block';
+        }
+
+        function restartQuiz() {
+            currentCardIndex = 0;
+            quizContainer.style.display = 'flex'; 
+            instructions.style.display = 'block';
+            completionMessage.style.display = 'none';
+            loadCard(0);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (quizContainer.style.display === 'none') return;
+
+            if (event.code === 'Space') {
+                event.preventDefault();
+                flipCard();
+            } else if (event.code === 'ArrowRight' || event.code === 'Enter') {
+                event.preventDefault();
+                nextCard();
+            } else if (event.code === 'ArrowLeft') {
+                event.preventDefault();
+                prevCard();
+            }
+        });
+
+        // 초기 실행
+        loadCard(currentCardIndex);
+
+    </script>
+</body>
+</html>

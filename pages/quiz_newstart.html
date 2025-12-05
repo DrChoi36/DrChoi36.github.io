@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotebookLM Style Flashcards v4</title>
+    <title>NEWSTART Quiz</title>
     <style>
         /* 1. 기본 스타일 */
         body {
@@ -12,41 +12,46 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* height 대신 min-height 사용 */
             margin: 0;
             flex-direction: column;
+            padding: 20px; /* 모바일 여백 확보 */
+            box-sizing: border-box;
         }
 
-        /* 2. 메인 컨테이너 */
+        /* 2. 메인 컨테이너 (세로 정렬로 변경) */
         #quiz-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column; /* [중요] 세로 정렬 */
             align-items: center;
-            gap: 20px;
-            position: relative; /* 카운터 위치 잡기 위해 */
+            gap: 30px; /* 카드와 버튼 사이 간격 */
+            position: relative;
+            width: 100%;
         }
 
-        /* 3. 카드 영역 */
+        /* 3. 카드 영역 (반응형 크기 적용) */
         .card-wrapper {
             perspective: 1000px;
-            width: 500px;
-            height: 300px;
+            width: 100%;       /* 모바일 기본 */
+            max-width: 500px;  /* PC 최대 크기 제한 */
+            height: 300px;     /* 높이 고정 (필요시 auto로 변경 가능) */
             cursor: pointer;
             position: relative;
         }
 
-        /* 카드 번호 표시 (새로 추가됨) */
+        /* 카드 번호 표시 */
         #card-counter {
             position: absolute;
-            top: -40px; /* 카드 바로 위 */
+            top: -40px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #555;
             background-color: #e9ecef;
             padding: 5px 15px;
             border-radius: 15px;
+            white-space: nowrap;
         }
 
         /* 4. 실제 카드 */
@@ -76,7 +81,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 20px; /* 패딩 약간 축소 */
             box-sizing: border-box;
             border-radius: 15px;
             background-color: white;
@@ -95,15 +100,15 @@
 
         /* 텍스트 스타일 */
         .question-text {
-            font-size: 1.4rem;
+            font-size: 1.3rem; /* 모바일 고려하여 폰트 사이즈 조정 */
             font-weight: bold;
             color: #333;
             line-height: 1.5;
-            word-break: keep-all; /* 단어 단위 줄바꿈 */
+            word-break: keep-all;
         }
 
         .answer-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #555;
             line-height: 1.6;
             word-break: keep-all;
@@ -112,29 +117,36 @@
         .label {
             font-size: 0.8rem;
             color: #999;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
         }
 
-        /* 6. 네비게이션 버튼 */
+        /* [새로 추가됨] 버튼 컨테이너 */
+        .button-container {
+            display: flex;
+            gap: 40px; /* 버튼 사이 간격 */
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 6. 네비게이션 버튼 (크기 확대) */
         .nav-btn {
             padding: 0;
-            width: 50px;
-            height: 50px;
+            width: 60px;  /* 터치하기 편하게 크기 확대 */
+            height: 60px;
             border-radius: 50%;
             background-color: #007bff;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: background 0.3s, transform 0.1s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .nav-btn:hover {
@@ -147,12 +159,14 @@
 
         /* 7. 안내 및 완료 화면 */
         .instructions {
-            margin-top: 50px;
+            margin-top: 30px;
             font-size: 0.9rem;
             color: #888;
             background: #e9ecef;
             padding: 8px 20px;
             border-radius: 20px;
+            text-align: center;
+            line-height: 1.5;
         }
 
         #completion-message {
@@ -180,27 +194,28 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* 돌아가기 링크 스타일 */
+        .back-link {
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
     <div id="quiz-container">
         
-        <!-- 왼쪽 버튼 -->
-        <button class="nav-btn" onclick="prevCard()">❮</button>
-
-        <!-- 중앙 카드 -->
         <div class="card-wrapper" onclick="flipCard()">
-            <!-- 카드 카운터 (예: 1 / 30) -->
             <div id="card-counter">1 / 30</div>
 
             <div class="card-inner" id="card-inner">
-                <!-- 앞면 -->
                 <div class="card-face card-front">
                     <div class="label">Question</div>
                     <div class="question-text" id="question-text">Loading...</div>
                 </div>
-                <!-- 뒷면 -->
                 <div class="card-face card-back">
                     <div class="label">Answer & Explanation</div>
                     <div class="answer-text" id="answer-text">Loading...</div>
@@ -208,19 +223,27 @@
             </div>
         </div>
 
-        <!-- 오른쪽 버튼 -->
-        <button class="nav-btn" onclick="nextCard()">❯</button>
+        <div class="button-container">
+            <button class="nav-btn" onclick="prevCard()">❮</button>
+            <button class="nav-btn" onclick="nextCard()">❯</button>
+        </div>
+
     </div>
 
     <div class="instructions" id="instructions">
-        [Space]: 뒤집기 / [⬅️]: 이전 / [➡️]: 다음
+        카드 터치: 정답 확인<br>
+        화살표 버튼: 이전 / 다음 문제
     </div>
+    
+    <a href="../index.html" class="back-link">← 포트폴리오 메인으로 돌아가기</a>
 
     <div id="completion-message">
         <h1>Thank You!</h1>
         <p>모든 학습을 완료했습니다.</p>
         <br>
         <button id="restart-btn" onclick="restartQuiz()">처음으로 돌아가기</button>
+        <br><br>
+        <a href="../index.html" class="back-link">메인으로 나가기</a>
     </div>
 
     <script>
@@ -357,22 +380,22 @@
         const cardInner = document.getElementById('card-inner');
         const questionText = document.getElementById('question-text');
         const answerText = document.getElementById('answer-text');
-        const cardCounter = document.getElementById('card-counter'); // 카운터 엘리먼트
+        const cardCounter = document.getElementById('card-counter'); 
         
         const quizContainer = document.getElementById('quiz-container');
         const instructions = document.getElementById('instructions');
         const completionMessage = document.getElementById('completion-message');
 
         function loadCard(index) {
-            // 카드 리셋 (항상 앞면으로)
+            // 카드 리셋
             cardInner.classList.remove('flipped');
 
-            // 텍스트 업데이트 (애니메이션 딜레이)
+            // 텍스트 업데이트
             setTimeout(() => {
                 questionText.innerHTML = quizData[index].question;
                 answerText.innerHTML = quizData[index].answer;
                 
-                // [NEW] 카운터 업데이트
+                // 카운터 업데이트
                 cardCounter.textContent = `${index + 1} / ${quizData.length}`;
             }, 150);
         }

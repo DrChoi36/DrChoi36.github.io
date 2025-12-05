@@ -172,13 +172,15 @@ section form {
   margin-top: 10px;
 }
 
-/* 버튼 스타일 (기존 유지) */
+/* 버튼 스타일 (업데이트됨) */
 .hero-section .text .links a,
 .hero-section .text .links-2 a,
 .hero-section .text .links-3 a,
 .checkup-section .text .links a,
 .newstart-section .text .links a,
+.newstart-quiz-section .text .links a, /* [추가됨] */
 .biblequiz-section .text .links a,
+.ai-quiz-section .text .links a,       /* [추가됨] */
 .fluid-section .text .links a,
 .contact-section .text .links a  {
   display: inline-block;
@@ -191,12 +193,15 @@ section form {
   font-size: 15px;
 }
 
+/* 마우스 올렸을 때(Hover) 스타일 (업데이트됨) */
 .hero-section .text .links a:hover,
 .hero-section .text .links-2 a:hover,
 .hero-section .text .links-3 a:hover,
 .checkup-section .text .links a:hover,
 .newstart-section .text .links a:hover,
-.biblequiz-section .text .links a:hover, 
+.newstart-quiz-section .text .links a:hover, /* [추가됨] */
+.biblequiz-section .text .links a:hover,
+.ai-quiz-section .text .links a:hover,       /* [추가됨] */
 .fluid-section .text .links a:hover,
 .contact-section .text .links a  {
   color: var(--text-color);
@@ -284,11 +289,13 @@ section form {
   line-height: 1.6;
 }
 
-/* Checkup & NESTART & BibleQuiz Links Spacing */
+/* Checkup & NEWSTART & Quiz Links Spacing (업데이트됨) */
 .checkup-section .text .links,
 .newstart-section .text .links,
-.biblequiz-section .text .links 
-.fluid-section .text .links{
+.newstart-quiz-section .text .links, /* [추가됨] */
+.biblequiz-section .text .links,
+.ai-quiz-section .text .links,       /* [추가됨] */
+.fluid-section .text .links {
   margin-top: 25px;
 }
 

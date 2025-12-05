@@ -2,63 +2,155 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>소아 수액 계산기</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* 초기화 및 기본 설정 */
+        * {
+            box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            background-color: #f5f7fa;
-            max-width: 600px;
-            margin: auto;
+            font-family: 'Poppins', sans-serif, Arial; /* 폰트 통일 */
+            background-color: #f6f8fa; /* 포트폴리오 배경색과 유사한 연회색 */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* 화면 중앙 정렬 */
         }
+
+        /* 카드 형태의 컨테이너 디자인 */
+        .container {
+            background-color: white;
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px; /* PC에서는 너무 커지지 않게 제한 */
+        }
+
         h1 {
+            color: #1a1c20;
+            text-align: center;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* 입력 라벨 스타일 */
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
             color: #333;
+            font-size: 15px;
         }
-        label, input {
-            font-size: 1rem;
+
+        /* [핵심 수정 2] 모바일 터치하기 좋게 입력창 확대 */
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px; /* 16px 이상이어야 아이폰에서 확대 안 됨 */
+            transition: border-color 0.2s;
+            outline: none;
         }
-        input {
-            padding: 5px;
-            margin-bottom: 10px;
+
+        input:focus {
+            border-color: #4a76ee; /* 포트폴리오 포인트 색상 */
         }
+
+        /* [핵심 수정 3] 버튼 크고 시원하게 */
         button {
-            padding: 10px 20px;
-            background-color: #0077cc;
+            width: 100%;
+            padding: 15px;
+            background-color: #4a76ee;
             color: white;
             border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
         }
+
+        button:hover {
+            background-color: #3a63d1; /* 호버 시 약간 진하게 */
+        }
+
+        /* 결과창 스타일 */
         #result {
-            background: white;
-            padding: 15px;
+            margin-top: 25px;
+            background-color: #f0f7ff; /* 아주 연한 파란색 배경 */
+            border: 1px solid #cce5ff;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            display: none; /* 계산 전에는 숨김 */
+        }
+
+        /* 홈으로 돌아가는 링크 */
+        .back-link {
+            display: block;
+            text-align: center;
             margin-top: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            color: #4a76ee;
         }
     </style>
 </head>
 <body>
-    <h1>소아 유지 수액 계산기 by Dr Choi</h1>
-    <label for="age">나이 (세):</label><br>
-    <input type="number" id="age" step="1"><br>
 
-    <label for="weight">체중 (kg):</label><br>
-    <input type="number" id="weight" step="0.1"><br>
+    <div class="container">
+        <h1>💧 소아 유지 수액 계산기</h1>
+        
+        <label for="age">나이 (세):</label>
+        <input type="number" id="age" placeholder="예: 5" inputmode="numeric">
 
-    <button onclick="calculate()">계산하기</button>
+        <label for="weight">체중 (kg):</label>
+        <input type="number" id="weight" step="0.1" placeholder="예: 18.5" inputmode="decimal">
 
-    <div id="result"></div>
+        <button onclick="calculate()">계산하기</button>
+
+        <div id="result"></div>
+
+        <a href="../index.html" class="back-link">← 포트폴리오 메인으로 돌아가기</a>
+    </div>
 
     <script>
         function calculate() {
-            const age = parseInt(document.getElementById('age').value);
-            const weight = parseFloat(document.getElementById('weight').value);
-
-            if (isNaN(age) || isNaN(weight) || age < 0 || weight <= 0) {
-                alert("유효한 나이와 체중을 입력해주세요.");
+            const ageInput = document.getElementById('age').value;
+            const weightInput = document.getElementById('weight').value;
+            
+            // 입력값 확인
+            if (!ageInput || !weightInput) {
+                alert("나이와 체중을 모두 입력해주세요.");
                 return;
             }
 
+            const age = parseInt(ageInput);
+            const weight = parseFloat(weightInput);
+
+            if (isNaN(age) || isNaN(weight) || age < 0 || weight <= 0) {
+                alert("유효한 값을 입력해주세요.");
+                return;
+            }
+
+            // Holliday-Segar Method 계산
             let fluidPerDay = 0;
             if (weight <= 10) {
                 fluidPerDay = 100 * weight;
@@ -66,12 +158,13 @@
                 fluidPerDay = 1000 + (weight - 10) * 50;
             } else {
                 fluidPerDay = 1500 + (weight - 20) * 20;
-                if (fluidPerDay > 2400) fluidPerDay = 2400;
+                if (fluidPerDay > 2400) fluidPerDay = 2400; // 최대 용량 제한
             }
 
             fluidPerDay = Math.ceil(fluidPerDay);
             const fluidPerHour = Math.ceil(fluidPerDay / 24);
 
+            // 추천 수액 로직
             let fluidType = "";
             if (age < 1) {
                 fluidType = "D5 1/4NS + 20mEq/L KCl (필요시)";
@@ -81,15 +174,17 @@
                 fluidType = "D5 1/2NS + 20mEq/L KCl";
             }
 
-            const result = `
-                📈 체중: ${weight} kg<br>
-                📅 나이: ${age} 세<br><br>
-                💧 하루 총 수액 유지량: ${fluidPerDay} mL/day<br>
-                🕒 시간당 수액 속도: ${fluidPerHour} mL/hr<br><br>
-                📄 추천 수액: ${fluidType}
+            const resultHTML = `
+                <strong style="color: #4a76ee; font-size: 1.1em;">📊 결과 리포트</strong><hr style="border: 0; border-top: 1px solid #cce5ff; margin: 10px 0;">
+                <strong>체중:</strong> ${weight} kg / <strong>나이:</strong> ${age} 세<br><br>
+                💧 <strong>하루 총 유지량:</strong><br> <span style="font-size: 1.2em; color: #d32f2f;">${fluidPerDay} mL/day</span><br><br>
+                🕒 <strong>시간당 주입 속도:</strong><br> <span style="font-size: 1.2em; color: #d32f2f;">${fluidPerHour} mL/hr</span><br><br>
+                📄 <strong>추천 수액:</strong><br> ${fluidType}
             `;
 
-            document.getElementById('result').innerHTML = result;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = "block"; // 결과창 보이기
         }
     </script>
 </body>

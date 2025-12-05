@@ -1,552 +1,292 @@
-/* =========================================
-   1. GLOBAL & RESET & VARIABLES
-   ========================================= */
-:root {
-  --text-color: #1a1c20;
-  --link-color: #4a76ee;
-  --background-color: #ffffff;
-  --section-bg-even: #f6f8fa; /* 짝수 섹션용 연한 회색 */
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  width: 100%;
-  overflow-x: hidden; 
-}
-
-a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
-footer p {
-  margin: 5px 0;
-}
-
-/* =========================================
-   2. NAVBAR
-   ========================================= */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px; /* 네비게이션 높이 약간 축소 (80px -> 70px) */
-  padding: 0 50px;
-  max-width: 1400px; 
-  margin: 0 auto;
-}
-
-nav .left a {
-  color: var(--text-color);
-  font-size: 22px;
-  font-weight: 600;
-}
-
-nav .right a {
-  color: var(--text-color);
-  margin: 0 10px;
-}
-
-nav .right a:last-child {
-  color: var(--background-color);
-  background-color: var(--text-color);
-  padding: 5px 15px;
-  border-radius: 5px;
-}
-
-nav .right a span {
-  margin-left: 5px;
-}
-
-/* =========================================
-   3. COMMON SECTION STYLES
-   ========================================= */
-section {
-  /* [핵심 수정] 링크 이동 시 네비게이션 높이(70px)보다 조금 더 여유를 두고 멈추게 함 */
-  scroll-margin-top: 100px; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta property="og:title" content="Dr. Choi's Portfolio">
+  <meta property="og:description" content="Physician who loves data. Exploring medicine and data to advance human health.">
+  <meta property="og:image" content="https://drchoi36.github.io/images/hero-headshot.webp"> 
+  <meta property="og:url" content="https://drchoi36.github.io/">
   
-  margin: 0;
-  padding: 80px 50px; /* 기본 패딩 */
-  width: 100%;
-}
-
-/* 짝수 번째 섹션 배경색 변경 */
-section:nth-of-type(even) {
-  background-color: var(--section-bg-even);
-}
-
-section h2 {
-  font-size: 35px;
-  margin-bottom: 30px;
-  text-align: center;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section .group,
-section .cells,
-section > .text, 
-section form {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* =========================================
-   4. SECTION SPECIFIC STYLES
-   ========================================= */
-/* --- Hero Section (콤팩트 & 중앙 정렬 수정판) --- */
-.hero-section {
-  display: flex;
-  justify-content: center; /* 전체 덩어리(이미지+글자)를 화면 정중앙에 배치 */
-  align-items: center;     /* 수직 중앙 정렬 */
-  gap: 60px;               /* 이미지와 텍스트 사이 간격*/
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  padding-top: 60px; 
-  padding-bottom: 60px;
-  min-height: auto; 
-}
-
-/* 이미지 영역 */
-.hero-section .headshot {
-  flex: 0 0 auto; /* 이미지 크기만큼만 공간 차지 (늘어나지 않음) */
-  display: flex;
-  justify-content: flex-end; /* 이미지를 텍스트 쪽으로 붙임 */
-}
-
-.hero-section .headshot img {
-  width: 100%;
-  max-width: 260px; /* 프로필 사진 크기 */
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* 텍스트 영역 */
-.hero-section .text {
-  flex: 0 1 auto; 
-  max-width: 600px;
-  text-align: left;
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   
-  /* [핵심 수정] 공통 스타일의 margin: auto를 무력화하여 옆으로 밀리는 현상 방지 */
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-.hero-section .text h2 {
-  font-size: 40px;
-  margin-bottom: 15px;
-  text-align: left; /* 제목 왼쪽 정렬 확실히 지정 */
-  margin-left: 0;
-}
-
-.hero-section .text p {
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-/* 링크 그룹 간격 */
-.hero-section .text .links,
-.hero-section .text .links-2,
-.hero-section .text .links-3 {
-  margin-top: 10px;
-}
-
-/* 버튼 스타일 (업데이트됨) */
-.hero-section .text .links a,
-.hero-section .text .links-2 a,
-.hero-section .text .links-3 a,
-.checkup-section .text .links a,
-.newstart-section .text .links a,
-.newstart-quiz-section .text .links a, /* [추가됨] */
-.biblequiz-section .text .links a,
-.ai-quiz-section .text .links a,       /* [추가됨] */
-.fluid-section .text .links a,
-.contact-section .text .links a  {
-  display: inline-block;
-  padding: 4px 10px;
-  border: 2px solid var(--link-color);
-  border-radius: 5px;
-  margin-right: 6px;
-  margin-bottom: 5px;
-  transition: .1s;
-  font-size: 15px;
-}
-
-/* 마우스 올렸을 때(Hover) 스타일 (업데이트됨) */
-.hero-section .text .links a:hover,
-.hero-section .text .links-2 a:hover,
-.hero-section .text .links-3 a:hover,
-.checkup-section .text .links a:hover,
-.newstart-section .text .links a:hover,
-.newstart-quiz-section .text .links a:hover, /* [추가됨] */
-.biblequiz-section .text .links a:hover,
-.ai-quiz-section .text .links a:hover,       /* [추가됨] */
-.fluid-section .text .links a:hover,
-.contact-section .text .links a  {
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
-}
-
-/* --- Skills Section (위로 당기기) --- */
-.skills-section {
-  /* [중요] Hero 섹션과 가까워지도록 상단 패딩 제거 또는 축소 */
-  padding-top: 100px; 
-  padding-bottom: 100px;
-}
-
-.skills-section .text {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.skills-section .cells {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.skills-section .cells .cell {
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 160px; /* 카드 너비 약간 축소 */
-  padding: 12px 15px;
-  margin: 8px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.skills-section .cells .cell img {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-}
-
-.skills-section .cells .cell span {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-/* --- Common Layout (Testimony, Checkup, NEWSTART, BibleQuiz) --- */
-.group {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  justify-content: center;
-}
-
-.person-details {
-  text-align: center;
-  flex: 0 0 250px;
-}
-
-.person-details img {
-  width: 200px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 15px;
-  border: 5px solid rgba(255,255,255,0.5);
-}
-
-.person-details p {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.person-details p:last-child {
-  font-weight: normal;
-  color: #666;
-}
-
-.group .text {
-  flex: 1;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* Checkup & NEWSTART & Quiz Links Spacing (업데이트됨) */
-.checkup-section .text .links,
-.newstart-section .text .links,
-.newstart-quiz-section .text .links, /* [추가됨] */
-.biblequiz-section .text .links,
-.ai-quiz-section .text .links,       /* [추가됨] */
-.fluid-section .text .links {
-  margin-top: 25px;
-}
-
-/* =========================================
-   수정된 Contact Section CSS
-   (styles.css 하단의 해당 부분을 이것으로 덮어쓰세요)
-   ========================================= */
-
-/* --- Contact Section --- */
-.contact-section .group {
-  /* 좌우 배치가 아닌 상하 배치로 변경 */
-  flex-direction: column; 
-  align-items: center; /* 중앙 정렬 */
-  gap: 20px; /* 링크와 폼 사이 간격 */
-}
-
-/* 폼 스타일 */
-.contact-section form {
-  width: 100%;
-  max-width: 600px; /* 폼이 너무 넓어지지 않게 중앙에 적당한 크기로 제한 */
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-/* 링크 버튼 스타일 (기존 .text .links a 에서 .text 제거하여 적용) */
-.contact-section .links {
-  margin-bottom: 10px;
-}
-
-.contact-section .links a {
-  display: inline-block;
-  padding: 4px 10px;
-  border: 2px solid var(--link-color);
-  border-radius: 5px;
-  transition: .1s;
-  font-size: 15px;
-  color: var(--link-color); /* 색상 명시 */
-  background-color: transparent;
-}
-
-.contact-section .links a:hover {
-  color: var(--text-color);
-  border: 2px solid var(--text-color);
-}
-
-.contact-section form input,
-.contact-section form textarea {
-  font-family: 'Poppins', sans-serif;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
-  padding: 15px;
-  margin-bottom: 20px;
-  outline: none;
-  border-radius: 5px;
-  transition: .2s;
-}
-
-.contact-section form input:focus,
-.contact-section form textarea:focus {
-  border-color: var(--link-color);
-  background-color: #fff;
-}
-
-.contact-section form button {
-  font-size: 16px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background-color: var(--link-color);
-  border: none;
-  padding: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.contact-section form button:hover {
-  filter: brightness(0.9);
-  transform: translateY(-2px);
-}
-
-/* --- Top Link Icon Style & Tooltip --- */
-h2 .top-link {
-  position: relative; /* 말풍선 위치의 기준점 */
-  font-size: 20px;
-  margin-left: 10px;
-  color: #ccc;
-  vertical-align: middle;
-  transition: .2s;
-}
-
-/* 마우스 올렸을 때 아이콘 효과 */
-h2 .top-link:hover {
-  color: var(--link-color);
-  transform: translateY(-3px);
-}
-
-/* [추가된 기능] 마우스 올렸을 때 'to top' 글자 나오게 하기 */
-h2 .top-link:hover::after {
-  content: "to top"; /* 보여줄 텍스트 */
+  <link rel="stylesheet" href="../styles.css">
   
-  /* 위치 및 크기 설정 */
-  position: absolute;
-  bottom: 100%; /* 아이콘 바로 위에 배치 */
-  left: 50%;
-  transform: translateX(-50%); /* 정확히 중앙 정렬 */
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <title>Dr. Choi's Portfolio</title>
+</head>
+<body>
+  <nav>
+    <div class="left">
+      </div>
+
+    <div class="right">
+      <a href="https://github.com/DrChoi36" target="_blank" rel="noopener noreferrer">
+        <span>Dr Choi</span>
+      </a>  
+      <a href="https://github.com/DrChoi36" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i>
+        <span>Github</span>
+      </a>
+      <a href="mailto:missionjaehee@google.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="top" class="hero-section" data-aos="fade-up">
+      
+      <div class="headshot">
+        <img src="images/hero-headshot.webp" alt="Dr Choi headshot"> 
+      </div>
+
+      <div class="text">
+        <h2>Get well soon!👋</h2>
+        <p>I am a physician who loves data.<br>
+           I study medicine and data to advance human health.<br>
+           I will utilize the wisdom God has given me to explore, collect, analyze, and apply it!</p>
+
+        <div class="links">
+          <a href="#skills">
+            <i class="fa-solid fa-code"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#testimony">
+            <i class="fa-solid fa-pen"></i>
+            <span>Testimony</span>
+          </a>
+          <a href="#contact">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+
+        <div class="links-2">
+          <a href="#checkup">
+            <i class="fa-solid fa-check"></i>
+            <span>NEWSTART checkup</span>
+          </a>
+          <a href="#newstart">
+            <i class="fa-solid fa-leaf"></i>
+            <span>NEWSTART</span>
+          </a>
+          <a href="#newstart-quiz">
+            <i class="fa-solid fa-clipboard-question"></i>
+            <span>NEWSTART Quiz</span>
+          </a>
+        </div>
+
+        <div class="links-3">
+            <a href="#biblequiz">
+                <i class="fa-solid fa-question"></i>
+                <span>Bible Quiz</span>
+            </a>
+            <a href="#ai-quiz">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Quiz</span>
+            </a>
+        </div>
+
+        <div class="links-4">
+            <a href="#fluid">
+                <i class="fa-solid fa-droplet"></i>
+                <span>Fluid Calculator</span> 
+            </a>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section" data-aos="fade-up">
+      <h2>Skills</h2>
+      <div class="text">
+        Knowing is not enough; we must apply.
+      </div>
+
+      <div class="cells">
+        <div class="cell">
+          <img src="images/html-logo.webp" alt="html logo">
+          <span>HTML</span>
+        </div>
+        <div class="cell">
+          <img src="images/css-logo.webp" alt="css logo">
+          <span>CSS</span>
+        </div>
+        <div class="cell">
+          <img src="images/javascript-logo.webp" alt="javascript logo">
+          <span>JavaScript</span>
+        </div>
+        <div class="cell">
+          <img src="images/node-logo.webp" alt="node logo">
+          <span>Node.js</span>
+        </div>
+        <div class="cell">
+          <img src="images/react-logo.webp" alt="react logo">
+          <span>React.js</span>
+        </div>
+        <div class="cell">
+          <i class="fa-brands fa-python"></i>
+          <span>Python</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimony" class="testimony-section" data-aos="fade-up">
+      <h2>Testimony <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="person-details">
+          <img src="images/testimony-headshot.webp" alt="Dr Choi testimony">
+          <p>Dr Choi</p>
+          <p>First mover, Fast follower</p>
+        </div>
+        <div class="text">
+          "Knowing is not enough; we must apply. Willing is not enough; we must do. I am a physician who loves data. I study medicine and data to advance human health. Though still a novice and clumsy, I will utilize the wisdom God has given me to explore, collect, analyze, and apply it! "
+        </div>
+      </div>
+    </section>
+
+    <section id="checkup" class="checkup-section" data-aos="fade-up">
+      <h2>NEWSTART checkup <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group"> 
+        <div class="text">
+            "How much effort are you putting into your health?<br>
+            Take a look and consider which areas you need to improve."
+            <div class="links">
+              <a href="pages/NEWSTART_checklist_gemini02.html" data-tooltip="start checkup">
+                <i class="fa-solid fa-check"></i>
+                <span>Checkup</span>
+              </a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="newstart" class="newstart-section" data-aos="fade-up">
+      <h2>NEWSTART <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="text">
+          "NEWSTART is an acronym for Nutrition, Exercise, Water, Sunlight, Temperance, Air, Rest, and Trust in God. It is a holistic approach to health that emphasizes the importance of lifestyle choices in preventing and managing chronic diseases."
+            <div class="links">
+              <a href="pages/NEWSTART_ebook_2nd.html" data-tooltip="more information">
+                <i class="fa-solid fa-leaf"></i>
+                <span>NEWSTART</span>
+              </a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="newstart-quiz" class="newstart-quiz-section" data-aos="fade-up">
+      <h2>NEWSTART Quiz <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="text">
+          "Test your knowledge about NEWSTART principles.<br>
+           Learn how to live a healthier life through this interactive quiz."
+            <div class="links">
+              <a href="pages/quiz_newstart.html" data-tooltip="start quiz">
+                <i class="fa-solid fa-clipboard-question"></i>
+                <span>Start</span>
+              </a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="biblequiz" class="biblequiz-section" data-aos="fade-up">
+      <h2>Bible Quiz <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="text">
+          "The Bible Quiz tests your knowledge of the Bible through a series of questions. It is a fun and interactive way to learn more about the Bible and its teachings."
+            <div class="links">
+                <a href="pages/quiz_app_children_normalize.html" data-tooltip="start quiz">
+                    <i class="fa-solid fa-question"></i>
+                    <span>Start</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="ai-quiz" class="ai-quiz-section" data-aos="fade-up">
+      <h2>AI Quiz <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="text">
+          "Challenge yourself with Artificial Intelligence concepts.<br>
+           Explore the basics of Deep Learning."
+            <div class="links">
+                <a href="pages/quiz_ai.html" data-tooltip="start quiz">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>Start</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="fluid" class="fluid-section" data-aos="fade-up">
+      <h2>Fluid Calculator <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        <div class="text">
+          "Calculate pediatric maintenance fluid requirements easily.<br>
+           Based on the Holliday-Segar method."
+            <div class="links">
+                <a href="pages/fluid_calculator.html" data-tooltip="start calculation">
+                    <i class="fa-solid fa-droplet"></i>
+                    <span>Calculator</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="contact" class="contact-section" data-aos="fade-up">
+      <h2>Contact <a href="#top" class="top-link"><i class="fa-solid fa-up-long"></i></a></h2>
+      <div class="group">
+        
+        <div class="links">
+          <a href="https://github.com/DrChoi36" target="_blank" rel="noopener noreferrer" data-tooltip="come visit me">
+            <i class="fa-brands fa-github"></i>
+            <span>Dr. Choi Github</span>
+          </a>
+        </div>
+
+        <form action="https://formspree.io/f/xnnevvqo" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" cols="30" rows="10" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
   
-  /* 디자인 꾸미기 */
-  background-color: #333; /* 검은색 배경 */
-  color: #fff;            /* 흰색 글자 */
-  padding: 5px 8px;       /* 내부 여백 */
-  font-size: 12px;        /* 글자 크기 */
-  border-radius: 4px;     /* 둥근 모서리 */
-  white-space: nowrap;    /* 줄바꿈 방지 */
-  pointer-events: none;   /* 글자가 마우스 클릭 방해하지 않게 설정 */
-  
-  /* 부드럽게 나타나는 효과 (선택사항) */
-  opacity: 0;
-  animation: fadeIn 0.3s forwards;
-}
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Dr. Choi. All rights reserved.</p>
+    </div>
+  </footer>
 
-/* 말풍선 등장 애니메이션 */
-@keyframes fadeIn {
-  to { opacity: 1; transform: translateX(-50%) translateY(-5px); }
-}
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script>
+    AOS.init();
+  </script>
 
-/* =========================================
-   Custom Button Tooltips (HTML의 data-tooltip 내용을 보여줌)
-   ========================================= */
-/* 툴팁을 가진 링크 버튼 설정 */
-.links a[data-tooltip] {
-  position: relative; /* 말풍선의 기준점 */
-}
+</body>
 
-/* 마우스 올렸을 때 말풍선 등장 */
-.links a[data-tooltip]:hover::after {
-  content: attr(data-tooltip); /* HTML에 적힌 문구를 가져옴 (핵심!) */
-  
-  /* 위치 및 디자인 (이전 to top 스타일과 통일) */
-  position: absolute;
-  bottom: 100%;       /* 버튼 바로 위에 배치 */
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px; /* 버튼과 말풍선 사이 간격 */
-  
-  background-color: #333;
-  color: #fff;
-  padding: 6px 10px;
-  font-size: 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 10;        /* 다른 요소보다 위에 보이게 함 */
-  
-  /* 애니메이션 */
-  opacity: 0;
-  animation: tooltipFade 0.3s forwards;
-}
-
-/* 등장 애니메이션 정의 */
-@keyframes tooltipFade {
-  from { opacity: 0; transform: translateX(-50%) translateY(5px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-
-/* =========================================
-   5. RESPONSIVE DESIGN (Mobile)
-   ========================================= */
-/* --- Mobile Responsive (모바일에서는 세로 배치) --- */
-@media (max-width: 768px) {
-  section {
-    padding: 60px 20px;
-  }
-  .skills-section {
-    padding-top: 60px; 
-  }
-
-  .hero-section {
-    flex-direction: column; /* 모바일: 이미지 위, 텍스트 아래 */
-    text-align: center;
-    gap: 30px;
-    padding-top: 40px;
-  }
-  
-  .hero-section .text {
-    text-align: center;
-    /* 모바일에서는 중앙 정렬을 위해 마진 리셋 해제 또는 auto 사용 가능하지만, 
-       flex column 구조라 0으로 둬도 무방함 */
-  }
-  
-  .hero-section .text h2 {
-    text-align: center;
-  }
-
-  .hero-section .text .links,
-  .hero-section .text .links-2,
-  .hero-section .text .links-3 {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .hero-section .headshot {
-    justify-content: center;
-  }
-
-  .hero-section .headshot img {
-    width: 220px;
-  }
-
-  .group {
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
-  }
-  .contact-section .group {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  nav {
-    padding: 0 20px;
-  }
-
-  nav .right a span {
-    display: none;
-  }
-  
-  .skills-section .cells .cell {
-    width: 100%;
-  }
-
-}
-
-/* --- Top Link Icon Style --- */
-h2 .top-link {
-  font-size: 20px; /* 제목보다 작게 설정 (h2는 35px임) */
-  margin-left: 10px; /* 제목과 아이콘 사이 간격 */
-  color: #ccc; /* 너무 튀지 않게 연한 회색 (원하는 색으로 변경 가능) */
-  vertical-align: middle;
-  transition: .2s;
-}
-
-/* 마우스 올렸을 때 효과 */
-h2 .top-link:hover {
-  color: var(--link-color); /* 파란색(링크색)으로 변경 */
-  transform: translateY(-3px); /* 살짝 위로 올라가는 애니메이션 */
-}
+</html>

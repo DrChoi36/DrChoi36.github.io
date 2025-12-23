@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
-    #quiz-container { width:90%; max-width:600px; text-align:center; padding:10px 0; }
+    #quiz-container { width:90%; max-width:600px; text-align:center; padding:10px 0; padding-bottom: 60px; /* 푸터 공간 확보 */ }
     .question-box,.input-box { padding:20px; border-radius:12px; color:#fff; transition:background-color .5s; }
     .input-box { background:#6B5B95; }
     .answer-section { margin-top:20px; }
@@ -15,6 +15,19 @@
     input[type="text"] { padding:8px; font-size:32px; border-radius:5px; border:2px solid #ccc; width:80%; font-family:inherit; text-align:center; margin-bottom:20px; }
     #result { font-size:40px; margin-top:30px; color:#333; background:#F7CAC9; padding:20px; border-radius:12px; }
     #feedback { min-height:50px; margin-top:15px; font-size:36px; }
+
+    /* [추가된 스타일] 하단 푸터 */
+    #footer {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 16px; /* 본문보다 작게 */
+      color: #888;
+      font-weight: bold;
+      pointer-events: none; /* 클릭 방해 금지 */
+    }
   </style>
 </head>
 <body>
@@ -31,6 +44,8 @@
     <div id="result" style="display:none;"></div>
   </div>
 
+  <div id="footer">Distributed by Dr. Choi</div>
+
   <script>
   'use strict';
 
@@ -45,50 +60,40 @@
 
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // [수정됨] 13과 내용에 맞춘 문제 목록
+  // 13과 내용에 맞춘 문제 목록
   const questions = [
-    // 1번: OX 문제 (중심 생각)
+    // 1번: OX 문제
     { 
       type:'ox',   
       question:'우리가 예수님과 매일 시간을 함께 보낼 때, 우리는 하나님의 구원의 선물을 받아들이게 됩니다.', 
       answer:'O' 
     }, 
-    // [근거: source 96] "우리가 예수님과 매일 시간을 함께 보낼 때 우리는 하나님의 구원의 선물을 받아들이게 됩니다."
-
-    // 2번: 기억절 문제 (예레미야 29:11)
+    // 2번: 기억절 문제
     { 
       type:'fill', 
       question:'기억절: "너희를 향한 나의 생각을 내가 아나니 (   )이요 재앙이 아니니라 너희에게 미래와 희망을 주는 것이니라" (예레미야 29:11)', 
       answer:'평안' 
     },
-    // [근거: source 98] "...평안이요 재앙이 아니니라..."
-
-    // 3번: 4지 선다형 (이야기 내용 - 베들레헴의 의미)
+    // 3번: 4지 선다형
     { 
       type:'mcq',  
       question:'제임스 선생님의 설명에서 예수님이 태어나신 "베들레헴"의 뜻은 무엇이라고 했나요?', 
       options:['A. 평화의 집', 'B. 떡집', 'C. 왕의 도시', 'D. 천사의 마을'], 
       answer:'B. 떡집'
     },
-    // [근거: source 110] "여러분은 베들레헴이 떡집의 의미라는 것을 알고 있었나요?"
-
-    // 4번: 4지 선다형 (적용 - 기도문)
+    // 4번: 4지 선다형
     { 
       type:'mcq',  
       question:'매일 하나님께 자신을 드리기 위한 기도문에서 "오늘 저를 온전히 ( )의 것으로 취하소서"라고 기도합니다. 빈칸에 알맞은 말은?', 
       options:['A. 세상', 'B. 부모님', 'C. 주(예수님)', 'D. 친구'], 
       answer:'C. 주(예수님)' 
     },
-    // [근거: source 171] "사랑의 주님, 오늘 저를 온전히 주의 것으로 취하소서."
-
-    // 5번: 단답형 (핵심 단어 - 예레미야 29:13, 퍼즐 제목)
+    // 5번: 단답형
     { 
       type:'short',
       question:'예레미야 29장 13절에서 "너희가 온 ( )으로 나를 구하면 나를 찾을 것이요 나를 만나리라"고 했습니다. 빈칸에 들어갈 두 글자 단어는?', 
       answer:'마음' 
     },
-    // [근거: source 98] "너희가 온 마음으로 나를 구하면..."
-
     // 6번: 느낀점
     { 
       type:'any',  
@@ -103,28 +108,21 @@
   startBtn.addEventListener('click', startGame);
   nameInput.addEventListener('keydown', (event) => { if (event.key === 'Enter') startGame(); });
 
-  // 정규화 함수: 전각/반각, 대소문자, 구두점·공백 제거, 한글 쌍자음 단자음화
   function normalize(str) {
     if (!str) return '';
     let out = str.normalize('NFKC').toLowerCase();
-
     const map = { 'ㄲ':'ㄱ', 'ㄸ':'ㄷ', 'ㅃ':'ㅂ', 'ㅆ':'ㅅ', 'ㅉ':'ㅈ' };
     out = out.split('').map(ch => map[ch] ?? ch).join('');
-
-    out = out.replace(/[\p{P}\p{S}]/gu, ''); // 구두점·기호 제거
-    out = out.replace(/\s+/g, '');           // 모든 공백 제거
+    out = out.replace(/[\p{P}\p{S}]/gu, ''); 
+    out = out.replace(/\s+/g, '');           
     return out;
   }
 
-  // 비교 함수
   function isSameAnswer(user, gold) {
-    // 괄호 안에 있는 정답(예: "주(예수님)") 처리
     let cleanGold = gold;
     if(gold.includes('(')) {
-        cleanGold = gold.split('(')[0]; // 괄호 앞부분만 정답으로 인정하거나
+        cleanGold = gold.split('(')[0]; 
     }
-    // 객관식 답안("B. 떡집") 처리 - 앞의 알파벳 제거하고 비교하거나, 전체 비교
-    // 여기서는 단순화하여 정규화된 문자열끼리 비교
     return normalize(user) === normalize(gold) || normalize(user) === normalize(cleanGold);
   }
 
@@ -192,9 +190,8 @@
     let isCorrect = false;
 
     if (q.type === 'any') {
-      isCorrect = trimmedUserAns.length > 0;        // 자유서술은 빈칸만 아니면 OK
+      isCorrect = trimmedUserAns.length > 0;        
     } else {
-      // 객관식은 전체 텍스트 비교, 주관식은 정규화 비교
       if (q.type === 'mcq') {
          isCorrect = (userAns === q.answer);
       } else {
@@ -238,5 +235,3 @@
   </script>
 </body>
 </html>
-
-

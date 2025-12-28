@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>어린이 웹 성경 퀴즈 (13과)</title>
+  <title>어린이 웹 성경 퀴즈 (1과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
@@ -60,44 +60,54 @@
 
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // 13과 내용에 맞춘 문제 목록
+  // [수정됨] 1과 내용(그 목소리)에 맞춘 문제 목록
   const questions = [
-    // 1번: OX 문제
+    // 1번: OX 문제 (중심 생각)
     { 
       type:'ox',   
-      question:'우리가 예수님과 매일 시간을 함께 보낼 때, 우리는 하나님의 구원의 선물을 받아들이게 됩니다.', 
+      question:'하나님의 사랑은 우리가 예수님을 바라보고 침례를 받게 합니다.', 
       answer:'O' 
     }, 
-    // 2번: 기억절 문제
+    // [근거: source 190] "중심생각: 하나님의 사랑은 우리가 예수님을 바라보고 침례를 받게 합니다."
+
+    // 2번: 기억절 문제 (로마서 6:4)
     { 
       type:'fill', 
-      question:'기억절: "너희를 향한 나의 생각을 내가 아나니 (   )이요 재앙이 아니니라 너희에게 미래와 희망을 주는 것이니라" (예레미야 29:11)', 
-      answer:'평안' 
+      question:'기억절: "그리스도를 죽은 자 가운데서 살리심과 같이 우리로 또한 (   ) 가운데서 행하게 하려 함이라" (로마서 6:4)', 
+      answer:'새 생명' 
     },
-    // 3번: 4지 선다형
+    // [근거: source 192] "...우리로 또한 새 생명 가운데서 행하게 하려 함이라"
+
+    // 3번: 4지 선다형 (등장 인물)
     { 
       type:'mcq',  
-      question:'제임스 선생님의 설명에서 예수님이 태어나신 "베들레헴"의 뜻은 무엇이라고 했나요?', 
-      options:['A. 평화의 집', 'B. 떡집', 'C. 왕의 도시', 'D. 천사의 마을'], 
-      answer:'B. 떡집'
+      question:'광야에서 "회개하라"고 외치며 사람들에게 요단강에서 침례를 베푼 사람은 누구인가요?', 
+      options:['A. 베드로', 'B. 바울', 'C. 침례 요한', 'D. 다윗'], 
+      answer:'C. 침례 요한'
     },
-    // 4번: 4지 선다형
+    // [근거: source 196, 239] "내가 바로 그 소리요... 침례 요한이 말했습니다."
+
+    // 4번: 4지 선다형 (내용 이해 - 회개)
     { 
       type:'mcq',  
-      question:'매일 하나님께 자신을 드리기 위한 기도문에서 "오늘 저를 온전히 ( )의 것으로 취하소서"라고 기도합니다. 빈칸에 알맞은 말은?', 
-      options:['A. 세상', 'B. 부모님', 'C. 주(예수님)', 'D. 친구'], 
-      answer:'C. 주(예수님)' 
+      question:'침례 요한은 젊은이에게 "회개"가 무엇이라고 설명했나요?', 
+      options:['A. 죄를 숨기는 것', 'B. 과거의 실수를 후회하며 하나님께로 삶을 돌이키는 것', 'C. 친구와 싸우는 것', 'D. 도망가는 것'], 
+      answer:'B. 과거의 실수를 후회하며 하나님께로 삶을 돌이키는 것' 
     },
-    // 5번: 단답형
+    // [근거: source 203] "회개는 과거에... 저지른 실수를 후회하며, 그분께로 그대의 삶을 돌이키는 것이라오."
+
+    // 5번: 단답형 (장소)
     { 
       type:'short',
-      question:'예레미야 29장 13절에서 "너희가 온 ( )으로 나를 구하면 나를 찾을 것이요 나를 만나리라"고 했습니다. 빈칸에 들어갈 두 글자 단어는?', 
-      answer:'마음' 
+      question:'침례 요한이 사람들에게 말씀을 전하고 침례를 베풀었던 강의 이름은 무엇인가요? (OO강)', 
+      answer:'요단강' 
     },
+    // [근거: source 196, 198] "요단강 주변의 큰 바위 위에... 요단강 주변에서 설교를 시작하자"
+
     // 6번: 느낀점
     { 
       type:'any',  
-      question:'13과를 공부하며 느낀 점이나 다짐을 1줄 이상 써주세요.' 
+      question:'1과 "그 목소리"를 공부하며 느낀 점이나 다짐을 1줄 이상 써주세요.' 
     }
   ];
 
@@ -230,7 +240,8 @@
     feedbackEl.style.display = 'none';
 
     resultEl.style.display = 'block';
-    resultEl.innerHTML = `${participantName}님<br>13과 퀴즈 결과: ${score} / ${questions.length}점`;
+    // [수정됨] 1과 결과로 텍스트 변경
+    resultEl.innerHTML = `${participantName}님<br>1과 퀴즈 결과: ${score} / ${questions.length}점`;
   }
   </script>
 </body>

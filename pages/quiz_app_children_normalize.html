@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>어린이 웹 성경 퀴즈 (1과)</title>
+  <title>어린이 웹 성경 퀴즈 (2과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
@@ -16,7 +16,7 @@
     #result { font-size:40px; margin-top:30px; color:#333; background:#F7CAC9; padding:20px; border-radius:12px; }
     #feedback { min-height:50px; margin-top:15px; font-size:36px; }
 
-    /* [추가된 스타일] 하단 푸터 */
+    /* [하단 푸터 스타일] */
     #footer {
       position: fixed;
       bottom: 10px;
@@ -60,54 +60,54 @@
 
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // [수정됨] 1과 내용(그 목소리)에 맞춘 문제 목록
+  // [수정됨] 2과 내용(문을 지킴)에 맞춘 문제 목록
   const questions = [
-    // 1번: OX 문제 (중심 생각)
+    // 1번: OX 문제 (중심 생각/기억절)
     { 
       type:'ox',   
-      question:'하나님의 사랑은 우리가 예수님을 바라보고 침례를 받게 합니다.', 
+      question:'우리의 몸은 하나님이 계시는 성령의 전(성전)이므로 하나님께 영광을 돌려야 한다.', 
       answer:'O' 
     }, 
-    // [근거: source 190] "중심생각: 하나님의 사랑은 우리가 예수님을 바라보고 침례를 받게 합니다."
+    // [근거: source 273] "너희 몸은... 성령의 전인 줄을 알지 못하느냐... 몸으로 하나님께 영광을 돌리라"
 
-    // 2번: 기억절 문제 (로마서 6:4)
+    // 2번: 기억절 문제 (고린도전서 6:19)
     { 
       type:'fill', 
-      question:'기억절: "그리스도를 죽은 자 가운데서 살리심과 같이 우리로 또한 (   ) 가운데서 행하게 하려 함이라" (로마서 6:4)', 
-      answer:'새 생명' 
+      question:'기억절: "너희 몸은 너희가 하나님께로부터 받은 바 너희 가운데 계신 (   )의 전인 줄을 알지 못하느냐" (고린도전서 6:19)', 
+      answer:'성령' 
     },
-    // [근거: source 192] "...우리로 또한 새 생명 가운데서 행하게 하려 함이라"
+    // [근거: source 273] "...성령의 전인 줄을 알지 못하느냐"
 
-    // 3번: 4지 선다형 (등장 인물)
+    // 3번: 4지 선다형 (등장인물)
     { 
       type:'mcq',  
-      question:'광야에서 "회개하라"고 외치며 사람들에게 요단강에서 침례를 베푼 사람은 누구인가요?', 
-      options:['A. 베드로', 'B. 바울', 'C. 침례 요한', 'D. 다윗'], 
-      answer:'C. 침례 요한'
+      question:'이 과의 이야기에서 젊은이에게 자신이 왜 검소하게 사는지, 몸을 어떻게 관리해야 하는지 설명해 준 사람은 누구인가요?', 
+      options:['A. 솔로몬', 'B. 침례 요한', 'C. 다윗', 'D. 삼손'], 
+      answer:'B. 침례 요한'
     },
-    // [근거: source 196, 239] "내가 바로 그 소리요... 침례 요한이 말했습니다."
+    // [근거: source 279, 280] "침례 요한이 대답했습니다. 나는 태어나기 전부터 특별한 목적 때문에..."
 
-    // 4번: 4지 선다형 (내용 이해 - 회개)
+    // 4번: 4지 선다형 (내용 이해 - 관리 방법)
     { 
       type:'mcq',  
-      question:'침례 요한은 젊은이에게 "회개"가 무엇이라고 설명했나요?', 
-      options:['A. 죄를 숨기는 것', 'B. 과거의 실수를 후회하며 하나님께로 삶을 돌이키는 것', 'C. 친구와 싸우는 것', 'D. 도망가는 것'], 
-      answer:'B. 과거의 실수를 후회하며 하나님께로 삶을 돌이키는 것' 
+      question:'침례 요한과 젊은이의 대화에서 몸의 성전을 깨끗하게 유지하는 방법으로 알맞지 않은 것은?', 
+      options:['A. 충분히 잠을 잔다', 'B. 과일과 채소를 먹는다', 'C. 술과 해로운 물질을 피한다', 'D. 아무거나 마음대로 먹는다'], 
+      answer:'D. 아무거나 마음대로 먹는다' 
     },
-    // [근거: source 203] "회개는 과거에... 저지른 실수를 후회하며, 그분께로 그대의 삶을 돌이키는 것이라오."
+    // [근거: source 307] "충분히 잠을 자는 것... 과일과 채소를 먹어야 합니다... 술과 두뇌를 해롭게 하는 물질들에 대해..."
 
-    // 5번: 단답형 (장소)
+    // 5번: 단답형 (핵심 단어 - 제목 및 본문)
     { 
       type:'short',
-      question:'침례 요한이 사람들에게 말씀을 전하고 침례를 베풀었던 강의 이름은 무엇인가요? (OO강)', 
-      answer:'요단강' 
+      question:'침례 요한은 나쁜 것이 들어오지 못하도록 우리 몸의 "이것"을 지켜야 한다고 했습니다. 2과의 제목이기도 한 "이것"은 무엇인가요?', 
+      answer:'문' 
     },
-    // [근거: source 196, 198] "요단강 주변의 큰 바위 위에... 요단강 주변에서 설교를 시작하자"
+    // [근거: source 268, 316] 제목 "문을 지킴", 본문 "모든 문을 지켜서 어지럽히거나 더럽히는 것은..."
 
     // 6번: 느낀점
     { 
       type:'any',  
-      question:'1과 "그 목소리"를 공부하며 느낀 점이나 다짐을 1줄 이상 써주세요.' 
+      question:'2과 "문을 지킴"을 공부하며 느낀 점이나 다짐을 1줄 이상 써주세요.' 
     }
   ];
 
@@ -240,8 +240,8 @@
     feedbackEl.style.display = 'none';
 
     resultEl.style.display = 'block';
-    // [수정됨] 1과 결과로 텍스트 변경
-    resultEl.innerHTML = `${participantName}님<br>1과 퀴즈 결과: ${score} / ${questions.length}점`;
+    // [수정됨] 2과 결과로 텍스트 변경
+    resultEl.innerHTML = `${participantName}님<br>2과 퀴즈 결과: ${score} / ${questions.length}점`;
   }
   </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>어린이 웹 성경 퀴즈 (3과)</title>
+  <title>어린이 웹 성경 퀴즈 (4과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
@@ -60,54 +60,54 @@
 
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // [수정됨] 3과 내용(선지자에서 죄수로)에 맞춘 문제 목록
+  // [수정됨] 4과 내용(Clearheaded or Beheaded)에 맞춘 문제 목록
   const questions = [
-    // 1번: OX 문제 (중심 생각)
+    // 1번: OX 문제 (핵심 내용: 술과 판단력)
     { 
       type:'ox',   
-      question:'하나님은 우리를 이해하시고 모든 기도에 응답하시므로, 아무런 의심 없이 주님께 나아가야 합니다.', 
-      answer:'O' 
+      question:'헤롯 왕은 생일 잔치에서 술을 마셨기 때문에 맑은 정신으로 올바른 결정을 내릴 수 있었다.', 
+      answer:'X' 
     }, 
-    // [근거: source 333] "중심생각: 하나님은 우리를 이해하시고... 아무런 의심 없이 주님께 나가야 합니다."
+    // [근거: 480, 515] "He was not thinking logically... The drunken king had no power left to decide for right."
 
-    // 2번: 기억절 문제 (마태복음 11:10)
+    // 2번: 기억절 문제 (로마서 12:1)
     { 
       type:'fill', 
-      question:'기억절: "보라 내가 내 (   )를/을 네 앞에 보내노니 그가 네 길을 네 앞에 준비하리라..." (마태복음 11:10)', 
-      answer:'사자' 
+      question:'기억절: "너희 몸을 하나님이 기뻐하시는 거룩한 (   )(으)로 드리라 이는 너희가 드릴 영적 예배니라" (로마서 12:1)', 
+      answer:'산 제물' 
     },
-    // [근거: source 335] "...내가 내 사자를 네 앞에 보내노니..."
+    // [근거: 427] "...offer your bodies as a living sacrifice..." (한글 성경 번역 적용)
 
-    // 3번: 4지 선다형 (등장인물의 질문)
+    // 3번: 4지 선다형 (등장인물: 춤춘 사람)
     { 
       type:'mcq',  
-      question:'감옥에 갇힌 침례 요한이 제자들을 통해 예수님께 확인하고 싶었던 질문은 무엇인가요?', 
-      options:['A. 저를 언제 구해주실 겁니까?', 'B. 오실 그이가 당신이십니까?', 'C. 로마 군대는 언제 물러갑니까?', 'D. 왜 저에게 면회를 오지 않으십니까?'], 
-      answer:'B. 오실 그이가 당신이십니까?'
+      question:'헤롯의 생일 잔치에서 춤을 추고, 어머니의 시킴을 받아 침례 요한의 머리를 요구한 사람은 누구인가요?', 
+      options:['A. 헤로디아', 'B. 살로메', 'C. 마리아', 'D. 엘리사벳'], 
+      answer:'B. 살로메'
     },
-    // [근거: source 360, 366] "오실 그분이 바로 당신이십니까? 아니면 우리가 다른 사람을 기다려야 합니까?"
+    // [근거: 479, 509] "Salome... was the surprise entertainment... Give me here on a platter the head of John the Baptist."
 
-    // 4번: 4지 선다형 (예수님의 대답)
+    // 4번: 4지 선다형 (헤롯의 실수 원인)
     { 
       type:'mcq',  
-      question:'예수님은 요한의 제자들에게 대답 대신 어떤 모습을 보여주셨나요?', 
-      options:['A. 화려한 왕궁의 모습', 'B. 로마 군인과 싸우는 모습', 'C. 병자들을 고치고 복음을 전파하는 모습', 'D. 성전에서 제사 지내는 모습'], 
-      answer:'C. 병자들을 고치고 복음을 전파하는 모습' 
+      question:'헤롯 왕이 자신의 양심을 어기고 침례 요한을 처형하게 된 가장 큰 원인은 무엇인가요?', 
+      options:['A. 요한을 미워해서', 'B. 하나님께 순종하려고', 'C. 술에 취해 올바른 판단을 할 수 없어서', 'D. 돈을 많이 벌기 위해'], 
+      answer:'C. 술에 취해 올바른 판단을 할 수 없어서' 
     },
-    // [근거: source 368, 387] "나병 환자가 깨끗함을 얻고... 시각 장애인이 눈을 뜨고..."
+    // [근거: 503, 515] "How did King Herod's use of alcohol interfere with his ability... The drunken king had no power left to decide for right."
 
-    // 5번: 단답형 (핵심 단어 - 예수님의 말씀)
+    // 5번: 단답형 (중심 생각)
     { 
       type:'short',
-      question:'예수님께서 요한의 제자들에게 전하신 말씀 중 "복음이 (    ) 자들에게 전파된다"고 하셨습니다. 빈칸에 들어갈 말은? (힌트: 3글자)', 
-      answer:'가난한' 
+      question:'이번 과의 중심 생각에 따르면, 우리는 우리의 몸과 (   )을/를 하나님께 드릴 때 그분을 예배하는 것입니다.', 
+      answer:'마음' 
     },
-    // [근거: source 387] "...복음이 가난한 자들에게 전파된다고 하라."
+    // [근거: 432] "We worship God when we offer Him our bodies and minds."
 
     // 6번: 느낀점
     { 
       type:'any',  
-      question:'3과 "선지자에서 죄수로"를 공부하며 느낀 점이나 다짐을 1줄 이상 써주세요.' 
+      question:'4과를 공부하며 나의 몸과 마음을 하나님께 드리기 위해 결심한 것을 1줄 이상 써주세요.' 
     }
   ];
 
@@ -240,8 +240,8 @@
     feedbackEl.style.display = 'none';
 
     resultEl.style.display = 'block';
-    // [수정됨] 3과 결과로 텍스트 변경
-    resultEl.innerHTML = `${participantName}님<br>3과 퀴즈 결과: ${score} / ${questions.length}점`;
+    // [수정됨] 4과 결과로 텍스트 변경
+    resultEl.innerHTML = `${participantName}님<br>4과 퀴즈 결과: ${score} / ${questions.length}점`;
   }
   </script>
 </body>

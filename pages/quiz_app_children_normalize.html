@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>어린이 웹 성경 퀴즈 (4과)</title>
+  <title>어린이 웹 성경 퀴즈 (5과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     body { margin:0; padding:0; font-family:'Comic Sans MS','Comic Neue',sans-serif; background:#f0f8ff; display:flex; justify-content:center; align-items:center; min-height:100vh; font-size:32px; }
@@ -60,189 +60,51 @@
 
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // [수정됨] 4과 내용(Clearheaded or Beheaded)에 맞춘 문제 목록
+  // [수정됨] 5과 내용(친구를 발견함)에 맞춘 문제 목록
   const questions = [
-    // 1번: OX 문제 (핵심 내용: 술과 판단력)
+    // 1번: OX 문제 (제자들의 반응)
     { 
       type:'ox',   
-      question:'헤롯 왕은 생일 잔치에서 술을 마셨기 때문에 맑은 정신으로 올바른 결정을 내릴 수 있었다.', 
+      question:'예수님께서 베드로, 안드레, 야고보, 요한을 부르셨을 때, 그들은 일을 마칠 때까지 기다려 달라고 했다.', 
       answer:'X' 
     }, 
-    // [근거: 480, 515] "He was not thinking logically... The drunken king had no power left to decide for right."
+    // "그들은 머뭇거리지 않고 즉시 그물과 모든 것을 버리고 예수님을 쫓아갔습니다... 아버지께 작별 인사를 하고 집안의 가업을 버려두고..."
 
-    // 2번: 기억절 문제 (로마서 12:1)
+    // 2번: 기억절 문제 (요한복음 15:15)
     { 
       type:'fill', 
-      question:'기억절: "너희 몸을 하나님이 기뻐하시는 거룩한 (   )(으)로 드리라 이는 너희가 드릴 영적 예배니라" (로마서 12:1)', 
-      answer:'산 제물' 
+      question:'기억절: "이제부터는 너희를 종이라 하지 아니하리니... 너희를 (   )라 하였노니 내가 내 아버지께 들은 것을 다 너희에게 알게 하였음이라" (요한복음 15:15)', 
+      answer:'친구' 
     },
-    // [근거: 427] "...offer your bodies as a living sacrifice..." (한글 성경 번역 적용)
+    // "너희를 친구라 하였노니..."
 
-    // 3번: 4지 선다형 (등장인물: 춤춘 사람)
+    // 3번: 4지 선다형 (인물 퀴즈)
     { 
       type:'mcq',  
-      question:'헤롯의 생일 잔치에서 춤을 추고, 어머니의 시킴을 받아 침례 요한의 머리를 요구한 사람은 누구인가요?', 
-      options:['A. 헤로디아', 'B. 살로메', 'C. 마리아', 'D. 엘리사벳'], 
-      answer:'B. 살로메'
+      question:'예수님을 만난 후 너무 기뻐서 자신의 친구 나다나엘에게 달려가 "와서 보라"고 전도한 사람은 누구인가요?', 
+      options:['A. 베드로', 'B. 빌립', 'C. 야고보', 'D. 요한'], 
+      answer:'B. 빌립'
     },
-    // [근거: 479, 509] "Salome... was the surprise entertainment... Give me here on a platter the head of John the Baptist."
+    // "다음 날 예수님은 길에서 빌립을 만났을 때... 빌립은... 친구 나다나엘에게 갔습니다... 와서 보라."
 
-    // 4번: 4지 선다형 (헤롯의 실수 원인)
+    // 4번: 4지 선다형 (예수님의 말씀)
     { 
       type:'mcq',  
-      question:'헤롯 왕이 자신의 양심을 어기고 침례 요한을 처형하게 된 가장 큰 원인은 무엇인가요?', 
-      options:['A. 요한을 미워해서', 'B. 하나님께 순종하려고', 'C. 술에 취해 올바른 판단을 할 수 없어서', 'D. 돈을 많이 벌기 위해'], 
-      answer:'C. 술에 취해 올바른 판단을 할 수 없어서' 
+      question:'예수님은 어부였던 제자들을 부르시며 그들이 무엇을 낚는 어부가 되게 하겠다고 하셨나요?', 
+      options:['A. 돈을 낚는 어부', 'B. 명예를 낚는 어부', 'C. 사람을 낚는 어부', 'D. 큰 고래를 낚는 어부'], 
+      answer:'C. 사람을 낚는 어부' 
     },
-    // [근거: 503, 515] "How did King Herod's use of alcohol interfere with his ability... The drunken king had no power left to decide for right."
+    // "나를 따라오라 네가 너희로 사람 낚는 어부가 되게 하리라."
 
-    // 5번: 단답형 (중심 생각)
+    // 5번: 단답형 (나무 이름)
     { 
       type:'short',
-      question:'이번 과의 중심 생각에 따르면, 우리는 우리의 몸과 (   )을/를 하나님께 드릴 때 그분을 예배하는 것입니다.', 
-      answer:'마음' 
+      question:'예수님께서는 나다나엘에게 "내가 너를 (      )나무 아래서 보았다"고 말씀하셨습니다. 빈칸에 들어갈 나무 이름은 무엇인가요?', 
+      answer:'무화과' 
     },
-    // [근거: 432] "We worship God when we offer Him our bodies and minds."
+    // "내가 너를 무화과나무 아래서 보았다 하므로 믿느냐"
 
     // 6번: 느낀점
     { 
       type:'any',  
-      question:'4과를 공부하며 나의 몸과 마음을 하나님께 드리기 위해 결심한 것을 1줄 이상 써주세요.' 
-    }
-  ];
-
-  let participantName = '';
-  let current = 0;
-  let score = 0;
-
-  startBtn.addEventListener('click', startGame);
-  nameInput.addEventListener('keydown', (event) => { if (event.key === 'Enter') startGame(); });
-
-  function normalize(str) {
-    if (!str) return '';
-    let out = str.normalize('NFKC').toLowerCase();
-    const map = { 'ㄲ':'ㄱ', 'ㄸ':'ㄷ', 'ㅃ':'ㅂ', 'ㅆ':'ㅅ', 'ㅉ':'ㅈ' };
-    out = out.split('').map(ch => map[ch] ?? ch).join('');
-    out = out.replace(/[\p{P}\p{S}]/gu, ''); 
-    out = out.replace(/\s+/g, '');           
-    return out;
-  }
-
-  function isSameAnswer(user, gold) {
-    let cleanGold = gold;
-    if(gold.includes('(')) {
-        cleanGold = gold.split('(')[0]; 
-    }
-    return normalize(user) === normalize(gold) || normalize(user) === normalize(cleanGold);
-  }
-
-  function startGame() {
-    const nameVal = nameInput.value.trim();
-    if (!nameVal) return alert('이름을 입력해주세요');
-
-    participantName = nameVal;
-    nameInputArea.style.display = 'none';
-    questionNumberEl.style.display = 'block';
-    questionTextEl.style.display = 'block';
-    answerAreaEl.style.display = 'block';
-    feedbackEl.style.display = 'block';
-    showQuestion();
-  }
-
-  function showQuestion() {
-    feedbackEl.textContent = '';
-    const q = questions[current];
-
-    questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
-    questionTextEl.style.backgroundColor = themes[current % themes.length];
-    questionTextEl.textContent = q.question;
-
-    answerAreaEl.innerHTML = '';
-
-    if (q.type === 'ox') {
-      ['O','X'].forEach(opt => {
-        answerAreaEl.appendChild(createButton(opt, () => processAnswer(opt)));
-      });
-    } else if (q.type === 'mcq') {
-      q.options.forEach(opt => {
-        const btn = createButton(opt, () => processAnswer(opt));
-        btn.style.cssText = 'display:block; width:90%; margin:10px auto;';
-        answerAreaEl.appendChild(btn);
-      });
-    } else {
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.id = `${q.type}-input`;
-      answerAreaEl.appendChild(input);
-
-      const submitBtn = createButton('제출', () => processAnswer(input.value));
-      answerAreaEl.appendChild(submitBtn);
-
-      input.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') processAnswer(input.value);
-      });
-      input.focus();
-    }
-  }
-
-  function createButton(text, onClick) {
-    const btn = document.createElement('button');
-    btn.textContent = text;
-    btn.addEventListener('click', onClick);
-    return btn;
-  }
-
-  function processAnswer(userAns) {
-    if (answerAreaEl.querySelector('button:disabled')) return;
-
-    const q = questions[current];
-    const trimmedUserAns = userAns ? userAns.trim() : '';
-    let isCorrect = false;
-
-    if (q.type === 'any') {
-      isCorrect = trimmedUserAns.length > 0;        
-    } else {
-      if (q.type === 'mcq') {
-         isCorrect = (userAns === q.answer);
-      } else {
-         isCorrect = isSameAnswer(trimmedUserAns, q.answer);
-      }
-    }
-
-    feedbackEl.textContent = isCorrect ? '정답입니다! ✅' : '틀렸습니다! ❌';
-    if (isCorrect) score++;
-
-    answerAreaEl.querySelectorAll('button, input').forEach(el => el.disabled = true);
-    showNextButton();
-  }
-
-  function showNextButton() {
-    const isLastQuestion = current === questions.length - 1;
-    const buttonText = isLastQuestion ? '결과 보기' : '다음 문제';
-
-    const nextBtn = createButton(buttonText, () => {
-      if (isLastQuestion) {
-        showResult();
-      } else {
-        current++;
-        showQuestion();
-      }
-      nextBtn.remove();
-    });
-    nextBtn.style.cssText = 'display:block; margin:20px auto;';
-    feedbackEl.parentNode.insertBefore(nextBtn, feedbackEl.nextSibling);
-  }
-
-  function showResult() {
-    questionNumberEl.style.display = 'none';
-    questionTextEl.style.display = 'none';
-    answerAreaEl.style.display = 'none';
-    feedbackEl.style.display = 'none';
-
-    resultEl.style.display = 'block';
-    // [수정됨] 4과 결과로 텍스트 변경
-    resultEl.innerHTML = `${participantName}님<br>4과 퀴즈 결과: ${score} / ${questions.length}점`;
-  }
-  </script>
-</body>
-</html>
+      question:'5과를 공부하며 나도 예수님의 친구

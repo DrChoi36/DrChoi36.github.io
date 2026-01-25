@@ -49,6 +49,7 @@
   <script>
   'use strict';
 
+  // 요소 가져오기
   const nameInputArea   = document.getElementById('name-input-area');
   const nameInput       = document.getElementById('name-input');
   const startBtn        = document.getElementById('start-btn');
@@ -58,53 +59,193 @@
   const feedbackEl      = document.getElementById('feedback');
   const resultEl        = document.getElementById('result');
 
+  // 테마 색상
   const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9'];
 
-  // [수정됨] 5과 내용(친구를 발견함)에 맞춘 문제 목록
+  // 5과 문제 데이터
   const questions = [
-    // 1번: OX 문제 (제자들의 반응)
+    // 1번: OX 문제
     { 
       type:'ox',   
-      question:'예수님께서 베드로, 안드레, 야고보, 요한을 부르셨을 때, 그들은 일을 마칠 때까지 기다려 달라고 했다.', 
+      question:'예수님께서 베드로, 안드레, 야고보, 요한을 부르셨을 때, 그들은 하던 일을 마칠 때까지 기다려 달라고 했다.', 
       answer:'X' 
     }, 
-    // "그들은 머뭇거리지 않고 즉시 그물과 모든 것을 버리고 예수님을 쫓아갔습니다... 아버지께 작별 인사를 하고 집안의 가업을 버려두고..."
-
-    // 2번: 기억절 문제 (요한복음 15:15)
+    // 2번: 기억절 문제
     { 
       type:'fill', 
       question:'기억절: "이제부터는 너희를 종이라 하지 아니하리니... 너희를 (   )라 하였노니 내가 내 아버지께 들은 것을 다 너희에게 알게 하였음이라" (요한복음 15:15)', 
       answer:'친구' 
     },
-    // "너희를 친구라 하였노니..."
-
-    // 3번: 4지 선다형 (인물 퀴즈)
+    // 3번: 4지 선다형
     { 
       type:'mcq',  
       question:'예수님을 만난 후 너무 기뻐서 자신의 친구 나다나엘에게 달려가 "와서 보라"고 전도한 사람은 누구인가요?', 
       options:['A. 베드로', 'B. 빌립', 'C. 야고보', 'D. 요한'], 
       answer:'B. 빌립'
     },
-    // "다음 날 예수님은 길에서 빌립을 만났을 때... 빌립은... 친구 나다나엘에게 갔습니다... 와서 보라."
-
-    // 4번: 4지 선다형 (예수님의 말씀)
+    // 4번: 4지 선다형
     { 
       type:'mcq',  
       question:'예수님은 어부였던 제자들을 부르시며 그들이 무엇을 낚는 어부가 되게 하겠다고 하셨나요?', 
       options:['A. 돈을 낚는 어부', 'B. 명예를 낚는 어부', 'C. 사람을 낚는 어부', 'D. 큰 고래를 낚는 어부'], 
       answer:'C. 사람을 낚는 어부' 
     },
-    // "나를 따라오라 네가 너희로 사람 낚는 어부가 되게 하리라."
-
-    // 5번: 단답형 (나무 이름)
+    // 5번: 단답형
     { 
       type:'short',
       question:'예수님께서는 나다나엘에게 "내가 너를 (      )나무 아래서 보았다"고 말씀하셨습니다. 빈칸에 들어갈 나무 이름은 무엇인가요?', 
       answer:'무화과' 
     },
-    // "내가 너를 무화과나무 아래서 보았다 하므로 믿느냐"
-
     // 6번: 느낀점
     { 
       type:'any',  
-      question:'5과를 공부하며 나도 예수님의 친구
+      question:'5과를 공부하며 나도 예수님의 친구가 되기 위해 하고 싶은 일을 1줄 이상 써주세요.' 
+    }
+  ];
+
+  let participantName = '';
+  let current = 0;
+  let score = 0;
+
+  // 이벤트 리스너 연결
+  if(startBtn) {
+    startBtn.addEventListener('click', startGame);
+  }
+  if(nameInput) {
+    nameInput.addEventListener('keydown', (event) => { if (event.key === 'Enter') startGame(); });
+  }
+
+  // 정답 비교를 위한 정규화 함수
+  function normalize(str) {
+    if (!str) return '';
+    let out = str.normalize('NFKC').toLowerCase();
+    const map = { 'ㄲ':'ㄱ', 'ㄸ':'ㄷ', 'ㅃ':'ㅂ', 'ㅆ':'ㅅ', 'ㅉ':'ㅈ' };
+    out = out.split('').map(ch => map[ch] ?? ch).join('');
+    out = out.replace(/[\p{P}\p{S}]/gu, ''); 
+    out = out.replace(/\s+/g, '');           
+    return out;
+  }
+
+  function isSameAnswer(user, gold) {
+    let cleanGold = gold;
+    if(gold.includes('(')) {
+        cleanGold = gold.split('(')[0]; 
+    }
+    return normalize(user) === normalize(gold) || normalize(user) === normalize(cleanGold);
+  }
+
+  // 게임 시작 함수
+  function startGame() {
+    const nameVal = nameInput.value.trim();
+    if (!nameVal) {
+        alert('이름을 입력해주세요');
+        return;
+    }
+
+    participantName = nameVal;
+    nameInputArea.style.display = 'none';
+    questionNumberEl.style.display = 'block';
+    questionTextEl.style.display = 'block';
+    answerAreaEl.style.display = 'block';
+    feedbackEl.style.display = 'block';
+    showQuestion();
+  }
+
+  // 문제 표시 함수
+  function showQuestion() {
+    feedbackEl.textContent = '';
+    const q = questions[current];
+
+    questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+    questionTextEl.style.backgroundColor = themes[current % themes.length];
+    questionTextEl.textContent = q.question;
+
+    answerAreaEl.innerHTML = '';
+
+    if (q.type === 'ox') {
+      ['O','X'].forEach(opt => {
+        answerAreaEl.appendChild(createButton(opt, () => processAnswer(opt)));
+      });
+    } else if (q.type === 'mcq') {
+      q.options.forEach(opt => {
+        const btn = createButton(opt, () => processAnswer(opt));
+        btn.style.cssText = 'display:block; width:90%; margin:10px auto;';
+        answerAreaEl.appendChild(btn);
+      });
+    } else {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = `${q.type}-input`;
+      answerAreaEl.appendChild(input);
+
+      const submitBtn = createButton('제출', () => processAnswer(input.value));
+      answerAreaEl.appendChild(submitBtn);
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') processAnswer(input.value);
+      });
+      input.focus();
+    }
+  }
+
+  function createButton(text, onClick) {
+    const btn = document.createElement('button');
+    btn.textContent = text;
+    btn.addEventListener('click', onClick);
+    return btn;
+  }
+
+  function processAnswer(userAns) {
+    if (answerAreaEl.querySelector('button:disabled')) return;
+
+    const q = questions[current];
+    const trimmedUserAns = userAns ? userAns.trim() : '';
+    let isCorrect = false;
+
+    if (q.type === 'any') {
+      isCorrect = trimmedUserAns.length > 0;        
+    } else {
+      if (q.type === 'mcq') {
+         isCorrect = (userAns === q.answer);
+      } else {
+         isCorrect = isSameAnswer(trimmedUserAns, q.answer);
+      }
+    }
+
+    feedbackEl.textContent = isCorrect ? '정답입니다! ✅' : '틀렸습니다! ❌';
+    if (isCorrect) score++;
+
+    answerAreaEl.querySelectorAll('button, input').forEach(el => el.disabled = true);
+    showNextButton();
+  }
+
+  function showNextButton() {
+    const isLastQuestion = current === questions.length - 1;
+    const buttonText = isLastQuestion ? '결과 보기' : '다음 문제';
+
+    const nextBtn = createButton(buttonText, () => {
+      if (isLastQuestion) {
+        showResult();
+      } else {
+        current++;
+        showQuestion();
+      }
+      nextBtn.remove();
+    });
+    nextBtn.style.cssText = 'display:block; margin:20px auto;';
+    feedbackEl.parentNode.insertBefore(nextBtn, feedbackEl.nextSibling);
+  }
+
+  function showResult() {
+    questionNumberEl.style.display = 'none';
+    questionTextEl.style.display = 'none';
+    answerAreaEl.style.display = 'none';
+    feedbackEl.style.display = 'none';
+
+    resultEl.style.display = 'block';
+    // 결과 화면 텍스트
+    resultEl.innerHTML = `${participantName}님<br>5과 퀴즈 결과: ${score} / ${questions.length}점`;
+  }
+  </script>
+</body>
+</html> 

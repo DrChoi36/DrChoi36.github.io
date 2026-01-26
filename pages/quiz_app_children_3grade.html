@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>어린이 웹 성경 퀴즈 (5과)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    
+    /* 전체 화면 스타일 */
+    body { 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #f0f8ff; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      font-size: 24px; /* 글자 크기 조정 */
+    }
+
+    /* 퀴즈 박스 스타일 */
+    #quiz-container { 
+      width: 90%; 
+      max-width: 600px; 
+      text-align: center; 
+      padding: 10px 0; 
+      padding-bottom: 60px; 
+    }
+
+    .question-box, .input-box { 
+      padding: 30px; 
+      border-radius: 15px; 
+      color: #fff; 
+      background-color: #6B5B95; /* 기본 배경색 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background-color 0.5s; 
+    }
+
+    /* 버튼 스타일 */
+    button { 
+      margin: 10px; 
+      padding: 15px 30px; 
+      font-size: 24px; 
+      border: none; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-family: inherit; 
+      background-color: #fff; 
+      color: #333; 
+      font-weight: bold;
+    }
+    button:hover { background-color: #f0f0f0; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* 입력창 스타일 */
+    input[type="text"] { 
+      padding: 10px; 
+      font-size: 24px; 
+      border-radius: 8px; 
+      border: none; 
+      width: 70%; 
+      font-family: inherit; 
+      text-align: center; 
+      margin-bottom: 20px; 
+    }
+
+    /* 결과 및 피드백 */
+    #result { 
+      font-size: 32px; 
+      margin-top: 30px; 
+      color: #333; 
+      background: #F7CAC9; 
+      padding: 20px; 
+      border-radius: 12px; 
+    }
+    #feedback { 
+      min-height: 40px; 
+      margin-top: 20px; 
+      font-size: 28px; 
+      font-weight: bold; 
+      color: #333; 
+    }
+
+    /* 하단 푸터 */
+    #footer {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quiz-container">
+    <div id="name-input-area" class="input-box">
+      <h2>3학년 성경퀴즈 5과</h2>
+      <p>이름을 입력하고 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 김철수" />
+      <br>
+      <button id="start-btn">퀴즈 시작 ▶</button>
+    </div>
+
+    <div id="quiz-area" style="display:none;">
+      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-text" class="question-box"></div>
+      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="feedback"></div>
+    </div>
+
+    <div id="result" style="display:none;"></div>
+  </div>
+
+  <div id="footer">Distributed by Dr. Choi</div>
+
+  <script>
+    'use strict';
+
+    // 5과 문제 데이터 (깨어진 돌비)
+    const questions = [
+      { 
+        type: 'ox',   
+        question: '이스라엘 백성들이 모세를 기다리지 못하고 아론에게 부탁해 만든 우상은 금송아지였다.', 
+        answer: 'O' 
+      }, 
+      { 
+        type: 'fill', 
+        question: '기억절: "주는 선하사 (   )하기를 즐거워하시며" (시편 86:5)', 
+        answer: '사죄' 
+      },
+      { 
+        type: 'mcq',  
+        question: '하나님께서 십계명을 직접 써 주시기 위해 모세와 함께 산에서 보낸 시간은 며칠인가요?', 
+        options: ['A. 3일', 'B. 7일', 'C. 12일', 'D. 40일'], 
+        answer: 'D. 40일'
+      },
+      { 
+        type: 'mcq',  
+        question: '산에서 내려온 모세는 백성들이 금송아지에게 절하는 것을 보고 화가 나서 어떻게 했나요?', 
+        options: ['A. 같이 춤을 추었다', 'B. 십계명 돌비를 던져 깨뜨렸다', 'C. 다시 산으로 올라갔다', 'D. 금송아지를 더 크게 만들었다'], 
+        answer: 'B. 십계명 돌비를 던져 깨뜨렸다' 
+      },
+      { 
+        type: 'short',
+        question: '하나님께서는 두 돌비에 십계명을 무엇으로 직접 쓰셨나요? (힌트: 우리 몸의 일부)', 
+        answer: '손가락' 
+      },
+      { 
+        type: 'any',  
+        question: '5과를 공부하며 느낀 점이나 하나님께 하고 싶은 말을 적어보세요.' 
+      }
+    ];
+
+    // 변수 설정
+    let current = 0;
+    let score = 0;
+    let participantName = '';
+    const themes = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9']; // 문제 배경색
+
+    // HTML 요소 가져오기
+    const nameInputArea = document.getElementById('name-input-area');
+    const nameInput = document.getElementById('name-input');
+    const startBtn = document.getElementById('start-btn');
+    const quizArea = document.getElementById('quiz-area');
+    const questionNumberEl = document.getElementById('question-number');
+    const questionTextEl = document.getElementById('question-text');
+    const answerAreaEl = document.getElementById('answer-area');
+    const feedbackEl = document.getElementById('feedback');
+    const resultEl = document.getElementById('result');
+
+    // 시작 버튼 클릭 시 실행
+    startBtn.addEventListener('click', startGame);
+    
+    // 엔터키 입력 시 실행
+    nameInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') startGame();
+    });
+
+    // 게임 시작 함수
+    function startGame() {
+      const nameVal = nameInput.value.trim();
+      if (!nameVal) {
+        alert("이름을 꼭 입력해주세요!");
+        return;
+      }
+      
+      participantName = nameVal;
+      
+      // 화면 전환: 이름 입력창 숨기고, 퀴즈 화면 보이기
+      nameInputArea.style.display = 'none';
+      quizArea.style.display = 'block';
+      
+      showQuestion();
+    }
+
+    // 문제 표시 함수
+    function showQuestion() {
+      feedbackEl.textContent = ''; // 피드백 초기화
+      const q = questions[current];
+
+      // 문제 번호 및 내용 표시
+      questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+      questionTextEl.textContent = q.question;
+      questionTextEl.style.backgroundColor = themes[current % themes.length];
+
+      // 답안 영역 초기화
+      answerAreaEl.innerHTML = '';
+
+      // 문제 타입에 따른 버튼/입력창 생성
+      if (q.type === 'ox') {
+        createBtn('O');
+        createBtn('X');
+      } else if (q.type === 'mcq') {
+        q.options.forEach(opt => createBtn(opt));
+      } else {
+        // 주관식 입력창
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = '정답 입력';
+        answerAreaEl.appendChild(input);
+        
+        const submitBtn = document.createElement('button');
+        submitBtn.textContent = '제출';
+        submitBtn.onclick = () => checkAnswer(input.value);
+        answerAreaEl.appendChild(submitBtn);
+
+        input.focus();
+        input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
+      }
+    }
+
+    // 버튼 생성 도우미 함수
+    function createBtn(text) {
+      const btn = document.createElement('button');
+      btn.textContent = text;
+      btn.onclick = () => checkAnswer(text);
+      answerAreaEl.appendChild(btn);
+    }
+
+    // 정답 확인 함수
+    function checkAnswer(userAns) {
+      // 이미 정답을 체크했으면(다음 버튼이 있으면) 중단
+      if(answerAreaEl.querySelector('.next-btn')) return;
+
+      const q = questions[current];
+      let isCorrect = false;
+
+      // 정답 비교 로직
+      if (q.type === 'any') {
+        isCorrect = userAns.trim().length > 0; // 내용이 있으면 정답
+      } else if (q.type === 'mcq') {
+        isCorrect = (userAns === q.answer);
+      } else {
+        // 주관식 정규화 비교 (띄어쓰기, 특수문자 무시)
+        isCorrect = normalize(userAns) === normalize(q.answer);
+      }
+
+      // 결과 피드백 및 점수
+      if (isCorrect) {
+        feedbackEl.textContent = "정답입니다! ⭕";
+        feedbackEl.style.color = "blue";
+        score++;
+      } else {
+        feedbackEl.textContent = "틀렸습니다! ❌";
+        feedbackEl.style.color = "red";
+      }
+
+      // 기존 버튼 비활성화
+      const inputs = answerAreaEl.querySelectorAll('button, input');
+      inputs.forEach(el => el.disabled = true);
+
+      // 다음 버튼 생성
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'next-btn'; // 클래스 추가 (중복 방지용)
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제';
+      nextBtn.style.backgroundColor = '#333';
+      nextBtn.style.color = '#fff';
+      nextBtn.style.marginTop = '20px';
+      
+      nextBtn.onclick = () => {
+        if (current === questions.length - 1) {
+          showResult();
+        } else {
+          current++;
+          showQuestion();
+        }
+      };
+      
+      feedbackEl.appendChild(document.createElement('br'));
+      feedbackEl.appendChild(nextBtn);
+    }
+
+    // 결과 화면 표시
+    function showResult() {
+      quizArea.style.display = 'none';
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = `
+        <h3>${participantName} 어린이는<br>
+        총 ${questions.length}문제 중<br>
+        <span style="color:red; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
+        <p>참 잘했어요! 👏👏👏</p>
+      `;
+    }
+
+    // 문자열 정규화 (띄어쓰기, 특수문자 제거)
+    function normalize(str) {
+      if (!str) return '';
+      return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
+    }
+
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (6과)</title>
+  <title>소년반 성경 퀴즈 (7과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
@@ -100,7 +100,7 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 6과</h2>
+      <h2>소년반 성경퀴즈 7과</h2>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 김철수" />
       <br>
@@ -124,54 +124,54 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 6과 문제 데이터 (가장 친한 친구)
+      // 7과 문제 데이터 (나의 진정한 이웃)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '제자 요한은 예수님을 만나기 전부터 매우 겸손하고 참을성이 많은 성격이었다.', 
+          question: '강도를 만나 쓰러진 사람을 보고 제사장과 레위인은 그를 불쌍히 여겨 정성껏 치료해 주었다.', 
           answer: 'X' 
         }, 
-        // [근거: source 751] "그는 겸손하거나 참을성도 없었습니다... 자존심이 강했습니다."
+        // [근거: source 671, 672] "제사장은... 얼른 피했다. 레위 사람 역시... 얼른 지나갔다."
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "내가 아버지의 (   )을/를 그들에게 알게 하였고 또 알게 하리니..." (요한복음 17:26)', 
-          answer: '이름' 
+          question: '기억절: "네 마음을 다하며... 주 너의 하나님을 사랑하고 또한 네 (   )을/를 네 자신 같이 사랑하라" (누가복음 10:27)', 
+          answer: '이웃' 
         },
-        // [근거: source 746] "내가 아버지의 이름을 그들에게 알게 하였고..."
+        // [근거: source 638] "...네 이웃을 네 자신 같이 사랑하라..."
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '성격이 급하고 자존심이 강해서 사람들이 요한과 야고보에게 붙여준 별명은 무엇인가요?', 
-          options: ['A. 평화의 아들', 'B. 우레(천둥)의 아들', 'C. 사랑의 아들', 'D. 믿음의 아들'], 
-          answer: 'B. 우레(천둥)의 아들'
+          question: '예수님의 이야기에서 강도 만난 사람을 보고 상처를 싸매주고 돌보아 준 사람은 누구인가요?', 
+          options: ['A. 제사장', 'B. 레위인', 'C. 사마리아 사람', 'D. 율법사'], 
+          answer: 'C. 사마리아 사람'
         },
-        // [근거: source 751] "사람들은 요한과 그의 형제 야고보를 '우레의 아들'이라고 불렀습니다."
+        // [근거: source 673, 674] "사마리아 사람이... 상처를 싸매주고... 돌보아 주었다."
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '예수님께서는 귀신 들린 아이를 고치시며 제자들에게 "이것" 외에는 능력이 나갈 수 없다고 하셨습니다. 무엇인가요?', 
-          options: ['A. 공부', 'B. 운동', 'C. 기도', 'D. 식사'], 
-          answer: 'C. 기도'
+          question: '예수님께서는 누가 강도 만난 자의 이웃이냐고 물으신 후, 율법사에게 마지막으로 무엇이라고 말씀하셨나요?', 
+          options: ['A. 성전에 가서 제사하라', 'B. 너도 이와 같이 하라', 'C. 율법을 더 연구하라', 'D. 고향으로 돌아가라'], 
+          answer: 'B. 너도 이와 같이 하라'
         },
-        // [근거: source 782] "기도 외에 다른 것으로 이런 일을 할 방법은 없다"
+        // [근거: source 690] "너도 이와 같이 하라"
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '이번 과의 중심 생각에 따르면, 우리가 꾸준히 "이것"을 하면 예수님과 더욱 가까워질 수 있습니다. 무엇일까요?', 
-          answer: '기도' 
+          question: '어떤 사람이 예루살렘에서 (    )로 내려가다가 강도를 만났습니다. 빈칸에 들어갈 도시 이름은 무엇인가요?', 
+          answer: '여리고' 
         },
-        // [근거: source 744] "꾸준히 기도하면 예수님과 더욱더 가까워질 수 있습니다."
+        // [근거: source 669] "예루살렘에서 여리고로 가고 있었다."
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '6과를 공부하며 나도 요한처럼 예수님과 가장 친한 친구가 되기 위해 하고 싶은 일을 적어보세요.' 
+          question: '7과를 공부하며 내가 도와주어야 할 이웃은 누구인지, 어떻게 도와줄 수 있을지 적어보세요.' 
         }
       ];
 
@@ -321,7 +321,7 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         resultEl.innerHTML = `
-          <h3>${participantName} 학생은<br>
+          <h3>${participantName} 어린이는<br>
           총 ${questions.length}문제 중<br>
           <span style="color:red; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
           <p>참 잘했어요! 👏👏👏</p>

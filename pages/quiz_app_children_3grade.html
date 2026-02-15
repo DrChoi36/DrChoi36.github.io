@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (7과)</title>
+  <title>유년반 교과 퀴즈 (8과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fff9e6; 
+      background: #f0fdf4; /* 8과 테마: 성전과 나무 느낌의 연초록 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #F39C12; /* 7과 테마색: 황금빛 */
+      background-color: #27AE60; /* 성전 재료인 나무를 상징하는 초록색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -36,13 +36,13 @@
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #F39C12; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #27AE60; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #F39C12;
+      border: 5px solid #27AE60;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -56,8 +56,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 7과</h2>
-      <p style="font-size: 20px;">도와주세요! (브살렐과 오홀리압)</p>
+      <h2>유년반 성경퀴즈 8과</h2>
+      <p style="font-size: 20px;">아름다운 집 (솔로몬 성전)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
@@ -74,7 +74,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 7과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 8과</div>
 
   <script>
     'use strict';
@@ -82,43 +82,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '성소를 지을 때 이스라엘 백성들은 재료가 부족해서 걱정할 만큼 아주 조금만 가져왔다.', 
-        answer: 'X',
-        comment: '백성들이 너무 많이 가져와서 모세가 "그만 가져오라"고 할 정도였어요! '
+        question: '솔로몬 왕이 성전을 지을 때, 공사장에서는 망치 소리나 시끄러운 연장 소리가 들리지 않았다.', 
+        answer: 'O',
+        comment: '산에서 돌을 완벽하게 깎아왔기 때문에 공사장에서는 조용히 조립만 했어요.'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "(   ) 마음으로 섬기기를 주께 하듯 하고 사람들에게 하듯 하지 말라" (에베소서 6:7)', 
-        answer: '기쁜',
-        comment: '우리는 하나님께 예배드릴 때 기쁜 마음으로 재능을 사용해야 해요. '
+        question: '기억절: "만군의 여호와여 주의 (   )이 어찌 그리 사랑스러운지요" (시편 84:1)', 
+        answer: '장막',
+        comment: '하나님이 계시는 아름다운 장막을 사랑하는 마음을 담은 노래예요. '
       },
       { 
         type: 'mcq',  
-        question: '하나님께서 성소를 짓는 아주 중요한 일을 위해 특별히 선택하신 두 명의 일꾼은 누구인가요?', 
-        options: ['A. 아브라함과 이삭', 'B. 브살렐과 오홀리압', 'C. 다윗과 솔로몬', 'D. 베드로와 요한'], 
-        answer: 'B. 브살렐과 오홀리압',
-        comment: '브살렐과 오홀리압은 하나님이 주신 지혜로 성소를 멋지게 만들었어요! '
+        question: '솔로몬 왕은 성전을 짓기 위해 어느 나라의 히람 왕에게 백향목 나무를 보내달라고 부탁했나요?', 
+        options: ['A. 애굽', 'B. 두로', 'C. 바벨론', 'D. 블레셋'], 
+        answer: 'B. 두로',
+        comment: '두로 왕 히람은 다윗 왕의 친구였고, 성전 건축을 위해 좋은 나무를 보내주었어요.'
       },
       { 
         type: 'mcq',  
-        question: '하나님께서는 법궤를 다 만들고 난 뒤, 그 안에 무엇을 넣으라고 말씀하셨나요?', 
-        options: ['A. 금송아지', 'B. 십계명 돌판', 'C. 맛있는 만나', 'D. 모세의 지팡이'], 
-        answer: 'B. 십계명 돌판',
-        comment: '법궤 안에는 하나님이 직접 써주신 십계명을 소중히 보관했어요. '
+        question: '성전 안의 벽과 천장, 바닥은 무엇으로 입혀서 눈부시게 아름다웠나요?', 
+        options: ['A. 은', 'B. 동', 'C. 금', 'D. 보석'], 
+        answer: 'C. 금',
+        comment: '아름답게 조각한 나무 위에 금을 입혀서 아주 귀하고 아름답게 만들었어요.'
       },
       { 
         type: 'short',
-        question: '하나님을 위해 우리가 가진 특별한 능력이나 재주를 무엇이라고 부르나요? (3글자)', 
-        answer: '달란트', 
-        answer_alt: '재능',
-        comment: '우리의 재능과 달란트는 하나님이 주신 소중한 선물이에요! '
+        question: '솔로몬 성전을 짓는 데 도움을 주기 위해 히람 왕이 보내준 위대한 예술가의 이름은 무엇인가요? (4글자)', 
+        answer: '후람아비', 
+        comment: '후람-아비는 금, 은, 동, 나무 등을 아주 잘 다루는 뛰어난 예술가였어요. '
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#E67E22', '#2980B9', '#27AE60', '#8E44AD', '#C0392B'];
+    const themes = ['#27AE60', '#2980B9', '#8E44AD', '#F39C12', '#C0392B'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -183,17 +182,16 @@
       if (q.type === 'mcq') {
         isCorrect = (userAns === q.answer);
       } else if (q.type === 'short') {
-        const normalized = normalize(userAns);
-        isCorrect = (normalized === normalize(q.answer) || normalized === normalize(q.answer_alt));
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
       } else {
         isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#27AE60;'>참 잘했어요! 정답입니다! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#27AE60;'>우와! 정답입니다! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#C0392B;'>다시 한번 생각해봐요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#C0392B;'>아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
@@ -220,12 +218,12 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "최고예요! 성경 박사님이시네요!" : "정말 수고했어요! 다음 과도 기대할게요!";
+      let message = score === questions.length ? "최고예요! 솔로몬처럼 지혜롭군요!" : "잘했어요! 성경 이야기를 아주 잘 이해했네요!";
       resultEl.innerHTML = `
         <h2>축하합니다, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🏆</div>
-        <p>우리 어린이의 점수</p>
-        <p><span style="color:#F39C12; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">⛪</div>
+        <p>우리 어린이의 8과 점수</p>
+        <p><span style="color:#27AE60; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">다시 도전하기</button>
       `;

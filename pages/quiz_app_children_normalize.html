@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (7과)</title>
+  <title>소년반 성경 퀴즈 (8과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
@@ -100,9 +100,9 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 7과</h2>
+      <h2>소년반 성경퀴즈 8과</h2>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 김철수" />
+      <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
@@ -124,54 +124,54 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 7과 문제 데이터 (나의 진정한 이웃)
+      // 8과 문제 데이터 (하늘 백성의 특성)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '강도를 만나 쓰러진 사람을 보고 제사장과 레위인은 그를 불쌍히 여겨 정성껏 치료해 주었다.', 
+          question: '예수님은 우리에게 잘해주는 사람에게만 잘해주고, 우리를 미워하는 원수는 미워하라고 가르치셨다.', 
           answer: 'X' 
         }, 
-        // [근거: source 671, 672] "제사장은... 얼른 피했다. 레위 사람 역시... 얼른 지나갔다."
+        // [근거: source 692, 734] "오직 너희는 원수를 사랑하고 선대하며... 우리에게 나쁜 짓을 하는 사람조차 사랑하라는 의미이다."
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "네 마음을 다하며... 주 너의 하나님을 사랑하고 또한 네 (   )을/를 네 자신 같이 사랑하라" (누가복음 10:27)', 
-          answer: '이웃' 
+          question: '기억절: "오직 너희는 (   )를/을 사랑하고 선대하며 아무것도 바라지 말고 꾸어 주라..." (누가복음 6:35)', 
+          answer: '원수' 
         },
-        // [근거: source 638] "...네 이웃을 네 자신 같이 사랑하라..."
+        // [근거: source 684] "오직 너희는 원수를 사랑하고 선대하며..."
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '예수님의 이야기에서 강도 만난 사람을 보고 상처를 싸매주고 돌보아 준 사람은 누구인가요?', 
-          options: ['A. 제사장', 'B. 레위인', 'C. 사마리아 사람', 'D. 율법사'], 
-          answer: 'C. 사마리아 사람'
+          question: '예수님께서 말씀하신 "남에게 대접을 받고자 하는 대로 너희도 남을 대접하라"는 말씀은 흔히 무엇이라고 불리나요?', 
+          options: ['A. 황금률', 'B. 십계명', 'C. 주기도문', 'D. 팔복'], 
+          answer: 'A. 황금률' 
         },
-        // [근거: source 673, 674] "사마리아 사람이... 상처를 싸매주고... 돌보아 주었다."
+        // [일반 상식 및 source 700 내용 참조: 누가복음 6:31은 황금률로 알려져 있음]
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '예수님께서는 누가 강도 만난 자의 이웃이냐고 물으신 후, 율법사에게 마지막으로 무엇이라고 말씀하셨나요?', 
-          options: ['A. 성전에 가서 제사하라', 'B. 너도 이와 같이 하라', 'C. 율법을 더 연구하라', 'D. 고향으로 돌아가라'], 
-          answer: 'B. 너도 이와 같이 하라'
+          question: '예수님과 대화한 청년이 "왜 우리가 원수에게 선한 일을 해야 하나요?"라고 물었을 때, 예수님은 하나님께서 누구에게 햇빛과 비를 주신다고 하셨나요?', 
+          options: ['A. 착한 사람에게만', 'B. 부자에게만', 'C. 순종하는 사람과 불순종하는 사람 모두에게', 'D. 유대인에게만'], 
+          answer: 'C. 순종하는 사람과 불순종하는 사람 모두에게'
         },
-        // [근거: source 690] "너도 이와 같이 하라"
+        // [근거: source 719] "하나님은 순종하는 사람이나 불순종하는 사람들에게 햇빛과 비를 내려 주시지 않느냐?"
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '어떤 사람이 예루살렘에서 (    )로 내려가다가 강도를 만났습니다. 빈칸에 들어갈 도시 이름은 무엇인가요?', 
-          answer: '여리고' 
+          question: '예수님께서는 "너희 아버지의 (    )로우심 같이 너희도 (    )로운 자가 되라"고 하셨습니다. 빈칸에 공통으로 들어갈 말은 무엇인가요?', 
+          answer: '자비' 
         },
-        // [근거: source 669] "예루살렘에서 여리고로 가고 있었다."
+        // [근거: source 716] "너희 아버지의 자비로우심 같이 너희도 자비로운 자가 되라."
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '7과를 공부하며 내가 도와주어야 할 이웃은 누구인지, 어떻게 도와줄 수 있을지 적어보세요.' 
+          question: '8과를 공부하며 나를 힘들게 하는 친구나 이웃에게 어떻게 대해야 할지 느낀 점을 적어보세요.' 
         }
       ];
 
@@ -322,7 +322,7 @@
         resultEl.style.display = 'block';
         resultEl.innerHTML = `
           <h3>${participantName} 어린이는<br>
-          총 ${questions.length}문제 중<br>
+          8과 총 ${questions.length}문제 중<br>
           <span style="color:red; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
           <p>참 잘했어요! 👏👏👏</p>
         `;

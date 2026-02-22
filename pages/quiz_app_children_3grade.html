@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (8과)</title>
+  <title>유년반 교과 퀴즈 (9과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #f0fdf4; /* 8과 테마: 성전과 나무 느낌의 연초록 */
+      background: #eef2ff; /* 9과 테마: 하나님의 영광을 상징하는 밝은 하늘색 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #27AE60; /* 성전 재료인 나무를 상징하는 초록색 */
+      background-color: #6366f1; /* 보라빛 파란색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -31,18 +31,18 @@
       box-shadow: 0 3px 0 #ddd;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #f0f0f0; }
+    button:hover { background-color: #f8fafc; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #27AE60; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #6366f1; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #27AE60;
+      border: 5px solid #6366f1;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -56,8 +56,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 8과</h2>
-      <p style="font-size: 20px;">아름다운 집 (솔로몬 성전)</p>
+      <h2>유년반 성경퀴즈 9과</h2>
+      <p style="font-size: 20px;">모든 사람을 위해 (성전 봉헌식)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
@@ -74,7 +74,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 8과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 9과</div>
 
   <script>
     'use strict';
@@ -82,42 +82,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '솔로몬 왕이 성전을 지을 때, 공사장에서는 망치 소리나 시끄러운 연장 소리가 들리지 않았다.', 
+        question: '제사장들이 법궤를 성전 안으로 옮기고 찬양을 드릴 때, 거대한 구름이 성전을 덮으며 하나님의 영광이 가득 찼다.', 
         answer: 'O',
-        comment: '산에서 돌을 완벽하게 깎아왔기 때문에 공사장에서는 조용히 조립만 했어요.'
+        comment: '구름이 가득 차서 제사장들이 성전 밖으로 나갈 정도로 놀라운 일이 일어났어요!'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "만군의 여호와여 주의 (   )이 어찌 그리 사랑스러운지요" (시편 84:1)', 
-        answer: '장막',
-        comment: '하나님이 계시는 아름다운 장막을 사랑하는 마음을 담은 노래예요. '
+        question: '기억절: "(   )이 와서 주께 경배하리이다" (요한계시록 15:4)', 
+        answer: '만국',
+        comment: '모든 나라 사람들이 하나님 앞에 와서 예배드릴 거예요! '
       },
       { 
         type: 'mcq',  
-        question: '솔로몬 왕은 성전을 짓기 위해 어느 나라의 히람 왕에게 백향목 나무를 보내달라고 부탁했나요?', 
-        options: ['A. 애굽', 'B. 두로', 'C. 바벨론', 'D. 블레셋'], 
-        answer: 'B. 두로',
-        comment: '두로 왕 히람은 다윗 왕의 친구였고, 성전 건축을 위해 좋은 나무를 보내주었어요.'
+        question: '봉헌식의 첫 번째 순서는 수년 동안 어디에 머물러 있던 법궤를 성전으로 가져오는 일이었나요?', 
+        options: ['A. 모세의 장막', 'B. 오벳에돔의 집', 'C. 다윗의 성', 'D. 애굽 땅'], 
+        answer: 'B. 오벳에돔의 집',
+        comment: '법궤는 오벳에돔의 집에 머물다가 드디어 새 성전으로 옮겨졌어요! '
       },
       { 
         type: 'mcq',  
-        question: '성전 안의 벽과 천장, 바닥은 무엇으로 입혀서 눈부시게 아름다웠나요?', 
-        options: ['A. 은', 'B. 동', 'C. 금', 'D. 보석'], 
-        answer: 'C. 금',
-        comment: '아름답게 조각한 나무 위에 금을 입혀서 아주 귀하고 아름답게 만들었어요.'
+        question: '솔로몬 왕과 이스라엘 백성들은 성전 봉헌식 축제를 며칠 동안이나 계속했나요?', 
+        options: ['A. 3일', 'B. 7일', 'C. 14일', 'D. 40일'], 
+        answer: 'C. 14일',
+        comment: '백성들은 너무 기뻐서 14일 동안이나 함께 축제를 벌였답니다! '
       },
       { 
         type: 'short',
-        question: '솔로몬 성전을 짓는 데 도움을 주기 위해 히람 왕이 보내준 위대한 예술가의 이름은 무엇인가요? (4글자)', 
-        answer: '후람아비', 
-        comment: '후람-아비는 금, 은, 동, 나무 등을 아주 잘 다루는 뛰어난 예술가였어요. '
+        question: '제사장들은 법궤를 성전 안의 가장 거룩한 장소인 이곳에 두었어요. 이곳은 어디인가요? (3글자)', 
+        answer: '지성소', 
+        comment: '법궤는 금으로 칠한 두 천사 날개 아래인 지성소에 놓였어요! '
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#27AE60', '#2980B9', '#8E44AD', '#F39C12', '#C0392B'];
+    const themes = ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -156,7 +156,7 @@
       } else {
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = '정답을 써보세요';
+        input.placeholder = '정답을 적어요';
         answerAreaEl.appendChild(input);
         const submitBtn = document.createElement('button');
         submitBtn.textContent = '확인';
@@ -188,23 +188,23 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#27AE60;'>우와! 정답입니다! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#10b981;'>정답이에요! 참 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#C0392B;'>아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#ef4444;'>아쉬워요! 정답은 [${q.answer}] 예요. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
       commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#666';
+      commentDiv.style.color = '#4b5563';
       commentDiv.style.marginTop = '10px';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제로';
-      nextBtn.style.backgroundColor = '#333';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제로 ▶';
+      nextBtn.style.backgroundColor = '#1e293b';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -218,14 +218,14 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "최고예요! 솔로몬처럼 지혜롭군요!" : "잘했어요! 성경 이야기를 아주 잘 이해했네요!";
+      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이네요!" : "정말 수고했어요! 하나님이 기뻐하실 거예요!";
       resultEl.innerHTML = `
         <h2>축하합니다, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">⛪</div>
-        <p>우리 어린이의 8과 점수</p>
-        <p><span style="color:#27AE60; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">☁️✨</div>
+        <p>우리 어린이의 9과 점수</p>
+        <p><span style="color:#6366f1; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
-        <button onclick="location.reload()">다시 도전하기</button>
+        <button onclick="location.reload()">한 번 더 하기</button>
       `;
     }
 

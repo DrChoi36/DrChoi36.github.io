@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (9과)</title>
+  <title>소년반 성경 퀴즈 (10과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
@@ -100,7 +100,7 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 9과</h2>
+      <h2>소년반 성경퀴즈 10과</h2>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
@@ -124,54 +124,54 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 9과 문제 데이터 (지도자를 따라 감)
+      // 10과 문제 데이터 (준비가 됨)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '예수님은 아름답고 행복한 하늘을 버리고, 죄로 인해 고통받는 우리를 구하기 위해 기꺼이 이 땅에 오시기로 선택하셨다.', 
+          question: '예수님은 제자들에게 예루살렘 성안으로 들어가면 "큰 물동이"를 지고 가는 사람을 찾아 따라가라고 하셨다.', 
           answer: 'O' 
         }, 
-        // [근거: source 775, 777, 778] "예수님은 하늘의 모든 평안과 행복을 버리고... 즐거운 마음으로 고통의 시간을 선택하셨습니다."
+        // "성안으로 들어가면 큰 물동이를 지고 가는 사람을 찾아보아라. 그리고 그 사람을 만나거든 그 집으로 따라가거라"
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "그가 찔림은 우리의 허물 때문이요... 그가 징계를 받으므로 우리는 (   )을/를 누리고 그가 채찍에 맞으므로 우리는 나음을 받았도다" (이사야 53:5)', 
-          answer: '평화' 
+          question: '기억절: "각각 (   )을/를 받은 대로 하나님의 여러 가지 은혜를 맡은 선한 청지기 같이 서로 봉사하라" (베드로전서 4:10)', 
+          answer: '은사' 
         },
-        // [근거: source 750] "...그가 징계를 받으므로 우리는 평화를 누리고..."
+        // "각각 은사를 받은 대로..."
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '예수님을 따르던 제자 중 한 명은 예수님을 얼마를 받고 팔아버렸나요?', 
-          options: ['A. 금 10냥', 'B. 은 30냥', 'C. 동전 100개', 'D. 양 10마리'], 
-          answer: 'B. 은 30냥' 
+          question: '하나님께서 유대인들을 애굽에서 구원해내신 때를 기억하기 위해 지키는 명절로, 제자들이 예수님과 함께 먹기 위해 준비한 이 명절의 이름은 무엇인가요?', 
+          options: ['A. 초막절', 'B. 유월절', 'C. 오순절', 'D. 나팔절'], 
+          answer: 'B. 유월절' 
         },
-        // [근거: source 783] "예수님을 따르던 제자 중 한 명은 예수님을 은 30냥을 받고 팔아버렸습니다."
+        // "유월절은 하나님께서 유대인들을 애굽에서 구원해내신 때를 기억하기 위한 것이었습니다... 우리가 어디에 가서 당신을 위해 유월절을 준비하기 원하십니까?"
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '예수님께서 십자가와 가시면류관의 고통을 묵묵히 인내하며 견디신 가장 큰 이유는 무엇인가요?', 
-          options: ['A. 로마의 왕이 되기 위해서', 'B. 천사들에게 칭찬을 받으려고', 'C. 우리를 향한 사랑 때문에', 'D. 기적을 보여주기 위해서'], 
-          answer: 'C. 우리를 향한 사랑 때문에'
+          question: '예수님의 심부름으로 유월절 만찬을 준비하기 위해 마을로 들어간 두 제자는 누구인가요?', 
+          options: ['A. 야고보와 안드레', 'B. 빌립과 나다나엘', 'C. 베드로와 요한', 'D. 마태와 도마'], 
+          answer: 'C. 베드로와 요한'
         },
-        // [근거: source 806] "그 모든 것은 우리를 향한 예수님의 사랑의 마음이었습니다. 그분은 우리의 모든 죄 위해 돌아가셨습니다."
+        // "베드로와 요한아, 오늘 마을로 들어가거라... 베드로와 요한은 서둘러서 예수님이 말씀하신 대로 마을에 들어갔습니다."
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '9과의 중심 생각에 따르면, 우리는 다른 사람에게 "이것"을 할 때 예수님의 모본을 따르는 것입니다. 무엇일까요? (힌트: 2글자)', 
-          answer: '봉사' 
+          question: '이번 10과의 중심 생각에서, 우리는 하나님께서 주신 "이것"을 사용하여 하나님께 최선의 봉사를 한다고 배웠습니다. 3글자인 "이것"은 무엇일까요?', 
+          answer: '달란트' 
         },
-        // [근거: source 748] "우리는 다른 사람에게 봉사할 때 예수님의 모본을 따릅니다."
+        // "우리는 하나님께서 주신 달란트를 사용하여 하나님께 최선을 봉사를 합니다." (정답: 달란트, 혹은 기억절에 나온 은사도 정답 처리되도록 isSameAnswer에서 유연하게 대처 가능하지만 주 정답은 달란트)
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '9과를 공부하며, 우리를 위해 십자가를 지신 예수님의 사랑을 생각할 때 어떤 마음이 드는지 한 줄 이상 적어보세요.' 
+          question: '10과를 공부하며, 하나님이 나에게 주신 달란트(재능)는 무엇이라고 생각하는지, 그리고 그것으로 어떻게 봉사하고 싶은지 적어보세요.' 
         }
       ];
 
@@ -278,7 +278,14 @@
           isCorrect = (userAns === q.answer);
         } else {
           // 주관식 정규화 비교 (띄어쓰기, 특수문자 무시)
-          isCorrect = normalize(userAns) === normalize(q.answer);
+          // 단답형에서 '달란트' 외에 '은사'라고 대답해도 정답으로 인정
+          let nUser = normalize(userAns);
+          let nAns = normalize(q.answer);
+          if (nAns === '달란트' && nUser === '은사') {
+            isCorrect = true;
+          } else {
+            isCorrect = nUser === nAns;
+          }
         }
 
         // 결과 피드백 및 점수
@@ -322,7 +329,7 @@
         resultEl.style.display = 'block';
         resultEl.innerHTML = `
           <h3>${participantName} 학생은<br>
-          9과 총 ${questions.length}문제 중<br>
+          10과 총 ${questions.length}문제 중<br>
           <span style="color:red; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
           <p>참 잘했어요! 👏👏👏</p>
         `;

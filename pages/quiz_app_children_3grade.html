@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (11과)</title>
+  <title>유년반 교과 퀴즈 (어둠 속에서 나와)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Gaegu:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #f0fdf4; /* 11과 테마: 생명을 상징하는 연초록 */
+      font-family: 'Gaegu', 'Nanum Gothic', cursive; 
+      background: #fffbeb; /* 따뜻한 햇살 테마 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -18,54 +18,59 @@
     #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #10b981; /* 싱그러운 초록색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      line-height: 1.5;
+      padding: 30px; border-radius: 25px; color: #fff; 
+      background-color: #f59e0b; /* 따뜻한 주황색 */
+      box-shadow: 0 8px 0 #d97706;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     button { 
-      margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 12px; cursor: pointer; 
+      margin: 10px; padding: 15px 30px; font-size: 24px; 
+      border: none; border-radius: 15px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      box-shadow: 0 4px 0 #ddd;
+      font-family: 'Gaegu', cursive;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #f0fdf4; }
+    button:hover { background-color: #fef3c7; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
-      padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #10b981; width: 70%; text-align: center; margin-bottom: 20px; 
+      padding: 12px; font-size: 24px; border-radius: 15px; 
+      border: 3px solid #f59e0b; width: 70%; text-align: center; margin-bottom: 20px; 
+      font-family: 'Gaegu', cursive;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
-      background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #10b981;
+      background: #fff; padding: 30px; border-radius: 25px; 
+      border: 6px solid #f59e0b;
     }
-    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
+    #feedback { min-height: 50px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
     #footer {
       position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+      text-align: center; font-size: 16px; color: #92400e; pointer-events: none;
     }
+
+    .next-btn { background-color: #b45309 !important; color: white !important; }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 11과</h2>
-      <p style="font-size: 20px;">물고기 비린내 (요나의 기도)</p>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 최재희" />
+      <h2 style="font-size: 40px; margin-bottom: 10px;">유년반 성경퀴즈</h2>
+      <p style="font-size: 26px;">제 12과: 어둠 속에서 나와</p>
+      <p>안녕! 이름을 입력하고 요나를 만나러 가볼까요?</p>
+      <input type="text" id="name-input" placeholder="이름을 적어주세요" />
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn">퀴즈 시작! ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 22px; color: #92400e; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
@@ -74,7 +79,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 11과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 성경 이야기</div>
 
   <script>
     'use strict';
@@ -82,42 +87,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '바다에 던져진 요나가 큰 물고기에 삼켜졌을 때, 하나님께서는 요나를 여전히 사랑하고 계셨다.', 
+        question: '요나는 물고기 뱃속에서 나온 후, 하나님의 말씀에 순종하여 니느웨로 갔나요?', 
         answer: 'O',
-        comment: '요나가 도망쳤을지라도 하나님께서는 요나를 여전히 사랑하고 계셨어요! '
+        comment: '맞아요! 요나는 처음엔 도망쳤지만, 다시 기회를 주신 하나님께 순종하여 니느웨로 갔답니다.'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "만일 우리가 우리 죄를 (   )하면... 우리를 모든 불의에서 깨끗하게 하실 것이요" (요한일서 1:9)', 
-        answer: '자백',
-        comment: '우리가 잘못을 솔직하게 말하면 하나님께서는 우리를 깨끗하게 해주세요! '
+        question: '기억절: "오직 주께서는 너희를 대하여 오래 참으사 아무도 (      )하지 아니하고 다 회개하기에 이르기를 원하시느니라"', 
+        answer: '멸망',
+        comment: '하나님께서는 한 사람도 잃어버리지 않고 모두 구원받기를 원하세요!'
       },
       { 
         type: 'mcq',  
-        question: '요나는 큰 물고기 뱃속에서 며칠 동안 머물러 있었나요?', 
-        options: ['A. 하루', 'B. 이틀', 'C. 삼일', 'D. 일주일'], 
-        answer: 'C. 삼일',
-        comment: '삼일이 지난 후에 물고기는 요나를 육지에 토해냈어요. '
+        question: '요나는 니느웨 성이 며칠 후에 멸망할 것이라고 외쳤나요?', 
+        options: ['A. 3일 후', 'B. 7일 후', 'C. 10일 후', 'D. 40일 후'], 
+        answer: 'D. 40일 후',
+        comment: '요나는 니느웨 사람들에게 40일 뒤에 성이 무너질 것이라는 하나님의 기별을 전했어요.'
       },
       { 
         type: 'mcq',  
-        question: '요나가 바다에 던져지자마자 무서웠던 폭풍과 파도는 어떻게 되었나요?', 
-        options: ['A. 더 심해졌다', 'B. 즉시 멈췄다', 'C. 비가 더 많이 왔다', 'D. 아무 일도 없었다'], 
-        answer: 'B. 즉시 멈췄다',
-        comment: '요나가 바다에 빠지자 바람과 파도, 천둥과 번개가 즉시 멈췄답니다! '
+        question: '요나의 기별을 들은 니느웨 왕과 백성들은 어떤 옷을 입고 회개했나요?', 
+        options: ['A. 비단 옷', 'B. 베옷', 'C. 가죽 옷', 'D. 화려한 왕복'], 
+        answer: 'B. 베옷',
+        comment: '왕과 백성들뿐만 아니라 짐승들까지도 베옷을 입고 금식하며 진심으로 뉘우쳤어요.'
       },
       { 
         type: 'short',
-        question: '요나를 삼킨 큰 물고기 안에서는 어떤 냄새가 아주 심하게 났을까요? (3글자)', 
-        answer: '비린내', 
-        comment: '축축하고 불편한 물고기 뱃속에서는 심한 물고기 비린내가 났어요! '
+        question: '하나님께서는 니느웨 사람들이 악한 길에서 떠난 것을 보시고 그들을 (      )해 주셨어요. (2글자)', 
+        answer: '용서', 
+        comment: '진심으로 반성하는 니느웨 사람들을 보시고 하나님께서는 사랑으로 용서해 주셨답니다!'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#10b981', '#059669', '#047857', '#065f46', '#064e3b'];
+    const themes = ['#f59e0b', '#d97706', '#b45309', '#92400e', '#78350f'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -134,7 +139,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
+      if (!nameVal) { alert("우리 어린이의 이름을 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -156,10 +161,10 @@
       } else {
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = '정답을 적어보세요';
+        input.placeholder = '정답을 입력하세요';
         answerAreaEl.appendChild(input);
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '정답 확인';
+        submitBtn.textContent = '확인하기';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
         input.focus();
@@ -175,7 +180,7 @@
     }
 
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return;
+      if(feedbackEl.querySelector('.next-btn')) return;
       const q = questions[current];
       let isCorrect = false;
 
@@ -188,44 +193,44 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#065f46;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<div style='color:#166534;'>최고예요! 정답입니다! 🌟</div>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<div style='color:#991b1b;'>아쉬워요! 정답은 [${q.answer}] 입니다. 📖</div>`;
       }
       
       const commentDiv = document.createElement('div');
-      commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#334155';
+      commentDiv.style.fontSize = '20px';
+      commentDiv.style.color = '#451a03';
       commentDiv.style.marginTop = '10px';
+      commentDiv.style.padding = '10px';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#064e3b';
-      nextBtn.style.color = '#fff';
-      nextBtn.style.marginTop = '20px';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보러 가기' : '다음 문제로! ▶';
       nextBtn.onclick = () => {
         if (current === questions.length - 1) showResult();
         else { current++; showQuestion(); }
       };
-      feedbackEl.appendChild(document.createElement('br'));
       feedbackEl.appendChild(nextBtn);
     }
 
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
+      let message = score === questions.length ? 
+        "완벽해요! 하나님의 사랑을 잘 알고 있군요!" : 
+        "참 잘했어요! 하나님의 사랑은 정말 놀라워요!";
+      
       resultEl.innerHTML = `
-        <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🐟</div>
-        <p>우리 어린이의 11과 점수는</p>
-        <p><span style="color:#059669; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold;">${message}</p>
-        <button onclick="location.reload()">한 번 더 풀기</button>
+        <h2 style="font-size: 36px;">${participantName} 어린이, 참 잘했어요!</h2>
+        <div style="font-size: 80px; margin: 20px 0;">☀️</div>
+        <p style="font-size: 24px;">오늘의 퀴즈 점수는</p>
+        <p><span style="color:#d97706; font-size:60px;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; color:#92400e;">${message}</p>
+        <button onclick="location.reload()" style="background-color:#f59e0b; color:white;">다시 해보기</button>
       `;
     }
 

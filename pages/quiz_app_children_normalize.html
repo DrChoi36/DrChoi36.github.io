@@ -3,103 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (13과)</title>
+  <title>소년반 성경 퀴즈 (1과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
+    /* 전체 화면 스타일 */
     body { 
       margin: 0; 
       padding: 0; 
-      font-family: 'Noto Sans KR', sans-serif; 
-      background: #fdf6e3; 
+      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #eef2f3; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
-      font-size: 20px;
-      color: #333;
+      font-size: 22px; 
     }
 
+    /* 퀴즈 박스 스타일 */
     #quiz-container { 
-      width: 90%; 
+      width: 95%; 
       max-width: 650px; 
       text-align: center; 
-      padding: 20px;
-      padding-bottom: 80px;
+      padding: 20px 0; 
+      padding-bottom: 70px; 
     }
 
     .question-box, .input-box { 
-      padding: 40px 20px; 
-      border-radius: 25px; 
+      padding: 35px; 
+      border-radius: 20px; 
       color: #fff; 
-      background-color: #6B5B95; 
+      background-color: #5D6D7E; 
       box-shadow: 0 10px 20px rgba(0,0,0,0.15);
       transition: all 0.5s ease; 
+      line-height: 1.6;
     }
 
-    h2 { margin-top: 0; font-size: 1.8rem; }
-
+    /* 버튼 스타일 */
     button { 
-      margin: 10px; 
-      padding: 15px 25px; 
+      margin: 8px; 
+      padding: 12px 25px; 
       font-size: 22px; 
       border: none; 
-      border-radius: 15px; 
+      border-radius: 12px; 
       cursor: pointer; 
       font-family: inherit; 
-      background-color: #fff; 
-      color: #333; 
+      background-color: #ffffff; 
+      color: #2C3E50; 
       font-weight: bold;
-      box-shadow: 0 4px #ccc;
-      transition: 0.2s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    button:active {
-      box-shadow: 0 2px #999;
-      transform: translateY(2px);
-    }
-    button:hover { background-color: #f8f8f8; }
+    button:hover { background-color: #f8f9fa; transform: translateY(-2px); }
+    button:active { transform: translateY(0); }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    input[type="text"] { 
-      padding: 15px; 
+    /* 입력창 스타일 */
+    input[type="text"], textarea { 
+      padding: 12px; 
       font-size: 22px; 
-      border-radius: 12px; 
-      border: 2px solid #ddd; 
-      width: 80%; 
+      border-radius: 10px; 
+      border: 2px solid transparent; 
+      width: 85%; 
       font-family: inherit; 
       text-align: center; 
-      margin-bottom: 25px; 
+      margin-bottom: 20px; 
       outline: none;
     }
+    textarea { height: 100px; text-align: left; resize: none; }
 
+    /* 결과 및 피드백 */
     #result { 
       font-size: 28px; 
       margin-top: 30px; 
-      color: #333; 
-      background: #fff; 
+      color: #2C3E50; 
+      background: #ffffff; 
       padding: 30px; 
       border-radius: 20px; 
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-
     #feedback { 
-      min-height: 60px; 
+      min-height: 50px; 
       margin-top: 25px; 
       font-size: 26px; 
       font-weight: bold; 
-      color: #333; 
+      color: #fff;
     }
 
-    .next-btn {
-        animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-
+    /* 하단 푸터 */
     #footer {
       position: fixed;
       bottom: 15px;
@@ -107,29 +97,36 @@
       width: 100%;
       text-align: center;
       font-size: 14px;
-      color: #999;
+      color: #7F8C8D;
       pointer-events: none;
     }
+
+    /* 강조 텍스트 */
+    .highlight { color: #F1C40F; font-weight: bold; }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
+    <!-- 초기 화면 -->
     <div id="name-input-area" class="input-box">
-      <h2>제13과: 말하기를 기다릴 수 없음</h2>
-      <p>부활하신 예수님의 소식을 전할 준비가 됐나요?<br>이름을 입력하고 시작하세요!</p>
+      <h2 style="margin-top:0;">📖 소년반 성경퀴즈 1과</h2>
+      <h3 style="color: #AED6F1;">"항상 있음"</h3>
+      <p>성령님에 대해 얼마나 알고 있나요?<br>이름을 입력하고 퀴즈를 시작해요!</p>
       <input type="text" id="name-input" placeholder="예: 다니엘" />
       <br>
       <button id="start-btn">퀴즈 시작하기 ▶</button>
     </div>
 
+    <!-- 퀴즈 화면 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; color: #777; margin-bottom: 15px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 18px; color: #7F8C8D; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 25px;"></div>
       <div id="feedback"></div>
     </div>
 
+    <!-- 결과 화면 -->
     <div id="result" style="display:none;"></div>
   </div>
 
@@ -139,56 +136,54 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 13과 문제 데이터
+      // 1과 문제 데이터
       const questions = [
+        // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '군인들은 누군가 예수님의 시체를 훔쳐가지 못하도록 무덤 입구의 돌을 밧줄로 단단히 묶고 지켰다.', 
+          question: '요한이 예수님께 침례를 베풀 때, 성령님은 비둘기 모양으로 예수님 위에 임하셨다.', 
           answer: 'O' 
         }, 
-        // [근거: PDF 95쪽] "큰 돌을 굴려 무덤 입구에 놓았습니다. 그리고 밧줄로 단단히 묶었습니다."
-
+        // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "이에 예수께서 이르시되 무서워하지 말라 가서 내 형제들에게 (      )(으)로 가라 하라 거기서 나를 보리라 하시니라" (마태복음 28:10)', 
-          answer: '갈릴리' 
+          question: '기억절: "그들이 다 (    )의 충만함을 받고" (사도행전 2:4)', 
+          answer: '성령' 
         },
-        // [근거: PDF 95쪽 기억절]
-
+        // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '무덤을 찾아온 여자들에게 예수님이 살아나셨다는 기쁜 소식을 처음으로 전해준 존재는 누구인가요?', 
-          options: ['A. 베드로', 'B. 빌라도', 'C. 천사', 'D. 군인들'], 
-          answer: 'C. 천사' 
+          question: '예수님이 40일 동안 광야에서 사탄의 시험을 받으실 때, 무엇을 통해 승리하셨나요?', 
+          options: ['A. 요한의 도움', 'B. 성령님이 생각나게 하신 말씀', 'C. 제자들의 기도', 'D. 천사의 칼'], 
+          answer: 'B. 성령님이 생각나게 하신 말씀' 
         },
-        // [근거: PDF 96쪽] "굴려버린 돌 위에 빛나는 천사가 있었습니다... 천사는 두려워 말라... 그분은 여기 계시지 않고 말씀하신 대로 살아나셨느니라."
-
+        // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '부활하신 예수님을 길에서 만났지만 처음에는 알아보지 못하고 함께 엠마오로 걸어갔던 사람들은 누구인가요?', 
-          options: ['A. 빌립과 나다나엘', 'B. 예수님을 따르던 두 제자', 'C. 로마 군인들', 'D. 성전 제사장들'], 
-          answer: 'B. 예수님을 따르던 두 제자'
+          question: '오순절 다락방에서 성령님이 임하셨을 때 나타난 현상이 아닌 것은 무엇인가요?', 
+          options: ['A. 세찬 바람 소리', 'B. 혀처럼 생긴 불꽃', 'C. 큰 지진과 번개', 'D. 다른 나라 언어로 말함'], 
+          answer: 'C. 큰 지진과 번개'
         },
-        // [근거: PDF 97쪽, 99쪽] "예수님을 따르던 두 제자가 엠마오로 걸어가고 있었습니다... 그때까지도 그들은 그분이 예수님인 줄 몰랐습니다."
-
+        // 5번: 단답형
         { 
           type: 'short',
-          question: '엠마오로 가던 제자들은 예수님께서 성경을 가르쳐 주실 때 마음이 "이것"같았다고 고백했습니다. "이것"은 무엇일까요? (두 글자)', 
-          answer: '뜨거움' 
+          question: '예수님은 자신이 하늘로 돌아가신 후, 제자들을 위로하고 인도할 이분을 보내주시겠다고 약속하셨습니다. 누구일까요?', 
+          answer: '성령님' 
         },
-        // [근거: PDF 99쪽] "우리에게 성경을 가르쳐 줄 때 우리 마음이 뜨겁지 않았는가?"
-
+        // 6번: 느낀점
         { 
           type: 'any',  
-          question: '예수님이 다시 살아나셨다는 기쁜 소식을 여러분은 누구에게 가장 먼저 전하고 싶나요? 그 이유와 함께 적어보세요.' 
+          question: '성령님은 눈에 보이지 않지만 바람처럼 우리를 돕고 계십니다. 여러분이 이번 주에 성령님의 도움이 필요한 순간은 언제인가요?' 
         }
       ];
 
+      // 변수 설정
       let current = 0;
       let score = 0;
       let participantName = '';
-      const themes = ['#6B5B95', '#FF6F61', '#88B04B', '#92A8D1', '#955251', '#B565A7'];
+      const themes = ['#34495E', '#2980B9', '#27AE60', '#8E44AD', '#D35400', '#2C3E50'];
 
+      // HTML 요소
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
       const startBtn = document.getElementById('start-btn');
@@ -199,13 +194,14 @@
       const feedbackEl = document.getElementById('feedback');
       const resultEl = document.getElementById('result');
 
+      // 이벤트 리스너
       startBtn.addEventListener('click', startGame);
       nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
 
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 입력해야 퀴즈를 시작할 수 있어요!");
+          alert("이름을 입력해야 시작할 수 있어요! 😊");
           return;
         }
         participantName = nameVal;
@@ -215,10 +211,11 @@
       }
 
       function showQuestion() {
-        feedbackEl.innerHTML = '';
+        feedbackEl.textContent = '';
+        feedbackEl.style.backgroundColor = 'transparent';
         const q = questions[current];
 
-        questionNumberEl.textContent = `Question ${current + 1} / ${questions.length}`;
+        questionNumberEl.textContent = `Question ${current + 1} of ${questions.length}`;
         questionTextEl.textContent = q.question;
         questionTextEl.style.backgroundColor = themes[current % themes.length];
 
@@ -229,21 +226,29 @@
           createBtn('X');
         } else if (q.type === 'mcq') {
           q.options.forEach(opt => createBtn(opt));
+        } else if (q.type === 'any') {
+          const area = document.createElement('textarea');
+          area.placeholder = '여러분의 생각을 자유롭게 적어주세요...';
+          answerAreaEl.appendChild(area);
+          
+          const submitBtn = document.createElement('button');
+          submitBtn.textContent = '제출하고 결과보기';
+          submitBtn.style.width = '100%';
+          submitBtn.addEventListener('click', () => checkAnswer(area.value));
+          answerAreaEl.appendChild(submitBtn);
         } else {
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '여기에 여러분의 생각을 적어주세요' : '정답을 입력하세요';
+          input.placeholder = '여기에 정답을 입력하세요';
           answerAreaEl.appendChild(input);
           
           const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출하기';
+          submitBtn.textContent = '확인';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(submitBtn);
 
           input.focus();
-          input.addEventListener('keydown', (e) => { 
-            if(e.key === 'Enter') checkAnswer(input.value); 
-          });
+          input.addEventListener('keydown', (e) => { if(e.key === 'Enter') checkAnswer(input.value); });
         }
       }
 
@@ -261,37 +266,40 @@
         let isCorrect = false;
 
         if (q.type === 'any') {
-          isCorrect = userAns.trim().length > 2; 
+          isCorrect = userAns.trim().length > 2;
         } else if (q.type === 'mcq') {
           isCorrect = (userAns === q.answer);
         } else {
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          // '뜨거움' 외에 '뜨겁다', '뜨거워짐' 등 유연한 정답 인정
-          if (nAns === '뜨거움' && (nUser.includes('뜨겁') || nUser.includes('뜨거움'))) {
-            isCorrect = true;
-          } else {
-            isCorrect = nUser === nAns;
-          }
+          // 성령 vs 성령님 허용
+          if (nAns.includes('성령') && nUser.includes('성령')) isCorrect = true;
+          else isCorrect = (nUser === nAns);
         }
 
         if (isCorrect) {
-          feedbackEl.innerHTML = q.type === 'any' ? "멋진 생각이에요! 정말 기쁜 소식이네요. ✨" : "와우! 정답입니다! 👏";
-          feedbackEl.style.color = "#2d5a27";
+          feedbackEl.innerHTML = "✨ 정답입니다! 아주 잘했어요! ✨";
+          feedbackEl.style.color = "#F1C40F";
           score++;
         } else {
-          feedbackEl.innerHTML = `아쉬워요! 정답은 [ ${q.answer} ] 입니다. 📖`;
-          feedbackEl.style.color = "#a52a2a";
+          if (q.type !== 'any') {
+            feedbackEl.innerHTML = `아쉬워요! 정답은 <span class="highlight">${q.answer}</span> 입니다.`;
+            feedbackEl.style.color = "#FFADAD";
+          } else {
+            feedbackEl.innerHTML = "소중한 생각 감사합니다! ❤️";
+            feedbackEl.style.color = "#F1C40F";
+          }
         }
 
-        const inputs = answerAreaEl.querySelectorAll('button, input');
-        inputs.forEach(el => el.disabled = true);
+        const controls = answerAreaEl.querySelectorAll('button, input, textarea');
+        controls.forEach(el => el.disabled = true);
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🎊' : '다음 문제로 ▶';
-        nextBtn.style.backgroundColor = '#333';
+        nextBtn.textContent = (current === questions.length - 1) ? '최종 점수 확인하기' : '다음 문제로 이동 ▶';
+        nextBtn.style.backgroundColor = '#2C3E50';
         nextBtn.style.color = '#fff';
+        nextBtn.style.width = '100%';
         nextBtn.style.marginTop = '20px';
         
         nextBtn.addEventListener('click', () => {
@@ -311,17 +319,20 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let finalMsg = "";
-        if(score === questions.length) finalMsg = "완벽해요! 부활의 소식을 전하는 최고의 전령사군요!";
-        else if(score >= 4) finalMsg = "정말 잘했어요! 예수님의 사랑이 가득 느껴지네요!";
-        else finalMsg = "조금 더 성경 이야기를 읽어보면 좋을 것 같아요. 화이팅!";
+        let message = "";
+        const ratio = score / questions.length;
+        if (ratio === 1) message = "와! 완벽해요! 성령님이 함께하시네요! 🕊️";
+        else if (ratio >= 0.7) message = "정말 잘했어요! 성경 박사님이군요! 👍";
+        else message = "수고했어요! 성경 이야기를 다시 한 번 읽어볼까요? 😊";
 
         resultEl.innerHTML = `
-          <h2 style="color:#6B5B95;">🎉 퀴즈 완료! 🎉</h2>
-          <p style="font-size: 1.2rem;"><strong>${participantName}</strong> 어린이,</p>
-          <div style="font-size: 48px; font-weight: bold; color: #FF6F61; margin: 20px 0;">${score} / ${questions.length}</div>
-          <p>${finalMsg}</p>
-          <button onclick="location.reload()" style="background-color:#6B5B95; color:#fff; font-size:18px;">다시 도전하기</button>
+          <h2 style="color: #2980B9;">🎉 퀴즈 완료! 🎉</h2>
+          <p style="font-size: 1.2em;"><strong>${participantName}</strong> 친구의 점수는...</p>
+          <div style="font-size: 60px; font-weight: bold; color: #E74C3C; margin: 20px 0;">
+            ${score} / ${questions.length}
+          </div>
+          <p style="line-height: 1.5;">${message}</p>
+          <button onclick="location.reload()" style="background-color: #34495E; color: white;">다시 도전하기</button>
         `;
       }
 
@@ -329,7 +340,6 @@
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
       }
-
     });
   </script>
 </body>

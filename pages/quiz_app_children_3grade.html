@@ -3,78 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (1과)</title>
+  <title>유년반 교과 퀴즈 (2과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fffbeb; /* 따뜻한 노란색 계열 (하나님의 빛) */
+      background: #f5f3ff; /* 2과 테마: 루디아의 자주색 옷감을 상징하는 연보라 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
 
-    #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
+    #quiz-container { width: 95%; max-width: 650px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #f59e0b; /* 따뜻한 주황색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      line-height: 1.5;
+      padding: 35px 25px; border-radius: 20px; color: #fff; 
+      background-color: #8b5cf6; /* 루디아의 자주색 테마 */
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+      line-height: 1.6;
+      word-break: keep-all;
     }
 
     button { 
-      margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 12px; cursor: pointer; 
-      background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      margin: 10px; padding: 15px 25px; font-size: 20px; 
+      border: none; border-radius: 15px; cursor: pointer; 
+      background-color: #fff; color: #4c1d95; font-weight: bold;
+      box-shadow: 0 4px 0 #ddd;
+      transition: all 0.2s;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fffbeb; }
+    button:hover { background-color: #ede9fe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #f59e0b; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 3px solid #8b5cf6; width: 80%; text-align: center; margin-bottom: 20px; 
+      outline: none;
     }
 
     #result { 
-      font-size: 28px; margin-top: 30px; color: #333; 
-      background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #f59e0b;
+      font-size: 26px; margin-top: 30px; color: #333; 
+      background: #fff; padding: 30px; border-radius: 25px; 
+      border: 6px solid #8b5cf6;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
+    #feedback { min-height: 50px; margin-top: 25px; font-size: 26px; font-weight: bold; }
 
     #footer {
       position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+      text-align: center; font-size: 14px; color: #a78bfa; pointer-events: none;
     }
+
+    .highlight { color: #fef08a; text-decoration: underline; }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 1과</h2>
-      <p style="font-size: 20px;">살아계신 하나님을 전해요</p>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 김사랑" />
+      <h2 style="margin-top:0;">유년반 성경퀴즈 2과</h2>
+      <p style="font-size: 22px; font-weight: bold;">"와서 도와주세요!"</p>
+      <p style="font-size: 18px; opacity: 0.9;">루디아의 친절과 바울의 선교 여행</p>
+      <p style="margin-top: 20px;">어린이의 이름을 입력해주세요!</p>
+      <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="10" />
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn">퀴즈 시작하기 ✨</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 18px; color: #6d28d9; margin-bottom: 15px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="answer-area" style="margin-top: 30px;"></div>
       <div id="feedback"></div>
     </div>
 
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 1과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 2과</div>
 
   <script>
     'use strict';
@@ -82,42 +89,43 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '바울과 바나바는 루스드라 사람들에게 "우리는 여러분과 똑같은 사람입니다"라고 말하며 참 하나님을 전했어요.', 
+        question: '바울은 꿈속에서 마게도니아 사람이 "우리에게 와서 도와달라"고 말하는 환상을 보았습니다.', 
         answer: 'O',
-        comment: '맞아요! 바울은 자신들이 신이 아니라 하나님을 전하는 사람일 뿐이라고 말했어요.'
+        comment: '맞아요! 하나님께서는 꿈을 통해 바울을 마게도니아로 인도하셨어요. '
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "너희가 (  )을 서로 지라 그리하여 그리스도의 법을 성취하라" (갈라디아서 6:2)', 
-        answer: '짐',
-        comment: '서로의 어려움을 도와주는 것이 바로 예수님의 법을 지키는 사랑의 행동이에요!'
+        question: '기억절: "손님 (    )하기를 잊지 말라 이로써 부지중에 천사들을 대접한 이들이 있었느니라" (히브리서 13:2)', 
+        answer: '대접',
+        comment: '우리가 손님을 정성껏 대접하는 것은 하나님을 기쁘시게 하는 일이에요! '
       },
       { 
         type: 'mcq',  
-        question: '바울이 루스드라에서 만난 고침이 필요한 사람은 어떤 사람이었나요?', 
-        options: ['A. 눈이 안 보이는 사람', 'B. 말을 못 하는 사람', 'C. 태어나면서부터 걷지 못하는 사람', 'D. 배가 많이 아픈 사람'], 
-        answer: 'C. 태어나면서부터 걷지 못하는 사람',
-        comment: '바울은 믿음이 있는 그 사람에게 "일어나 걸으시오!"라고 말하며 고쳐주었어요.'
+        question: '빌립보에서 만난 루디아 아주머니는 어떤 귀한 색깔의 옷감을 파는 사업가였나요?', 
+        options: ['빨간색', '초록색', '자주색', '황금색'], 
+        answer: '자주색',
+        comment: '루디아는 당시 아주 비싸고 귀했던 자주색 옷감을 파는 훌륭한 사업가였어요. '
       },
       { 
         type: 'mcq',  
-        question: '루스드라 사람들이 바울을 돌로 쳐서 죽은 줄 알고 도시 밖으로 끌어냈을 때, 바울은 어떻게 되었나요?', 
-        options: ['A. 다시 일어나 도시로 들어갔다', 'B. 무서워서 멀리 도망갔다', 'C. 화가 나서 사람들을 혼냈다', 'D. 하늘나라로 바로 올라갔다'], 
-        answer: 'A. 다시 일어나 도시로 들어갔다',
-        comment: '하나님께서 지켜주셔서 바울은 다시 일어났고, 제자들과 함께 다시 도시로 들어갔답니다!'
+        question: '안식일에 바울과 친구들이 예배를 드리기 위해 찾아간 장소는 어디인가요?', 
+        options: ['깊은 산속', '강가', '큰 시장', '왕의 궁전'], 
+        answer: '강가',
+        comment: '바울 일행은 성 밖 강가에 모여 예배드리던 여인들을 만났답니다. '
       },
       { 
         type: 'short',
-        question: '루스드라 사람들이 바울과 바나바를 신이라고 오해할 때, 바울은 누구를 전하려고 이곳에 왔다고 했나요? (3글자)', 
-        answer: '하나님', 
-        comment: '참으로 살아 계신 하나님을 전하기 위해 그곳에 왔다고 당당히 말했어요!'
+        question: '예수님을 믿고 침례를 받은 후, 바울 일행을 자기 집으로 초대하여 친절하게 대접한 여인의 이름은? (3글자)', 
+        answer: '루디아', 
+        comment: '루디아는 자신의 집을 기꺼이 제공하여 하나님의 말씀을 전하는 장소로 만들었어요! '
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#f59e0b', '#d97706', '#b45309', '#92400e', '#78350f'];
+    // 보라색 계열 테마 색상들
+    const themes = ['#8b5cf6', '#7c3aed', '#6d28d9', '#5b21b6', '#4c1d95'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -134,7 +142,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
+      if (!nameVal) { alert("우리 어린이의 이름을 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -142,9 +150,9 @@
     }
 
     function showQuestion() {
-      feedbackEl.textContent = '';
+      feedbackEl.innerHTML = '';
       const q = questions[current];
-      questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+      questionNumberEl.textContent = `⭐ 문제 ${current + 1} / ${questions.length}`;
       questionTextEl.textContent = q.question;
       questionTextEl.style.backgroundColor = themes[current % themes.length];
       answerAreaEl.innerHTML = '';
@@ -159,7 +167,7 @@
         input.placeholder = '정답을 적어보세요';
         answerAreaEl.appendChild(input);
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '정답 확인';
+        submitBtn.textContent = '정답 제출 📤';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
         input.focus();
@@ -175,57 +183,62 @@
     }
 
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return;
+      if(feedbackEl.querySelector('.next-btn')) return;
       const q = questions[current];
       let isCorrect = false;
 
       if (q.type === 'mcq') {
         isCorrect = (userAns === q.answer);
-      } else if (q.type === 'short' || q.type === 'fill') {
-        isCorrect = normalize(userAns).includes(normalize(q.answer));
       } else {
-        isCorrect = normalize(userAns) === normalize(q.answer);
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<div style='color:#4c1d95; font-size: 32px;'>참 잘했어요! ⭕</div>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<div style='color:#be123c; font-size: 24px;'>아쉬워요! 정답은 <span style='background:#fef08a; padding:2px 8px; border-radius:5px;'>${q.answer}</span> 예요. ❌</div>`;
       }
       
       const commentDiv = document.createElement('div');
       commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#334155';
-      commentDiv.style.marginTop = '10px';
+      commentDiv.style.color = '#4b5563';
+      commentDiv.style.marginTop = '12px';
+      commentDiv.style.padding = '10px';
+      commentDiv.style.backgroundColor = '#f3f4f6';
+      commentDiv.style.borderRadius = '10px';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#78350f';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🎊' : '다음 문제로 ▶';
+      nextBtn.style.backgroundColor = '#4c1d95';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
+      nextBtn.style.width = '100%';
       nextBtn.onclick = () => {
         if (current === questions.length - 1) showResult();
         else { current++; showQuestion(); }
       };
-      feedbackEl.appendChild(document.createElement('br'));
       feedbackEl.appendChild(nextBtn);
     }
 
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 하나님의 사랑을 실천하는 어린이가 되어요!";
+      let message = score === questions.length ? 
+        "완벽해요! 성경 박사님이 나타나셨네요! 👑" : 
+        "멋져요! 루디아처럼 친절한 어린이가 되기로 해요! ✨";
+      
       resultEl.innerHTML = `
-        <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">✨</div>
-        <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#f59e0b; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold;">${message}</p>
-        <button onclick="location.reload()">한 번 더 풀기</button>
+        <h2 style="color:#6d28d9;">축하합니다, ${participantName} 어린이!</h2>
+        <div style="font-size: 80px; margin: 20px 0;">💜</div>
+        <p style="font-size: 20px;">오늘의 퀴즈 점수</p>
+        <p><span style="color:#7c3aed; font-size:50px; font-weight:bold;">${score * 20}점</span></p>
+        <p style="font-size: 18px; color: #666;">(${questions.length}문제 중 ${score}문제를 맞혔어요)</p>
+        <p style="font-weight:bold; margin-top:30px; line-height:1.4;">${message}</p>
+        <button onclick="location.reload()" style="background-color:#8b5cf6; color:white; margin-top:20px;">한 번 더 풀기</button>
       `;
     }
 

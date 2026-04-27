@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (한밤중에 일어난 기적)</title>
+  <title>유년반 교과 퀴즈 (5과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #f0f9ff; /* 시원하고 평화로운 하늘색 테마 */
+      background: #eef2ff; /* 5과 테마: 하늘색과 평안함을 상징 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #0ea5e9; /* 밝은 파란색 */
+      background-color: #6366f1; /* 부드러운 보라/파랑색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -31,18 +31,18 @@
       box-shadow: 0 3px 0 #ddd;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #f0f9ff; }
+    button:hover { background-color: #f8fafc; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #0ea5e9; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #6366f1; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #0ea5e9;
+      border: 5px solid #6366f1;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -50,20 +50,16 @@
       position: fixed; bottom: 10px; left: 0; width: 100%;
       text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
     }
-
-    /* 이미지 플레이스홀더 스타일 */
-    .icon-display { font-size: 80px; margin-bottom: 10px; }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <div class="icon-display">✨</div>
-      <h2>유년반 성경퀴즈</h2>
-      <p style="font-size: 20px;">한밤중에 일어난 기적 (유두고)</p>
+      <h2>유년반 성경퀴즈 5과</h2>
+      <p style="font-size: 20px;">하나님의 특별한 선물 (안식일)</p>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="이름을 적어주세요" />
+      <input type="text" id="name-input" placeholder="예: 김사랑" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
@@ -78,7 +74,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 퀴즈</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 5과</div>
 
   <script>
     'use strict';
@@ -86,42 +82,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '바울의 설교를 듣던 유두고는 너무 덥고 피곤해서 창가에 앉아 있다가 그만 잠이 들어 떨어졌습니다.', 
+        question: '안식일은 우리가 평소에 하던 공부나 일을 쉬고, 오직 하나님과만 시간을 보내는 특별한 선물이다.', 
         answer: 'O',
-        comment: '맞아요! 방안이 혼잡하고 더운 날씨 때문에 유두고는 창틀에 앉았다가 잠이 들고 말았어요.'
+        comment: '맞아요! 하나님께서는 우리와 함께 계시려고 안식일을 선물로 주셨어요.'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "그가 너를 위하여 그의 (    )들을 명령하사 네 모든 길에서 너를 지키게 하심이라" (시편 91:11)', 
-        answer: '천사',
-        comment: '하나님께서는 천사들을 보내어 우리가 어디를 가든지 지켜주신다고 약속하셨어요!'
+        question: '기억절: "하나님이 그 (      ) 날을 복되게 하사 거룩하게 하셨으니" (창세기 2:3)', 
+        answer: '일곱째',
+        comment: '하나님께서는 6일 동안 창조하신 후, 7일째인 일곱째 날을 특별하게 만드셨어요.'
       },
       { 
         type: 'mcq',  
-        question: '유두고가 떨어졌던 모임 장소는 몇 층이었나요?', 
-        options: ['A. 1층', 'B. 2층', 'C. 3층', 'D. 지하'], 
-        answer: 'C. 3층',
-        comment: '높은 3층 창문에서 떨어졌지만, 하나님께서는 유두고를 다시 살려주시는 기적을 베푸셨어요.'
+        question: '윌리는 안식일이 매주 돌아오는 어떤 날과 같다고 말했나요?', 
+        options: ['A. 어린이날', 'B. 크리스마스', 'C. 소풍 가는 날', 'D. 만우절'], 
+        answer: 'B. 크리스마스',
+        comment: '온 가족이 모여 맛있는 음식을 먹고 즐거운 크리스마스처럼, 안식일도 정말 즐거운 날이에요!'
       },
       { 
         type: 'mcq',  
-        question: '유두고가 다시 살아난 후 사람들은 어떻게 했나요?', 
-        options: ['A. 모두 집으로 돌아갔다', 'B. 다시 방으로 올라가 새벽까지 설교를 들었다', 'C. 바울을 원망했다', 'D. 파티를 열고 놀았다'], 
-        answer: 'B. 다시 방으로 올라가 새벽까지 설교를 들었다',
-        comment: '사람들은 너무나 기뻐서 졸지도 않고 새벽까지 바울의 말씀을 열심히 들었답니다.'
+        question: '안식일은 언제부터 시작되었나요?', 
+        options: ['A. 세상이 창조될 때부터', 'B. 윌리가 태어날 때부터', 'C. 학교가 생겼을 때부터', 'D. 크리스마스 노래가 나올 때부터'], 
+        answer: 'A. 세상이 창조될 때부터',
+        comment: '하나님께서는 세상을 다 만드신 창조의 마지막 날에 안식일을 만드셨어요.'
       },
       { 
         type: 'short',
-        question: '창문에서 떨어졌지만 바울이 품에 안고 기도하자 다시 살아난 이 청년의 이름은 무엇인가요? (3글자)', 
-        answer: '유두고', 
-        comment: '기적의 주인공 유두고! 이 사건을 통해 많은 사람들이 하나님께 감사하며 큰 위로를 받았어요.'
+        question: '하나님께서 6일 동안 창조하신 후, 우리와 함께 계시기 위해 복 주시고 거룩하게 하신 이 날의 이름은 무엇인가요? (3글자)', 
+        answer: '안식일', 
+        comment: '하나님을 사랑한다고 말하는 가장 특별한 날, 바로 안식일이에요!'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#0ea5e9', '#0284c7', '#0369a1', '#075985', '#0c4a6e'];
+    const themes = ['#6366f1', '#4f46e5', '#4338ca', '#3730a3', '#312e81'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -138,7 +134,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("우리 어린이의 이름을 알려주세요!"); return; }
+      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -163,7 +159,7 @@
         input.placeholder = '정답을 적어보세요';
         answerAreaEl.appendChild(input);
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '확인';
+        submitBtn.textContent = '정답 확인';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
         input.focus();
@@ -185,17 +181,15 @@
 
       if (q.type === 'mcq') {
         isCorrect = (userAns === q.answer);
-      } else if (q.type === 'short') {
-        isCorrect = normalize(userAns).includes(normalize(q.answer));
       } else {
-        isCorrect = normalize(userAns) === normalize(q.answer);
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#0369a1;'>최고예요! 정답입니다! 🌟</span>";
+        feedbackEl.innerHTML = "<span style='color:#1e3a8a;'>참 잘했어요! 하나님이 기뻐하세요! 🎁</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>조금 아쉬워요! 정답은 [${q.answer}]입니다. 🌱</span>`;
+        feedbackEl.innerHTML = `<span style='color:#991b1b;'>아쉬워요! 정답은 [${q.answer}] 이에요. 💡</span>`;
       }
       
       const commentDiv = document.createElement('div');
@@ -208,7 +202,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#0c4a6e';
+      nextBtn.style.backgroundColor = '#312e81';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -222,13 +216,13 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "완벽해요! 성경 박사가 나타났어요!" : "참 잘했어요! 다음에도 즐겁게 퀴즈 풀어보아요!";
+      let message = score === questions.length ? "최고예요! 안식일을 사랑하는 성경 박사님이네요!" : "수고했어요! 안식일의 기쁨을 기억하는 어린이가 되길 바라요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🕯️✨</div>
-        <p>우리 어린이의 점수는</p>
-        <p><span style="color:#0ea5e9; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold; padding: 0 20px;">${message}</p>
+        <div style="font-size: 60px; margin: 20px 0;">✨</div>
+        <p>우리 어린이의 5과 점수는</p>
+        <p><span style="color:#4f46e5; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; padding: 0 10px;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;
     }

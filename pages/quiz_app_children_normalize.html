@@ -3,65 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (5과)</title>
+  <title>소년반 성경 퀴즈 (6과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nanum+Gothic:wght@700&display=swap');
     
     /* 전체 화면 스타일 */
     body { 
       margin: 0; 
       padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fff5f5; 
+      font-family: 'Nanum Gothic', 'Comic Sans MS', sans-serif; 
+      background: #e8f5e9; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
       font-size: 22px; 
+      line-height: 1.5;
     }
 
     /* 퀴즈 박스 스타일 */
     #quiz-container { 
       width: 90%; 
-      max-width: 600px; 
+      max-width: 650px; 
       text-align: center; 
-      padding: 10px 0; 
-      padding-bottom: 60px; 
+      padding: 20px 0; 
+      padding-bottom: 80px; 
     }
 
     .question-box, .input-box { 
-      padding: 30px; 
-      border-radius: 15px; 
+      padding: 35px; 
+      border-radius: 20px; 
       color: #fff; 
-      background-color: #ff6b6b; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: background-color 0.5s; 
+      background-color: #2e7d32; 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      transition: all 0.5s ease; 
+      word-break: keep-all;
     }
 
     /* 버튼 스타일 */
     button { 
       margin: 10px; 
-      padding: 12px 25px; 
+      padding: 15px 25px; 
       font-size: 20px; 
       border: none; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       cursor: pointer; 
       font-family: inherit; 
-      background-color: #fff; 
-      color: #333; 
+      background-color: #ffffff; 
+      color: #2e7d32; 
       font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 0 #ccc;
     }
-    button:hover { background-color: #f8f8f8; transform: translateY(-2px); }
-    button:active { transform: translateY(0); }
+    button:hover { background-color: #f1f1f1; transform: translateY(-2px); }
+    button:active { transform: translateY(2px); box-shadow: none; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     /* 입력창 스타일 */
     input[type="text"], textarea { 
-      padding: 12px; 
+      padding: 15px; 
       font-size: 20px; 
-      border-radius: 8px; 
-      border: 2px solid #ffccd5; 
+      border-radius: 10px; 
+      border: 2px solid #ddd; 
       width: 80%; 
       font-family: inherit; 
       text-align: center; 
@@ -75,17 +77,16 @@
       font-size: 28px; 
       margin-top: 30px; 
       color: #333; 
-      background: #ffe3e3; 
-      padding: 30px; 
-      border-radius: 15px; 
-      border: 2px dashed #ff6b6b;
+      background: #ffffff; 
+      padding: 40px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     #feedback { 
       min-height: 50px; 
-      margin-top: 20px; 
-      font-size: 24px; 
+      margin-top: 25px; 
+      font-size: 26px; 
       font-weight: bold; 
-      color: #333; 
     }
 
     /* 하단 푸터 */
@@ -96,30 +97,33 @@
       width: 100%;
       text-align: center;
       font-size: 14px;
-      color: #aaa;
+      color: #666;
       pointer-events: none;
     }
 
-    /* 강조 텍스트 */
-    .highlight { color: #ffeb3b; font-weight: bold; }
+    .next-btn {
+        background-color: #fbc02d !important;
+        color: #333 !important;
+        box-shadow: 0 4px 0 #f9a825 !important;
+    }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0;">📖 소년반 성경퀴즈 제5과</h2>
-      <h3 style="font-weight: normal;">최고의 은사인 사랑</h3>
-      <p>이름을 입력하고 퀴즈를 시작해볼까요?</p>
-      <input type="text" id="name-input" placeholder="이름 입력 (예: 홍길동)" />
+      <h1 style="margin-top:0;">📖 성경 퀴즈 6과</h1>
+      <p style="font-size: 1.2em;">"너무 좋기에 나눠야 함"</p>
+      <p>이름을 입력하고 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="이름을 적어주세요" />
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn">퀴즈 여행 시작 ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; color: #777; margin-bottom: 10px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 18px; color: #2e7d32; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="answer-area" style="margin-top: 25px;"></div>
       <div id="feedback"></div>
     </div>
 
@@ -132,51 +136,45 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 5과 문제 데이터
       const questions = [
         { 
           type: 'ox',   
-          question: '티나는 부모님이 입양한 동생 앤디가 아이들의 선물을 가지고 도망갔을 때, 처음부터 아무런 화도 내지 않고 기쁘게 용서했다.', 
-          answer: 'X' 
+          question: '바울과 바나바는 이고니온에 도착했을 때 가장 먼저 장터에서 설교를 시작했다.', 
+          answer: 'X',
+          comment: '그들은 먼저 유대인 회당으로 가서 설교를 시작했습니다.'
         }, 
-        // [근거] 본문: "티나는 마음이 약간 상하고 화가 났지만... 앤디를 사랑하고 도와주게 해달라고 잠시 기도했습니다."
-
         { 
           type: 'fill', 
-          question: '기억절: "그런즉 믿음, (       ), 사랑, 이 세 가지는 항상 있을 것인데 그 중의 제일은 사랑이라" (고린도전서 13:13)', 
-          answer: '소망' 
+          question: '기억절: "우리 하나님을 힘입어 많은 싸움 중에 하나님의 (        )을/를 너희에게 전하였노라" (데살로니가전서 2:2)', 
+          answer: '복음' 
         },
-
         { 
           type: 'mcq',  
-          question: '앤디가 선물을 가지고 도망갔을 때, 아버지는 앤디의 마음을 어떻게 이해해 주셨나요?', 
-          options: ['A. 앤디는 원래 도둑질을 좋아하는 아이다', 'B. 앤디는 우리를 골탕 먹이려고 그런 것이다', 'C. 가진 것이 없었던 앤디는 물건을 존중하는 법을 배우기 어려웠을 것이다', 'D. 앤디는 선물이 마음에 들지 않아서 버린 것이다'], 
-          answer: 'C. 가진 것이 없었던 앤디는 물건을 존중하는 법을 배우기 어려웠을 것이다' 
+          question: '바울과 바나바가 안디옥에서 험한 산을 넘어 도착한 이 도시의 이름은 무엇인가요?', 
+          options: ['A. 루스드라', 'B. 이고니온', 'C. 다메섹', 'D. 빌립보'], 
+          answer: 'B. 이고니온' 
         },
-
         { 
           type: 'mcq',  
-          question: '엄마는 에베소서 4장 32절을 인용하며 우리가 어떻게 해야 한다고 말씀하셨나요?', 
-          options: ['A. 앤디를 경찰에 신고해야 한다', 'B. 하나님이 우리를 용서하신 것처럼 서로 용서해야 한다', 'C. 다시는 앤디를 집에 들어오지 못하게 해야 한다', 'D. 앤디에게 훔친 선물을 변상하라고 해야 한다'], 
-          answer: 'B. 하나님이 우리를 용서하신 것처럼 서로 용서해야 한다'
+          question: '유대 지도자들이 바울과 바나바에게 분노한 결정적인 이유는 무엇이었나요?', 
+          options: ['A. 옷차림이 남루해서', 'B. 말을 너무 잘해서', 'C. 하나님이 이적을 행하는 축복을 주셔서', 'D. 돈을 많이 모아서'], 
+          answer: 'C. 하나님이 이적을 행하는 축복을 주셔서'
         },
-
         { 
           type: 'short',
-          question: '고린도전서 13장에서 바울은 믿음, 소망, 사랑 중 "이것"이 제일이라고 말했습니다. "이것"은 무엇일까요?', 
-          answer: '사랑' 
+          question: '바울과 바나바를 시기하여 소동을 일으키고 그들을 죽이려 했던 사람들을 무엇이라고 부르나요? (2글자)', 
+          answer: '폭도' 
         },
-
         { 
           type: 'any',  
-          question: '나에게 잘못한 친구나 동생을 사랑의 마음으로 용서하기 위해, 내가 할 수 있는 실천 한 가지를 적어보세요.' 
+          question: '복음은 너무 좋아서 나만 가질 수 없어요. 여러분이 예수님의 사랑을 전해주고 싶은 친구나 이웃은 누구인가요? 그 이유도 간단히 적어보세요.' 
         }
       ];
 
       let current = 0;
       let score = 0;
       let participantName = '';
-      const themes = ['#ff6b6b', '#4ecdc4', '#ff9f43', '#6a89cc', '#78e08f']; 
+      const themes = ['#2E7D32', '#1565C0', '#6A1B9A', '#AD1457', '#EF6C00', '#37474F']; 
 
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
@@ -194,7 +192,7 @@
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 입력해야 시작할 수 있어요! 😊");
+          alert("이름을 입력해야 출발할 수 있어요!");
           return;
         }
         participantName = nameVal;
@@ -207,7 +205,7 @@
         feedbackEl.textContent = ''; 
         const q = questions[current];
 
-        questionNumberEl.textContent = `Question ${current + 1} of ${questions.length}`;
+        questionNumberEl.textContent = `STEP ${current + 1} / ${questions.length}`;
         questionTextEl.textContent = q.question;
         questionTextEl.style.backgroundColor = themes[current % themes.length];
 
@@ -220,24 +218,21 @@
           q.options.forEach(opt => createBtn(opt));
         } else if (q.type === 'any') {
           const textarea = document.createElement('textarea');
-          textarea.placeholder = '여기에 생각을 적어주세요...';
+          textarea.placeholder = '여기에 여러분의 생각을 적어주세요...';
           answerAreaEl.appendChild(textarea);
           
           const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#333';
-          submitBtn.style.color = '#fff';
+          submitBtn.textContent = '나눔 완료';
           submitBtn.addEventListener('click', () => checkAnswer(textarea.value));
-          answerAreaEl.appendChild(document.createElement('br'));
           answerAreaEl.appendChild(submitBtn);
         } else {
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = '정답을 적어주세요';
+          input.placeholder = '정답을 입력하세요';
           answerAreaEl.appendChild(input);
           
           const submitBtn = document.createElement('button');
-          submitBtn.textContent = '확인';
+          submitBtn.textContent = '제출';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(submitBtn);
 
@@ -266,20 +261,21 @@
         } else {
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          isCorrect = (nUser === nAns);
+          isCorrect = nUser === nAns;
         }
 
         if (isCorrect) {
-          feedbackEl.innerHTML = "참 잘했어요! 정답입니다! 🌟";
-          feedbackEl.style.color = "#2ecc71";
+          feedbackEl.innerHTML = "정답입니다! 참 잘했어요! 🌟";
+          feedbackEl.style.color = "#2e7d32";
           score++;
-        } else if (q.type !== 'any') {
-          feedbackEl.innerHTML = `아쉬워요! 정답은 <span style="color:#e74c3c;">[${q.answer}]</span> 입니다. 📖`;
-          feedbackEl.style.color = "#333";
         } else {
-          feedbackEl.innerHTML = "좋은 생각이에요! 고마워요! ❤️";
-          feedbackEl.style.color = "#9b59b6";
-          score++;
+          if (q.type === 'any') {
+            feedbackEl.innerHTML = "조금 더 정성껏 적어볼까요? (3자 이상)";
+            feedbackEl.style.color = "#d32f2f";
+            return; 
+          }
+          feedbackEl.innerHTML = `아쉬워요! 정답은 [ ${q.answer} ] 입니다. 💡`;
+          feedbackEl.style.color = "#d32f2f";
         }
 
         const inputs = answerAreaEl.querySelectorAll('button, input, textarea');
@@ -287,10 +283,7 @@
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏁' : '다음 문제로 ▶';
-        nextBtn.style.backgroundColor = '#333';
-        nextBtn.style.color = '#fff';
-        nextBtn.style.marginTop = '20px';
+        nextBtn.textContent = (current === questions.length - 1) ? '여행 결과 확인' : '다음 단계로';
         
         nextBtn.addEventListener('click', () => {
           if (current === questions.length - 1) {
@@ -309,19 +302,15 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let message = "";
-        const percent = (score / questions.length) * 100;
+        let message = score === questions.length ? "복음의 전도사님! 완벽해요!" : "수고했어요! 복음을 나누는 어린이가 되어요!";
         
-        if(percent === 100) message = "완벽해요! 당신은 사랑의 대장입니다! 🏆";
-        else if(percent >= 70) message = "대단해요! 말씀을 아주 잘 이해했군요! 👍";
-        else message = "수고했어요! 성경 이야기를 다시 한 번 읽어볼까요? 📖";
-
         resultEl.innerHTML = `
-          <h2 style="color:#ff6b6b;">🎉 퀴즈 종료! 🎉</h2>
-          <h3>${participantName} 친구의 점수는...</h3>
-          <div style="font-size:60px; margin: 20px 0; font-weight:bold; color:#ff6b6b;">${score} / ${questions.length}</div>
-          <p style="font-size:24px;">${message}</p>
-          <button onclick="location.reload()" style="background-color:#ff6b6b; color:white;">다시 도전하기</button>
+          <h2 style="color:#2e7d32;">🎊 퀴즈 여행 완료! 🎊</h2>
+          <p><strong>${participantName}</strong> 어린이,</p>
+          <p>오늘 ${questions.length}문제 중 <strong>${score}</strong>문제를 맞혔어요!</p>
+          <div style="font-size: 40px; margin: 20px 0;">✨</div>
+          <p style="font-weight:bold;">${message}</p>
+          <button onclick="location.reload()">다시 하기</button>
         `;
       }
 

@@ -3,78 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (5과)</title>
+  <title>유년반 성경 퀴즈 (6과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
     
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #eef2ff; /* 5과 테마: 하늘색과 평안함을 상징 */
+      font-family: 'Nanum Gothic', sans-serif; 
+      background: #fffbeb; /* 6과 테마: 따뜻한 햇살 같은 노란색 */
       display: flex; justify-content: center; align-items: center; 
-      min-height: 100vh; font-size: 24px; 
+      min-height: 100vh; font-size: 22px; 
     }
 
-    #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
+    #quiz-container { width: 95%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #6366f1; /* 부드러운 보라/파랑색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      line-height: 1.5;
+      padding: 35px 25px; border-radius: 20px; color: #fff; 
+      background-color: #f59e0b; /* 다니엘의 충성심을 상징하는 황금빛 주황 */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      line-height: 1.6;
+      word-break: keep-all;
     }
 
+    h2 { margin-top: 0; font-weight: 800; font-size: 28px; }
+
     button { 
-      margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 12px; cursor: pointer; 
+      margin: 10px; padding: 15px 25px; font-size: 20px; 
+      border: none; border-radius: 15px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      box-shadow: 0 4px 0 #e5e7eb;
+      transition: all 0.2s;
     }
-    button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #f8fafc; }
+    button:active { transform: translateY(4px); box-shadow: none; }
+    button:hover { background-color: #fef3c7; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
-      padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #6366f1; width: 70%; text-align: center; margin-bottom: 20px; 
+      padding: 15px; font-size: 22px; border-radius: 12px; 
+      border: 3px solid #f59e0b; width: 80%; text-align: center; margin-bottom: 20px; 
+      outline: none;
     }
 
     #result { 
-      font-size: 28px; margin-top: 30px; color: #333; 
-      background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #6366f1;
+      font-size: 26px; margin-top: 30px; color: #333; 
+      background: #fff; padding: 35px; border-radius: 25px; 
+      border: 6px solid #fbbf24;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
+    #feedback { min-height: 50px; margin-top: 25px; font-size: 26px; font-weight: bold; }
 
     #footer {
-      position: fixed; bottom: 10px; left: 0; width: 100%;
+      position: fixed; bottom: 15px; left: 0; width: 100%;
       text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
     }
+
+    .emoji-btn { font-size: 40px; padding: 10px 30px; }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 5과</h2>
-      <p style="font-size: 20px;">하나님의 특별한 선물 (안식일)</p>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 김사랑" />
+      <h2>유년반 성경퀴즈 6과</h2>
+      <p style="font-size: 22px; font-weight: bold; color: #fef3c7;">하나님 먼저!</p>
+      <p>안녕! 친구의 이름을 입력하고<br>다니엘의 용감한 기도를 배우러 갈까요?</p>
+      <input type="text" id="name-input" placeholder="이름을 적어주세요" />
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn">퀴즈 시작하기 ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 18px; color: #92400e; margin-bottom: 12px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="answer-area" style="margin-top: 25px;"></div>
       <div id="feedback"></div>
     </div>
 
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 5과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 6과</div>
 
   <script>
     'use strict';
@@ -82,42 +90,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '안식일은 우리가 평소에 하던 공부나 일을 쉬고, 오직 하나님과만 시간을 보내는 특별한 선물이다.', 
-        answer: 'O',
-        comment: '맞아요! 하나님께서는 우리와 함께 계시려고 안식일을 선물로 주셨어요.'
+        question: '다니엘은 왕의 새로운 법(기도 금지령)을 듣고 나서, 들키지 않게 몰래 숨어서 기도했나요?', 
+        answer: 'X',
+        comment: '다니엘은 누가 보든지 상관하지 않고 평소처럼 창문을 열고 당당하게 기도했어요!' 
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "하나님이 그 (      ) 날을 복되게 하사 거룩하게 하셨으니" (창세기 2:3)', 
-        answer: '일곱째',
-        comment: '하나님께서는 6일 동안 창조하신 후, 7일째인 일곱째 날을 특별하게 만드셨어요.'
+        question: '기억절: "다니엘이... 하루 세 번씩 무릎을 꿇고 (    )하며 그의 하나님께 감사하였더라" (다니엘 6:10)', 
+        answer: '기도',
+        comment: '맞아요! 다니엘은 어떤 힘든 상황에서도 하나님께 기도하는 것을 잊지 않았답니다.' 
       },
       { 
         type: 'mcq',  
-        question: '윌리는 안식일이 매주 돌아오는 어떤 날과 같다고 말했나요?', 
-        options: ['A. 어린이날', 'B. 크리스마스', 'C. 소풍 가는 날', 'D. 만우절'], 
-        answer: 'B. 크리스마스',
-        comment: '온 가족이 모여 맛있는 음식을 먹고 즐거운 크리스마스처럼, 안식일도 정말 즐거운 날이에요!'
+        question: '다니엘은 하루에 몇 번씩 하나님께 기도를 드렸나요?', 
+        options: ['A. 한 번', 'B. 두 번', 'C. 세 번', 'D. 열 번'], 
+        answer: 'C. 세 번',
+        comment: '다니엘은 아침, 점심, 저녁에 마치 시계처럼 규칙적으로 하나님을 만났어요.' 
       },
       { 
         type: 'mcq',  
-        question: '안식일은 언제부터 시작되었나요?', 
-        options: ['A. 세상이 창조될 때부터', 'B. 윌리가 태어날 때부터', 'C. 학교가 생겼을 때부터', 'D. 크리스마스 노래가 나올 때부터'], 
-        answer: 'A. 세상이 창조될 때부터',
-        comment: '하나님께서는 세상을 다 만드신 창조의 마지막 날에 안식일을 만드셨어요.'
+        question: '다니엘을 질투한 관원들이 왕을 설득해서 만든 무서운 벌은 무엇이었나요?', 
+        options: ['A. 감옥에 가두기', 'B. 사자굴 속에 넣기', 'C. 밥 안 주기', 'D. 멀리 쫓아내기'], 
+        answer: 'B. 사자굴 속에 넣기',
+        comment: '관원들은 다니엘을 없애려고 무서운 사자굴에 넣는 법을 만들었지만, 하나님이 지켜주셨어요!' 
       },
       { 
         type: 'short',
-        question: '하나님께서 6일 동안 창조하신 후, 우리와 함께 계시기 위해 복 주시고 거룩하게 하신 이 날의 이름은 무엇인가요? (3글자)', 
-        answer: '안식일', 
-        comment: '하나님을 사랑한다고 말하는 가장 특별한 날, 바로 안식일이에요!'
+        question: '다니엘이 기도를 할 때 항상 활짝 열어 두었던 것은 무엇인가요? (2글자)', 
+        answer: '창문', 
+        comment: '다니엘은 집의 창문을 열고 예루살렘을 향해 마음을 다해 기도했답니다.' 
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#6366f1', '#4f46e5', '#4338ca', '#3730a3', '#312e81'];
+    const themes = ['#f59e0b', '#d97706', '#b45309', '#92400e', '#78350f'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -134,7 +142,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
+      if (!nameVal) { alert("우리 어린이의 이름을 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -144,34 +152,43 @@
     function showQuestion() {
       feedbackEl.textContent = '';
       const q = questions[current];
-      questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+      questionNumberEl.textContent = `⭐ 문제 ${current + 1} / ${questions.length}`;
       questionTextEl.textContent = q.question;
       questionTextEl.style.backgroundColor = themes[current % themes.length];
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        createBtn('O'); createBtn('X');
+        const btnO = document.createElement('button');
+        btnO.textContent = 'O'; btnO.className = 'emoji-btn';
+        btnO.onclick = () => checkAnswer('O');
+        const btnX = document.createElement('button');
+        btnX.textContent = 'X'; btnX.className = 'emoji-btn';
+        btnX.onclick = () => checkAnswer('X');
+        answerAreaEl.appendChild(btnO);
+        answerAreaEl.appendChild(btnX);
       } else if (q.type === 'mcq') {
-        q.options.forEach(opt => createBtn(opt));
+        q.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.textContent = opt;
+          btn.style.display = 'block';
+          btn.style.width = '100%';
+          btn.onclick = () => checkAnswer(opt);
+          answerAreaEl.appendChild(btn);
+        });
       } else {
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = '정답을 적어보세요';
+        input.placeholder = '정답을 입력하세요';
         answerAreaEl.appendChild(input);
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '정답 확인';
+        submitBtn.textContent = '정답 확인하기';
+        submitBtn.style.display = 'block';
+        submitBtn.style.width = '100%';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
         input.focus();
         input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
       }
-    }
-
-    function createBtn(text) {
-      const btn = document.createElement('button');
-      btn.textContent = text;
-      btn.onclick = () => checkAnswer(text);
-      answerAreaEl.appendChild(btn);
     }
 
     function checkAnswer(userAns) {
@@ -182,27 +199,28 @@
       if (q.type === 'mcq') {
         isCorrect = (userAns === q.answer);
       } else {
-        isCorrect = normalize(userAns).includes(normalize(q.answer));
+        isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#1e3a8a;'>참 잘했어요! 하나님이 기뻐하세요! 🎁</span>";
+        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 대단해요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>아쉬워요! 정답은 [${q.answer}] 이에요. 💡</span>`;
+        feedbackEl.innerHTML = `<span style='color:#dc2626;'>아쉽지만 괜찮아요! 정답은 [${q.answer}] 예요. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
       commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#475569';
-      commentDiv.style.marginTop = '10px';
+      commentDiv.style.color = '#4b5563';
+      commentDiv.style.marginTop = '12px';
+      commentDiv.style.padding = '0 10px';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#312e81';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보러 가기' : '다음 문제로 ▶';
+      nextBtn.style.backgroundColor = '#92400e';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -216,14 +234,27 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "최고예요! 안식일을 사랑하는 성경 박사님이네요!" : "수고했어요! 안식일의 기쁨을 기억하는 어린이가 되길 바라요!";
+      let message = "";
+      let icon = "";
+      
+      if (score === questions.length) {
+        message = "최고예요! 하나님을 첫째로 모시는 멋진 어린이가 되었군요!";
+        icon = "🦁🦁🦁";
+      } else if (score >= 3) {
+        message = "참 잘했어요! 다니엘처럼 늘 기도하는 어린이가 되길 응원해요!";
+        icon = "🙏✨";
+      } else {
+        message = "수고했어요! 성경 이야기를 다시 한 번 읽어보면 더 잘할 수 있을 거예요!";
+        icon = "📖🧡";
+      }
+
       resultEl.innerHTML = `
-        <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">✨</div>
-        <p>우리 어린이의 5과 점수는</p>
-        <p><span style="color:#4f46e5; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold; padding: 0 10px;">${message}</p>
-        <button onclick="location.reload()">한 번 더 풀기</button>
+        <h2 style="color: #92400e;">${participantName} 어린이, 최고!</h2>
+        <div style="font-size: 60px; margin: 20px 0;">${icon}</div>
+        <p>오늘의 성경 퀴즈 점수는</p>
+        <p><span style="color:#f59e0b; font-size:50px; font-weight:800;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; color: #4b5563; padding: 0 10px;">${message}</p>
+        <button onclick="location.reload()" style="background-color: #f59e0b; color: white;">다시 한 번 도전하기</button>
       `;
     }
 

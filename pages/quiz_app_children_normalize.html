@@ -3,95 +3,293 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (7과)</title>
+  <title>소년반 성경 퀴즈 (8과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
-    /* 전체 화면 스타일 */
+    /* 고급스럽고 현대적인 뉴트럴 에메랄드 & 퍼플 테마 */
+    :root {
+      --primary-color: #6366F1;
+      --secondary-color: #EC4899;
+      --accent-color: #10B981;
+      --bg-color: #EEF2F6;
+      --card-bg: #FFFFFF;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body { 
-      margin: 0; 
-      padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #eef2f3; 
+      font-family: 'Noto Sans KR', sans-serif; 
+      background: var(--bg-color); 
+      color: var(--text-main);
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
-      font-size: 24px; 
+      font-size: 16px;
+      padding: 15px;
     }
 
     /* 퀴즈 박스 스타일 */
     #quiz-container { 
-      width: 95%; 
-      max-width: 650px; 
-      text-align: center; 
-      padding: 20px 0; 
-      padding-bottom: 80px; 
+      width: 100%;
+      max-width: 550px; 
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .question-box, .input-box { 
-      padding: 40px 30px; 
-      border-radius: 20px; 
-      color: #fff; 
-      background-color: #4A90E2; 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      transition: background-color 0.5s ease; 
+    /* 탑 헤더 */
+    .app-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .lesson-badge {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .app-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    /* 이름 입력 및 첫 화면 */
+    .welcome-card {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .welcome-illustration {
+      font-size: 64px;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .welcome-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .welcome-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 25px;
       line-height: 1.5;
     }
 
+    /* 입력 폼 공통 */
+    .custom-input { 
+      width: 100%;
+      padding: 14px 20px; 
+      font-size: 16px; 
+      border-radius: 12px; 
+      border: 2px solid #E2E8F0; 
+      font-family: inherit; 
+      text-align: center; 
+      margin-bottom: 15px; 
+      transition: all 0.3s ease;
+      outline: none;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+    .custom-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .warning-message {
+      color: var(--secondary-color);
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      display: none;
+      font-weight: bold;
+    }
+
     /* 버튼 스타일 */
-    button { 
-      margin: 10px; 
-      padding: 15px 30px; 
-      font-size: 22px; 
+    .btn { 
+      width: 100%;
+      padding: 14px 24px; 
+      font-size: 16px; 
       border: none; 
       border-radius: 12px; 
       cursor: pointer; 
       font-family: inherit; 
-      background-color: #fff; 
-      color: #333; 
-      font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s, background-color 0.2s;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    button:hover { 
-      background-color: #f8f8f8; 
-      transform: translateY(-2px);
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #fff;
     }
-    button:active {
-      transform: translateY(0);
+    .btn-primary:hover { 
+      background-color: #4f46e5;
+      transform: translateY(-1px);
     }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    /* 입력창 스타일 */
-    input[type="text"] { 
-      padding: 12px; 
-      font-size: 24px; 
-      border-radius: 10px; 
-      border: 2px solid #ddd; 
-      width: 80%; 
-      font-family: inherit; 
-      text-align: center; 
-      margin-bottom: 25px; 
-      outline: none;
+    .btn-primary:active {
+      transform: translateY(1px);
     }
 
-    /* 결과 및 피드백 */
-    #result { 
-      font-size: 32px; 
-      margin-top: 30px; 
-      color: #333; 
-      background: #fff; 
-      padding: 40px; 
-      border-radius: 20px; 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    /* 문제 영역 */
+    .question-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      font-weight: 700;
     }
+    .question-box { 
+      padding: 24px; 
+      border-radius: 16px; 
+      color: #fff; 
+      background-color: var(--primary-color); 
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      word-break: keep-all;
+    }
+
+    /* 답안 영역 레이아웃 */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .option-btn {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary-color);
+      background-color: rgba(99, 102, 241, 0.02);
+    }
+    .option-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    /* OX 선택형 특화 */
+    .ox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .ox-btn {
+      height: 100px;
+      font-size: 36px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    /* 피드백 영역 */
     #feedback { 
-      min-height: 50px; 
-      margin-top: 25px; 
-      font-size: 26px; 
-      font-weight: bold; 
-      color: #333; 
+      margin-top: 20px; 
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .feedback-box {
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 15px;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .feedback-correct {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--accent-color);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .feedback-incorrect {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #EF4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .explanation-text {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* 결과 스크린 */
+    .result-card {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .score-badge {
+      font-size: 54px;
+      font-weight: 900;
+      color: var(--primary-color);
+      margin: 15px 0;
+    }
+    .result-comment {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 25px;
+    }
+
+    /* 주관식 에세이 textarea */
+    .custom-textarea {
+      width: 100%;
+      height: 100px;
+      padding: 14px;
+      font-size: 15px;
+      border-radius: 12px;
+      border: 2px solid #E2E8F0;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    .custom-textarea:focus {
+      border-color: var(--primary-color);
     }
 
     /* 하단 푸터 */
@@ -101,42 +299,73 @@
       left: 0;
       width: 100%;
       text-align: center;
-      font-size: 14px;
-      color: #777;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
       pointer-events: none;
     }
 
-    /* 반응형 조절 */
-    @media (max-width: 600px) {
-      body { font-size: 20px; }
-      button { font-size: 18px; padding: 12px 20px; }
-      input[type="text"] { font-size: 20px; }
+    /* 진행도 바 */
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: #E2E8F0;
+      border-radius: 9999px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: var(--accent-color);
+      width: 0%;
+      transition: width 0.3s ease;
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
-    <!-- 이름 입력 화면 -->
-    <div id="name-input-area" class="input-box">
-      <h2 style="margin-top: 0;">성경 퀴즈 7과</h2>
-      <h3 style="font-weight: normal; font-size: 1.1em;">"신분을 오해함"</h3>
-      <p>반가워요! 이름을 입력하고 시작해볼까요?</p>
-      <input type="text" id="name-input" placeholder="예: 다니엘" />
-      <br>
-      <button id="start-btn">퀴즈 시작하기 ▶</button>
+    <div class="app-header">
+      <span class="lesson-badge">제 8 과</span>
+      <h1 class="app-title">은혜의 사슬 🔗</h1>
     </div>
 
-    <!-- 퀴즈 진행 화면 -->
+    <!-- 첫 대기 화면 -->
+    <div id="name-input-area" class="welcome-card">
+      <span class="welcome-illustration">👋</span>
+      <h2>성경 공부 퀴즈에 오신 것을 환영해요!</h2>
+      <p>이번 과에서는 하나님이 우리에게 주신 다양한 은사와<br>그 은사를 통한 나눔에 대해 배워볼 거예요.</p>
+      
+      <input type="text" id="name-input" class="custom-input" placeholder="여러분의 이름을 적어주세요!" maxlength="10" />
+      <div id="name-warning" class="warning-message">⚠️ 이름을 꼭 적어야 퀴즈를 시작할 수 있어요!</div>
+      
+      <button id="start-btn" class="btn btn-primary">퀴즈 시작하기 ▶</button>
+    </div>
+
+    <!-- 퀴즈 본문 화면 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; color: #666; margin-bottom: 15px; font-weight: bold;"></div>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div class="question-info">
+        <span id="question-number">문제 1 / 6</span>
+        <span id="score-tracker" style="color: var(--accent-color);">맞힌 개수: 0개</span>
+      </div>
+      
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 25px;"></div>
+      
+      <div id="answer-area"></div>
+      
       <div id="feedback"></div>
     </div>
 
-    <!-- 최종 결과 화면 -->
-    <div id="result" style="display:none;"></div>
+    <!-- 결과 화면 -->
+    <div id="result" class="result-card" style="display:none;">
+      <span class="welcome-illustration">🎉</span>
+      <h2>정말 멋져요! 퀴즈 완료!</h2>
+      <div id="result-score-info"></div>
+      <button id="restart-btn" class="btn btn-primary" style="margin-top: 15px;">처음부터 다시하기 🔄</button>
+    </div>
   </div>
 
   <div id="footer">Distributed by Dr. Choi</div>
@@ -145,145 +374,250 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 7과 문제 데이터
+      // 8과 퀴즈 데이터 정의
       const questions = [
+        // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '루스드라 사람들은 바울이 걷지 못하는 사람을 고치는 기적을 보고, 바울과 바나바를 하늘에서 내려온 신들로 오해했다.', 
-          answer: 'O' 
-        },
+          question: '바울은 예루살렘으로 여행하면 큰 위험이 따를 것이라는 친구들의 경고를 듣고, 결국 여행을 미루고 가이사랴에 머물기로 결정했습니다.', 
+          answer: 'X',
+          explanation: '바울은 성령님이 위험을 미리 알려주신 것에 감사하면서도 "저는 돌이킬 수 없습니다"라며 하나님의 뜻에 순종하여 예루살렘으로 향했습니다.'
+        }, 
+
+        // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "이르되 여러분이여 어찌하여 이러한 일을 하느냐 우리도 여러분과 같은 (      )을 가진 사람이라..." (사도행전 14:15)', 
-          answer: '성정' 
+          question: '기억절 빈칸 채우기: "각각 (     )을/를 받은 대로 하나님의 여러 가지 은혜를 맡은 선한 청지기 같이 서로 봉사하라" (베드로전서 4:10)', 
+          answer: '은사',
+          explanation: '하나님은 모든 믿는 사람에게 고유한 은사를 주셔서, 서로 봉사하고 교회를 함께 세우게 하셨습니다.'
         },
+
+        // 3번: 4지 선다형 (빌립)
         { 
           type: 'mcq',  
-          question: '바울이 루스드라에서 만난 걷지 못하는 사람의 눈을 주목했을 때, 그 사람의 마음속에 무엇이 있음을 보았나요?', 
-          options: ['A. 두려운 마음', 'B. 하나님에 대한 진실한 믿음', 'C. 바울에 대한 의심', 'D. 돈을 벌고 싶은 욕심'], 
-          answer: 'B. 하나님에 대한 진실한 믿음' 
+          question: '초기 교회에서 일곱 집사 중 한 명이었고, 가이사랴에 살면서 바울 일행을 환대했던 사람입니다. 또한 성경을 예언하고 전하는 네 딸을 두었던 이 인물은 누구인가요?', 
+          options: ['A. 아가보', 'B. 나손', 'C. 빌립', 'D. 디모데'], 
+          answer: 'C. 빌립',
+          explanation: '빌립은 행정과 가르침의 영적 은사를 사용해 교회의 봉사에 헌신했으며, 온 가족이 하나님께 드려진 아름다운 가정이었습니다.'
         },
+
+        // 4번: 4지 선다형 (허리띠)
         { 
           type: 'mcq',  
-          question: '사람들이 자신들에게 제사를 드리려 하자, 바울과 바나바가 매우 실망하며 보여준 행동은 무엇이었나요?', 
-          options: ['A. 기뻐하며 제물을 받았다', 'B. 모른 척하며 다른 곳으로 갔다', 'C. 자신의 옷을 찢으며 소리쳤다', 'D. 사람들에게 화를 내며 때렸다'], 
-          answer: 'C. 자신의 옷을 찢으며 소리쳤다'
+          question: '선지자 아가보는 바울이 예루살렘에서 겪게 될 고난을 예언하기 위해, 바울의 \'이것\'을 가지고 자신의 손과 발을 묶었습니다. \'이것\'은 무엇이었나요?', 
+          options: ['A. 겉옷', 'B. 허리띠', 'C. 샌들끈', 'D. 지팡이'], 
+          answer: 'B. 허리띠',
+          explanation: '아가보는 성령의 이끌림에 따라 바울의 허리띠로 수족을 꽁꽁 묶어 바울이 예루살렘에서 겪을 고난을 시각적으로 보여주었습니다.'
         },
+
+        // 5번: 단답형 (나손)
         { 
           type: 'short',
-          question: '바울과 바나바는 루스드라 사람들에게 헛된 우상을 버리고 천지와 바다와 만물을 지으시고 살아 계신 "이분"께로 돌아오라고 전했습니다. "이분"은 누구일까요?', 
-          answer: '하나님' 
+          question: '가이사랴에서 예루살렘으로 올라가는 길에, 구브로 출신의 초기 신자로서 넓고 편안한 집을 제공해 바울 일행을 성심껏 대접해 준 사람의 이름은 무엇인가요?', 
+          answer: '나손',
+          explanation: '구브로에서 이주한 나손은 남을 정성껏 대접하는 은사를 가져, 예루살렘을 오가는 성도들을 늘 친절하게 안락하게 맞이해 주었습니다.'
         },
+
+        // 6번: 느낀점
         { 
           type: 'any',  
-          question: '바울과 바나바처럼 내가 칭찬을 받거나 성공했을 때, 어떻게 하면 하나님께 영광을 돌릴 수 있을지 나의 생각을 적어보세요.' 
+          question: '하나님이 여러분에게 주신 달란트나 은사(예: 다른 사람 위로하기, 찬양하기, 말씀 잘 경청하기, 정리정돈 돕기 등)는 무엇이 있을까요? 앞으로 그것을 어떻게 활용해 다른 사람들을 도울 수 있을지 편안하게 적어보세요.' 
         }
       ];
 
+      // 상태 관리 변수
       let current = 0;
       let score = 0;
       let participantName = '';
-      const themes = ['#4A90E2', '#50C878', '#FFB347', '#9370DB', '#F08080', '#40E0D0']; 
 
+      // UI 요소 참조
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
+      const nameWarning = document.getElementById('name-warning');
       const startBtn = document.getElementById('start-btn');
+      
       const quizArea = document.getElementById('quiz-area');
+      const progressBar = document.getElementById('progress-bar');
       const questionNumberEl = document.getElementById('question-number');
+      const scoreTrackerEl = document.getElementById('score-tracker');
       const questionTextEl = document.getElementById('question-text');
       const answerAreaEl = document.getElementById('answer-area');
       const feedbackEl = document.getElementById('feedback');
+      
       const resultEl = document.getElementById('result');
+      const resultScoreInfo = document.getElementById('result-score-info');
+      const restartBtn = document.getElementById('restart-btn');
 
+      // 리스너 연결
       startBtn.addEventListener('click', startGame);
-      nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
+      nameInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') startGame();
+      });
+      restartBtn.addEventListener('click', resetGame);
 
+      // 시작 로직
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 입력해주세요!");
+          nameWarning.style.display = 'block';
+          nameInput.focus();
           return;
         }
+        
+        nameWarning.style.display = 'none';
         participantName = nameVal;
+        
         nameInputArea.style.display = 'none';
         quizArea.style.display = 'block';
+        
+        current = 0;
+        score = 0;
         showQuestion();
       }
 
+      // 초기화 로직
+      function resetGame() {
+        resultEl.style.display = 'none';
+        nameInput.value = '';
+        nameInputArea.style.display = 'block';
+      }
+
+      // 문제 표시
       function showQuestion() {
-        feedbackEl.textContent = '';
+        feedbackEl.innerHTML = ''; 
         const q = questions[current];
 
-        questionNumberEl.textContent = `Q ${current + 1} / ${questions.length}`;
-        questionTextEl.textContent = q.question;
-        questionTextEl.style.backgroundColor = themes[current % themes.length];
+        // 진행률 업데이트
+        const progressPercent = (current / questions.length) * 100;
+        progressBar.style.width = `${progressPercent}%`;
 
+        // 헤더 갱신
+        questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+        scoreTrackerEl.textContent = `맞힌 개수: ${score}개`;
+        
+        // 문제 내용 입력
+        questionTextEl.textContent = q.question;
         answerAreaEl.innerHTML = '';
 
         if (q.type === 'ox') {
-          createBtn('O');
-          createBtn('X');
+          // OX 그리드 생성
+          const oxContainer = document.createElement('div');
+          oxContainer.className = 'ox-grid';
+          
+          const oBtn = document.createElement('button');
+          oBtn.className = 'option-btn ox-btn';
+          oBtn.textContent = 'O';
+          oBtn.addEventListener('click', () => checkAnswer('O'));
+          
+          const xBtn = document.createElement('button');
+          xBtn.className = 'option-btn ox-btn';
+          xBtn.textContent = 'X';
+          xBtn.addEventListener('click', () => checkAnswer('X'));
+          
+          oxContainer.appendChild(oBtn);
+          oxContainer.appendChild(xBtn);
+          answerAreaEl.appendChild(oxContainer);
+
         } else if (q.type === 'mcq') {
-          q.options.forEach(opt => createBtn(opt));
+          // 객관식 그리드 생성
+          const grid = document.createElement('div');
+          grid.className = 'options-grid';
+          
+          q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkAnswer(opt));
+            grid.appendChild(btn);
+          });
+          answerAreaEl.appendChild(grid);
+
+        } else if (q.type === 'any') {
+          // 느낀점 적기 에세이 박스
+          const textarea = document.createElement('textarea');
+          textarea.className = 'custom-textarea';
+          textarea.placeholder = '여기에 자신의 생각을 자유롭게 적어보세요...';
+          answerAreaEl.appendChild(textarea);
+          
+          const submitBtn = document.createElement('button');
+          submitBtn.className = 'btn btn-primary';
+          submitBtn.textContent = '제출하기';
+          submitBtn.addEventListener('click', () => checkAnswer(textarea.value));
+          answerAreaEl.appendChild(submitBtn);
+          
+          textarea.focus();
+
         } else {
+          // 주관식 입력 및 제출 버튼
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '자유롭게 적어주세요' : '정답 입력';
+          input.className = 'custom-input';
+          input.placeholder = '정답을 적어보세요!';
           answerAreaEl.appendChild(input);
           
           const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출하기';
+          submitBtn.className = 'btn btn-primary';
+          submitBtn.textContent = '정답 확인하기';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(submitBtn);
 
           input.focus();
-          input.addEventListener('keydown', (e) => { if(e.key === 'Enter') checkAnswer(input.value); });
+          input.addEventListener('keydown', (e) => { 
+            if(e.key === 'Enter') checkAnswer(input.value); 
+          });
         }
       }
 
-      function createBtn(text) {
-        const btn = document.createElement('button');
-        btn.textContent = text;
-        btn.addEventListener('click', () => checkAnswer(text));
-        answerAreaEl.appendChild(btn);
-      }
-
+      // 채점
       function checkAnswer(userAns) {
-        if(answerAreaEl.querySelector('.next-btn')) return;
+        // 이미 진행된 문제 검증 방지
+        if(feedbackEl.querySelector('.next-btn')) return;
 
         const q = questions[current];
         let isCorrect = false;
 
         if (q.type === 'any') {
-          isCorrect = userAns.trim().length > 2; 
+          // 에세이 형식은 빈 칸이 아니면 통과로 간주
+          isCorrect = userAns.trim().length > 0;
         } else if (q.type === 'mcq') {
           isCorrect = (userAns === q.answer);
+        } else if (q.type === 'ox') {
+          isCorrect = (userAns === q.answer);
         } else {
-          let nUser = normalize(userAns);
-          let nAns = normalize(q.answer);
-          isCorrect = (nUser === nAns);
+          // 정규화 매칭
+          isCorrect = (normalize(userAns) === normalize(q.answer));
         }
 
-        if (isCorrect) {
-          feedbackEl.innerHTML = "<span style='color: #2E7D32;'>참 잘했어요! 정답입니다! 🌟</span>";
+        // 피드백 박스 생성
+        const fBox = document.createElement('div');
+        fBox.className = 'feedback-box';
+
+        if (q.type === 'any') {
+          fBox.className += ' feedback-correct';
+          fBox.innerHTML = `🌟 멋진 생각입니다!<br><span class="explanation-text">하나님께서 선물로 주신 우리의 은사들이 함께 엮일 때, 거대한 구원의 은혜의 사슬이 된답니다.</span>`;
+          score++;
+        } else if (isCorrect) {
+          fBox.className += ' feedback-correct';
+          fBox.innerHTML = `⭕ 정답이에요!<br><span class="explanation-text">${q.explanation}</span>`;
           score++;
         } else {
-          if(q.type !== 'any') {
-            feedbackEl.innerHTML = `<span style='color: #C62828;'>조금 아쉬워요! 정답은 [${q.answer}]입니다.</span>`;
-          } else {
-            feedbackEl.innerHTML = "<span style='color: #C62828;'>조금 더 자세히 적어볼까요?</span>";
-          }
+          fBox.className += ' feedback-incorrect';
+          fBox.innerHTML = `❌ 틀렸어요! (정답: ${q.answer})<br><span class="explanation-text">${q.explanation}</span>`;
         }
 
-        const inputs = answerAreaEl.querySelectorAll('button, input');
+        feedbackEl.appendChild(fBox);
+
+        // 입력 폼 비활성화
+        const inputs = answerAreaEl.querySelectorAll('button, input, textarea');
         inputs.forEach(el => el.disabled = true);
 
+        // 다음 문제 버튼 생성
         const nextBtn = document.createElement('button');
-        nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기' : '다음 문제로 ▶';
-        nextBtn.style.backgroundColor = '#333';
-        nextBtn.style.color = '#fff';
-        nextBtn.style.marginTop = '20px';
+        nextBtn.className = 'btn';
+        nextBtn.style.backgroundColor = '#1E293B';
+        nextBtn.style.color = '#FFFFFF';
+        nextBtn.style.marginTop = '15px';
+        nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 진행 👉';
         
         nextBtn.addEventListener('click', () => {
           if (current === questions.length - 1) {
@@ -294,28 +628,35 @@
           }
         });
         
-        feedbackEl.appendChild(document.createElement('br'));
         feedbackEl.appendChild(nextBtn);
       }
 
+      // 최종 결과 창
       function showResult() {
+        progressBar.style.width = `100%`;
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
-        
-        let message = "";
-        if(score === questions.length) message = "와! 성경 박사님이시네요! 🏆";
-        else if(score >= questions.length * 0.7) message = "정말 훌륭해요! 거의 다 맞췄어요! 👍";
-        else message = "수고했어요! 성경 이야기를 다시 한 번 읽어볼까요? 😊";
 
-        resultEl.innerHTML = `
-          <h2 style="color:#4A90E2;">${participantName} 친구!</h2>
-          <p style="font-size: 24px;">이번 7과 퀴즈에서<br>총 <strong>${questions.length}</strong>문제 중 <strong>${score}</strong>문제를 맞혔어요!</p>
-          <hr style="border:1px solid #eee; margin: 20px 0;">
-          <p style="font-weight: bold; color: #555;">${message}</p>
-          <button onclick="location.reload()" style="background:#4A90E2; color:#fff; margin-top:20px;">다시 도전하기</button>
+        let customGreeting = '';
+        if (score === questions.length) {
+          customGreeting = '🏆 완전 만점! 성경 박사님이시네요!';
+        } else if (score >= 4) {
+          customGreeting = '👍 아주 훌륭한 실력이에요! 칭찬해요!';
+        } else {
+          customGreeting = '💡 조금 더 이야기를 읽고 다시 도전해보면 만점을 받을 수 있어요!';
+        }
+
+        resultScoreInfo.innerHTML = `
+          <h3 style="font-size: 22px; margin-bottom: 10px;">${participantName} 어린이의 점수</h3>
+          <div class="score-badge">${score} / ${questions.length}</div>
+          <p class="result-comment">${customGreeting}</p>
+          <div style="font-size: 14px; color: var(--text-muted); background: #F1F5F9; padding: 15px; border-radius: 12px; margin-bottom: 15px; line-height: 1.6; word-break: keep-all;">
+            <strong>핵심 교훈:</strong> 우리 모두는 하나님께서 사용하시는 "은혜의 사슬"의 한 조각입니다. 이번 안식일에는 나에게 있는 소중한 은사로 교우나 이웃을 돕는 멋진 어린이가 되어봐요!
+          </div>
         `;
       }
 
+      // 한글 및 기호 공백 제거 정규화
       function normalize(str) {
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

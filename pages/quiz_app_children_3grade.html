@@ -3,19 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 10과 - 누가 나의 이웃인가?</title>
+  <title>유년반 교과 퀴즈 - 11과</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
-    :root {
-      --primary-color: #f59e0b; /* 따뜻한 사마리아인 햇살색 */
-      --primary-dark: #d97706;
-      --secondary-color: #fef3c7; /* 부드러운 배경 연노랑 */
-      --success-color: #10b981; /* 초록초록 정답 */
-      --danger-color: #ef4444; /* 분홍 오답 */
-      --text-dark: #451a03;
-    }
-
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -24,414 +15,285 @@
     body { 
       margin: 0; padding: 0; 
       font-family: 'Noto Sans KR', sans-serif; 
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      background: #fffbeb; /* 따뜻하고 온화한 베이지/옐로우 톤 */
       display: flex; justify-content: center; align-items: center; 
-      min-height: 100vh; font-size: 20px; 
-      color: var(--text-dark);
+      min-height: 100vh; font-size: 20px;
       overflow-x: hidden;
     }
 
     #quiz-container { 
-      width: 92%; 
-      max-width: 580px; 
+      width: 90%; 
+      max-width: 550px; 
       text-align: center; 
-      padding: 30px 20px 80px 20px;
+      padding-bottom: 50px;
       position: relative;
     }
 
-    /* 카드 기본 스타일 */
-    .card-box {
-      background: #ffffff;
-      border: 4px solid #fcd34d;
-      border-radius: 28px;
-      padding: 35px 25px;
-      box-shadow: 0 12px 0 #fde68a, 0 15px 30px rgba(0,0,0,0.06);
+    /* 상단 장식 이모지 */
+    .top-deco {
+      font-size: 50px;
+      margin-bottom: -15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    .question-box, .input-box { 
+      padding: 35px 25px; 
+      border-radius: 30px; 
+      color: #fff; 
+      background-color: #f59e0b; /* 따뜻한 아빠 품 같은 오렌지 골드 */
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
+      line-height: 1.6;
+      border: 5px solid #fff;
       transition: all 0.3s ease;
     }
 
-    h2 {
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight: 900;
-      font-size: 28px;
-      margin-top: 0;
-      color: #b45309;
-      text-shadow: 1px 1px 0px #fff;
-    }
-
-    p.subtitle {
-      font-size: 18px;
-      color: #d97706;
-      margin-top: -10px;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    /* 예쁜 인풋 */
-    input[type="text"] { 
-      padding: 15px; 
-      font-size: 22px; 
-      border-radius: 18px; 
-      border: 3px solid #fcd34d; 
-      width: 85%; 
-      text-align: center; 
-      margin-bottom: 20px; 
-      outline: none;
-      font-weight: bold;
-      color: #b45309;
-      box-shadow: inset 0 3px 6px rgba(0,0,0,0.05);
-      transition: border-color 0.2s;
-    }
-    input[type="text"]:focus {
-      border-color: #f59e0b;
-    }
-
-    /* 꼬마 나귀 지도형 프로그레스바 */
-    #progress-road-container {
-      margin: 15px 0 25px 0;
-      background: #fef3c7;
-      border: 3px dashed #f59e0b;
-      border-radius: 20px;
-      padding: 15px 10px;
-      position: relative;
-      height: 70px;
-    }
-    .road-markers {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: absolute;
-      width: 90%;
-      left: 5%;
-      top: 15px;
-      z-index: 1;
-    }
-    .marker {
-      font-size: 20px;
-      background: white;
-      border: 2px solid #f59e0b;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      color: #d97706;
-    }
-    .marker.active {
-      background: #f59e0b;
-      color: white;
-    }
-    #donkey-courier {
-      position: absolute;
-      top: 32px;
-      left: 5%;
-      font-size: 32px;
-      transform: translateX(-50%);
-      transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 2;
-      filter: drop-shadow(0 3px 3px rgba(0,0,0,0.15));
-    }
-    .road-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      font-weight: bold;
-      color: #d97706;
-      margin-top: 35px;
-      padding: 0 10px;
-    }
-
-    /* 문제 카드 박스 */
-    .question-box { 
-      padding: 25px; 
-      border-radius: 20px; 
-      color: #ffffff; 
+    /* 카드 둥글게 스무스한 움직임 */
+    .question-box {
       font-size: 22px;
-      font-weight: bold;
-      box-shadow: 0 8px 0 rgba(0,0,0,0.1);
-      line-height: 1.6;
-      margin-bottom: 25px;
+      font-weight: 700;
       word-break: keep-all;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
 
-    /* 신나는 버튼들 */
+    h2 {
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: 48px;
+      margin: 10px 0;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+      letter-spacing: 1px;
+    }
+
+    .sub-title {
+      font-size: 18px;
+      background: rgba(255,255,255,0.25);
+      display: inline-block;
+      padding: 4px 15px;
+      border-radius: 20px;
+      margin-top: -5px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
     button { 
       margin: 8px; 
-      padding: 14px 28px; 
+      padding: 16px 28px; 
       font-size: 20px; 
-      font-family: 'Noto Sans KR', sans-serif;
       font-weight: bold;
       border: none; 
-      border-radius: 18px; 
+      border-radius: 20px; 
       cursor: pointer; 
-      background-color: #ffffff; 
-      color: #7c2d12; 
-      box-shadow: 0 6px 0 #fed7aa;
+      background-color: #fff; 
+      color: #7c2d12; /* 깊고 따뜻한 브라운 */
+      box-shadow: 0 5px 0 #fddf9e;
       transition: all 0.1s ease;
+      font-family: 'Noto Sans KR', sans-serif;
     }
     button:active { 
       transform: translateY(4px); 
-      box-shadow: 0 2px 0 #fed7aa; 
+      box-shadow: 0 1px 0 #fddf9e; 
     }
     button:hover { 
-      background-color: #fff7ed; 
+      background-color: #fffbeb; 
     }
-    
-    /* 특수 목적 버튼 */
-    .action-btn {
-      background-color: #ea580c;
-      color: white;
-      box-shadow: 0 6px 0 #9a3412;
-    }
-    .action-btn:hover {
-      background-color: #f97316;
+    button:disabled { 
+      opacity: 0.6; 
+      cursor: not-allowed; 
     }
 
-    /* OX 전용 레이아웃 */
-    .ox-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+    /* O/X 전용 왕 버튼 */
     .ox-btn {
-      font-size: 45px;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-shadow: 0 8px 0 #fed7aa;
+      width: 120px;
+      height: 120px;
+      font-size: 50px;
+      border-radius: 50% !important;
+      margin: 15px !important;
+      box-shadow: 0 8px 0 #fddf9e;
+    }
+    .ox-btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 #fddf9e;
     }
 
-    /* 4지선다형 세로 정렬 */
-    .mcq-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    input[type="text"] { 
+      padding: 14px; 
+      font-size: 22px; 
+      border-radius: 18px; 
+      border: 3px solid #f59e0b; 
+      width: 85%; 
+      text-align: center; 
+      margin-bottom: 15px; 
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: 'Noto Sans KR', sans-serif;
     }
-    .mcq-btn {
-      text-align: left;
-      padding: 18px 25px;
-      width: 100%;
-      font-size: 18px;
+    input[type="text"]:focus {
+      border-color: #ea580c;
+      box-shadow: 0 0 10px rgba(234, 88, 12, 0.2);
     }
 
-    /* 정답/오답 결과창 */
+    /* 커스텀 에러 알림창 */
+    #warning-box {
+      color: #ef4444;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 5px;
+      height: 24px;
+      visibility: hidden;
+    }
+
     #result { 
       font-size: 22px; 
-      margin-top: 20px; 
-      color: var(--text-dark); 
+      margin-top: 30px; 
+      color: #431407; 
       background: #fff; 
-      padding: 35px 25px; 
-      border-radius: 28px; 
-      border: 5px solid #fbbf24;
-      box-shadow: 0 15px 0 #fde68a;
+      padding: 40px 30px; 
+      border-radius: 30px; 
+      border: 6px dashed #f59e0b;
+      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     #feedback { 
       min-height: 40px; 
-      margin-top: 20px; 
-      font-size: 26px; 
+      margin-top: 25px; 
+      font-size: 24px; 
       font-weight: bold; 
     }
-    .comment-card {
-      font-size: 17px;
-      background: #fdf2f8;
-      border: 2px solid #fbcfe8;
-      color: #9d174d;
-      padding: 15px;
-      border-radius: 15px;
-      margin-top: 15px;
+
+    .feedback-comment {
+      font-size: 18px;
+      color: #4b5563;
+      margin-top: 12px;
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       line-height: 1.5;
+      font-weight: normal;
       word-break: keep-all;
     }
 
-    /* 커스텀 경고 모달 */
-    #custom-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
+    /* 다음버튼 스타일 */
+    .next-btn {
+      background-color: #ea580c !important;
+      color: #fff !important;
+      box-shadow: 0 5px 0 #b45309 !important;
+      padding: 15px 40px !important;
+      border-radius: 25px !important;
     }
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 24px;
-      text-align: center;
-      width: 85%;
-      max-width: 400px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      border: 4px solid #f59e0b;
-      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @keyframes modalPop {
-      0% { transform: scale(0.7); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    .next-btn:active {
+      box-shadow: 0 1px 0 #b45309 !important;
     }
 
-    /* 꽃가루 축하 파티클 효과 */
-    .particle {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99;
-      animation: particleBlow 0.8s ease-out forwards;
+    /* 진행 바 */
+    #progress-container {
+      width: 100%;
+      height: 10px;
+      background-color: #ffedd5;
+      border-radius: 5px;
+      margin-bottom: 25px;
+      overflow: hidden;
     }
-    @keyframes particleBlow {
-      0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(var(--mx), var(--my)) scale(0) rotate(360deg); opacity: 0; }
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f59e0b, #ea580c);
+      border-radius: 5px;
+      transition: width 0.3s ease;
     }
 
     #footer {
-      position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 13px; color: #b45309; pointer-events: none;
+      position: fixed;
+      bottom: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      color: #b45309;
+      opacity: 0.7;
+      pointer-events: none;
       font-weight: bold;
-    }
-
-    /* 상단 장식 구름과 하트 SVG */
-    .decorations {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      padding: 0 10px;
-    }
-    .cloud-svg {
-      fill: #ffffff;
-      opacity: 0.8;
-      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
-    
-    <!-- 장식용 상단 컴포넌트 -->
-    <div class="decorations">
-      <svg class="cloud-svg" width="60" height="35" viewBox="0 0 24 16">
-        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-      </svg>
-      <div style="font-size: 28px; animation: pulse 1.5s infinite alternate;">🧡🩹🐴</div>
-      <svg class="cloud-svg" width="60" height="35" viewBox="0 0 24 16">
-        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-      </svg>
+    <div class="top-deco" id="deco-emoji">🏠</div>
+
+    <!-- 이름 입력 영역 -->
+    <div id="name-input-area" class="input-box">
+      <h2>유년반 성경퀴즈</h2>
+      <div class="sub-title">제 11과: 다시 집으로</div>
+      <p style="font-size: 19px; margin-bottom: 25px; font-weight: bold;">사랑이 가득한 하나님의 품으로 돌아온 아들 이야기!</p>
+      <p style="font-size: 17px; margin-bottom: 10px;">우리 어린이의 이름을 가르쳐주세요 ✏️</p>
+      <input type="text" id="name-input" placeholder="이름을 입력해요" maxlength="10" />
+      <div id="warning-box">앗! 이름을 꼭 써주세요! 🙏</div>
+      <button id="start-btn" style="background-color: #fffbeb;">퀴즈 출발! ▶</button>
     </div>
 
-    <!-- 1단계: 이름 입력 및 시작 대기창 -->
-    <div id="name-input-area" class="card-box">
-      <h2>유년반 성경퀴즈 10과</h2>
-      <p class="subtitle">누가 나의 이웃인가? (누가복음 10장)</p>
-      
-      <!-- 멋진 삽화 SVG 장식 -->
-      <div style="margin: 20px 0;">
-        <svg width="120" height="120" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" fill="#fef3c7" stroke="#f59e0b" stroke-width="4"/>
-          <!-- 하트 양손으로 안기 -->
-          <path d="M50 35 C40 20, 20 30, 50 65 C80 30, 60 20, 50 35 Z" fill="#ef4444"/>
-          <path d="M30 65 Q50 80, 70 65" fill="none" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-          <circle cx="35" cy="45" r="4" fill="#7c2d12"/>
-          <circle cx="65" cy="45" r="4" fill="#7c2d12"/>
-          <!-- 해맑은 미소 -->
-          <path d="M45 53 Q50 58, 55 53" fill="none" stroke="#7c2d12" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+    <!-- 퀴즈 영역 -->
+    <div id="quiz-area" style="display:none;">
+      <div id="progress-container">
+        <div id="progress-bar"></div>
       </div>
-
-      <p style="font-size: 20px; font-weight: bold; color: #7c2d12;">반가워요! 우리 어린이의 이름을 적어주세요!</p>
-      <input type="text" id="name-input" placeholder="예: 최하랑" maxlength="10" />
-      <br>
-      <button id="start-btn" class="action-btn" style="width: 85%; padding: 18px 0; font-size: 22px;">출발! 성경 여행하기 🚀</button>
-    </div>
-
-    <!-- 2단계: 퀴즈 진행창 -->
-    <div id="quiz-area" class="card-box" style="display:none;">
-      <!-- 아기 나귀 여리고성 여행 진행 바 -->
-      <div id="progress-road-container">
-        <div class="road-markers">
-          <div class="marker active" id="m0">🏰</div>
-          <div class="marker" id="m1">1</div>
-          <div class="marker" id="m2">2</div>
-          <div class="marker" id="m3">3</div>
-          <div class="marker" id="m4">4</div>
-          <div class="marker" id="m5">🌴</div>
-        </div>
-        <div id="donkey-courier">🐴</div>
-        <div class="road-label">
-          <span>예루살렘 (출발)</span>
-          <span>여리고 (여관 도착!)</span>
-        </div>
-      </div>
-
-      <div id="question-number" style="font-size: 18px; color: #d97706; margin-bottom: 12px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 18px; color: #7c2d12; font-weight: bold; margin-bottom: 10px;"></div>
       <div id="question-text" class="question-box"></div>
-      
-      <!-- 선택지가 렌더링될 영역 -->
-      <div id="answer-area"></div>
-      
-      <!-- 정/오답 설명 피드백 영역 -->
+      <div id="answer-area" style="margin-top: 25px;"></div>
       <div id="feedback"></div>
     </div>
 
-    <!-- 3단계: 최종 결과 보고서창 -->
+    <!-- 결과 화면 -->
     <div id="result" style="display:none;"></div>
   </div>
 
-  <!-- 커스텀 에러 알림 모달 -->
-  <div id="custom-modal">
-    <div class="modal-content">
-      <div style="font-size: 50px; margin-bottom: 15px;">😮</div>
-      <h3 style="margin: 0 0 10px 0; color: #b45309;">이름을 깜빡했어요!</h3>
-      <p style="margin: 0 0 20px 0; font-size: 16px; color: #78350f;">정확한 퀴즈 박사 상장을 받기 위해 이름을 꼭 써주세요!</p>
-      <button onclick="closeModal()" class="action-btn" style="padding: 10px 25px; font-size: 18px;">네, 쓸게요!</button>
-    </div>
-  </div>
-
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 10과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 11과</div>
 
   <script>
     'use strict';
 
-    // 5개의 다양한 포맷으로 제작된 퀴즈 정보
+    // 11과 "다시 집으로" 맞춤형 질문 리스트 (총 5문제)
     const questions = [
       { 
         type: 'ox',   
-        question: '강도를 만나 쓰러진 불쌍한 사람을 가장 먼저 발견하고 서둘러서 구해주며 여관으로 데려간 사람은 유대인 제사장이었어요.', 
+        question: '둘째 아들이 아버지의 돈을 모두 마구 쓰고 굶주리게 되었을 때, 아버지는 아들을 잊어버리고 미워하셨을까요?', 
         answer: 'X',
-        comment: '제사장과 레위인은 다친 사람을 보고도 그냥 모른척하며 빠르게 지나갔어요. 우리를 끝까지 사랑해 주신 예수님처럼 끝까지 도와준 사람은 오직 "사마리아 사람"뿐이었답니다!'
+        comment: '맞아요! 아버지는 둘째 아들이 큰 잘못을 저질렀음에도 불구하고, 미워하지 않고 아들이 돌아오기를 매일매일 간절히 기다리셨답니다.'
       }, 
       { 
         type: 'fill', 
-        question: '기억절 빈칸 채우기: "네 마음을 다하며 목숨을 다하며 힘을 다하며 뜻을 다하여 주 너의 하나님을 사랑하고 또한 네 (       )을 네 자신 같이 사랑하라 하였나이다" (누가복음 10:27)', 
-        answer: '이웃',
-        comment: '참 잘했어요! 하나님을 사랑하는 어린이들은 주위에 소외되거나 외로워하는 나의 소중한 이웃들을 내 몸처럼 진심으로 사랑해야 한답니다.'
+        question: '기억절: "이 내 아들은 (      )다가 다시 살아났으며 내가 잃었다가 다시 얻었노라 하니" (누가복음 15:24)', 
+        answer: '죽었',
+        comment: '참 잘했어요! "이 내 아들은 죽었다가 다시 살아났으며 내가 잃었다가 다시 얻었노라"라는 말씀처럼, 아버지는 돌아온 아들을 죽었다 살아난 것처럼 기뻐하셨어요.'
       },
       { 
         type: 'mcq',  
-        question: '강도를 만난 사람이 걸어가던 길이자, 가파르고 구불구불하며 거칠었던 예루살렘에서 여리고까지의 거리는 총 몇 킬로미터(km)였나요?', 
-        options: ['A. 5 킬로미터', 'B. 12 킬로미터', 'C. 32 킬로미터', 'D. 100 킬로미터'], 
-        answer: 'C. 32 킬로미터',
-        comment: '성경 시대의 예루살렘에서 여리고까지는 무려 32킬로미터나 되는 험하고 멀고 위험천만한 꼬불꼬불 길이었답니다!'
+        question: '돈을 다 낭비하고 몹시 배가 고팠던 둘째 아들은, 마침내 어떤 동물이 먹는 음식을 너무나 먹고 싶어 했나요?', 
+        options: ['양의 부드러운 풀', '꿀꿀 돼지의 먹이 (쥐엄열매)', '짹짹 참새의 모이', '말이 먹는 볏짚'], 
+        answer: '꿀꿀 돼지의 먹이 (쥐엄열매)',
+        comment: '딩동댕! 둘째 아들은 돼지가 먹는 쥐엄열매라도 배불리 먹고 싶을 정도로 아주 힘들고 배고픈 상태였어요.'
       },
       { 
         type: 'mcq',  
-        question: '착한 사마리아 사람은 다친 이웃의 상처에 약을 발라준 다음, 누구도 다치지 않게 조심히 일으켜서 자신의 무엇에 태워 여관으로 데리고 갔나요?', 
-        options: ['A. 나귀', 'B. 낙타', 'C. 마차', 'D. 자동차'], 
-        answer: 'A. 나귀',
-        comment: '사마리아인은 아프고 지친 사람을 아주 정성스럽게 안아 자신의 든든한 동반자 "나귀"의 등 위에 앉히고 조심조심 걸어서 여관으로 이동했답니다.'
+        question: '아들이 집으로 터덜터덜 돌아올 때, 저 멀리서 아들을 알아본 아버지는 어떻게 하셨나요?', 
+        options: ['화가 나서 문을 쾅 닫으셨어요', '누구냐며 모른 척 지나치셨어요', '힘껏 달려가서 아들을 꼭 껴안아 주셨어요', '왜 이제야 왔냐고 무섭게 혼내셨어요'], 
+        answer: '힘껏 달려가서 아들을 꼭 껴안아 주셨어요',
+        comment: '정답이에요! 아버지는 아들을 보자마자 너무나 기쁜 마음으로 달려가 아들을 꼭 안고 기쁨의 눈물을 흘렸어요.'
       },
       { 
         type: 'short',
-        question: '사마리아 사람이 길 잃고 다친 이웃을 데려가 밤새 보살펴 주었으며, 다음 날 아침 주인에게 추가 비용까지 더 주겠다고 약속하며 부탁한 안전한 쉼터의 이름은 무엇일까요? (2글자)', 
-        answer: '여관', 
-        comment: '정답입니다! 사마리아 사람은 "여관"에 다친 사람을 편히 쉬게 하고, 주인에게 고마운 마음과 치료비를 주어 완벽하게 나을 때까지 약속을 남겼어요.'
+        question: '아버지는 돌아온 아들을 축하하며 아들의 손가락에 이것을 끼워주고 잔치를 열었어요. 아들의 귀한 신분을 되찾아 준 이것은 무엇일까요? (2글자)', 
+        answer: '반지', 
+        comment: '멋져요! 아버지는 돌아온 아들의 손가락에 반지를 끼워주며, 다시 사랑스러운 자녀의 지위를 완벽하게 세워 주었답니다!'
       }
     ];
 
@@ -439,326 +301,203 @@
     let score = 0;
     let participantName = '';
     
-    // 오렌지와 웜 선셋 느낌의 질문 테마 컬러
-    const themes = ['#f59e0b', '#d97706', '#ea580c', '#c2410c', '#9a3412'];
+    // 테마 컬러들 (주황색, 어두운 주황색, 붉은색 톤으로 변하며 따뜻함 강조)
+    const themes = ['#f59e0b', '#f97316', '#ea580c', '#e11d48', '#be123c'];
+    const decoEmojis = ['🏠', '🐖', '🫂', '👑', '🥳'];
 
-    // 효과음 오디오 엔진 (Web Audio API 활용)
-    let audioCtx = null;
-    function playChime(type) {
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        const now = audioCtx.currentTime;
-        if (type === 'correct') {
-          // 영롱하고 예쁜 실로폰 상행선 멜로디 (도-미-솔-도)
-          const notes = [523.25, 659.25, 783.99, 1046.50];
-          notes.forEach((freq, index) => {
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now + index * 0.1);
-            gainNode.gain.setValueAtTime(0.15, now + index * 0.1);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, now + index * 0.1 + 0.35);
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            osc.start(now + index * 0.1);
-            osc.stop(now + index * 0.1 + 0.4);
-          });
-        } else if (type === 'incorrect') {
-          // 따뜻하고 위로하는 듯한 하행 멜로디 (파-레)
-          const notes = [349.23, 293.66];
-          notes.forEach((freq, index) => {
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + index * 0.15);
-            gainNode.gain.setValueAtTime(0.12, now + index * 0.15);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, now + index * 0.15 + 0.3);
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            osc.start(now + index * 0.15);
-            osc.stop(now + index * 0.15 + 0.35);
-          });
-        } else if (type === 'click') {
-          // 단순하고 귀여운 버튼 터치음
-          const osc = audioCtx.createOscillator();
-          const gainNode = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(450, now);
-          gainNode.gain.setValueAtTime(0.08, now);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-          osc.connect(gainNode);
-          gainNode.connect(audioCtx.destination);
-          osc.start(now);
-          osc.stop(now + 0.15);
-        }
-      } catch (err) {
-        console.warn('Audio is not supported or needs a tap action first.');
-      }
-    }
-
-    // 커스텀 모달 노출/비노출 제어
-    function showModal() {
-      document.getElementById('custom-modal').style.display = 'flex';
-    }
-    function closeModal() {
-      playChime('click');
-      document.getElementById('custom-modal').style.display = 'none';
-    }
-
-    // 엘리먼트 가져오기
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
     const startBtn = document.getElementById('start-btn');
+    const warningBox = document.getElementById('warning-box');
     const quizArea = document.getElementById('quiz-area');
     const questionNumberEl = document.getElementById('question-number');
     const questionTextEl = document.getElementById('question-text');
     const answerAreaEl = document.getElementById('answer-area');
     const feedbackEl = document.getElementById('feedback');
     const resultEl = document.getElementById('result');
+    const progressBar = document.getElementById('progress-bar');
+    const decoEmoji = document.getElementById('deco-emoji');
 
     startBtn.addEventListener('click', startGame);
-    nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
+    nameInput.addEventListener('keydown', (e) => { 
+      if (e.key === 'Enter') startGame(); 
+    });
 
     function startGame() {
       const nameVal = nameInput.value.trim();
       if (!nameVal) { 
-        showModal(); 
+        warningBox.style.visibility = 'visible';
         return; 
       }
-      playChime('click');
+      warningBox.style.visibility = 'hidden';
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
       showQuestion();
     }
 
-    // 아기 나귀 진행 상태 업데이트 함수
-    function updateProgressRoad() {
-      const startPct = 5; 
-      const endPct = 90;
-      // 0부터 5단계까지의 비율 계산
-      const currentPct = startPct + ((endPct - startPct) / (questions.length)) * current;
-      document.getElementById('donkey-courier').style.left = `${currentPct}%`;
-
-      // 지난 마커들 체크 표시
-      for (let i = 0; i <= questions.length; i++) {
-        const marker = document.getElementById(`m${i}`);
-        if (marker) {
-          if (i <= current) {
-            marker.classList.add('active');
-          } else {
-            marker.classList.remove('active');
-          }
-        }
-      }
-    }
-
     function showQuestion() {
       feedbackEl.textContent = '';
-      updateProgressRoad();
-      
       const q = questions[current];
-      questionNumberEl.textContent = `🍀 아기 나귀 여리고 여행 | 문제 ${current + 1} / ${questions.length}`;
+      
+      // 데코 에모지 업데이트
+      decoEmoji.textContent = decoEmojis[current % decoEmojis.length];
+
+      // 진행률 표시
+      const progressPercent = (current / questions.length) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      questionNumberEl.textContent = `💛 문제 ${current + 1} / ${questions.length} 💛`;
       questionTextEl.textContent = q.question;
-      // 테마별 감성적 색상 전환
+      
+      // 질문상자 색상 테마 전환
       questionTextEl.style.backgroundColor = themes[current % themes.length];
+      questionTextEl.style.boxShadow = `0 10px 25px ${themes[current % themes.length]}3d`;
+      
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        const container = document.createElement('div');
-        container.className = 'ox-container';
-        
-        const oBtn = document.createElement('button');
-        oBtn.className = 'ox-btn';
-        oBtn.textContent = 'O';
-        oBtn.onclick = () => { playChime('click'); checkAnswer('O'); };
-        
-        const xBtn = document.createElement('button');
-        xBtn.className = 'ox-btn';
-        xBtn.textContent = 'X';
-        xBtn.onclick = () => { playChime('click'); checkAnswer('X'); };
-
-        container.appendChild(oBtn);
-        container.appendChild(xBtn);
-        answerAreaEl.appendChild(container);
-
+        createOxBtn('O'); 
+        createOxBtn('X');
       } else if (q.type === 'mcq') {
-        const container = document.createElement('div');
-        container.className = 'mcq-container';
-        
-        q.options.forEach(opt => {
-          const btn = document.createElement('button');
-          btn.className = 'mcq-btn';
-          btn.textContent = opt;
-          btn.onclick = () => { playChime('click'); checkAnswer(opt); };
-          container.appendChild(btn);
-        });
-        answerAreaEl.appendChild(container);
-
+        q.options.forEach(opt => createBtn(opt));
       } else {
-        // 단답형 및 기억절 빈칸 채우기
-        const textInput = document.createElement('input');
-        textInput.type = 'text';
-        textInput.placeholder = '여기에 정답을 적어보세요!';
-        answerAreaEl.appendChild(textInput);
-        answerAreaEl.appendChild(document.createElement('br'));
-        
+        const inputContainer = document.createElement('div');
+        inputContainer.style.width = '100%';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = '정답을 적어보세요!';
+        inputContainer.appendChild(input);
+
         const submitBtn = document.createElement('button');
-        submitBtn.className = 'action-btn';
-        submitBtn.style.padding = '12px 40px';
-        submitBtn.textContent = '정답 확인하기! 🔍';
-        submitBtn.onclick = () => { playChime('click'); checkAnswer(textInput.value); };
-        
-        answerAreaEl.appendChild(submitBtn);
-        textInput.focus();
-        textInput.onkeydown = (e) => { 
-          if(e.key === 'Enter') {
-            playChime('click');
-            checkAnswer(textInput.value); 
-          }
-        };
+        submitBtn.textContent = '확인 완료 ✨';
+        submitBtn.style.backgroundColor = '#ea580c';
+        submitBtn.style.color = '#fff';
+        submitBtn.style.boxShadow = '0 5px 0 #9a3412';
+        submitBtn.onclick = () => checkAnswer(input.value);
+        inputContainer.appendChild(submitBtn);
+
+        answerAreaEl.appendChild(inputContainer);
+        input.focus();
+        input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
       }
     }
 
-    // 예쁘게 터지는 오색 꽃가루 이펙트
-    function explodeConfetti() {
-      const colors = ['#f59e0b', '#fbbf24', '#f43f5e', '#ec4899', '#3b82f6', '#10b981'];
-      const container = document.getElementById('quiz-container');
-      const containerRect = container.getBoundingClientRect();
+    function createBtn(text) {
+      const btn = document.createElement('button');
+      btn.textContent = text;
+      btn.style.width = '100%';
+      btn.style.maxWidth = '400px';
+      btn.style.display = 'block';
+      btn.style.margin = '10px auto';
+      btn.onclick = () => checkAnswer(text);
+      answerAreaEl.appendChild(btn);
+    }
 
-      for (let i = 0; i < 40; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        // 정중앙 위치 기준 파티클 발산 위치
-        particle.style.left = '50%';
-        particle.style.top = '70%';
-        
-        // 발산 거리 랜덤 조정
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 80 + Math.random() * 150;
-        const mx = Math.cos(angle) * speed;
-        const my = Math.sin(angle) * speed;
-        
-        particle.style.setProperty('--mx', `${mx}px`);
-        particle.style.setProperty('--my', `${my}px`);
-        
-        container.appendChild(particle);
-        
-        // 애니메이션 끝나면 자가 파괴
-        setTimeout(() => {
-          particle.remove();
-        }, 800);
+    function createOxBtn(text) {
+      const btn = document.createElement('button');
+      btn.textContent = text;
+      btn.className = 'ox-btn';
+      if (text === 'O') {
+        btn.style.color = '#15803d';
+        btn.style.backgroundColor = '#f0fdf4';
+      } else {
+        btn.style.color = '#b91c1c';
+        btn.style.backgroundColor = '#fef2f2';
       }
+      btn.onclick = () => checkAnswer(text);
+      answerAreaEl.appendChild(btn);
     }
 
     function checkAnswer(userAns) {
-      // 이미 정답이 판명된 경우 중복 응답 방지
-      if (feedbackEl.querySelector('.next-btn')) return;
+      if(answerAreaEl.querySelector('.next-btn')) return; // 이미 답을 골랐다면 무시
       const q = questions[current];
       let isCorrect = false;
 
-      // 정답 단순 정규화 매칭
       if (q.type === 'mcq') {
         isCorrect = (userAns === q.answer);
-      } else if (q.type === 'short' || q.type === 'fill') {
-        // 공백 및 기호 제거 비교를 포용적으로 설정
-        isCorrect = normalize(userAns).includes(normalize(q.answer)) || normalize(q.answer).includes(normalize(userAns));
+      } else if (q.type === 'short') {
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
       } else {
-        isCorrect = (normalize(userAns) === normalize(q.answer));
+        isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
-      // 비활성화 및 마킹
+      // 비활성화 처리
       const buttons = answerAreaEl.querySelectorAll('button');
-      buttons.forEach(btn => btn.disabled = true);
-      const inputs = answerAreaEl.querySelectorAll('input');
-      inputs.forEach(inp => inp.disabled = true);
+      buttons.forEach(btn => {
+        if (!btn.classList.contains('next-btn')) btn.disabled = true;
+      });
+      const input = answerAreaEl.querySelector('input');
+      if (input) input.disabled = true;
 
       if (isCorrect) {
-        playChime('correct');
-        explodeConfetti();
-        feedbackEl.innerHTML = "<div style='color:#065f46; font-size: 28px; font-weight: 900; margin-bottom: 5px;'>참 잘했어요! 대단해요 ⭕</div>";
+        feedbackEl.innerHTML = "<div style='color:#15803d; font-size: 30px; margin-bottom: 5px;'>우와! 맞았어요! ⭕</div>";
         score++;
       } else {
-        playChime('incorrect');
-        feedbackEl.innerHTML = `<div style='color:#b91c1c; font-size: 26px; font-weight: 900; margin-bottom: 5px;'>아쉽군요! 괜찮아요 ❌<br><span style='font-size:20px; color:#c2410c;'>정답은 [${q.answer}] 입니다.</span></div>`;
+        feedbackEl.innerHTML = `<div style='color:#b91c1c; font-size: 26px; margin-bottom: 5px;'>정답은 [ <span style="font-weight: 900;">${q.answer}</span> ] 이에요! ❌</div>`;
       }
       
-      // 알기 쉽고 풍부한 어린이 눈높이 해설 카드 추가
       const commentDiv = document.createElement('div');
-      commentDiv.className = 'comment-card';
+      commentDiv.className = 'feedback-comment';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
-      // 다음 문제로 넘어가는 귀여운 버튼 생성
       const nextBtn = document.createElement('button');
-      nextBtn.className = 'next-btn action-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '내 성적표 보기 🏆' : '다음 정거장으로 ▶';
-      nextBtn.style.marginTop = '20px';
-      nextBtn.style.padding = '15px 35px';
-      nextBtn.style.fontSize = '21px';
+      nextBtn.className = 'next-btn';
+      nextBtn.textContent = (current === questions.length - 1) ? '내 점수 확인하기 🎉' : '다음 문제 고고! ▶';
+      nextBtn.style.marginTop = '25px';
       nextBtn.onclick = () => {
-        playChime('click');
         if (current === questions.length - 1) {
           showResult();
-        } else {
-          current++;
-          showQuestion();
+        } else { 
+          current++; 
+          showQuestion(); 
         }
       };
-      
       feedbackEl.appendChild(document.createElement('br'));
       feedbackEl.appendChild(nextBtn);
+      
+      // 모바일 화면을 위해 결과 확인/다음버튼 쪽으로 자동 스크롤
+      setTimeout(() => {
+        nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
     }
 
     function showResult() {
+      // 마지막 문제에서 100% 진행바 완료 표시
+      progressBar.style.width = '100%';
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-
-      // 꼬마 나귀가 끝인 여리고(🌴) 위치에 완벽히 다다름을 마킹
-      current = questions.length;
+      decoEmoji.textContent = '👑';
       
-      let badgeEmoji = "⭐";
       let message = "";
+      let medalEmoji = "⭐";
       
       if (score === questions.length) {
-        badgeEmoji = "👑";
-        message = `정말 놀랍고 놀라운 영생의 이웃 지킴이! 오늘 배운 말씀 그대로 나의 도움이 필요한 소중한 이웃들을 먼저 다정히 도와주는 멋진 이웃이 되어 주실거죠? 최고예요!`;
+        message = "대단해요! 최고의 성경 백점 박사님이군요! 💯";
+        medalEmoji = "👑";
       } else if (score >= 3) {
-        badgeEmoji = "🎖️";
-        message = `우와! 퀴즈를 이렇게나 잘 풀다니 정말 성경 박사님이시네요! 다치거나 속상한 친구가 주위에 있다면 사마리아인처럼 따뜻하게 손을 내밀어 주는 어린이가 되어 봐요!`;
+        message = "최고예요! 하나님 말씀에 귀를 쫑긋 기울였군요! 👍";
+        medalEmoji = "🏅";
       } else {
-        badgeEmoji = "🧡";
-        message = `퀴즈를 열심히 풀어 준 수고를 아주아주 칭찬해요! 성경 이야기가 기억나지 않아도 괜찮아요. 한 번 더 놀다 보면 어느새 정답을 더 많이 맞힐 수 있을 거예요!`;
+        message = "참 잘했어요! 다음 시간에 선생님이랑 더 기쁘게 예배드려요! 💖";
+        medalEmoji = "✨";
       }
 
       resultEl.innerHTML = `
-        <h2 style="font-size: 32px; color: #b45309; margin-bottom: 10px;">✨ 퀴즈 여정 완료! ✨</h2>
-        <div style="font-size: 70px; margin: 15px 0; animation: bounce 1s infinite alternate;">${badgeEmoji}</div>
-        <p style="font-size: 24px; font-weight: bold; color: #7c2d12; margin: 5px 0;">이웃 지킴이: ${participantName} 어린이</p>
-        
-        <div style="background: #fffbeb; padding: 20px; border-radius: 20px; border: 2px dashed #f59e0b; margin: 25px 0;">
-          <p style="margin: 0; font-size: 20px; color: #451a03;">성경 퀴즈 점수</p>
-          <p style="margin: 5px 0 0 0; font-size: 48px; font-weight: 900; color: #ea580c;">${score} / ${questions.length}점</p>
-        </div>
-        
-        <p style="font-size: 17px; line-height: 1.6; color: #7c2d12; font-weight: bold; margin-bottom: 30px; word-break: keep-all;">
-          ${message}
-        </p>
-        
-        <button onclick="location.reload()" class="action-btn" style="width: 90%; padding: 15px; font-size: 20px;">
-          🏡 처음으로 돌아가기
-        </button>
+        <h2 style="color: #ea580c; font-size: 52px; margin-bottom: 5px;">축하해요!</h2>
+        <div style="font-size: 24px; color: #7c2d12; font-weight: bold; margin-bottom: 15px;">🎉 ${participantName} 어린이 🎉</div>
+        <div style="font-size: 70px; margin: 15px 0;">${medalEmoji}</div>
+        <p style="font-size: 18px; margin: 5px 0;">아버지가 돌아온 아들을 가득 안아준 것처럼,</p>
+        <p style="font-size: 18px; margin: 5px 0; font-weight: bold; color:#7c2d12;">하나님 아버지는 우리 어린이를 너무나 사랑하세요!</p>
+        <p style="margin-top: 25px; font-size: 20px;">맞춘 문제 개수:</p>
+        <p><span style="color:#ea580c; font-size:55px; font-weight:900;">${score}</span> <span style="font-size:24px;">/ ${questions.length}</span></p>
+        <p style="font-weight:bold; color: #431407; font-size: 20px; word-break:keep-all; padding: 0 10px;">${message}</p>
+        <button onclick="location.reload()" style="background-color: #ffedd5; box-shadow: 0 5px 0 #fed7aa; margin-top: 20px;">한 번 더 도전하기 🔄</button>
       `;
     }
 
-    // 공백, 한글 특수문자, 대소문자를 친절하게 가다듬는 보정 함수
     function normalize(str) {
       if (!str) return '';
       return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

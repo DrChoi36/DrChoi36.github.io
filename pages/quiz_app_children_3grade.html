@@ -3,333 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 - 11과</title>
+  <title>유년반 성경 퀴즈 (12과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Comic+Neue:wght@700&display=swap');
     
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Noto Sans KR', sans-serif; 
-      background: #fffbeb; /* 따뜻하고 온화한 베이지/옐로우 톤 */
+      font-family: 'Comic Sans MS', 'Comic Neue', 'Nanum Pen Script', sans-serif; 
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); /* 신랑을 기다리는 밤하늘 테마 */
       display: flex; justify-content: center; align-items: center; 
-      min-height: 100vh; font-size: 20px;
+      min-height: 100vh; font-size: 22px; 
+      color: #f8fafc;
       overflow-x: hidden;
     }
 
+    /* 별빛 배경 연출 */
+    .stars {
+      position: absolute; width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+      background-size: 550px 550px, 350px 350px, 250px 250px;
+      background-position: 0 0, 40px 60px, 130px 270px;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
     #quiz-container { 
-      width: 90%; 
-      max-width: 550px; 
-      text-align: center; 
-      padding-bottom: 50px;
       position: relative;
-    }
-
-    /* 상단 장식 이모지 */
-    .top-deco {
-      font-size: 50px;
-      margin-bottom: -15px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(5deg); }
+      width: 90%; max-width: 600px; 
+      text-align: center; 
+      padding-bottom: 60px; 
+      z-index: 10;
     }
 
     .question-box, .input-box { 
-      padding: 35px 25px; 
-      border-radius: 30px; 
+      padding: 30px; 
+      border-radius: 24px; 
       color: #fff; 
-      background-color: #f59e0b; /* 따뜻한 아빠 품 같은 오렌지 골드 */
-      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
+      background-color: rgba(30, 58, 138, 0.85); /* 깊은 밤하늘색 */
+      box-shadow: 0 8px 32px rgba(251, 191, 36, 0.15); /* 은은한 등불 노란빛 광채 */
+      border: 3px solid #fbbf24; /* 등불 노란색 테두리 */
       line-height: 1.6;
-      border: 5px solid #fff;
-      transition: all 0.3s ease;
-    }
-
-    /* 카드 둥글게 스무스한 움직임 */
-    .question-box {
-      font-size: 22px;
-      font-weight: 700;
-      word-break: keep-all;
+      backdrop-filter: blur(4px);
     }
 
     h2 {
-      font-family: 'Nanum Pen Script', cursive;
-      font-size: 48px;
-      margin: 10px 0;
-      text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
-      letter-spacing: 1px;
+      color: #fbbf24;
+      font-size: 32px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
     }
 
-    .sub-title {
-      font-size: 18px;
-      background: rgba(255,255,255,0.25);
-      display: inline-block;
-      padding: 4px 15px;
-      border-radius: 20px;
-      margin-top: -5px;
+    .subtitle {
+      font-size: 20px;
+      color: #cbd5e1;
       margin-bottom: 20px;
-      font-weight: bold;
     }
 
     button { 
-      margin: 8px; 
-      padding: 16px 28px; 
-      font-size: 20px; 
-      font-weight: bold;
-      border: none; 
-      border-radius: 20px; 
-      cursor: pointer; 
-      background-color: #fff; 
-      color: #7c2d12; /* 깊고 따뜻한 브라운 */
-      box-shadow: 0 5px 0 #fddf9e;
-      transition: all 0.1s ease;
-      font-family: 'Noto Sans KR', sans-serif;
+      margin: 10px; padding: 15px 25px; font-size: 20px; 
+      border: none; border-radius: 16px; cursor: pointer; 
+      background-color: #ffffff; color: #1e1b4b; font-weight: bold;
+      box-shadow: 0 4px 0 #d1d5db;
+      transition: all 0.2s ease;
     }
-    button:active { 
-      transform: translateY(4px); 
-      box-shadow: 0 1px 0 #fddf9e; 
-    }
-    button:hover { 
-      background-color: #fffbeb; 
-    }
-    button:disabled { 
-      opacity: 0.6; 
-      cursor: not-allowed; 
-    }
+    button:active { transform: translateY(4px); box-shadow: none; }
+    button:hover { background-color: #fef3c7; color: #78350f; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    /* O/X 전용 왕 버튼 */
-    .ox-btn {
-      width: 120px;
-      height: 120px;
-      font-size: 50px;
-      border-radius: 50% !important;
-      margin: 15px !important;
-      box-shadow: 0 8px 0 #fddf9e;
+    /* 다음 단계/결과보기 큰 버튼 전용 */
+    .next-btn {
+      background-color: #f59e0b !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 0 #b45309 !important;
     }
-    .ox-btn:active {
-      transform: translateY(6px);
-      box-shadow: 0 2px 0 #fddf9e;
+    .next-btn:hover {
+      background-color: #fbbf24 !important;
     }
 
     input[type="text"] { 
-      padding: 14px; 
-      font-size: 22px; 
-      border-radius: 18px; 
-      border: 3px solid #f59e0b; 
-      width: 85%; 
-      text-align: center; 
+      padding: 12px; font-size: 22px; border-radius: 14px; 
+      border: 3px solid #fbbf24; width: 80%; text-align: center; 
       margin-bottom: 15px; 
-      outline: none;
-      transition: border-color 0.2s;
-      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
     }
     input[type="text"]:focus {
-      border-color: #ea580c;
-      box-shadow: 0 0 10px rgba(234, 88, 12, 0.2);
+      outline: none;
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
     }
 
-    /* 커스텀 에러 알림창 */
-    #warning-box {
-      color: #ef4444;
+    .warning-msg {
+      color: #f87171;
       font-size: 16px;
+      margin-bottom: 15px;
+      display: none;
       font-weight: bold;
-      margin-top: 5px;
-      height: 24px;
-      visibility: hidden;
     }
 
     #result { 
-      font-size: 22px; 
-      margin-top: 30px; 
-      color: #431407; 
-      background: #fff; 
-      padding: 40px 30px; 
-      border-radius: 30px; 
-      border: 6px dashed #f59e0b;
-      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15);
-      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 24px; margin-top: 30px; color: #fff; 
+      background: rgba(15, 23, 42, 0.9); padding: 30px; border-radius: 24px; 
+      border: 5px solid #fbbf24;
+      box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3);
     }
-
-    @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    #feedback { 
-      min-height: 40px; 
-      margin-top: 25px; 
-      font-size: 24px; 
-      font-weight: bold; 
-    }
-
-    .feedback-comment {
-      font-size: 18px;
-      color: #4b5563;
-      margin-top: 12px;
-      background: #fff;
-      padding: 15px 20px;
-      border-radius: 18px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      line-height: 1.5;
-      font-weight: normal;
-      word-break: keep-all;
-    }
-
-    /* 다음버튼 스타일 */
-    .next-btn {
-      background-color: #ea580c !important;
-      color: #fff !important;
-      box-shadow: 0 5px 0 #b45309 !important;
-      padding: 15px 40px !important;
-      border-radius: 25px !important;
-    }
-    .next-btn:active {
-      box-shadow: 0 1px 0 #b45309 !important;
-    }
-
-    /* 진행 바 */
-    #progress-container {
-      width: 100%;
-      height: 10px;
-      background-color: #ffedd5;
-      border-radius: 5px;
-      margin-bottom: 25px;
-      overflow: hidden;
-    }
-    #progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #f59e0b, #ea580c);
-      border-radius: 5px;
-      transition: width 0.3s ease;
-    }
+    #feedback { min-height: 40px; margin-top: 20px; font-size: 26px; font-weight: bold; }
 
     #footer {
-      position: fixed;
-      bottom: 15px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 13px;
-      color: #b45309;
-      opacity: 0.7;
-      pointer-events: none;
-      font-weight: bold;
+      position: fixed; bottom: 10px; left: 0; width: 100%;
+      text-align: center; font-size: 14px; color: #64748b; pointer-events: none;
+      z-index: 5;
+    }
+
+    /* 등불 아이콘 흔들리는 효과 */
+    .lamp-icon {
+      font-size: 45px;
+      display: inline-block;
+      animation: sway 3s ease-in-out infinite alternate;
+      transform-origin: top center;
+    }
+    @keyframes sway {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
     }
   </style>
 </head>
 <body>
 
-  <div id="quiz-container">
-    <div class="top-deco" id="deco-emoji">🏠</div>
+  <div class="stars"></div>
 
-    <!-- 이름 입력 영역 -->
+  <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈</h2>
-      <div class="sub-title">제 11과: 다시 집으로</div>
-      <p style="font-size: 19px; margin-bottom: 25px; font-weight: bold;">사랑이 가득한 하나님의 품으로 돌아온 아들 이야기!</p>
-      <p style="font-size: 17px; margin-bottom: 10px;">우리 어린이의 이름을 가르쳐주세요 ✏️</p>
-      <input type="text" id="name-input" placeholder="이름을 입력해요" maxlength="10" />
-      <div id="warning-box">앗! 이름을 꼭 써주세요! 🙏</div>
-      <button id="start-btn" style="background-color: #fffbeb;">퀴즈 출발! ▶</button>
+      <div class="lamp-icon">🕯️</div>
+      <h2>유년반 성경퀴즈 12과</h2>
+      <div class="subtitle">준비가 되었나? (마태복음 25장)</div>
+      <p style="font-size: 18px; color: #e2e8f0; line-height: 1.5;">
+        "어두운 밤, 신랑을 기다리는 등잔의 기름을 든든하게 준비해 보아요! 이름은 무엇인가요?"
+      </p>
+      <input type="text" id="name-input" placeholder="이름을 적어주세요 (예: 은찬)" maxlength="10"/>
+      <div id="name-warning" class="warning-msg">이름을 알려주시면 등불 퀴즈를 환하게 켤 수 있어요! 😊</div>
+      <br>
+      <button id="start-btn">등불 밝히고 시작하기 🕯️</button>
     </div>
 
-    <!-- 퀴즈 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="progress-container">
-        <div id="progress-bar"></div>
-      </div>
-      <div id="question-number" style="font-size: 18px; color: #7c2d12; font-weight: bold; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 18px; color: #cbd5e1; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 25px;"></div>
+      <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
     </div>
 
-    <!-- 결과 화면 -->
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 11과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 12과</div>
 
   <script>
     'use strict';
 
-    // 11과 "다시 집으로" 맞춤형 질문 리스트 (총 5문제)
+    // 12과 '준비가 되었나?' 성경 내용에 딱 맞춘 5문제
     const questions = [
       { 
         type: 'ox',   
-        question: '둘째 아들이 아버지의 돈을 모두 마구 쓰고 굶주리게 되었을 때, 아버지는 아들을 잊어버리고 미워하셨을까요?', 
-        answer: 'X',
-        comment: '맞아요! 아버지는 둘째 아들이 큰 잘못을 저질렀음에도 불구하고, 미워하지 않고 아들이 돌아오기를 매일매일 간절히 기다리셨답니다.'
+        question: '결혼식을 기다리던 열 명의 처녀들은 신랑이 늦게 오자 모두 졸려서 잠이 들었어요.', 
+        answer: 'O',
+        comment: '맞아요! 신랑이 생각보다 너무 늦게 와서 모든 처녀가 깜빡 잠이 들어 버렸답니다. ⏰'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "이 내 아들은 (      )다가 다시 살아났으며 내가 잃었다가 다시 얻었노라 하니" (누가복음 15:24)', 
-        answer: '죽었',
-        comment: '참 잘했어요! "이 내 아들은 죽었다가 다시 살아났으며 내가 잃었다가 다시 얻었노라"라는 말씀처럼, 아버지는 돌아온 아들을 죽었다 살아난 것처럼 기뻐하셨어요.'
+        question: '기억절: "그런즉 (      ) 있으라 너희는 그 날과 그 때를 알지 못하느니라" (마태복음 25:13)', 
+        answer: '깨어',
+        comment: '와, 정답이에요! 신랑이 언제 오더라도 맞이할 수 있도록 우리는 매일 믿음으로 "깨어" 있어야 해요. ✨'
       },
       { 
         type: 'mcq',  
-        question: '돈을 다 낭비하고 몹시 배가 고팠던 둘째 아들은, 마침내 어떤 동물이 먹는 음식을 너무나 먹고 싶어 했나요?', 
-        options: ['양의 부드러운 풀', '꿀꿀 돼지의 먹이 (쥐엄열매)', '짹짹 참새의 모이', '말이 먹는 볏짚'], 
-        answer: '꿀꿀 돼지의 먹이 (쥐엄열매)',
-        comment: '딩동댕! 둘째 아들은 돼지가 먹는 쥐엄열매라도 배불리 먹고 싶을 정도로 아주 힘들고 배고픈 상태였어요.'
+        question: '등불을 오랫동안 켤 수 있도록 여분의 그릇에 기름을 미리 든든히 준비한 지혜로운 처녀는 몇 명이었나요?', 
+        options: ['A. 2명', 'B. 5명', 'C. 7명', 'D. 10명'], 
+        answer: 'B. 5명',
+        comment: '정답이에요! 슬기로운 다섯 명의 처녀는 여분의 그릇에 기름을 잘 챙겨 두어 신랑을 잘 맞이할 수 있었어요! 🍯'
       },
       { 
         type: 'mcq',  
-        question: '아들이 집으로 터덜터덜 돌아올 때, 저 멀리서 아들을 알아본 아버지는 어떻게 하셨나요?', 
-        options: ['화가 나서 문을 쾅 닫으셨어요', '누구냐며 모른 척 지나치셨어요', '힘껏 달려가서 아들을 꼭 껴안아 주셨어요', '왜 이제야 왔냐고 무섭게 혼내셨어요'], 
-        answer: '힘껏 달려가서 아들을 꼭 껴안아 주셨어요',
-        comment: '정답이에요! 아버지는 아들을 보자마자 너무나 기쁜 마음으로 달려가 아들을 꼭 안고 기쁨의 눈물을 흘렸어요.'
+        question: '교과 공부 월요일 편에 의하면, 어두운 세상을 비추는 등불 안의 \'기름\'은 누구를 상징하나요?', 
+        options: ['A. 성령 하나님', 'B. 맛있는 과일', 'C. 화려한 옷', 'D. 반짝이는 보석'], 
+        answer: 'A. 성령 하나님',
+        comment: '우와, 대단해요! 마음속 등불의 기름은 바로 우리를 기도의 자리로 이끄시는 성령 하나님을 상징한답니다. 🔥'
       },
       { 
         type: 'short',
-        question: '아버지는 돌아온 아들을 축하하며 아들의 손가락에 이것을 끼워주고 잔치를 열었어요. 아들의 귀한 신분을 되찾아 준 이것은 무엇일까요? (2글자)', 
-        answer: '반지', 
-        comment: '멋져요! 아버지는 돌아온 아들의 손가락에 반지를 끼워주며, 다시 사랑스러운 자녀의 지위를 완벽하게 세워 주었답니다!'
+        question: '기름을 미리 사놓지 못해 한밤중에 허둥지둥 기름을 사러 나갔던 처녀들이 돌아왔을 때, 이미 결혼식장의 문을 굳게 닫은 주인공은 누구였나요? (2글자)', 
+        answer: '신랑', 
+        comment: '맞아요! 신랑이 도착해 결혼식 문이 완전히 잠긴 후에는 들어갈 수 없었어요. 우리 모두 예수님을 미리 기쁘게 맞이할 준비를 해요! 👑'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    
-    // 테마 컬러들 (주황색, 어두운 주황색, 붉은색 톤으로 변하며 따뜻함 강조)
-    const themes = ['#f59e0b', '#f97316', '#ea580c', '#e11d48', '#be123c'];
-    const decoEmojis = ['🏠', '🐖', '🫂', '👑', '🥳'];
+    // 테마색상: 조금씩 변하는 등불 밝기의 밤하늘 노란 그라데이션 광채 반영
+    const themes = ['#1e3a8a', '#1e1b4b', '#2e1065', '#3b0764', '#0f172a'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
     const startBtn = document.getElementById('start-btn');
-    const warningBox = document.getElementById('warning-box');
+    const nameWarning = document.getElementById('name-warning');
     const quizArea = document.getElementById('quiz-area');
     const questionNumberEl = document.getElementById('question-number');
     const questionTextEl = document.getElementById('question-text');
     const answerAreaEl = document.getElementById('answer-area');
     const feedbackEl = document.getElementById('feedback');
     const resultEl = document.getElementById('result');
-    const progressBar = document.getElementById('progress-bar');
-    const decoEmoji = document.getElementById('deco-emoji');
 
     startBtn.addEventListener('click', startGame);
-    nameInput.addEventListener('keydown', (e) => { 
-      if (e.key === 'Enter') startGame(); 
-    });
+    nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
 
     function startGame() {
       const nameVal = nameInput.value.trim();
       if (!nameVal) { 
-        warningBox.style.visibility = 'visible';
+        nameWarning.style.display = 'block'; 
         return; 
       }
-      warningBox.style.visibility = 'hidden';
+      nameWarning.style.display = 'none';
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -339,46 +236,28 @@
     function showQuestion() {
       feedbackEl.textContent = '';
       const q = questions[current];
-      
-      // 데코 에모지 업데이트
-      decoEmoji.textContent = decoEmojis[current % decoEmojis.length];
-
-      // 진행률 표시
-      const progressPercent = (current / questions.length) * 100;
-      progressBar.style.width = `${progressPercent}%`;
-
-      questionNumberEl.textContent = `💛 문제 ${current + 1} / ${questions.length} 💛`;
+      questionNumberEl.textContent = `⭐ 문제 ${current + 1} / ${questions.length} ⭐`;
       questionTextEl.textContent = q.question;
-      
-      // 질문상자 색상 테마 전환
       questionTextEl.style.backgroundColor = themes[current % themes.length];
-      questionTextEl.style.boxShadow = `0 10px 25px ${themes[current % themes.length]}3d`;
-      
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        createOxBtn('O'); 
-        createOxBtn('X');
+        createBtn('O'); createBtn('X');
       } else if (q.type === 'mcq') {
         q.options.forEach(opt => createBtn(opt));
       } else {
-        const inputContainer = document.createElement('div');
-        inputContainer.style.width = '100%';
-
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = '정답을 적어보세요!';
-        inputContainer.appendChild(input);
-
+        input.placeholder = '예배당 정답을 적어보세요';
+        answerAreaEl.appendChild(input);
+        
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '확인 완료 ✨';
-        submitBtn.style.backgroundColor = '#ea580c';
-        submitBtn.style.color = '#fff';
-        submitBtn.style.boxShadow = '0 5px 0 #9a3412';
+        submitBtn.textContent = '정답 확인 ✔';
+        submitBtn.className = 'next-btn';
+        submitBtn.style.marginLeft = '10px';
         submitBtn.onclick = () => checkAnswer(input.value);
-        inputContainer.appendChild(submitBtn);
-
-        answerAreaEl.appendChild(inputContainer);
+        answerAreaEl.appendChild(submitBtn);
+        
         input.focus();
         input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
       }
@@ -387,31 +266,14 @@
     function createBtn(text) {
       const btn = document.createElement('button');
       btn.textContent = text;
-      btn.style.width = '100%';
-      btn.style.maxWidth = '400px';
-      btn.style.display = 'block';
-      btn.style.margin = '10px auto';
-      btn.onclick = () => checkAnswer(text);
-      answerAreaEl.appendChild(btn);
-    }
-
-    function createOxBtn(text) {
-      const btn = document.createElement('button');
-      btn.textContent = text;
-      btn.className = 'ox-btn';
-      if (text === 'O') {
-        btn.style.color = '#15803d';
-        btn.style.backgroundColor = '#f0fdf4';
-      } else {
-        btn.style.color = '#b91c1c';
-        btn.style.backgroundColor = '#fef2f2';
-      }
       btn.onclick = () => checkAnswer(text);
       answerAreaEl.appendChild(btn);
     }
 
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return; // 이미 답을 골랐다면 무시
+      if(answerAreaEl.querySelector('.next-btn') && questions[current].type !== 'short' && questions[current].type !== 'fill') return;
+      if(feedbackEl.textContent !== '') return; // 이미 답을 체크했으면 중복 실행 방지
+      
       const q = questions[current];
       let isCorrect = false;
 
@@ -423,78 +285,47 @@
         isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
-      // 비활성화 처리
-      const buttons = answerAreaEl.querySelectorAll('button');
-      buttons.forEach(btn => {
-        if (!btn.classList.contains('next-btn')) btn.disabled = true;
-      });
-      const input = answerAreaEl.querySelector('input');
-      if (input) input.disabled = true;
-
       if (isCorrect) {
-        feedbackEl.innerHTML = "<div style='color:#15803d; font-size: 30px; margin-bottom: 5px;'>우와! 맞았어요! ⭕</div>";
+        feedbackEl.innerHTML = "<span style='color:#fbbf24; text-shadow: 0 0 8px rgba(251,191,36,0.5);'>우와! 정말 대단해요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<div style='color:#b91c1c; font-size: 26px; margin-bottom: 5px;'>정답은 [ <span style="font-weight: 900;">${q.answer}</span> ] 이에요! ❌</div>`;
+        feedbackEl.innerHTML = `<span style='color:#f87171;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
-      commentDiv.className = 'feedback-comment';
+      commentDiv.style.fontSize = '18px';
+      commentDiv.style.color = '#cbd5e1';
+      commentDiv.style.marginTop = '12px';
+      commentDiv.style.lineHeight = '1.5';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '내 점수 확인하기 🎉' : '다음 문제 고고! ▶';
-      nextBtn.style.marginTop = '25px';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하러 가기 🏆' : '다음 등불 밝히기 ▶';
+      nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
-        if (current === questions.length - 1) {
-          showResult();
-        } else { 
-          current++; 
-          showQuestion(); 
-        }
+        if (current === questions.length - 1) showResult();
+        else { current++; showQuestion(); }
       };
       feedbackEl.appendChild(document.createElement('br'));
       feedbackEl.appendChild(nextBtn);
-      
-      // 모바일 화면을 위해 결과 확인/다음버튼 쪽으로 자동 스크롤
-      setTimeout(() => {
-        nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
     }
 
     function showResult() {
-      // 마지막 문제에서 100% 진행바 완료 표시
-      progressBar.style.width = '100%';
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      decoEmoji.textContent = '👑';
+      let message = score === questions.length 
+        ? "대단해요! 등불을 환하게 밝힌 최고의 성경 박사님이군요! 🌟" 
+        : "예수님을 사랑하는 예쁜 마음이 가득해요! 다음 교과도 즐겁게 공부해요! 🙌";
       
-      let message = "";
-      let medalEmoji = "⭐";
-      
-      if (score === questions.length) {
-        message = "대단해요! 최고의 성경 백점 박사님이군요! 💯";
-        medalEmoji = "👑";
-      } else if (score >= 3) {
-        message = "최고예요! 하나님 말씀에 귀를 쫑긋 기울였군요! 👍";
-        medalEmoji = "🏅";
-      } else {
-        message = "참 잘했어요! 다음 시간에 선생님이랑 더 기쁘게 예배드려요! 💖";
-        medalEmoji = "✨";
-      }
-
       resultEl.innerHTML = `
-        <h2 style="color: #ea580c; font-size: 52px; margin-bottom: 5px;">축하해요!</h2>
-        <div style="font-size: 24px; color: #7c2d12; font-weight: bold; margin-bottom: 15px;">🎉 ${participantName} 어린이 🎉</div>
-        <div style="font-size: 70px; margin: 15px 0;">${medalEmoji}</div>
-        <p style="font-size: 18px; margin: 5px 0;">아버지가 돌아온 아들을 가득 안아준 것처럼,</p>
-        <p style="font-size: 18px; margin: 5px 0; font-weight: bold; color:#7c2d12;">하나님 아버지는 우리 어린이를 너무나 사랑하세요!</p>
-        <p style="margin-top: 25px; font-size: 20px;">맞춘 문제 개수:</p>
-        <p><span style="color:#ea580c; font-size:55px; font-weight:900;">${score}</span> <span style="font-size:24px;">/ ${questions.length}</span></p>
-        <p style="font-weight:bold; color: #431407; font-size: 20px; word-break:keep-all; padding: 0 10px;">${message}</p>
-        <button onclick="location.reload()" style="background-color: #ffedd5; box-shadow: 0 5px 0 #fed7aa; margin-top: 20px;">한 번 더 도전하기 🔄</button>
+        <h2>축하해요, ${participantName} 어린이!</h2>
+        <div class="lamp-icon" style="font-size: 70px; margin: 20px 0;">🕯️✨</div>
+        <p>우리 어린이의 12과 성경 등불지수는</p>
+        <p><span style="color:#fbbf24; font-size:50px; font-weight:bold;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; font-size:20px; color:#e2e8f0; line-height: 1.6; padding:0 10px;">${message}</p>
+        <button onclick="location.reload()" style="margin-top: 15px;">다시 기쁘게 도전하기 🔄</button>
       `;
     }
 

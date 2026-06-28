@@ -1,53 +1,239 @@
-body { 
-  margin: 0; padding: 0; 
-  font-family: 'Comic Sans MS', 'Comic Neue', 'Nanum Gothic', sans-serif; 
-  background: #f0f9ff; /* 1과 테마: 맑은 갈릴리 호수를 상징하는 연하늘색 */
-  display: flex; justify-content: center; align-items: center; 
-  min-height: 100vh; font-size: 24px; 
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>유년반 성경퀴즈 1과 (고기잡이)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    
+    body { 
+      margin: 0; padding: 0; 
+      font-family: 'Comic Sans MS', 'Comic Neue', 'Malgun Gothic', sans-serif; 
+      background: #f0f9ff; /* 1과 테마: 갈릴리 호수를 상징하는 싱그러운 하늘/바다색 */
+      display: flex; justify-content: center; align-items: center; 
+      min-height: 100vh; font-size: 24px; 
+    }
 
-#quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
+    #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
-.question-box, .input-box { 
-  padding: 30px; border-radius: 15px; color: #fff; 
-  background-color: #0284c7; /* 시원한 바다 파란색 */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  line-height: 1.5;
-}
+    .question-box, .input-box { 
+      padding: 30px; border-radius: 15px; color: #fff; 
+      background-color: #0284c7; /* 시원한 푸른 바다색 */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      line-height: 1.5;
+    }
 
-button { 
-  margin: 10px; padding: 15px 30px; font-size: 22px; 
-  border: none; border-radius: 12px; cursor: pointer; 
-  background-color: #fff; color: #333; font-weight: bold;
-  box-shadow: 0 3px 0 #cbd5e1;
-}
-button:active { transform: translateY(3px); box-shadow: none; }
-button:hover { background-color: #e0f2fe; }
-button:disabled { opacity: 0.6; cursor: not-allowed; }
+    button { 
+      margin: 10px; padding: 15px 30px; font-size: 22px; 
+      border: none; border-radius: 12px; cursor: pointer; 
+      background-color: #fff; color: #333; font-weight: bold;
+      box-shadow: 0 3px 0 #ddd;
+    }
+    button:active { transform: translateY(3px); box-shadow: none; }
+    button:hover { background-color: #e0f2fe; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-input[type="text"] { 
-  padding: 12px; font-size: 24px; border-radius: 10px; 
-  border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
-}
+    input[type="text"] { 
+      padding: 12px; font-size: 24px; border-radius: 10px; 
+      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
+    }
 
-#result { 
-  font-size: 28px; margin-top: 30px; color: #333; 
-  background: #fff; padding: 30px; border-radius: 20px; 
-  border: 5px solid #0284c7;
-}
-#feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
+    #result { 
+      font-size: 28px; margin-top: 30px; color: #333; 
+      background: #fff; padding: 30px; border-radius: 20px; 
+      border: 5px solid #0284c7;
+    }
+    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
-#footer {
-  position: fixed; bottom: 10px; left: 0; width: 100%;
-  text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
-}
+    #footer {
+      position: fixed; bottom: 10px; left: 0; width: 100%;
+      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
 
+  <div id="quiz-container">
+    <div id="name-input-area" class="input-box">
+      <h2>유년반 성경퀴즈 1과</h2>
+      <p style="font-size: 20px; font-weight: bold; background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 8px; display: inline-block;">고기잡이 (예수님의 부르심)</p>
+      <p>이름을 입력하고 신나는 퀴즈를 시작해요!</p>
+      <input type="text" id="name-input" placeholder="예: 예수님사랑" />
+      <br>
+      <button id="start-btn">퀴즈 시작 ▶</button>
+    </div>
 
-<div id="quiz-area" style="display:none;">
-  <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
-  <div id="question-text" class="question-box"></div>
-  <div id="answer-area" style="margin-top: 20px;"></div>
-  <div id="feedback"></div>
-</div>
+    <div id="quiz-area" style="display:none;">
+      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-text" class="question-box"></div>
+      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="feedback"></div>
+    </div>
 
-<div id="result" style="display:none;"></div>
+    <div id="result" style="display:none;"></div>
+  </div>
+
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 1과</div>
+
+  <script>
+    'use strict';
+
+    const questions = [
+      { 
+        type: 'ox',   
+        question: '예수님께서 그물을 던지라고 말씀하셨을 때, 베드로는 밤새 고기를 한 마리도 못 잡았지만 예수님의 말씀에 기쁘게 순종하여 그물을 던졌나요?', 
+        answer: 'O',
+        comment: '맞아요! 베드로는 자기 생각보다 예수님의 말씀을 먼저 믿고 순종하여 그물을 던졌답니다.'
+      }, 
+      { 
+        type: 'fill', 
+        question: '기억절: "말씀하시되 나를 따라오라 내가 너희를 사람을 (    ) 어부가 되게 하리라 하시니" (마태복음 4:19)', 
+        answer: '낚는',
+        comment: '우와, 훌륭해요! 예수님은 우리가 사람들에게 예수님의 사랑을 전하는 멋진 사람을 낚는 어부가 되기를 원하세요.'
+      },
+      { 
+        type: 'mcq',  
+        question: '예수님의 말씀대로 깊은 데로 가서 그물을 던졌을 때, 물고기가 얼마나 많이 잡혔나요?', 
+        options: ['A. 한 마리도 잡히지 않았다', 'B. 겨우 두 마리만 잡혔다', 'C. 배 두 척이 가라앉을 정도로 엄청 많이 잡혔다', 'D. 그물이 다 찢어져서 고기들이 다 도망갔다'], 
+        answer: 'C. 배 두 척이 가라앉을 정도로 엄청 많이 잡혔다',
+        comment: '정답이에요! 예수님의 말씀에 순종했을 때, 배가 가라앉을 정도로 가득 차는 엄청난 기적이 일어났어요!'
+      },
+      { 
+        type: 'mcq',  
+        question: '예수님이 베드로, 안드레, 야고보, 요한에게 "나를 따라오너라"라고 하셨을 때, 그들은 어떻게 행동했나요?', 
+        options: ['A. 나중에 따라가겠다고 핑계를 대며 미루었다', 'B. 모든 것을 버려두고 즉시 예수님을 따라갔다', 'C. 물고기 판 돈을 다 쓰고 오겠다고 했다', 'D. 무서워서 멀리 다른 곳으로 도망쳤다'], 
+        answer: 'B. 모든 것을 버려두고 즉시 예수님을 따라갔다',
+        comment: '대단해요! 제자들은 소중한 배와 그물, 그리고 방금 잡은 물고기까지 모두 내려놓고 기쁘게 예수님을 따라갔어요.'
+      },
+      { 
+        type: 'short',
+        question: '예수님을 따르며 사람들에게 사랑의 소식을 전해 구원하는 사람을 예수님은 사람을 낚는 \‘이것\’이라고 부르셨어요. 이것은 무엇일까요? (2글자)', 
+        answer: '어부', 
+        comment: '우와! 최고의 성경 박사님이네요! 우리는 물고기를 잡는 어부가 아니라, 사람을 예수님께로 인도하는 멋진 어부랍니다!'
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let participantName = '';
+    // 바다 테마에 어울리는 점진적인 파란색 톤 변화
+    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0284c7'];
+
+    const nameInputArea = document.getElementById('name-input-area');
+    const nameInput = document.getElementById('name-input');
+    const startBtn = document.getElementById('start-btn');
+    const quizArea = document.getElementById('quiz-area');
+    const questionNumberEl = document.getElementById('question-number');
+    const questionTextEl = document.getElementById('question-text');
+    const answerAreaEl = document.getElementById('answer-area');
+    const feedbackEl = document.getElementById('feedback');
+    const resultEl = document.getElementById('result');
+
+    startBtn.addEventListener('click', startGame);
+    nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
+
+    function startGame() {
+      const nameVal = nameInput.value.trim();
+      if (!nameVal) { alert("우리 어린이의 멋진 이름을 적어주세요!"); return; }
+      participantName = nameVal;
+      nameInputArea.style.display = 'none';
+      quizArea.style.display = 'block';
+      showQuestion();
+    }
+
+    function showQuestion() {
+      feedbackEl.textContent = '';
+      const q = questions[current];
+      questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
+      questionTextEl.textContent = q.question;
+      questionTextEl.style.backgroundColor = themes[current % themes.length];
+      answerAreaEl.innerHTML = '';
+
+      if (q.type === 'ox') {
+        createBtn('O'); createBtn('X');
+      } else if (q.type === 'mcq') {
+        q.options.forEach(opt => createBtn(opt));
+      } else {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = '정답을 적어보세요';
+        answerAreaEl.appendChild(input);
+        const submitBtn = document.createElement('button');
+        submitBtn.textContent = '정답 확인';
+        submitBtn.onclick = () => checkAnswer(input.value);
+        answerAreaEl.appendChild(submitBtn);
+        input.focus();
+        input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
+      }
+    }
+
+    function createBtn(text) {
+      const btn = document.createElement('button');
+      btn.textContent = text;
+      btn.onclick = () => checkAnswer(text);
+      answerAreaEl.appendChild(btn);
+    }
+
+    function checkAnswer(userAns) {
+      if(answerAreaEl.querySelector('.next-btn')) return;
+      const q = questions[current];
+      let isCorrect = false;
+
+      if (q.type === 'mcq') {
+        isCorrect = (userAns === q.answer);
+      } else if (q.type === 'short') {
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
+      } else {
+        isCorrect = normalize(userAns) === normalize(q.answer);
+      }
+
+      if (isCorrect) {
+        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 잘했어요! 최고예요! ⭕</span>";
+        score++;
+      } else {
+        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>괜찮아요! 조금 아쉽네요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+      }
+      
+      const commentDiv = document.createElement('div');
+      commentDiv.style.fontSize = '18px';
+      commentDiv.style.color = '#334155';
+      commentDiv.style.marginTop = '10px';
+      commentDiv.textContent = q.comment;
+      feedbackEl.appendChild(commentDiv);
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'next-btn';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
+      nextBtn.style.backgroundColor = '#0c4a6e';
+      nextBtn.style.color = '#fff';
+      nextBtn.style.marginTop = '20px';
+      nextBtn.onclick = () => {
+        if (current === questions.length - 1) showResult();
+        else { current++; showQuestion(); }
+      };
+      feedbackEl.appendChild(document.createElement('br'));
+      feedbackEl.appendChild(nextBtn);
+    }
+
+    function showResult() {
+      quizArea.style.display = 'none';
+      resultEl.style.display = 'block';
+      let message = score === questions.length ? "대단해요! 우리 교실 최고의 성경 박사님이군요!" : "정말 최고예요! 다음 퀴즈도 기쁘고 즐겁게 같이 공부해요!";
+      resultEl.innerHTML = `
+        <h2>축하해요, ${participantName} 어린이!</h2>
+        <div style="font-size: 60px; margin: 20px 0;">⛵🐟</div>
+        <p>우리 어린이의 1과 퀴즈 점수는</p>
+        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; padding:0 10px;">${message}</p>
+        <button onclick="location.reload()">한 번 더 풀기</button>
+      `;
+    }
+
+    function normalize(str) {
+      if (!str) return '';
+      return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
+    }
+  </script>
+</body>
+</html>

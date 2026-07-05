@@ -3,125 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 1과 (고기잡이)</title>
+  <title>유년반 교과 퀴즈 (2과)</title>
+  <!-- Tailwind CSS와 귀여운 한글 폰트 로드 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
-    
     body { 
-      margin: 0; padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', 'Malgun Gothic', sans-serif; 
-      background: #f0f9ff; /* 1과 테마: 갈릴리 호수를 상징하는 싱그러운 하늘/바다색 */
-      display: flex; justify-content: center; align-items: center; 
-      min-height: 100vh; font-size: 24px; 
+      font-family: 'Gaegu', 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%); /* 에덴동산 느낌의 하늘/초록 그라데이션 */
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
     }
-
-    #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
-
-    .question-box, .input-box { 
-      padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #0284c7; /* 시원한 푸른 바다색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      line-height: 1.5;
+    .font-title {
+      font-family: 'Nanum Pen Script', sans-serif;
     }
-
-    button { 
-      margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 12px; cursor: pointer; 
-      background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+    /* 귀여운 바운스 및 팝업 효과 */
+    @keyframes pop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
-    button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #e0f2fe; }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    input[type="text"] { 
-      padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
-    }
-
-    #result { 
-      font-size: 28px; margin-top: 30px; color: #333; 
-      background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #0284c7;
-    }
-    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
-
-    #footer {
-      position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+    .pop-in {
+      animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
   </style>
 </head>
-<body>
+<body class="flex flex-col justify-between items-center p-4 md:p-8">
 
-  <div id="quiz-container">
-    <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 1과</h2>
-      <p style="font-size: 20px; font-weight: bold; background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 8px; display: inline-block;">고기잡이 (예수님의 부르심)</p>
-      <p>이름을 입력하고 신나는 퀴즈를 시작해요!</p>
-      <input type="text" id="name-input" placeholder="예: 예수님사랑" />
-      <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+  <!-- 메인 퀴즈 컨테이너 -->
+  <main id="quiz-container" class="w-full max-w-lg my-auto bg-white rounded-3xl shadow-xl border-4 border-emerald-200 overflow-hidden pop-in flex flex-col justify-between min-h-[500px]">
+    
+    <!-- 헤더 영역 -->
+    <header class="bg-gradient-to-r from-sky-400 to-emerald-400 p-6 text-center text-white relative">
+      <div class="absolute top-2 left-4 text-3xl">🌸</div>
+      <div class="absolute top-2 right-4 text-3xl">🐤</div>
+      <h1 class="text-4xl font-bold font-title tracking-wide drop-shadow-md">유년반 성경교과 2과</h1>
+      <p class="text-lg opacity-90 mt-1 font-bold">창조주의 최고의 선물 (첫 안식일)</p>
+    </header>
+
+    <!-- 콘텐츠 카드 영역 -->
+    <div class="p-6 flex-grow flex flex-col justify-center items-center">
+      
+      <!-- 1. 이름 입력 화면 -->
+      <div id="name-input-area" class="w-full text-center space-y-6 py-6">
+        <div class="text-6xl animate-bounce">🎁</div>
+        <p class="text-2xl text-slate-700 font-bold leading-relaxed">
+          안녕! 만나서 정말 반가워요!<br>
+          우리 어린이의 멋진 <span class="text-emerald-500 underline">이름</span>을 알려주세요!
+        </p>
+        <div class="relative w-4/5 mx-auto">
+          <input type="text" id="name-input" maxlength="8" placeholder="예: 아담" 
+                 class="w-full text-center text-2xl p-3 border-3 border-emerald-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all duration-300 text-slate-800 font-bold placeholder-slate-300 bg-slate-50" />
+          <p id="warning-message" class="text-red-500 text-lg mt-2 hidden font-bold">이름을 꼭 적어주세요! 😊</p>
+        </div>
+        <button id="start-btn" class="w-4/5 py-4 bg-amber-400 hover:bg-amber-500 text-slate-800 text-2xl font-bold rounded-2xl shadow-lg border-b-4 border-amber-600 active:translate-y-1 active:border-b-0 transition-all duration-100">
+          신나는 퀴즈 시작! ▶
+        </button>
+      </div>
+
+      <!-- 2. 퀴즈 풀이 화면 -->
+      <div id="quiz-area" class="w-full space-y-6 hidden">
+        <!-- 상단 문제 번호 진행 표시 -->
+        <div class="flex justify-between items-center text-slate-400 font-bold text-lg px-2">
+          <span id="question-number" class="bg-sky-100 text-sky-600 px-3 py-1 rounded-full">문제 1 / 5</span>
+          <span class="text-emerald-500">★ 에덴동산 ★</span>
+        </div>
+        
+        <!-- 문제 지문 상자 -->
+        <div id="question-text" class="text-2xl font-bold text-white p-6 rounded-2xl shadow-md leading-relaxed text-center transition-all duration-300 min-h-[120px] flex items-center justify-center">
+          <!-- 동적으로 입력됨 -->
+        </div>
+
+        <!-- 보기/답변 입력 영역 -->
+        <div id="answer-area" class="flex flex-col gap-3 w-full min-h-[150px] justify-center items-center">
+          <!-- 버튼이나 인풋이 동적으로 생성됨 -->
+        </div>
+
+        <!-- 피드백(정답/오답) 알림 영역 -->
+        <div id="feedback" class="text-center rounded-2xl transition-all duration-300 hidden">
+          <!-- 결과 피드백이 표시됨 -->
+        </div>
+      </div>
+
+      <!-- 3. 결과 화면 -->
+      <div id="result" class="w-full text-center space-y-6 py-6 hidden">
+        <!-- 동적으로 최종 결과가 채워집니다. -->
+      </div>
+
     </div>
+  </main>
 
-    <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
-      <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
-      <div id="feedback"></div>
-    </div>
-
-    <div id="result" style="display:none;"></div>
-  </div>
-
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 1과</div>
+  <!-- 하단 고정 푸터 -->
+  <footer id="footer" class="w-full text-center text-sm text-slate-400 py-4 pointer-events-none mt-4 font-sans">
+    Distributed by Dr. Choi | 유년반 교과 2과
+  </footer>
 
   <script>
     'use strict';
 
+    // 2과 "창조주의 최고의 선물" 내용 기반 맞춤 설계 퀴즈 (총 5문제)
     const questions = [
       { 
         type: 'ox',   
-        question: '예수님께서 그물을 던지라고 말씀하셨을 때, 베드로는 밤새 고기를 한 마리도 못 잡았지만 예수님의 말씀에 기쁘게 순종하여 그물을 던졌나요?', 
+        question: '하나님께서는 첫 안식일에 아담, 하와와 평생 잊지 못할 깊은 대화를 나누며 사랑을 전하셨어요.', 
         answer: 'O',
-        comment: '맞아요! 베드로는 자기 생각보다 예수님의 말씀을 먼저 믿고 순종하여 그물을 던졌답니다.'
+        comment: '맞아요! 하나님께서는 안식일에 우리의 최고의 친구가 되셔서 사랑 어린 다정한 대화를 나누길 원하신답니다! 🌿'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "말씀하시되 나를 따라오라 내가 너희를 사람을 (    ) 어부가 되게 하리라 하시니" (마태복음 4:19)', 
-        answer: '낚는',
-        comment: '우와, 훌륭해요! 예수님은 우리가 사람들에게 예수님의 사랑을 전하는 멋진 사람을 낚는 어부가 되기를 원하세요.'
+        question: '기억절 빈칸 채우기: "하나님이 그 일곱째 날을 (      ) 하사 거룩하게 하셨으니..." (창세기 2:3)', 
+        answer: '복되게',
+        comment: '우와, 정말 대단해요! 하나님께서는 일곱째 날을 특별히 아주 많이 "복되게" 만드셨어요! ⭐'
       },
       { 
         type: 'mcq',  
-        question: '예수님의 말씀대로 깊은 데로 가서 그물을 던졌을 때, 물고기가 얼마나 많이 잡혔나요?', 
-        options: ['A. 한 마리도 잡히지 않았다', 'B. 겨우 두 마리만 잡혔다', 'C. 배 두 척이 가라앉을 정도로 엄청 많이 잡혔다', 'D. 그물이 다 찢어져서 고기들이 다 도망갔다'], 
-        answer: 'C. 배 두 척이 가라앉을 정도로 엄청 많이 잡혔다',
-        comment: '정답이에요! 예수님의 말씀에 순종했을 때, 배가 가라앉을 정도로 가득 차는 엄청난 기적이 일어났어요!'
+        question: '첫 안식일 밤, 아담과 하와가 하늘을 보며 신기해했던 "황소자리"에 있는 예쁜 별들의 모임은 무엇일까요?', 
+        options: ['A. 북두칠성', 'B. 플레이아데스성단', 'C. 은하수', 'D. 오리온자리'], 
+        answer: 'B. 플레이아데스성단',
+        comment: '성경 동화를 아주 완벽히 이해했군요! 예쁜 별들이 가득 모여 있는 플레이아데스성단이랍니다! 🌌'
       },
       { 
         type: 'mcq',  
-        question: '예수님이 베드로, 안드레, 야고보, 요한에게 "나를 따라오너라"라고 하셨을 때, 그들은 어떻게 행동했나요?', 
-        options: ['A. 나중에 따라가겠다고 핑계를 대며 미루었다', 'B. 모든 것을 버려두고 즉시 예수님을 따라갔다', 'C. 물고기 판 돈을 다 쓰고 오겠다고 했다', 'D. 무서워서 멀리 다른 곳으로 도망쳤다'], 
-        answer: 'B. 모든 것을 버려두고 즉시 예수님을 따라갔다',
-        comment: '대단해요! 제자들은 소중한 배와 그물, 그리고 방금 잡은 물고기까지 모두 내려놓고 기쁘게 예수님을 따라갔어요.'
+        question: '하나님께서 온 세상을 엿새(6일) 동안 아름답게 창조하시고, 모든 창조 활동을 그치고 쉬신 날은 몇 번째 날인가요?', 
+        options: ['A. 첫째 날', 'B. 셋째 날', 'C. 여섯째 날', 'D. 일곱째 날'], 
+        answer: 'D. 일곱째 날',
+        comment: '정답이에요! 일곱째 날인 안식일은 하나님께서 모든 일을 마치고 아담, 하와와 행복한 쉼을 보내신 날이에요! 📅'
       },
       { 
         type: 'short',
-        question: '예수님을 따르며 사람들에게 사랑의 소식을 전해 구원하는 사람을 예수님은 사람을 낚는 \‘이것\’이라고 부르셨어요. 이것은 무엇일까요? (2글자)', 
-        answer: '어부', 
-        comment: '우와! 최고의 성경 박사님이네요! 우리는 물고기를 잡는 어부가 아니라, 사람을 예수님께로 인도하는 멋진 어부랍니다!'
+        question: '우리가 모든 걱정과 일들을 멈추고, 최고의 친구이신 하나님과 하루 종일 오붓하게 데이트를 나누는 이 소중한 날의 이름은 무엇일까요? (3글자)', 
+        answer: '안식일', 
+        comment: '딩동댕! 바로 최고의 사랑의 선물인 "안식일"이에요! 이 날 우리는 하나님의 사랑에 기쁨으로 반응해요! 💕'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    // 바다 테마에 어울리는 점진적인 파란색 톤 변화
-    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0284c7'];
+    // 각 문제별 에덴동산의 싱그러운 색상 테마 (초록, 에메랄드, 민트, 하늘색 등)
+    const themes = ['#10b981', '#059669', '#0ea5e9', '#0d9488', '#0891b2'];
 
+    // DOM 요소 캐싱
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
+    const warningMessage = document.getElementById('warning-message');
     const startBtn = document.getElementById('start-btn');
     const quizArea = document.getElementById('quiz-area');
     const questionNumberEl = document.getElementById('question-number');
@@ -130,53 +155,103 @@
     const feedbackEl = document.getElementById('feedback');
     const resultEl = document.getElementById('result');
 
+    // 이벤트 리스너 설정
     startBtn.addEventListener('click', startGame);
-    nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
+    nameInput.addEventListener('keydown', (e) => { 
+      if (e.key === 'Enter') startGame(); 
+    });
 
+    // 시작하기
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("우리 어린이의 멋진 이름을 적어주세요!"); return; }
+      if (!nameVal) { 
+        warningMessage.classList.remove('hidden');
+        nameInput.focus();
+        return; 
+      }
+      warningMessage.classList.add('hidden');
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
       showQuestion();
     }
 
+    // 문제 출력하기
     function showQuestion() {
-      feedbackEl.textContent = '';
+      feedbackEl.style.display = 'none';
+      feedbackEl.innerHTML = '';
+      
       const q = questions[current];
       questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
       questionTextEl.textContent = q.question;
+      
+      // 문제 테마 배경 변경 및 부드러운 전환 효과
       questionTextEl.style.backgroundColor = themes[current % themes.length];
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        createBtn('O'); createBtn('X');
+        createAnswerButtons(['O', 'X'], 'ox');
       } else if (q.type === 'mcq') {
-        q.options.forEach(opt => createBtn(opt));
+        createAnswerButtons(q.options, 'mcq');
       } else {
+        // 주관식 & 빈칸 채우기 형식
+        const inputContainer = document.createElement('div');
+        inputContainer.className = 'w-full flex flex-col items-center gap-3';
+        
         const input = document.createElement('input');
         input.type = 'text';
-        input.placeholder = '정답을 적어보세요';
-        answerAreaEl.appendChild(input);
+        input.placeholder = q.type === 'fill' ? '예: 복되게' : '예: 안식일';
+        input.className = 'w-4/5 text-center text-xl p-3 border-2 border-emerald-400 rounded-xl focus:outline-none focus:ring-4 focus:ring-emerald-200 text-slate-800 font-bold bg-slate-50';
+        
         const submitBtn = document.createElement('button');
-        submitBtn.textContent = '정답 확인';
+        submitBtn.textContent = '확인할래요! ✔';
+        submitBtn.className = 'w-4/5 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xl rounded-xl shadow-md transition-all duration-200';
         submitBtn.onclick = () => checkAnswer(input.value);
-        answerAreaEl.appendChild(submitBtn);
+        
+        inputContainer.appendChild(input);
+        inputContainer.appendChild(submitBtn);
+        answerAreaEl.appendChild(inputContainer);
+        
         input.focus();
-        input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
+        input.onkeydown = (e) => { 
+          if(e.key === 'Enter') checkAnswer(input.value); 
+        };
       }
     }
 
-    function createBtn(text) {
-      const btn = document.createElement('button');
-      btn.textContent = text;
-      btn.onclick = () => checkAnswer(text);
-      answerAreaEl.appendChild(btn);
+    // 보기 버튼 생성기
+    function createAnswerButtons(optionsList, type) {
+      const container = document.createElement('div');
+      // MCQ는 세로 배치, OX는 가로 배치
+      container.className = type === 'ox' 
+        ? 'flex gap-6 w-full justify-center px-4' 
+        : 'flex flex-col gap-3 w-full px-4';
+
+      optionsList.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        
+        if (type === 'ox') {
+          // 크고 둥글며 깜찍한 OX 디자인
+          btn.className = opt === 'O'
+            ? 'w-32 h-32 text-6xl font-bold rounded-full bg-sky-100 hover:bg-sky-200 text-sky-600 border-4 border-sky-400 shadow-md transition-transform duration-100 active:scale-95'
+            : 'w-32 h-32 text-6xl font-bold rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 border-4 border-rose-400 shadow-md transition-transform duration-100 active:scale-95';
+        } else {
+          // 객관식 선택 버튼 디자인
+          btn.className = 'w-full py-3 px-4 text-left text-lg md:text-xl font-bold rounded-2xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border-2 border-slate-200 hover:border-emerald-400 transition-all duration-200 shadow-sm active:translate-y-0.5';
+        }
+        
+        btn.onclick = () => checkAnswer(opt);
+        container.appendChild(btn);
+      });
+      answerAreaEl.appendChild(container);
     }
 
+    // 채점 및 결과 피드백 처리
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return;
+      // 이미 정답이 판정되었으면 중복 작동 정지
+      if (feedbackEl.style.display === 'block') return;
+      
       const q = questions[current];
       let isCorrect = false;
 
@@ -188,48 +263,92 @@
         isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
+      // 화면에 피드백 그리기
+      feedbackEl.style.display = 'block';
+      feedbackEl.className = 'text-center p-4 rounded-2xl border-2 transition-all duration-300 pop-in w-full ';
+      
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 잘했어요! 최고예요! ⭕</span>";
+        feedbackEl.classList.add('bg-emerald-50', 'border-emerald-300');
+        feedbackEl.innerHTML = `
+          <div class="text-3xl font-bold text-emerald-600 mb-1">🎉 참 잘했어요! 정답입니다! 🎉</div>
+        `;
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>괜찮아요! 조금 아쉽네요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.classList.add('bg-rose-50', 'border-rose-300');
+        feedbackEl.innerHTML = `
+          <div class="text-2xl font-bold text-rose-600 mb-1">우리 힘을 내요! 아쉬워요! 💦</div>
+          <div class="text-xl text-slate-600 font-bold mb-1">정답은 <span class="text-emerald-600 font-extrabold underline">${q.answer}</span> 입니다.</div>
+        `;
       }
       
+      // 친절한 해설 추가
       const commentDiv = document.createElement('div');
-      commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#334155';
-      commentDiv.style.marginTop = '10px';
+      commentDiv.className = 'text-lg text-slate-700 font-bold mt-2 leading-relaxed px-2 bg-white/60 py-2 rounded-xl';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
+      // 다음문제 가기 버튼 생성
       const nextBtn = document.createElement('button');
-      nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#0c4a6e';
-      nextBtn.style.color = '#fff';
-      nextBtn.style.marginTop = '20px';
+      nextBtn.className = 'w-3/5 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xl rounded-xl shadow-md mt-4 transition-all duration-100 active:scale-95';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보러 가기 🏆' : '다음 문제 풀기 ▶';
       nextBtn.onclick = () => {
-        if (current === questions.length - 1) showResult();
-        else { current++; showQuestion(); }
+        if (current === questions.length - 1) {
+          showResult();
+        } else {
+          current++;
+          showQuestion();
+        }
       };
-      feedbackEl.appendChild(document.createElement('br'));
       feedbackEl.appendChild(nextBtn);
+
+      // 스크롤이 컨테이너 아래로 자동 이동하도록 유도
+      setTimeout(() => {
+        feedbackEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
     }
 
+    // 최종 결과 화면 표시
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 우리 교실 최고의 성경 박사님이군요!" : "정말 최고예요! 다음 퀴즈도 기쁘고 즐겁게 같이 공부해요!";
+      
+      let message = '';
+      let badge = '';
+      
+      if (score === questions.length) {
+        badge = '👑';
+        message = "우와! 최고의 성경 박사님이 나타났어요! 하나님께서 약속하신 최고의 선물인 안식일을 온전히 기억하는 최고의 어린이에요!";
+      } else if (score >= 3) {
+        badge = '⭐';
+        message = "정말 훌륭해요! 하나님이 준비하신 에덴동산의 첫 안식일 이야기를 아주 잘 기억하고 있네요! 멋져요!";
+      } else {
+        badge = '🌱';
+        message = "끝까지 멋지게 풀어주어 고마워요! 하나님의 다정한 사랑을 가득 느끼는 다음 주가 되길 축복해요!";
+      }
+
       resultEl.innerHTML = `
-        <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">⛵🐟</div>
-        <p>우리 어린이의 1과 퀴즈 점수는</p>
-        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold; padding:0 10px;">${message}</p>
-        <button onclick="location.reload()">한 번 더 풀기</button>
+        <div class="space-y-6">
+          <h2 class="text-4xl font-bold font-title text-slate-800">축하합니다! ${participantName} 어린이!</h2>
+          <div class="text-8xl animate-bounce my-4">${badge}</div>
+          <p class="text-2xl text-slate-600 font-bold leading-relaxed">
+            우리 어린이가 맞춘 소중한 점수는요!
+          </p>
+          <div class="bg-emerald-50 inline-block px-8 py-4 rounded-3xl border-3 border-emerald-300">
+            <span class="text-slate-700 text-3xl font-bold">점수: </span>
+            <span class="text-emerald-500 text-5xl font-extrabold font-title">${score}</span>
+            <span class="text-slate-400 text-3xl"> / ${questions.length}</span>
+          </div>
+          <p class="text-xl text-slate-700 font-bold leading-relaxed px-4">
+            ${message}
+          </p>
+          <button onclick="location.reload()" class="w-4/5 py-4 bg-amber-400 hover:bg-amber-500 text-slate-800 text-2xl font-bold rounded-2xl shadow-lg border-b-4 border-amber-600 active:translate-y-1 active:border-b-0 transition-all duration-100">
+            한 번 더 도전해보기! 🔄
+          </button>
+        </div>
       `;
     }
 
+    // 문장 기호나 띄어쓰기를 지워 정답 여부를 유연하게 보정해주는 정밀 보정기
     function normalize(str) {
       if (!str) return '';
       return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

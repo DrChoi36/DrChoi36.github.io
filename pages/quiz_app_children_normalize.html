@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (3과)</title>
+  <title>소년반 성경 퀴즈 (4과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Comic+Neue:wght@400;700&display=swap');
     
     /* 전체 화면 스타일 */
     body { 
       margin: 0; 
       padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #eef7f2; /* 부드러운 에덴의 초록빛 테마 배경 */
+      font-family: 'Nanum Gothic', 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #f5f7f2; /* 차분하고 편안한 연그린 톤 배경 */
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
-      font-size: 24px; 
+      font-size: 20px;
+      color: #333;
     }
 
     /* 퀴즈 박스 스타일 */
@@ -25,63 +26,84 @@
       width: 90%; 
       max-width: 600px; 
       text-align: center; 
-      padding: 10px 0; 
-      padding-bottom: 60px; 
+      padding: 20px 10px; 
+      padding-bottom: 80px; 
     }
 
     .question-box, .input-box { 
-      padding: 30px; 
-      border-radius: 15px; 
+      padding: 35px 25px; 
+      border-radius: 20px; 
       color: #fff; 
-      background-color: #2e7d32; /* 기본 에덴동산 딥그린 */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.5s; 
+      background-color: #4E6E5D; /* 차분한 올리브그린 기본색 */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transition: background-color 0.5s, transform 0.3s; 
+    }
+    
+    .question-box {
+      font-weight: 700;
+      line-height: 1.6;
     }
 
     /* 버튼 스타일 */
     button { 
       margin: 10px; 
-      padding: 15px 30px; 
-      font-size: 24px; 
+      padding: 15px 25px; 
+      font-size: 20px; 
       border: none; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       cursor: pointer; 
       font-family: inherit; 
       background-color: #fff; 
       color: #333; 
       font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
     }
-    button:hover { background-color: #f0f0f0; }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    button:hover { 
+      background-color: #f0f0f0; 
+      transform: translateY(-2px);
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    button:disabled { 
+      opacity: 0.6; 
+      cursor: not-allowed; 
+      transform: none;
+    }
 
     /* 입력창 스타일 */
     input[type="text"] { 
-      padding: 10px; 
-      font-size: 24px; 
-      border-radius: 8px; 
-      border: none; 
-      width: 70%; 
+      padding: 12px; 
+      font-size: 22px; 
+      border-radius: 10px; 
+      border: 2px solid #ddd; 
+      width: 80%; 
       font-family: inherit; 
       text-align: center; 
       margin-bottom: 20px; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #4E6E5D;
     }
 
     /* 결과 및 피드백 */
     #result { 
-      font-size: 32px; 
+      font-size: 24px; 
       margin-top: 30px; 
       color: #333; 
-      background: #fff3cd; /* 경고/소망의 부드러운 노란색 */
-      padding: 20px; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 20px; 
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      line-height: 1.6;
     }
     #feedback { 
-      min-height: 40px; 
-      margin-top: 20px; 
-      font-size: 28px; 
+      min-height: 50px; 
+      margin-top: 25px; 
+      font-size: 26px; 
       font-weight: bold; 
       color: #333; 
     }
@@ -89,35 +111,61 @@
     /* 하단 푸터 */
     #footer {
       position: fixed;
-      bottom: 10px;
+      bottom: 15px;
       left: 0;
       width: 100%;
       text-align: center;
       font-size: 14px;
-      color: #666;
+      color: #aaa;
       pointer-events: none;
+      font-weight: bold;
+    }
+    
+    /* 사지선다형 세로 정렬 컨테이너 */
+    .mcq-container {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    .mcq-container button {
+      text-align: left;
+      padding-left: 20px;
+    }
+    
+    /* 주관식 정렬 컨테이너 */
+    .short-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
+    <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 3과</h2>
-      <h3 style="font-size: 20px; font-weight: normal; margin-top: -10px;">- 조화가 깨어짐 -</h3>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 최재희" />
+      <h2 style="margin-top: 0;">🌳 소년반 성경퀴즈 4과 🌳</h2>
+      <p style="font-size: 18px; line-height: 1.5; color: #f0f8ff;">
+        "나의 방법 혹은 하나님의 방법?"<br>
+        이름을 멋지게 입력하고 퀴즈를 시작해 볼까요?
+      </p>
+      <input type="text" id="name-input" placeholder="이름을 입력하세요" />
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #FFF; color: #4E6E5D; font-size: 22px; padding: 15px 40px; border-radius: 30px;">퀴즈 시작 ▶</button>
     </div>
 
+    <!-- 퀴즈 문제 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #333; margin-bottom: 10px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 18px; color: #666; margin-bottom: 12px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="answer-area" style="margin-top: 25px;"></div>
       <div id="feedback"></div>
     </div>
 
+    <!-- 최종 결과 영역 -->
     <div id="result" style="display:none;"></div>
   </div>
 
@@ -127,64 +175,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 3과 문제 데이터
+      // 4과 문제 데이터
       const questions = [
-        // 1번: OX 문제 (사실 관계 확인)
+        // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '하와가 동산 건너편에 있는 하나님이 금지하신 나무 앞으로 다가갔을 때, 아담도 하와가 걱정되어 손을 꼭 잡고 계속 함께 동행하고 있었습니다.', 
+          question: '가인은 하나님의 말씀대로 어린 양을 제물로 드렸고, 아벨은 자신이 열심히 가꾼 과일 바구니를 제단 위에 드렸다.', 
           answer: 'X' 
         }, 
-        // [근거: 본문 3페이지] 하와가 고개를 돌려 아담을 부르려 했지만 곁에 아담이 없었습니다. 아담은 울타리에서 일하고 있었습니다.
+        // [근거] 아벨은 양을 제물로 바쳤고, 가인은 자신이 수확한 과일을 바구니에 담아 드렸으므로 본 설명은 반대로 되어 틀림.
 
-        // 2번: 기억절 문제 (단답형 빈칸)
+        // 2번: 기억절 문제 (단답형)
         { 
           type: 'fill', 
-          question: '기억절: "하나님이여 내 속에 (    ) 마음을 창조하시고 내 안에 정직한 영을 새롭게 하소서" (시편 51:10)', 
-          answer: '정한' 
+          question: '기억절 빈칸 채우기:\n"네가 선을 행하면 어찌 낯을 들지 못하겠느냐 선을 행하지 아니하면 (    )가 문에 엎드려 있느니라 죄가 너를 원하나 너는 죄가 너를 다스릴지니라" (창세기 4:7)', 
+          answer: '죄' 
         },
-        // [근거: 본문 2페이지 기억절] "내 속에 정한 마음을 창조하시고"
+        // [근거] 창세기 4:7 기억절 내용
 
-        // 3번: 4지 선다형 (본문 세부 내용)
+        // 3번: 4지 선다형 (1)
         { 
           type: 'mcq',  
-          question: '나뭇가지 위에 있던 뱀은 하와에게 선악과 열매를 먹으면 어떤 놀라운 일이 일어날 것이라고 거짓말로 유혹했나요?', 
+          question: '아벨이 믿음을 담아 하나님께 어린 양을 드린 진짜 제사의 의미는 무엇이었을까요?', 
           options: [
-            'A. 하늘을 마음껏 날아다닐 수 있게 된다', 
-            'B. 눈이 번쩍 떠져서 하나님처럼 선과 악을 알게 된다', 
-            'C. 에덴동산의 모든 천사들을 다스릴 수 있게 된다', 
-            'D. 하나님보다 더 큰 힘을 가진 존재가 된다'
+            'A. 자신이 가인 형보다 더 사냥을 잘한다는 것을 자랑하기 위해서', 
+            'B. 우리의 죄를 용서해주실 구세주의 희생과 구원 약속을 믿는다는 순종의 표시', 
+            'C. 과일보다 양고기가 하나님께 더 맛있고 값비싼 선물이기 때문에', 
+            'D. 부모님인 아담과 하와에게 칭찬을 듣고 싶어서'
           ], 
-          answer: 'B. 눈이 번쩍 떠져서 하나님처럼 선과 악을 알게 된다' 
+          answer: 'B. 우리의 죄를 용서해주실 구세주의 희생과 구원 약속을 믿는다는 순종의 표시' 
         },
-        // [근거: 본문 4페이지] "오히려 그 열매를 먹으면 눈이 번쩍 떠져서 하나님처럼 선과 악을 알게 될까 봐 그렇게 말씀하신 것이라고..."
+        // [근거] "아벨의 제사는 자신의 죄를 고백하며 하나님의 용서와 예수님의 희생을 전적으로 믿는다는 순종의 표시였습니다."
 
-        // 4번: 4지 선다형 (구원 약속)
+        // 4번: 4지 선다형 (2)
         { 
           type: 'mcq',  
-          question: '하나님께서 아담과 하와에게 죄의 결과를 알려주시는 슬픈 순간 속에서도, 뱀의 머리를 상하게 하고 우리를 구원할 소망을 약속해 주셨습니다. 이 구원자는 누구의 후손이라고 하셨나요?', 
+          question: '하나님께서 아벨의 제사를 기쁘게 받아들이셨다는 확실한 증거로 제단에 어떤 일이 일어났나요?', 
           options: [
-            'A. 여자의 후손', 
-            'B. 천사의 후손', 
-            'C. 아담의 동생의 후손', 
-            'D. 뱀의 후손'
+            'A. 하늘에서 갑자기 시원한 소나기가 쏟아졌다', 
+            'B. 제단 주변에 아름다운 에덴의 꽃들이 가득 피어났다', 
+            'C. 하늘에서 눈부신 불이 내려와 아벨의 제물을 순식간에 태웠다', 
+            'D. 가인의 제단이 무너지며 아벨의 제단만 높이 솟아올랐다'
           ], 
-          answer: 'A. 여자의 후손'
+          answer: 'C. 하늘에서 눈부신 불이 내려와 아벨의 제물을 순식간에 태웠다'
         },
-        // [근거: 본문 6페이지] "여자의 후손은 네 머리를 상하게 할 것이요 너는 그의 발꿈치를 상하게 할 것이라는 말씀이었습니다."
+        // [근거] "하늘에서 눈부신 불이 확 내려와 어린 양을 드린 아벨의 제물을 순식간에 태어버린 것입니다."
 
-        // 5번: 단답형 (핵심 감정/키워드)
+        // 5번: 단답형
         { 
           type: 'short',
-          question: '하나님의 말씀에 불순종하여 선악과 열매를 먹은 아담과 하와의 마음속에 처음으로 찾아온 감정(3글자)은 무엇이었나요?', 
-          answer: '두려움' 
+          question: '이번 4과의 중심 생각에서 배운 내용으로, "이것"은 하나님에 대한 충성의 시험이라고 합니다. 우리의 진심과 순종을 보여주는 "이것"은 무엇일까요? (2글자)', 
+          answer: '예배' 
         },
-        // [근거: 본문 5페이지] "불순종하게 된 아담과 하와의 마음속에는 처음으로 두려움이라는 감정이 찾아왔습니다."
+        // [근거] 중심생각: "예배는 하나님께 대한 충성의 시험이에요."
 
-        // 6번: 느낀점 적기
+        // 6번: 느낀점 (자유롭게 입력 가능)
         { 
           type: 'any',  
-          question: '오늘 배운 내용을 생각하며, 우리가 일상생활에서 나쁜 유혹(거짓말, 미움, 불순종 등)을 이기고 하나님을 기쁘시게 하는 정직한 자녀가 되기 위해 오늘 어떤 "선택"을 할 수 있을지 나의 생각이나 다짐을 자유롭게 적어보세요.' 
+          question: '내 고집이나 편리함보다 하나님의 방법(말씀)에 먼저 순종해야겠다고 다짐한 것이 있나요? 혹은 오늘 이야기를 통해 느낀 점을 자유롭게 한 문장으로 적어보세요.' 
         }
       ];
 
@@ -193,8 +241,8 @@
       let score = 0;
       let participantName = '';
       
-      // 테마 변경 (숲속 테마 -> 갈등/경고 테마 -> 소망 테마의 흐름 반영)
-      const themes = ['#2E7D32', '#3E2723', '#D84315', '#4527A0', '#1565C0', '#00695C']; 
+      // 4과의 자연 친화적이며 흙과 나무, 제단을 연상시키는 차분한 컬러 테마
+      const themes = ['#4E6E5D', '#9E2A2B', '#2E5077', '#D97443', '#5C3D75'];
 
       // HTML 요소 가져오기
       const nameInputArea = document.getElementById('name-input-area');
@@ -219,7 +267,7 @@
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 꼭 입력해주세요!");
+          alert("친구의 이름을 멋지게 적어주세요!");
           return;
         }
         
@@ -238,8 +286,8 @@
         const q = questions[current];
 
         // 문제 번호 및 내용 표시
-        questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
-        questionTextEl.textContent = q.question;
+        questionNumberEl.textContent = `🎯 문제 ${current + 1} / ${questions.length}`;
+        questionTextEl.innerHTML = q.question.replace(/\n/g, '<br>');
         questionTextEl.style.backgroundColor = themes[current % themes.length];
 
         // 답안 영역 초기화
@@ -247,52 +295,65 @@
 
         // 문제 타입에 따른 버튼/입력창 생성
         if (q.type === 'ox') {
-          createBtn('O');
-          createBtn('X');
+          const container = document.createElement('div');
+          container.style.display = 'flex';
+          container.style.justifyContent = 'center';
+          
+          const btnO = document.createElement('button');
+          btnO.textContent = '⭕ O (그렇다)';
+          btnO.style.fontSize = '24px';
+          btnO.style.padding = '15px 40px';
+          btnO.addEventListener('click', () => checkAnswer('O'));
+          
+          const btnX = document.createElement('button');
+          btnX.textContent = '❌ X (아니다)';
+          btnX.style.fontSize = '24px';
+          btnX.style.padding = '15px 40px';
+          btnX.addEventListener('click', () => checkAnswer('X'));
+          
+          container.appendChild(btnO);
+          container.appendChild(btnX);
+          answerAreaEl.appendChild(container);
+          
         } else if (q.type === 'mcq') {
-          q.options.forEach(opt => createBtn(opt));
-        } else if (q.type === 'any') {
-          // 느낀점 적기 전용 텍스트 필드
+          const container = document.createElement('div');
+          container.className = 'mcq-container';
+          
+          q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.textContent = opt;
+            btn.addEventListener('click', () => checkAnswer(opt));
+            container.appendChild(btn);
+          });
+          answerAreaEl.appendChild(container);
+          
+        } else {
+          // 주관식 입력창 (fill, short, any)
+          const container = document.createElement('div');
+          container.className = 'short-container';
+
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = '여기에 나의 멋진 생각을 적어주세요!';
-          input.style.width = '85%';
-          answerAreaEl.appendChild(input);
+          input.placeholder = q.type === 'any' ? '여기에 생각을 자유롭게 적어보세요' : '정답 입력';
+          if (q.type === 'any') {
+            input.style.width = '90%';
+          }
+          container.appendChild(input);
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
+          submitBtn.style.backgroundColor = '#4E6E5D';
+          submitBtn.style.color = '#fff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
-          answerAreaEl.appendChild(submitBtn);
+          container.appendChild(submitBtn);
 
-          input.focus();
-          input.addEventListener('keydown', (e) => { 
-            if(e.key === 'Enter') checkAnswer(input.value); 
-          });
-        } else {
-          // 주관식 단답형 입력창
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.placeholder = '정답 입력';
-          answerAreaEl.appendChild(input);
-          
-          const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출';
-          submitBtn.addEventListener('click', () => checkAnswer(input.value));
-          answerAreaEl.appendChild(submitBtn);
+          answerAreaEl.appendChild(container);
 
           input.focus();
           input.addEventListener('keydown', (e) => { 
             if(e.key === 'Enter') checkAnswer(input.value); 
           });
         }
-      }
-
-      // 버튼 생성 도우미 함수
-      function createBtn(text) {
-        const btn = document.createElement('button');
-        btn.textContent = text;
-        btn.addEventListener('click', () => checkAnswer(text));
-        answerAreaEl.appendChild(btn);
       }
 
       // 정답 확인 함수
@@ -305,34 +366,28 @@
 
         // 정답 비교 로직
         if (q.type === 'any') {
-          isCorrect = userAns.trim().length > 0; // 내용이 있으면 정답 인정
+          isCorrect = userAns.trim().length > 0; // 무엇이든 내용을 적으면 정답 처리
         } else if (q.type === 'mcq') {
           isCorrect = (userAns === q.answer);
         } else {
           // 주관식 정규화 비교 (띄어쓰기, 특수문자 무시)
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          
-          // 단답형 예외 허용 로직 (예: '두려움' 외에 '죄책감'이나 '무서움'도 긍정적 의미로 유연하게 인정)
-          if (nAns === '두려움' && (nUser === '두려움' || nUser === '무서움' || nUser === '공포')) {
-            isCorrect = true;
-          } else {
-            isCorrect = nUser === nAns;
-          }
+          isCorrect = nUser === nAns;
         }
 
         // 결과 피드백 및 점수
-        if (isCorrect) {
-          if (q.type === 'any') {
-            feedbackEl.textContent = "소중한 생각을 적어주어 고마워요! 👍";
-          } else {
-            feedbackEl.textContent = "정답입니다! 참 잘했어요! ⭕";
-          }
-          feedbackEl.style.color = "#FFEB3B"; // 가독성 높은 노란색 피드백
+        if (q.type === 'any') {
+          feedbackEl.innerHTML = "멋진 생각을 나누어줘서 고마워요! ❤️";
+          feedbackEl.style.color = "#2E5077";
+          score++; // 다짐 적기도 성실히 적으면 점수로 인정해 줍니다!
+        } else if (isCorrect) {
+          feedbackEl.textContent = "정답입니다! 정말 잘했어요 🎉 ⭕";
+          feedbackEl.style.color = "#2E7D32"; 
           score++;
         } else {
-          feedbackEl.textContent = `아쉽지만 틀렸어요! ❌ (정답: ${q.answer})`;
-          feedbackEl.style.color = "#FFCDD2";
+          feedbackEl.innerHTML = `아쉬워요! 다음 번엔 맞출 수 있어요 ❌<br><span style="font-size: 18px; color: #666; font-weight: normal;">(정답: ${q.answer})</span>`;
+          feedbackEl.style.color = "#C62828";
         }
 
         // 기존 입력 요소 비활성화
@@ -342,10 +397,12 @@
         // 다음 버튼 생성
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
+        nextBtn.textContent = (current === questions.length - 1) ? '결과 보기 🎉' : '다음 문제 ▶';
         nextBtn.style.backgroundColor = '#333';
         nextBtn.style.color = '#fff';
         nextBtn.style.marginTop = '20px';
+        nextBtn.style.padding = '12px 35px';
+        nextBtn.style.borderRadius = '30px';
         
         nextBtn.addEventListener('click', () => {
           if (current === questions.length - 1) {
@@ -365,17 +422,22 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        // 정성과 노력에 대한 칭찬 메시지 분기
-        let message = "하나님을 경배하는 정직한 마음을 갖기로 선택해요! 🙏";
+        let subMessage = '';
         if (score === questions.length) {
-          message = "성경 박사님 같네요! 대단해요! 👏👏👏";
+          subMessage = '우와, 모든 문제를 다 맞췄어요! 최고의 성경 박사님이네요! 🥇';
+        } else if (score >= 4) {
+          subMessage = '예배를 아주 훌륭하게 집중해서 배웠군요! 참 잘했어요 👍';
+        } else {
+          subMessage = '성경 교과를 한 번 더 읽어보고 다시 도전해 볼까요? 화이팅! 🌱';
         }
 
         resultEl.innerHTML = `
-          <h3>${participantName} 친구는<br>
-          3과 총 ${questions.length}문제 중<br>
-          <span style="color:#d84315; font-size:45px;">${score}</span>문제를 완료했어요!</h3>
-          <p>${message}</p>
+          <h2 style="color: #4E6E5D; margin-top: 0;">✨ 퀴즈 완료! ✨</h2>
+          <h3><strong>${participantName}</strong> 친구는<br>
+          총 ${questions.length} 문제 중에서<br>
+          <span style="color:#C62828; font-size:45px; font-weight: 800;">${score}</span> 문제를 맞췄어요!</h3>
+          <p style="font-size: 20px; color: #555; font-weight: bold; margin-top: 20px;">${subMessage}</p>
+          <button onclick="location.reload()" style="background-color: #4E6E5D; color: #fff; border-radius: 25px; padding: 12px 30px; margin-top: 20px;">처음부터 다시 하기 🔄</button>
         `;
       }
 

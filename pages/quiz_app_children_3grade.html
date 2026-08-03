@@ -3,127 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (5과 - 두 번이나 복을 받음)</title>
-  
+  <title>유년반 교과 퀴즈 (6과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Noto+Sans+KR:wght@500;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
     
-    * {
-      box-sizing: border-box;
-    }
-
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Noto Sans KR', 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fffbebf5; /* 5과 테마: 따뜻하고 기분 좋은 연노랑/골드 */
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      min-height: 100vh; 
-      font-size: 22px; 
+      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #e0f2fe; /* 6과 테마: 요단강과 은혜의 물결을 상징하는 시원한 하늘색 */
+      display: flex; justify-content: center; align-items: center; 
+      min-height: 100vh; font-size: 24px; 
     }
 
-    #quiz-container { 
-      width: 92%; 
-      max-width: 620px; 
-      text-align: center; 
-      padding: 20px 10px 70px 10px; 
-    }
+    #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px 24px; 
-      border-radius: 20px; 
-      color: #fff; 
-      background-color: #f59e0b; /* 활기찬 주황/골드 색상 */
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
-      line-height: 1.6;
-      word-break: keep-all;
-    }
-
-    .input-box h2 {
-      margin-top: 0;
-      font-size: 28px;
+      padding: 30px; border-radius: 20px; color: #fff; 
+      background-color: #0284c7; /* 시원하고 따뜻한 푸른색 */
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      line-height: 1.5;
     }
 
     button { 
-      margin: 8px; 
-      padding: 14px 28px; 
-      font-size: 20px; 
-      border: none; 
-      border-radius: 14px; 
-      cursor: pointer; 
-      background-color: #ffffff; 
-      color: #1e293b; 
-      font-weight: bold;
+      margin: 10px; padding: 15px 30px; font-size: 22px; 
+      border: none; border-radius: 14px; cursor: pointer; 
+      background-color: #fff; color: #0f172a; font-weight: bold;
       box-shadow: 0 4px 0 #cbd5e1;
       transition: all 0.15s ease;
     }
-
-    button:active { 
-      transform: translateY(3px); 
-      box-shadow: none; 
-    }
-
-    button:hover { 
-      background-color: #fef3c7; 
-    }
-
-    button:disabled { 
-      opacity: 0.6; 
-      cursor: not-allowed; 
-    }
-
-    .mcq-btn {
-      display: block;
-      width: 100%;
-      text-align: left;
-      margin: 10px 0;
-      padding: 16px 20px;
-    }
+    button:active { transform: translateY(3px); box-shadow: none; }
+    button:hover { background-color: #f0f9ff; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
-      padding: 14px; 
-      font-size: 22px; 
-      border-radius: 12px; 
-      border: 3px solid #f59e0b; 
-      width: 80%; 
-      text-align: center; 
-      margin-bottom: 20px; 
+      padding: 12px; font-size: 24px; border-radius: 10px; 
+      border: 3px solid #0284c7; width: 75%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
-    input[type="text"]:focus {
-      border-color: #d97706;
-    }
-
     #result { 
-      font-size: 24px; 
-      margin-top: 20px; 
-      color: #1e293b; 
-      background: #ffffff; 
-      padding: 35px 25px; 
-      border-radius: 24px; 
-      border: 5px solid #f59e0b;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      font-size: 28px; margin-top: 30px; color: #1e293b; 
+      background: #fff; padding: 30px; border-radius: 20px; 
+      border: 5px solid #0284c7;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-
-    #feedback { 
-      min-height: 40px; 
-      margin-top: 20px; 
-      font-size: 24px; 
-      font-weight: bold; 
-      word-break: keep-all;
-    }
+    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
     #footer {
-      position: fixed; 
-      bottom: 12px; 
-      left: 0; 
-      width: 100%;
-      text-align: center; 
-      font-size: 14px; 
-      color: #94a3b8; 
-      pointer-events: none;
+      position: fixed; bottom: 10px; left: 0; width: 100%;
+      text-align: center; font-size: 14px; color: #64748b; pointer-events: none;
       font-weight: bold;
     }
   </style>
@@ -132,25 +60,26 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 5과</h2>
-      <p style="font-size: 22px; font-weight: bold; color: #fef3c7;">두 번이나 복을 받음</p>
-      <p>이름을 입력하고 신나게 시작해 볼까요?</p>
-      <input type="text" id="name-input" placeholder="예: 홍길동" />
+      <h2>유년반 성경퀴즈 6과</h2>
+      <p style="font-size: 22px; font-weight: bold; margin-bottom: 5px;">🌊 나아만과 더러운 강</p>
+      <p style="font-size: 18px; margin-top: 0; color: #e0f2fe;">"하나님의 은혜는 우리 모두를 위한 것이에요"</p>
+      <p>이름을 입력하고 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
-      <button id="start-btn">퀴즈 시작하기 ▶</button>
+      <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #64748b; margin-bottom: 12px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 20px; color: #334155; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 24px;"></div>
+      <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
     </div>
 
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 5과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 6과</div>
 
   <script>
     'use strict';
@@ -158,42 +87,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '하나님께서는 우리가 구하거나 생각하는 것 이상으로 아주 크고 좋은 복을 주시는 분이세요.', 
+        question: '이스라엘에서 잡혀온 어린 소녀는 외롭고 슬펐지만, 하나님을 잊지 않고 나아만 장군에게 선지자 엘리사 이야기를 친절하게 전해 주었어요.', 
         answer: 'O',
-        comment: '맞아요! 하나님께서는 수넴 여인처럼 하나님을 사랑하는 자녀에게 더 넘치는 축복을 선물로 주세요!' 
+        comment: '맞아요! 어린 소녀는 어디서든 하나님을 생각하고 나아만 장군에게 사랑을 실천했어요! ✨'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "우리가 구하거나 생각하는 모든 것에 더 (    ) 능히 하실 이에게" (에베소서 3:20)', 
-        answer: '넘치도록',
-        comment: '잘했어요! 하나님은 언제나 우리가 상상하는 것보다 훨씬 더 넘치게 채워주신답니다!' 
+        question: '기억절: "우리가 다 그의 충만한 데서 받으니 (    ) 위에 은혜러라" (요한복음 1:16)', 
+        answer: '은혜',
+        comment: '정답이에요! 하나님께서는 우리 모두에게 크고 풍성한 은혜의 선물을 주신답니다! 🎁'
       },
       { 
         type: 'mcq',  
-        question: '수넴 여인과 남편이 엘리사 선지자가 편히 쉴 수 있도록 방에 준비해둔 물건이 아닌 것은 무엇일까요?', 
-        options: ['A. 침대와 촛대', 'B. 책상과 의자', 'C. 컴퓨터', 'D. 쉬어갈 수 있는 방'], 
-        answer: 'C. 컴퓨터',
-        comment: '딩동댕! 수넴 여인은 엘리사를 위해 침대, 책상, 의자, 촛대를 정성껏 준비했어요.' 
+        question: '엘리사 선지자는 나아만 장군의 병을 고치기 위해 어느 강에서 몇 번 씻으라고 했나요?', 
+        options: ['A. 요단강에서 7번', 'B. 아마나강에서 3번', 'C. 한강에서 5번', 'D. 요단강에서 1번'], 
+        answer: 'A. 요단강에서 7번',
+        comment: '딩동댕! 나아만 장군이 요단강에서 일곱 번 몸을 씻었을 때 병이 완전히 깨끗해졌어요! 💧'
       },
       { 
         type: 'mcq',  
-        question: '엘리사 선지자가 하나님께 기도하고 소년의 몸 위에 엎드렸을 때, 소년은 몇 번 재채기를 하고 다시 살아났나요?', 
-        options: ['A. 1번', 'B. 3번', 'C. 5번', 'D. 일곱 번(7번)'], 
-        answer: 'D. 일곱 번(7번)',
-        comment: '정답이에요! 아픈 소년이 일곱 번 재채기를 하고 기적처럼 살아났어요!' 
+        question: '화가 나서 그냥 집으로 돌아가려던 나아만 장군을 지혜롭게 설득하여 순종하게 도와준 사람은 누구인가요?', 
+        options: ['A. 이스라엘 왕', 'B. 나아만 장군의 종', 'C. 아람의 의사', 'D. 엘리사 선지자'], 
+        answer: 'B. 나아만 장군의 종',
+        comment: '잘했어요! 지혜로운 종이 "작은 일인데 해보시는 게 어떨까요?" 하고 말해서 나아만 장군이 순종할 수 있었어요! 🤝'
       },
       { 
         type: 'short',
-        question: '엘리사 선지자를 위해 방을 만들고 기쁨으로 정성껏 식사를 대접했던 여인이 살던 마을 이름은 무엇일까요? (2글자)', 
-        answer: '수넴', 
-        comment: '최고예요! 수넴 마을의 여인은 하나님과 선지자를 정성껏 섬겨서 큰 복을 받았답니다!' 
+        question: '요단강에서 깨끗하게 고침받은 나아만 장군이 "오직 이 분만이 참 신이시다!"라고 고백했어요. 이 분은 누구일까요? (3글자)', 
+        answer: '하나님', 
+        comment: '우와, 최고예요! 나아만 장군은 하나님의 크신 은혜를 입고 하나님만이 참 하나님이심을 깨달았답니다! ❤️'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#f59e0b', '#d97706', '#b45309', '#ea580c', '#c2410c'];
+    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0284c7'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -210,10 +139,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { 
-        alert("이름을 꼭 알려주세요!"); 
-        return; 
-      }
+      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -229,36 +155,26 @@
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        createBtn('O'); 
-        createBtn('X');
+        createBtn('O'); createBtn('X');
       } else if (q.type === 'mcq') {
-        q.options.forEach(opt => createBtn(opt, true));
+        q.options.forEach(opt => createBtn(opt));
       } else {
         const input = document.createElement('input');
         input.type = 'text';
         input.placeholder = '정답을 적어보세요';
         answerAreaEl.appendChild(input);
-        
         const submitBtn = document.createElement('button');
         submitBtn.textContent = '정답 확인';
-        submitBtn.style.backgroundColor = themes[current % themes.length];
-        submitBtn.style.color = '#fff';
         submitBtn.onclick = () => checkAnswer(input.value);
-        
-        answerAreaEl.appendChild(document.createElement('br'));
         answerAreaEl.appendChild(submitBtn);
-        
         input.focus();
         input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
       }
     }
 
-    function createBtn(text, isBlock = false) {
+    function createBtn(text) {
       const btn = document.createElement('button');
       btn.textContent = text;
-      if (isBlock) {
-        btn.className = 'mcq-btn';
-      }
       btn.onclick = () => checkAnswer(text);
       answerAreaEl.appendChild(btn);
     }
@@ -277,15 +193,15 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#059669;'>우와! 정말 대단해요! 정답입니다! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#dc2626;'>아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
-      commentDiv.style.fontSize = '18px';
-      commentDiv.style.color = '#334155';
+      commentDiv.style.fontSize = '19px';
+      commentDiv.style.color = '#1e293b';
       commentDiv.style.marginTop = '12px';
       commentDiv.style.fontWeight = 'normal';
       commentDiv.textContent = q.comment;
@@ -293,8 +209,8 @@
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
-      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기 🎉' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#1e293b';
+      nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
+      nextBtn.style.backgroundColor = '#0c4a6e';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -308,14 +224,16 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요! 👑" : "정말 수고했어요! 다음 과도 즐겁게 공부해요! 👏";
+      let message = score === questions.length 
+        ? "대단해요! 6과 성경 박사님이군요! 👑" 
+        : "정말 잘했어요! 하나님의 은혜를 늘 잊지 말아요! 🌱";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🎁✨</div>
-        <p>우리 어린이의 5과 점수는</p>
-        <p><span style="color:#d97706; font-size:48px; font-weight:bold;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold; color: #334155;">${message}</p>
-        <button onclick="location.reload()" style="background-color: #f59e0b; color: #fff;">한 번 더 풀기</button>
+        <div style="font-size: 60px; margin: 20px 0;">✨🌊✨</div>
+        <p>우리 어린이의 6과 점수는</p>
+        <p><span style="color:#0284c7; font-size:48px; font-weight:bold;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; font-size:22px; color:#0369a1;">${message}</p>
+        <button onclick="location.reload()">한 번 더 풀기</button>
       `;
     }
 

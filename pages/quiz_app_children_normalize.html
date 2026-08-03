@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (5과)</title>
+  <title>소년반 성경 퀴즈 (6과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
@@ -12,7 +12,7 @@
       margin: 0; 
       padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #f0f4f8; 
+      background: #fff8f0; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
@@ -33,16 +33,16 @@
       padding: 30px; 
       border-radius: 15px; 
       color: #fff; 
-      background-color: #6B5B95; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background-color: #D9822B; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: background-color 0.5s; 
     }
 
     /* 버튼 스타일 */
     button { 
-      margin: 10px 5px; 
-      padding: 15px 25px; 
-      font-size: 22px; 
+      margin: 10px; 
+      padding: 15px 30px; 
+      font-size: 24px; 
       border: none; 
       border-radius: 10px; 
       cursor: pointer; 
@@ -50,47 +50,37 @@
       background-color: #fff; 
       color: #333; 
       font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     button:hover { background-color: #f0f0f0; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    /* 입력창 및 텍스트에리어 스타일 */
-    input[type="text"], textarea { 
-      padding: 12px; 
-      font-size: 22px; 
+    /* 입력창 스타일 */
+    input[type="text"] { 
+      padding: 10px; 
+      font-size: 24px; 
       border-radius: 8px; 
       border: none; 
-      width: 80%; 
+      width: 70%; 
       font-family: inherit; 
       text-align: center; 
       margin-bottom: 20px; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    textarea {
-      height: 90px;
-      resize: none;
-      text-align: left;
     }
 
     /* 결과 및 피드백 */
     #result { 
-      font-size: 28px; 
+      font-size: 32px; 
       margin-top: 30px; 
       color: #333; 
-      background: #ffffff; 
-      padding: 30px; 
-      border-radius: 15px; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #F7CAC9; 
+      padding: 20px; 
+      border-radius: 12px; 
     }
     #feedback { 
       min-height: 40px; 
       margin-top: 20px; 
-      font-size: 26px; 
+      font-size: 28px; 
       font-weight: bold; 
-      color: #fff; 
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      color: #333; 
     }
 
     /* 하단 푸터 */
@@ -110,16 +100,15 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 5과</h2>
-      <p style="font-size: 20px; margin-bottom: 20px;">[아버지께 사랑받은 아이]</p>
+      <h2>소년반 성경퀴즈 6과</h2>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 홍길동" />
+      <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
@@ -131,52 +120,58 @@
   <div id="footer">Distributed by Dr. Choi</div>
 
   <script>
+    // 화면이 완전히 로딩된 후 코드를 실행하도록 설정
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 5과 문제 데이터
+      // 6과 문제 데이터 ("동생을 팔다")
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '아버지 야곱은 다른 아들들보다 라헬에게서 뒤늦게 얻은 귀한 아들인 요셉을 더 많이 사랑하여 화려하고 아름다운 겉옷을 선물해 주었습니다.', 
-          answer: 'O' 
+          question: '요셉의 맏형 르우벤은 처음부터 동생 요셉을 죽여서 없애 버리자고 형제들을 부추겼다.', 
+          answer: 'X' 
         }, 
+        // [근거: 본문 47쪽] 맏형 르우벤은 "요셉을 죽이지는 말고, 그냥 저기 있는 빈 우물 속에 던져 넣자"며 몰래 요셉을 구해내려 했습니다.
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "뭇 사람을 (    )하며 형제를 사랑하며 하나님을 두려워하며 왕을 존대하라" (베드로전서 2:17)', 
-          answer: '공경' 
+          question: '기억절: "진리를 말하는 자는 의를 나타내어도 (    ) 증인은 속이는 말을 하느니라" (잠언 12:17)', 
+          answer: '거짓' 
         },
+        // [근거: 본문 47쪽] "진리를 말하는 자는 의를 나타내어도 거짓 증인은 속이는 말을 하느니라"
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '요셉이 형들에게 말해 주었던 첫 번째 꿈의 내용은 무엇이었나요?', 
-          options: ['A. 해와 달과 별들이 인사하는 꿈', 'B. 형들의 곡식단이 요셉의 곡식단에게 절하는 꿈', 'C. 하늘에서 불이 내려오는 꿈', 'D. 거대한 왕관을 써보는 꿈'], 
-          answer: 'B. 형들의 곡식단이 요셉의 곡식단에게 절하는 꿈' 
+          question: '요셉을 우물에서 꺼내 이집트(애굽) 상인들에게 노예로 팔아버리자고 제안한 형제는 누구인가요?', 
+          options: ['A. 르우벤', 'B. 유다', 'C. 시므온', 'D. 레위'], 
+          answer: 'B. 유다' 
         },
+        // [근거: 본문 49쪽] "그 모습을 본 유다가 솔깃한 목소리로 형제들에게 제안했습니다... 상인들에게 노예로 팔아버리는 게 어때?"
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '요셉의 두 번째 꿈 이야기를 듣고 형들은 크게 분노했지만, 아버지 야곱은 이 일에 대해 어떻게 행동했나요?', 
-          options: ['A. 요셉을 크게 혼내고 집에서 쫓아냈다.', 'B. 요셉의 아름다운 옷을 빼앗아 버렸다.', 'C. 꿈 이야기를 마음속 깊이 조용히 생각해보았다.', 'D. 형들에게 요셉을 섬기라고 명령했다.'], 
-          answer: 'C. 꿈 이야기를 마음속 깊이 조용히 생각해보았다.' 
+          question: '형들은 요셉을 노예로 판 뒤, 아버지를 속여 요셉이 야생 동물에게 죽은 것처럼 꾸미기 위해 요셉의 옷에 무엇을 묻혔나요?', 
+          options: ['A. 염소의 피', 'B. 붉은 흙', 'C. 포도즙', 'D. 소의 피'], 
+          answer: 'A. 염소의 피'
         },
+        // [근거: 본문 51쪽] "하지만 다른 형들은 슬퍼하기는커녕 염소 한 마리를 죽이느라... 요셉에게서 빼앗은 옷에 염소의 붉은 피를 잔뜩 바르고 있었습니다."
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '이번 5과의 중심 생각에서, 우리는 교회와 일상생활 속에서 차별하지 않고 각 사람을 "이것"하며 친절하게 대해야 한다고 배웠습니다. 2글자인 "이것"은 무엇일까요?', 
-          answer: '존중' 
+          question: '노예로 밧줄에 묶여 끌려가던 절망적인 순간, 요셉은 아버지의 교훈을 기억하며 온전히 누구를 믿고 기도하기로 결심했나요? (3글자)', 
+          answer: '하나님' 
         },
+        // [근거: 본문 50~51쪽] "...요셉은 아버지가 늘 말씀해 주시던 '힘들 때면 언제나 하나님께 기도하라'는 교훈을 실천하겠다고 굳게 결심했습니다."
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '아버지 야곱의 편애로 요셉과 형들 사이에 갈등이 일어났던 이야기를 기억하며, 우리 소년반 친구들은 친구나 가족을 대할 때 어떻게 말하고 행동하고 싶은지 자유롭게 적어보세요.' 
+          question: '억울하거나 절망적인 상황에서도 하나님을 온전히 의지하기로 선택한 요셉처럼, 나에게 어려운 일이 생겼을 때 어떻게 기도하고 행동할지 느낀 점을 적어보세요.' 
         }
       ];
 
@@ -184,8 +179,7 @@
       let current = 0;
       let score = 0;
       let participantName = '';
-      // 요셉의 채색옷과 꿈을 상징하는 밝고 다채로운 테마 색상
-      const themes = ['#7E57C2', '#42A5F5', '#26A69A', '#EC407A', '#AB47BC', '#FF7043'];
+      const themes = ['#D9822B', '#8C4A32', '#4A6984', '#6B5B95', '#D9534F']; // 광야의 분위기와 중후한 느낌을 담은 색상
 
       // HTML 요소 가져오기
       const nameInputArea = document.getElementById('name-input-area');
@@ -198,60 +192,56 @@
       const feedbackEl = document.getElementById('feedback');
       const resultEl = document.getElementById('result');
 
-      // 시작 버튼 이벤트
+      // 시작 버튼 클릭 시 실행
       startBtn.addEventListener('click', startGame);
+      
+      // 엔터키 입력 시 실행
       nameInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') startGame();
       });
 
-      // 게임 시작
+      // 게임 시작 함수
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 꼭 입력해 주세요!");
+          alert("이름을 꼭 입력해주세요!");
           return;
         }
         
         participantName = nameVal;
+        
+        // 화면 전환: 이름 입력창 숨기고, 퀴즈 화면 보이기
         nameInputArea.style.display = 'none';
         quizArea.style.display = 'block';
         
         showQuestion();
       }
 
-      // 문제 표시
+      // 문제 표시 함수
       function showQuestion() {
-        feedbackEl.textContent = '';
+        feedbackEl.textContent = ''; // 피드백 초기화
         const q = questions[current];
 
+        // 문제 번호 및 내용 표시
         questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
         questionTextEl.textContent = q.question;
         questionTextEl.style.backgroundColor = themes[current % themes.length];
 
+        // 답안 영역 초기화
         answerAreaEl.innerHTML = '';
 
+        // 문제 타입에 따른 버튼/입력창 생성
         if (q.type === 'ox') {
           createBtn('O');
           createBtn('X');
         } else if (q.type === 'mcq') {
           q.options.forEach(opt => createBtn(opt));
-        } else if (q.type === 'any') {
-          const textarea = document.createElement('textarea');
-          textarea.placeholder = '여러분의 생각을 남겨주세요...';
-          answerAreaEl.appendChild(textarea);
-          answerAreaEl.appendChild(document.createElement('br'));
-          
-          const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출하기';
-          submitBtn.addEventListener('click', () => checkAnswer(textarea.value));
-          answerAreaEl.appendChild(submitBtn);
-          textarea.focus();
         } else {
+          // 주관식 입력창 (fill, short, any)
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = '정답 입력';
+          input.placeholder = q.type === 'any' ? '느낀 점 작성 후 제출' : '정답 입력';
           answerAreaEl.appendChild(input);
-          answerAreaEl.appendChild(document.createElement('br'));
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출';
@@ -265,48 +255,57 @@
         }
       }
 
-      // 버튼 생성 함수
+      // 버튼 생성 도우미 함수
       function createBtn(text) {
         const btn = document.createElement('button');
         btn.textContent = text;
-        btn.style.display = text.length > 5 ? 'block' : 'inline-block';
-        if(text.length > 5) btn.style.width = '100%';
         btn.addEventListener('click', () => checkAnswer(text));
         answerAreaEl.appendChild(btn);
       }
 
-      // 정답 확인
+      // 정답 확인 함수
       function checkAnswer(userAns) {
+        // 이미 정답을 체크했으면 중단
         if(answerAreaEl.querySelector('.next-btn')) return;
 
         const q = questions[current];
         let isCorrect = false;
 
+        // 정답 비교 로직
         if (q.type === 'any') {
-          isCorrect = userAns.trim().length > 0;
+          isCorrect = userAns.trim().length > 0; // 느낀 점은 글자가 적혀있으면 통과
         } else if (q.type === 'mcq') {
           isCorrect = (userAns === q.answer);
         } else {
+          // 주관식 정규화 비교 (띄어쓰기, 특수문자 무시)
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          isCorrect = (nUser === nAns);
+          
+          if (nAns === '하나님' && (nUser === '하나님' || nUser === '여호와')) {
+            isCorrect = true;
+          } else {
+            isCorrect = nUser === nAns;
+          }
         }
 
+        // 결과 피드백 및 점수
         if (isCorrect) {
-          feedbackEl.textContent = q.type === 'any' ? "소중한 생각 공유 고마워요! 👍" : "정답입니다! ⭕";
-          feedbackEl.style.color = "#2E7D32";
+          feedbackEl.textContent = "정답입니다! ⭕";
+          feedbackEl.style.color = "#FFD700"; // 황금색
           score++;
         } else {
-          feedbackEl.textContent = `틀렸습니다! ❌ (정답: ${q.answer})`;
-          feedbackEl.style.color = "#C62828";
+          feedbackEl.textContent = "틀렸습니다! ❌";
+          feedbackEl.style.color = "#FFCCCC";
         }
 
-        const inputs = answerAreaEl.querySelectorAll('button, input, textarea');
+        // 기존 버튼 비활성화
+        const inputs = answerAreaEl.querySelectorAll('button, input');
         inputs.forEach(el => el.disabled = true);
 
+        // 다음 버튼 생성
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 보기 🏆' : '다음 문제 ▶';
+        nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제';
         nextBtn.style.backgroundColor = '#333';
         nextBtn.style.color = '#fff';
         nextBtn.style.marginTop = '20px';
@@ -324,20 +323,15 @@
         feedbackEl.appendChild(nextBtn);
       }
 
-      // 결과 화면
+      // 결과 화면 표시
       function showResult() {
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         resultEl.innerHTML = `
-          <h3 style="margin-bottom:15px;">🎉 축하합니다! 🎉</h3>
-          <p style="font-size:24px;"><strong>${participantName}</strong> 어린이,</p>
-          <p style="font-size:22px; line-height: 1.6;">
-            총 <strong>${questions.length}</strong>문제 중 
-            <span style="color:#d32f2f; font-size:36px; font-weight:bold;">${score}</span>개 맞췄어요!
-          </p>
-          <p style="margin-top:20px; font-size:20px; color:#555;">
-            하나님 안에서 모든 친구들을 존중하고 사랑하는 소년반이 되길 바라요! ✨
-          </p>
+          <h3>${participantName} 학생은<br>
+          6과 총 ${questions.length}문제 중<br>
+          <span style="color:red; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
+          <p>수고했어요! 훌륭합니다! 👏👏👏</p>
         `;
       }
 
@@ -347,7 +341,7 @@
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
       }
 
-    });
+    }); // DOMContentLoaded 끝
   </script>
 </body>
 </html>

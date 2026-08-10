@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (6과)</title>
+  <title>유년반 교과 퀴즈 (7과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #e0f2fe; /* 6과 테마: 요단강과 은혜의 물결을 상징하는 시원한 하늘색 */
+      background: #fefce8; /* 7과 테마: 따뜻한 희망의 노란빛/금빛 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -18,41 +18,37 @@
     #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px; border-radius: 20px; color: #fff; 
-      background-color: #0284c7; /* 시원하고 따뜻한 푸른색 */
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      padding: 30px; border-radius: 15px; color: #fff; 
+      background-color: #d97706; /* 따뜻하고 진한 엠버/주황색 */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
 
     button { 
       margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 14px; cursor: pointer; 
-      background-color: #fff; color: #0f172a; font-weight: bold;
-      box-shadow: 0 4px 0 #cbd5e1;
-      transition: all 0.15s ease;
+      border: none; border-radius: 12px; cursor: pointer; 
+      background-color: #fff; color: #333; font-weight: bold;
+      box-shadow: 0 3px 0 #ddd;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #f0f9ff; }
+    button:hover { background-color: #fef3c7; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 3px solid #0284c7; width: 75%; text-align: center; margin-bottom: 20px; 
-      outline: none;
+      border: 2px solid #d97706; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
-      font-size: 28px; margin-top: 30px; color: #1e293b; 
+      font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #0284c7;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border: 5px solid #d97706;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
     #footer {
       position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #64748b; pointer-events: none;
-      font-weight: bold;
+      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
     }
   </style>
 </head>
@@ -60,17 +56,16 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 6과</h2>
-      <p style="font-size: 22px; font-weight: bold; margin-bottom: 5px;">🌊 나아만과 더러운 강</p>
-      <p style="font-size: 18px; margin-top: 0; color: #e0f2fe;">"하나님의 은혜는 우리 모두를 위한 것이에요"</p>
+      <h2>유년반 성경퀴즈 7과</h2>
+      <p style="font-size: 20px;">도끼가 떠오르다 (엘리사 선지자)</p>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 최재희" />
+      <input type="text" id="name-input" placeholder="예: 김성경" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
 
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #334155; margin-bottom: 10px; font-weight: bold;"></div>
+      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
@@ -79,7 +74,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 6과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 7과</div>
 
   <script>
     'use strict';
@@ -87,42 +82,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '이스라엘에서 잡혀온 어린 소녀는 외롭고 슬펐지만, 하나님을 잊지 않고 나아만 장군에게 선지자 엘리사 이야기를 친절하게 전해 주었어요.', 
+        question: '하나님께서는 우리가 기도할 때 아무리 작거나 하찮은 문제라도 모두 귀담아듣고 해결해 주신다.', 
         answer: 'O',
-        comment: '맞아요! 어린 소녀는 어디서든 하나님을 생각하고 나아만 장군에게 사랑을 실천했어요! ✨'
+        comment: '맞아요! 하나님께 말씀드리기에 너무 작은 문제란 없답니다. 항상 우리를 돌보아 주세요! '
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "우리가 다 그의 충만한 데서 받으니 (    ) 위에 은혜러라" (요한복음 1:16)', 
-        answer: '은혜',
-        comment: '정답이에요! 하나님께서는 우리 모두에게 크고 풍성한 은혜의 선물을 주신답니다! 🎁'
+        question: '기억절: "구하라 그리하면 너희에게 (   ) 것이요 찾으라 그리하면 찾아낼 것이요" (마태복음 7:7)', 
+        answer: '주실',
+        comment: '하나님께 믿음으로 구하면 언제나 가장 좋은 것으로 우리에게 주신답니다! '
       },
       { 
         type: 'mcq',  
-        question: '엘리사 선지자는 나아만 장군의 병을 고치기 위해 어느 강에서 몇 번 씻으라고 했나요?', 
-        options: ['A. 요단강에서 7번', 'B. 아마나강에서 3번', 'C. 한강에서 5번', 'D. 요단강에서 1번'], 
-        answer: 'A. 요단강에서 7번',
-        comment: '딩동댕! 나아만 장군이 요단강에서 일곱 번 몸을 씻었을 때 병이 완전히 깨끗해졌어요! 💧'
+        question: '선지자 학교 청년들이 엘리사 선생님과 함께 요단강가로 간 이유는 무엇인가요?', 
+        answer: 'C. 새 교실을 지을 나무를 자르려고',
+        options: ['A. 물고기를 잡으려고', 'B. 강에서 수영을 하려고', 'C. 새 교실을 지을 나무를 자르려고', 'D. 소풍을 가려고'], 
+        comment: '교실이 너무 좁아져서 더 넓은 새 교실을 짓기 위해 요단강으로 나무를 자르러 갔어요! '
       },
       { 
         type: 'mcq',  
-        question: '화가 나서 그냥 집으로 돌아가려던 나아만 장군을 지혜롭게 설득하여 순종하게 도와준 사람은 누구인가요?', 
-        options: ['A. 이스라엘 왕', 'B. 나아만 장군의 종', 'C. 아람의 의사', 'D. 엘리사 선지자'], 
-        answer: 'B. 나아만 장군의 종',
-        comment: '잘했어요! 지혜로운 종이 "작은 일인데 해보시는 게 어떨까요?" 하고 말해서 나아만 장군이 순종할 수 있었어요! 🤝'
+        question: '강속 깊은 곳에 빠진 쇠도끼를 떠오르게 하기 위해 엘리사 선지자가 강물에 던진 것은 무엇인가요?', 
+        answer: 'B. 나뭇가지',
+        options: ['A. 커다란 돌멩이', 'B. 나뭇가지', 'C. 빵 조각', 'D. 그물'], 
+        comment: '엘리사가 꺾어 던진 작은 나뭇가지 덕분에 묵직한 쇠도끼가 물 위로 둥둥 떠올랐어요! '
       },
       { 
         type: 'short',
-        question: '요단강에서 깨끗하게 고침받은 나아만 장군이 "오직 이 분만이 참 신이시다!"라고 고백했어요. 이 분은 누구일까요? (3글자)', 
-        answer: '하나님', 
-        comment: '우와, 최고예요! 나아만 장군은 하나님의 크신 은혜를 입고 하나님만이 참 하나님이심을 깨달았답니다! ❤️'
+        question: '빌려온 연장인데 강에 빠져버려 청년을 매우 걱정하게 만들었던 이 도구의 이름은 무엇일까요? (2글자)', 
+        answer: '도끼', 
+        comment: '나무를 자르는 도끼머리가 강에 빠졌지만, 하나님의 능력으로 기적처럼 떠올랐답니다! '
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0284c7'];
+    const themes = ['#d97706', '#b45309', '#92400e', '#78350f', '#451a03'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -193,24 +188,23 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
-      commentDiv.style.fontSize = '19px';
-      commentDiv.style.color = '#1e293b';
-      commentDiv.style.marginTop = '12px';
-      commentDiv.style.fontWeight = 'normal';
+      commentDiv.style.fontSize = '18px';
+      commentDiv.style.color = '#334155';
+      commentDiv.style.marginTop = '10px';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#0c4a6e';
+      nextBtn.style.backgroundColor = '#78350f';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -224,15 +218,13 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length 
-        ? "대단해요! 6과 성경 박사님이군요! 👑" 
-        : "정말 잘했어요! 하나님의 은혜를 늘 잊지 말아요! 🌱";
+      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">✨🌊✨</div>
-        <p>우리 어린이의 6과 점수는</p>
-        <p><span style="color:#0284c7; font-size:48px; font-weight:bold;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold; font-size:22px; color:#0369a1;">${message}</p>
+        <div style="font-size: 60px; margin: 20px 0;">🪓</div>
+        <p>우리 어린이의 7과 점수는</p>
+        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;
     }

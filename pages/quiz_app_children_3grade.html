@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (7과)</title>
+  <title>유년반 교과 퀴즈 (8과)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fefce8; /* 7과 테마: 따뜻한 희망의 노란빛/금빛 */
+      background: #eff6ff; /* 8과 테마: 하늘과 불병거를 상징하는 시원한 파란색 계열 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -18,63 +18,70 @@
     #quiz-container { width: 90%; max-width: 600px; text-align: center; padding-bottom: 60px; }
 
     .question-box, .input-box { 
-      padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #d97706; /* 따뜻하고 진한 엠버/주황색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px; border-radius: 20px; color: #fff; 
+      background-color: #2563eb; /* 든든한 파란색 */
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
       line-height: 1.5;
     }
 
     button { 
       margin: 10px; padding: 15px 30px; font-size: 22px; 
-      border: none; border-radius: 12px; cursor: pointer; 
-      background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      border: none; border-radius: 14px; cursor: pointer; 
+      background-color: #fff; color: #1e3a8a; font-weight: bold;
+      box-shadow: 0 4px 0 #cbd5e1;
+      transition: transform 0.1s ease, background-color 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fef3c7; }
+    button:hover { background-color: #dbeafe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
-      padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #d97706; width: 70%; text-align: center; margin-bottom: 20px; 
+      padding: 12px; font-size: 24px; border-radius: 12px; 
+      border: 3px solid #2563eb; width: 75%; text-align: center; margin-bottom: 20px; 
+      outline: none;
     }
 
     #result { 
-      font-size: 28px; margin-top: 30px; color: #333; 
-      background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #d97706;
+      font-size: 28px; margin-top: 30px; color: #1e293b; 
+      background: #fff; padding: 30px; border-radius: 24px; 
+      border: 5px solid #2563eb;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-    #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
+    #feedback { min-height: 40px; margin-top: 20px; font-size: 26px; font-weight: bold; }
 
     #footer {
       position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+      text-align: center; font-size: 14px; color: #64748b; pointer-events: none;
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
+    <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 7과</h2>
-      <p style="font-size: 20px;">도끼가 떠오르다 (엘리사 선지자)</p>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 김성경" />
+      <h2 style="margin-top:0;">유년반 성경퀴즈 8과</h2>
+      <p style="font-size: 22px; font-weight: bold; color: #fef08a;">보이는 것보다 더 많음</p>
+      <p>이름을 입력하고 퀴즈를 시작해볼까요?</p>
+      <input type="text" id="name-input" placeholder="예: 홍길동" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
 
+    <!-- 퀴즈 진행 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 20px; color: #475569; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
     </div>
 
+    <!-- 결과 영역 -->
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 7과</div>
+  <!-- 푸터 정보 -->
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 8과</div>
 
   <script>
     'use strict';
@@ -82,42 +89,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '하나님께서는 우리가 기도할 때 아무리 작거나 하찮은 문제라도 모두 귀담아듣고 해결해 주신다.', 
+        question: '아람 군대가 도단 성을 둘러쌌을 때, 눈에는 보이지 않았지만 하나님의 불말과 불병거 군대가 엘리사와 종을 지켜주고 있었어요.', 
         answer: 'O',
-        comment: '맞아요! 하나님께 말씀드리기에 너무 작은 문제란 없답니다. 항상 우리를 돌보아 주세요! '
+        comment: '맞아요! 종의 눈에는 보이지 않았지만, 하나님의 대단한 불말과 불병거 군대가 안전하게 지켜주고 있었어요! 🔥'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "구하라 그리하면 너희에게 (   ) 것이요 찾으라 그리하면 찾아낼 것이요" (마태복음 7:7)', 
-        answer: '주실',
-        comment: '하나님께 믿음으로 구하면 언제나 가장 좋은 것으로 우리에게 주신답니다! '
+        question: '기억절: "여호와의 (   )가 주를 경외하는 자를 둘러 진 치고 그들을 건지시는도다" (시편 34:7)', 
+        answer: '천사',
+        comment: '하나님께서는 주님을 사랑하는 어린이들에게 천사를 보내어 늘 지켜주신답니다! 👼'
       },
       { 
         type: 'mcq',  
-        question: '선지자 학교 청년들이 엘리사 선생님과 함께 요단강가로 간 이유는 무엇인가요?', 
-        answer: 'C. 새 교실을 지을 나무를 자르려고',
-        options: ['A. 물고기를 잡으려고', 'B. 강에서 수영을 하려고', 'C. 새 교실을 지을 나무를 자르려고', 'D. 소풍을 가려고'], 
-        comment: '교실이 너무 좁아져서 더 넓은 새 교실을 짓기 위해 요단강으로 나무를 자르러 갔어요! '
+        question: '아람 왕이 이스라엘을 공격하려고 할 때마다, 비밀 계획을 미리 알고 이스라엘 왕에게 알려준 선지자는 누구인가요?', 
+        options: ['A. 요나 선지자', 'B. 엘리사 선지자', 'C. 모세 선지자', 'D. 사무엘 선지자'], 
+        answer: 'B. 엘리사 선지자',
+        comment: '모든 것을 아시는 하나님께서 엘리사 선지자에게 아람 왕의 계획을 미리 알려주셨어요! 💡'
       },
       { 
         type: 'mcq',  
-        question: '강속 깊은 곳에 빠진 쇠도끼를 떠오르게 하기 위해 엘리사 선지자가 강물에 던진 것은 무엇인가요?', 
-        answer: 'B. 나뭇가지',
-        options: ['A. 커다란 돌멩이', 'B. 나뭇가지', 'C. 빵 조각', 'D. 그물'], 
-        comment: '엘리사가 꺾어 던진 작은 나뭇가지 덕분에 묵직한 쇠도끼가 물 위로 둥둥 떠올랐어요! '
+        question: '눈이 멀었던 아람 군대를 이스라엘 수도로 데려온 후, 엘리사는 이스라엘 왕에게 적군을 어떻게 하라고 했나요?', 
+        options: ['A. 모두 감옥에 가둔다', 'B. 음식을 대접하고 돌려보낸다', 'C. 모두 물리쳐 싸운다', 'D. 종으로 삼는다'], 
+        answer: 'B. 음식을 대접하고 돌려보낸다',
+        comment: '엘리사는 원수 같은 적들에게도 따뜻한 음식을 대접하고 은혜를 베풀어 집으로 돌려보냈어요! 🍞'
       },
       { 
         type: 'short',
-        question: '빌려온 연장인데 강에 빠져버려 청년을 매우 걱정하게 만들었던 이 도구의 이름은 무엇일까요? (2글자)', 
-        answer: '도끼', 
-        comment: '나무를 자르는 도끼머리가 강에 빠졌지만, 하나님의 능력으로 기적처럼 떠올랐답니다! '
+        question: '아람 군대가 엘리사 선지자를 잡기 위해 수많은 군사와 병거로 둘러쌌던 성의 이름은 무엇인가요? (2글자)', 
+        answer: '도단', 
+        comment: '도단 성이 아람 군대에 포위되었지만, 하나님께서 불말과 불병거로 도단을 둘러싸 이겨내게 해주셨어요! 🏰'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#d97706', '#b45309', '#92400e', '#78350f', '#451a03'];
+    const themes = ['#2563eb', '#1d4ed8', '#1e40af', '#1e3a8a', '#3b82f6'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -134,7 +141,10 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
+      if (!nameVal) { 
+        alert("이름을 꼭 입력해 주세요!"); 
+        return; 
+      }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -158,10 +168,12 @@
         input.type = 'text';
         input.placeholder = '정답을 적어보세요';
         answerAreaEl.appendChild(input);
+        
         const submitBtn = document.createElement('button');
         submitBtn.textContent = '정답 확인';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
+        
         input.focus();
         input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
       }
@@ -188,10 +200,10 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#15803d;'>우와! 정말 대단해요! 정답입니다! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
@@ -204,7 +216,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#78350f';
+      nextBtn.style.backgroundColor = '#1e3a8a';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -218,17 +230,18 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
+      let message = score === questions.length ? "최고예요! 완벽한 성경 박사님이시군요! 👑" : "정말 잘했어요! 참 잘했습니다! 👏";
       resultEl.innerHTML = `
-        <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🪓</div>
-        <p>우리 어린이의 7과 점수는</p>
-        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold;">${message}</p>
-        <button onclick="location.reload()">한 번 더 풀기</button>
+        <h2 style="margin-top:0;">축하해요, ${participantName} 어린이!</h2>
+        <div style="font-size: 60px; margin: 15px 0;">⚔️🛡️</div>
+        <p>우리 어린이의 8과 점수는</p>
+        <p><span style="color:#2563eb; font-size:48px; font-weight:bold;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; color:#1e293b;">${message}</p>
+        <button onclick="location.reload()" style="background-color:#2563eb; color:#fff;">한 번 더 풀기 🔄</button>
       `;
     }
 
+    // 띄어쓰기 및 문장 부호 차이로 오답 처리되지 않도록 정규화
     function normalize(str) {
       if (!str) return '';
       return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

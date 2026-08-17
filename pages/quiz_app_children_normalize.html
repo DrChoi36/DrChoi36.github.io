@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (7과)</title>
+  <title>소년반 성경 퀴즈 (8과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
@@ -11,8 +11,8 @@
     body { 
       margin: 0; 
       padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif, '맑은 고딕'; 
-      background: #eef7fc; 
+      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #f0f8ff; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
@@ -33,17 +33,16 @@
       padding: 30px; 
       border-radius: 15px; 
       color: #fff; 
-      background-color: #4A90E2; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background-color: #4A6984; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: background-color 0.5s; 
-      line-height: 1.5;
     }
 
     /* 버튼 스타일 */
     button { 
-      margin: 10px 5px; 
-      padding: 15px 25px; 
-      font-size: 22px; 
+      margin: 10px; 
+      padding: 15px 30px; 
+      font-size: 24px; 
       border: none; 
       border-radius: 10px; 
       cursor: pointer; 
@@ -51,7 +50,6 @@
       background-color: #fff; 
       color: #333; 
       font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     button:hover { background-color: #f0f0f0; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -59,30 +57,28 @@
     /* 입력창 스타일 */
     input[type="text"] { 
       padding: 10px; 
-      font-size: 22px; 
+      font-size: 24px; 
       border-radius: 8px; 
       border: none; 
-      width: 80%; 
+      width: 70%; 
       font-family: inherit; 
       text-align: center; 
       margin-bottom: 20px; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
     }
 
     /* 결과 및 피드백 */
     #result { 
-      font-size: 30px; 
+      font-size: 32px; 
       margin-top: 30px; 
       color: #333; 
-      background: #E8F5E9; 
-      padding: 25px; 
+      background: #E2F0D9; 
+      padding: 20px; 
       border-radius: 12px; 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     #feedback { 
       min-height: 40px; 
       margin-top: 20px; 
-      font-size: 26px; 
+      font-size: 28px; 
       font-weight: bold; 
       color: #333; 
     }
@@ -104,10 +100,9 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 7과</h2>
-      <p style="font-size: 20px; margin-bottom: 20px;">'아주 멀리 가다'</p>
+      <h2>소년반 성경퀴즈 8과</h2>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 요셉" />
+      <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
@@ -125,53 +120,57 @@
   <div id="footer">Distributed by Dr. Choi</div>
 
   <script>
-    // 화면이 완전히 로딩된 후 코드를 실행하도록 설정 (오류 방지)
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 7과 문제 데이터
+      // 8과 문제 데이터
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '보디발 아내의 유혹을 받은 요셉은 하나님과 주인 보디발에게 죄를 지을 수 없다며 단호하게 거절하고 유혹의 자리를 피했습니다.', 
-          answer: 'O' 
+          question: '바로 왕 앞에 선 요셉은 자신의 뛰어난 지혜와 꿈 해석 능력을 자랑스럽게 이야기하며 왕의 꿈을 풀어주었다.', 
+          answer: 'X' 
         }, 
+        // [근거: 본문 63쪽] "저는 스스로 꿈을 해석할 능력이 없습니다. 하지만 제가 믿는 하나님께서 왕에게 가장 올바르고 평안한 답을 알려주실 것입니다!"
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "네 마음을 다하고 목숨을 다하고 뜻을 다하고 힘을 다하여 주 너의 하나님을 사랑하라 하신 것이요 둘째는 이것이니 네 (    )을/를 네 자신과 같이 사랑하라 하신 것이라" (마가복음 12:30~31)', 
-          answer: '이웃' 
+          question: '기억절: "친구는 (    )이/가 끊어지지 아니하고 형제는 위급한 때를 위하여 났느니라" (잠언 17:17)', 
+          answer: '사랑' 
         },
+        // [근거: 본문 61쪽 기억절]
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '요셉이 보디발 아내의 나쁜 유혹을 피해 온 힘을 다해 도망칠 때, 여주인의 손에 남겨두게 된 것은 무엇인가요?', 
-          options: ['A. 금반지', 'B. 겉옷', 'C. 가죽신발', 'D. 열쇠고리'], 
-          answer: 'B. 겉옷' 
+          question: '꿈속에서 비쩍 마른 소 일곱 마리와 바짝 말라버린 야윈 이삭 일곱 개가 상징하는 것은 무엇이었나요?', 
+          options: ['A. 7년 동안의 전쟁', 'B. 7년 동안의 흉년', 'C. 7년 동안의 전염병', 'D. 7년 동안의 평화'], 
+          answer: 'B. 7년 동안의 흉년' 
         },
+        // [근거: 본문 64쪽] "비쩍 마른 일곱 소와 야윈 이삭들은... 무서운 7년 동안의 흉년이 찾아올 것을 뜻합니다."
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '보디발 장군이 거짓 소문을 듣고 억울하게 요셉을 가두기 위해 보낸 장소는 어디인가요?', 
-          options: ['A. 왕의 감옥', 'B. 광야 노동장', 'C. 지하 광산', 'D. 타국 망명지'], 
-          answer: 'A. 왕의 감옥'
+          question: '바로 왕이 답답한 꿈 때문에 화를 낼 때, 2년 전 감옥에서 자신의 꿈을 풀어주었던 요셉을 떠올리고 왕에게 추천한 사람은 누구인가요?', 
+          options: ['A. 시위대장 보디발', 'B. 떡 만드는 관원장', 'C. 술 맡은 관원장', 'D. 이집트의 마술사'], 
+          answer: 'C. 술 맡은 관원장'
         },
+        // [근거: 본문 63쪽] "왕에게 음료를 바치던 신하(술 맡은 관원장)... 요셉이라는 히브리 청년입니다."
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '7과의 중심 생각에서, 다른 사람의 개인적인 영역을 인정하고 지켜주는 것은 그 사람을 "이것"하는 방법이라고 배웠습니다. 2글자인 "이것"은 무엇일까요?', 
-          answer: '존중' 
+          question: '요셉은 다가올 흉년을 대비하기 위해 풍년 기간 동안 매년 수확한 곡식의 얼마를 저장해야 한다고 조언했나요?', 
+          answer: '5분의 1' 
         },
+        // [근거: 본문 64쪽] "매년 수확한 곡식의 5분의 1을 차곡차곡 저장하셔야 합니다."
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '억울하거나 유혹이 찾아오는 상황에서도 끝까지 하나님을 신뢰하고 바르게 행동했던 요셉처럼, 나도 일상에서 정직하고 멋지게 행동하고 싶은 다짐을 자유롭게 적어보세요.' 
+          question: '어려운 상황에서도 언제나 하나님을 인정하고 겸손히 지혜를 구했던 요셉처럼, 여러분은 이번 8과를 통해 무엇을 느끼고 다짐했는지 자유롭게 적어보세요.' 
         }
       ];
 
@@ -179,7 +178,7 @@
       let current = 0;
       let score = 0;
       let participantName = '';
-      const themes = ['#4A90E2', '#50E3C2', '#F5A623', '#7ED321', '#BD10E0', '#4A4A4A']; // 테마 배경색
+      const themes = ['#3B5998', '#4A6984', '#2E8B57', '#6A5ACD', '#D96B27', '#8B4513']; // 8과 주제(애굽과 총리 요셉)에 어울리는 색상 테마
 
       // HTML 요소 가져오기
       const nameInputArea = document.getElementById('name-input-area');
@@ -237,10 +236,10 @@
         } else if (q.type === 'mcq') {
           q.options.forEach(opt => createBtn(opt));
         } else {
-          // 주관식 / 느낀점 입력창
+          // 주관식 입력창
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '생각을 작성하세요' : '정답 입력';
+          input.placeholder = '정답 입력';
           answerAreaEl.appendChild(input);
           
           const submitBtn = document.createElement('button');
@@ -273,24 +272,30 @@
 
         // 정답 비교 로직
         if (q.type === 'any') {
-          isCorrect = userAns.trim().length > 0; // 내용이 입력되어 있으면 인정
+          isCorrect = userAns.trim().length > 0; // 내용이 있으면 정답
         } else if (q.type === 'mcq') {
           isCorrect = (userAns === q.answer);
         } else {
           // 주관식 정규화 비교 (띄어쓰기, 특수문자 무시)
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          isCorrect = (nUser === nAns);
+          
+          // 유연한 정답 인정 예시 (5분의 1, 1/5 등)
+          if (q.answer === '5분의 1' && (nUser === '1/5' || nUser === '오분의일')) {
+            isCorrect = true;
+          } else {
+            isCorrect = nUser === nAns;
+          }
         }
 
         // 결과 피드백 및 점수
         if (isCorrect) {
-          feedbackEl.textContent = q.type === 'any' ? "멋진 다짐이에요! 👏" : "정답입니다! ⭕";
-          feedbackEl.style.color = "#2E7D32"; 
+          feedbackEl.textContent = "정답입니다! ⭕";
+          feedbackEl.style.color = "#FFD700"; // 밝은 노란색
           score++;
         } else {
-          feedbackEl.textContent = "아쉬워요, 다시 생각해볼까요? ❌";
-          feedbackEl.style.color = "#C62828";
+          feedbackEl.textContent = "틀렸습니다! ❌";
+          feedbackEl.style.color = "#FFCCCC";
         }
 
         // 기존 버튼 비활성화
@@ -323,10 +328,10 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         resultEl.innerHTML = `
-          <h3>${participantName} 학생,<br>
-          7과 총 ${questions.length}문제 중<br>
-          <span style="color:#2E7D32; font-size:42px;">${score}</span>개를 맞췄어요!</h3>
-          <p style="font-size: 22px;">어려운 상황에서도 하나님을 선택한 요셉처럼 멋진 소년반 학생이 되길 응원해요! 👏👏👏</p>
+          <h3>${participantName} 학생은<br>
+          8과 총 ${questions.length}문제 중<br>
+          <span style="color:#D9534F; font-size:40px;">${score}</span>개를 맞췄어요!</h3>
+          <p>참 잘했어요! 👏👏👏</p>
         `;
       }
 

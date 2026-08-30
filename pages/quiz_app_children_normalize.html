@@ -3,123 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (9과)</title>
+  <title>소년반 성경 퀴즈 (10과 - 원수의 양자가 되다)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
     /* 전체 화면 스타일 */
     body { 
       margin: 0; 
       padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #eef7fc; 
+      font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
+      background: #f0f4f8; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
-      font-size: 24px; 
+      font-size: 20px; 
+      color: #333;
     }
 
-    /* 퀴즈 박스 스타일 */
+    /* 퀴즈 컨테이너 스타일 */
     #quiz-container { 
-      width: 90%; 
-      max-width: 600px; 
+      width: 92%; 
+      max-width: 650px; 
       text-align: center; 
-      padding: 10px 0; 
-      padding-bottom: 60px; 
+      padding: 20px 0 70px 0; 
     }
 
     .question-box, .input-box { 
-      padding: 30px; 
-      border-radius: 15px; 
+      padding: 30px 24px; 
+      border-radius: 20px; 
       color: #fff; 
-      background-color: #5b84b1; 
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: background-color 0.5s; 
-      line-height: 1.5;
+      background-color: #4A6572; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+      transition: background-color 0.4s ease, transform 0.2s ease; 
+      line-height: 1.6;
+    }
+
+    .question-box {
+      font-size: 22px;
+      font-weight: 700;
+      word-break: keep-all;
     }
 
     /* 버튼 스타일 */
     button { 
-      margin: 10px; 
-      padding: 15px 25px; 
-      font-size: 22px; 
+      margin: 8px 6px; 
+      padding: 14px 24px; 
+      font-size: 20px; 
       border: none; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       cursor: pointer; 
       font-family: inherit; 
-      background-color: #fff; 
-      color: #333; 
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #ffffff; 
+      color: #2c3e50; 
+      font-weight: 700;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
     }
-    button:hover { background-color: #f0f0f0; }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    button:hover { 
+      background-color: #f1f5f9; 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    button:disabled { 
+      opacity: 0.65; 
+      cursor: not-allowed; 
+      transform: none;
+    }
+
+    .mcq-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 10px 0;
+      padding: 14px 20px;
+    }
 
     /* 입력창 스타일 */
     input[type="text"] { 
-      padding: 12px; 
-      font-size: 22px; 
-      border-radius: 8px; 
-      border: none; 
-      width: 80%; 
+      padding: 12px 18px; 
+      font-size: 20px; 
+      border-radius: 10px; 
+      border: 2px solid #e2e8f0; 
+      width: 75%; 
       font-family: inherit; 
       text-align: center; 
-      margin-bottom: 20px; 
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 16px; 
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus {
+      border-color: #3b82f6;
     }
 
     /* 결과 및 피드백 */
     #result { 
-      font-size: 30px; 
-      margin-top: 30px; 
-      color: #333; 
-      background: #e1f5fe; 
-      padding: 25px; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      line-height: 1.6;
+      font-size: 24px; 
+      margin-top: 20px; 
+      color: #2c3e50; 
+      background: #ffffff; 
+      padding: 30px; 
+      border-radius: 20px; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      line-height: 1.7;
     }
     #feedback { 
-      min-height: 40px; 
-      margin-top: 20px; 
-      font-size: 26px; 
-      font-weight: bold; 
-      color: #333; 
+      min-height: 48px; 
+      margin-top: 18px; 
+      font-size: 24px; 
+      font-weight: 800; 
+      color: #1e293b; 
+    }
+
+    .alert-msg {
+      color: #ef4444;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
     }
 
     /* 하단 푸터 */
-    #footer {
-      position: fixed;
-      bottom: 10px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: #888;
-      pointer-events: none;
+    #footer { 
+      position: fixed; 
+      bottom: 12px; 
+      left: 0; 
+      width: 100%; 
+      text-align: center; 
+      font-size: 14px; 
+      color: #94a3b8; 
+      font-weight: 600;
+      pointer-events: none; 
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
+    <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2>소년반 성경퀴즈 9과</h2>
-      <p style="font-size:20px; margin-bottom:20px;">[꿈이 이루어지다]</p>
-      <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 홍길동" />
+      <h2 style="margin-top:0; font-size: 28px;">📖 소년반 성경퀴즈 10과</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"원수의 양자가 되다"<br>이름을 입력하고 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 다니엘" autocomplete="off" />
+      <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #f8fafc; color: #1e293b; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
+    <!-- 퀴즈 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #64748b; margin-bottom: 12px;"></div>
       <div id="question-text" class="question-box"></div>
-      <div id="answer-area" style="margin-top: 20px;"></div>
+      <div id="answer-area" style="margin-top: 24px;"></div>
       <div id="feedback"></div>
     </div>
 
+    <!-- 결과 영역 -->
     <div id="result" style="display:none;"></div>
   </div>
 
@@ -129,54 +170,54 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 9과 문제 데이터
+      // 10과: 원수의 양자가 되다 (여호수아 2장 / 이사야 41:9)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '요셉은 10대 소년 시절, 들판에서 묶은 자신의 곡식단에 형들의 곡식단이 절을 하는 꿈을 꾼 적이 있다.', 
+          question: '여리고 성에 살던 라합은 이스라엘의 두 정탐꾼을 성난 군사들로부터 숨겨주기 위해 지붕 위 "아마 다발" 밑에 숨겼다.', 
           answer: 'O' 
         }, 
+        // [근거: PDF 75쪽] "지금 지붕 위에 실을 짜려고 아마(식물의 일종) 다발을 널어서 말리는 중인데, 얼른 그 밑에 숨으세요."
 
-        // 2번: 기억절 문제 (에베소서 4:32)
+        // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "서로 친절하게 하며 불쌍히 여기며 서로 (    )하기를 하나님이 그리스도 안에서 너희를 용서하심과 같이 하라" (에베소서 4:32)', 
-          answer: '용서' 
+          question: '기억절: "내가 땅 끝에서부터 너를 붙들며 땅 모퉁이에서부터 너를 부르고 네게 이르기를 너는 나의 (    )이라 내가 너를 택하고 싫어하여 버리지 아니하였다 하였노라" (이사야 41:9)', 
+          answer: '종' 
         },
+        // [근거: PDF 75쪽] "너는 나의 종이라 내가 너를 택하고..."
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '가뭄을 피해 이집트로 곡식을 사러 찾아온 요셉의 형들은 모두 몇 명이었나요?', 
-          options: ['A. 8명', 'B. 10명', 'C. 11명', 'D. 12명'], 
-          answer: 'B. 10명' 
+          question: '이스라엘 지도자 여호수아의 명령을 받고 여리고 성에 비밀 정보를 알아내기 위해 파견된 사람들은 몇 명이었나요?', 
+          options: ['A. 2명', 'B. 4명', 'C. 7명', 'D. 12명'], 
+          answer: 'A. 2명' 
         },
+        // [근거: PDF 75쪽] "수염을 기른 두 남자가... 이 두 사람은 이스라엘의 지도자 여호수아가 보낸 비밀 정탐꾼들이었습니다."
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '요셉이 자신을 노예로 팔아넘긴 형들을 원망하거나 복수하지 않고 깨끗이 용서할 수 있었던 이유는 무엇인가요?', 
-          options: [
-            'A. 형들이 많은 돈을 가져왔기 때문에', 
-            'B. 이집트 왕이 용서하라고 명령했기 때문에', 
-            'C. 자신의 삶 속에 역사하시는 하나님의 손길을 보았기 때문에', 
-            'D. 형들이 감옥에 갇히는 것을 싫어했기 때문에'
-          ], 
-          answer: 'C. 자신의 삶 속에 역사하시는 하나님의 손길을 보았기 때문에' 
+          question: '여리고 성이 무너져 멸망할 때, 라합과 그 가족들이 구원받기 위해 창문에 매달아 두어야 했던 약속의 표시는 무엇이었나요?', 
+          options: ['A. 은색 방울', 'B. 푸른 깃발', 'C. 붉은 줄 (붉은 밧줄)', 'D. 흰색 천'], 
+          answer: 'C. 붉은 줄 (붉은 밧줄)' 
         },
+        // [근거: PDF 79쪽] "만약 이 붉은 줄을 당신 집 창문에 매달아 놓지 않고... 오직 한 곳, 창문에 붉은 밧줄이 대롱대롱 걸려 있던 라합의 집만큼은 안전하게..."
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '하나님께서 우리 모두를 조건 없이 이것 해주셨듯이, 우리도 친구나 형제를 이해하고 보듬어야 합니다. 9과의 핵심 주제인 이 2글자 단어는 무엇일까요?', 
-          answer: '용서' 
+          question: '라합에게 정탐꾼들을 체포하러 군사들이 들이닥쳤을 때, 라합은 그들이 해 질 무렵 성문이 닫힐 때 어디 밖으로 떠났다고 둘러대며 군사들을 따돌렸나요? (2글자)', 
+          answer: '성밖' 
         },
+        // [근거: PDF 76쪽] "해가 질 무렵 성문이 닫힐 때 서둘러 떠났으니, 지금 당장 빨리 뒤쫓아가면 성 밖에서 잡을 수 있을지도 몰라요!"
 
         // 6번: 느낀점
         { 
           type: 'any',  
-          question: '요셉처럼 마음속으로 누군가를 용서하기 힘들었던 적이 있나요? 나를 용서해주신 하나님의 사랑을 떠올리며, 앞으로 어떤 마음을 가질지 자유롭게 적어보세요.' 
+          question: '이방 여인이었던 라합도 믿음으로 하나님의 백성(가족)이 되었습니다. 오늘 말씀을 통해 하나님께서 나를 자녀 삼아주신 사랑에 대해 느낀 점을 자유롭게 적어보세요.' 
         }
       ];
 
@@ -184,11 +225,13 @@
       let current = 0;
       let score = 0;
       let participantName = '';
-      const themes = ['#4A90E2', '#50E3C2', '#F5A623', '#B8E986', '#9013FE', '#4A4A4A']; // 9과 분위기에 맞춘 배경색 테마
+      // 10과 본문 분위기에 어울리는 모던 테마 색상 (벽돌레드, 올리브그린, 네이비, 딥퍼플 등)
+      const themes = ['#C05C46', '#4A7C59', '#3D617B', '#7A5C8E', '#D17A22', '#5B6275'];
 
       // HTML 요소 가져오기
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
+      const nameAlert = document.getElementById('name-alert');
       const startBtn = document.getElementById('start-btn');
       const quizArea = document.getElementById('quiz-area');
       const questionNumberEl = document.getElementById('question-number');
@@ -197,32 +240,32 @@
       const feedbackEl = document.getElementById('feedback');
       const resultEl = document.getElementById('result');
 
-      // 시작 버튼 클릭 이벤트
+      // 시작 이벤트 연결
       startBtn.addEventListener('click', startGame);
-      
-      // 엔터키 입력 시 시작
       nameInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') startGame();
       });
 
-      // 게임 시작
+      // 게임 시작 함수
       function startGame() {
         const nameVal = nameInput.value.trim();
         if (!nameVal) {
-          alert("이름을 꼭 입력해주세요!");
+          nameAlert.style.display = 'block';
+          nameInput.focus();
           return;
         }
-        
+        nameAlert.style.display = 'none';
         participantName = nameVal;
+        
         nameInputArea.style.display = 'none';
         quizArea.style.display = 'block';
         
         showQuestion();
       }
 
-      // 문제 표시
+      // 문제 표시 함수
       function showQuestion() {
-        feedbackEl.textContent = '';
+        feedbackEl.innerHTML = '';
         const q = questions[current];
 
         questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
@@ -232,20 +275,34 @@
         answerAreaEl.innerHTML = '';
 
         if (q.type === 'ox') {
-          createBtn('O');
-          createBtn('X');
+          const btnO = createBtn('O');
+          const btnX = createBtn('X');
+          btnO.style.fontSize = '32px';
+          btnX.style.fontSize = '32px';
+          btnO.style.width = '120px';
+          btnX.style.width = '120px';
         } else if (q.type === 'mcq') {
-          q.options.forEach(opt => createBtn(opt));
+          q.options.forEach(opt => {
+            const btn = createBtn(opt);
+            btn.className = 'mcq-btn';
+          });
         } else {
-          // 주관식 / 느낀점 입력창
+          // 주관식 / 서술형 입력창
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '자유롭게 적어보세요' : '정답 입력';
+          input.placeholder = q.type === 'any' ? '생각이나 느낌을 적어보세요' : '정답 입력';
+          if (q.type === 'any') {
+            input.style.width = '85%';
+            input.style.textAlign = 'left';
+          }
           answerAreaEl.appendChild(input);
           
           const submitBtn = document.createElement('button');
-          submitBtn.textContent = '제출';
+          submitBtn.textContent = '제출하기';
+          submitBtn.style.backgroundColor = '#2c3e50';
+          submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
+          answerAreaEl.appendChild(document.createElement('br'));
           answerAreaEl.appendChild(submitBtn);
 
           input.focus();
@@ -255,18 +312,16 @@
         }
       }
 
-      // 선택 버튼 생성 함수
+      // 버튼 생성 도우미
       function createBtn(text) {
         const btn = document.createElement('button');
         btn.textContent = text;
-        btn.style.display = 'block';
-        btn.style.width = '100%';
-        btn.style.margin = '8px 0';
         btn.addEventListener('click', () => checkAnswer(text));
         answerAreaEl.appendChild(btn);
+        return btn;
       }
 
-      // 정답 확인
+      // 정답 확인 함수
       function checkAnswer(userAns) {
         if(answerAreaEl.querySelector('.next-btn')) return;
 
@@ -280,27 +335,39 @@
         } else {
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
-          isCorrect = nUser === nAns;
+
+          // 유연한 정답 인정 로직 (예: '성밖' or '성밖으로', '종' 등)
+          if (nAns === '성밖' && (nUser === '성밖' || nUser === '성밖으로' || nUser === '성외곽')) {
+            isCorrect = true;
+          } else {
+            isCorrect = (nUser === nAns);
+          }
         }
 
-        if (isCorrect) {
-          feedbackEl.textContent = "정답입니다! ⭕";
-          feedbackEl.style.color = "#2E7D32";
+        // 결과 피드백 UI
+        if (q.type === 'any') {
+          feedbackEl.innerHTML = "<span style='color: #16a34a;'>멋진 생각을 나눠주어서 고마워요! 🌟</span>";
+          score++;
+        } else if (isCorrect) {
+          feedbackEl.innerHTML = "<span style='color: #16a34a;'>정답입니다! ⭕</span>";
           score++;
         } else {
-          feedbackEl.textContent = "아쉬워요! ❌";
-          feedbackEl.style.color = "#C62828";
+          let correctHint = (q.type === 'ox' || q.type === 'mcq') ? q.answer : `'${q.answer}'`;
+          feedbackEl.innerHTML = `<span style='color: #dc2626;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
         }
 
+        // 버튼 및 인풋 비활성화
         const inputs = answerAreaEl.querySelectorAll('button, input');
         inputs.forEach(el => el.disabled = true);
 
+        // 다음 문제 버튼 생성
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
-        nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제';
-        nextBtn.style.backgroundColor = '#333';
+        nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🎉' : '다음 문제 ▶';
+        nextBtn.style.backgroundColor = '#1e293b';
         nextBtn.style.color = '#fff';
-        nextBtn.style.marginTop = '15px';
+        nextBtn.style.marginTop = '16px';
+        nextBtn.style.padding = '12px 28px';
         
         nextBtn.addEventListener('click', () => {
           if (current === questions.length - 1) {
@@ -313,21 +380,29 @@
         
         feedbackEl.appendChild(document.createElement('br'));
         feedbackEl.appendChild(nextBtn);
+        nextBtn.focus();
       }
 
-      // 결과 화면
+      // 최종 결과 화면 표시
       function showResult() {
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
+        
+        let praiseMsg = "멋지게 퀴즈를 완료했어요! 하나님 안에서 승리하는 한 주 보내세요! 🌿";
+        if (score === questions.length) {
+          praiseMsg = "와우! 만점이에요! 성경 박사님이시네요! 👑💯";
+        }
+
         resultEl.innerHTML = `
-          <h3>${participantName} 학생,<br>
-          9과 총 ${questions.length}문제 중<br>
-          <span style="color:#d32f2f; font-size:45px;">${score}</span>개를 맞췄어요!</h3>
-          <p>하나님의 용서하는 마음을 배우느라 수고 많았습니다! 👏👏👏</p>
+          <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
+          <p style="font-size:22px;">10과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#e11d48; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="color:#475569; font-size:18px;">${praiseMsg}</p>
+          <button onclick="location.reload()" style="background-color:#0284c7; color:#fff; margin-top:14px;">다시 도전하기 🔄</button>
         `;
       }
 
-      // 문자열 정규화 (띄어쓰기 및 특수문자 제거)
+      // 문자열 정규화 (공백, 문장부호, 특수기호 제거)
       function normalize(str) {
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

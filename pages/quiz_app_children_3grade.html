@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (사랑을 독차지한 아들)</title>
+  <title>유년반 성경퀴즈 - 10과 놓치 마!</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fffbebf0; /* 사랑과 따뜻함을 나타내는 연한 황금/주황 빛 테마 */
+      font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
+      background: #eff6ff; /* 하늘빛 푸른 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #f59e0b; /* 따뜻한 채색옷 느낌의 주황/황금색 */
+      background-color: #3b82f6; /* 밝고 맑은 파란색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -29,20 +29,22 @@
       border: none; border-radius: 12px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
       box-shadow: 0 3px 0 #ddd;
+      transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fef3c7; }
+    button:hover { background-color: #dbeafe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #f59e0b; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #3b82f6; width: 70%; text-align: center; margin-bottom: 20px; 
+      outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #f59e0b;
+      border: 5px solid #3b82f6;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -57,9 +59,9 @@
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
       <h2>유년반 성경퀴즈</h2>
-      <p style="font-size: 20px;">사랑을 독차지한 아들 (요셉 이야기)</p>
+      <p style="font-size: 20px; margin-top: -10px;">요셉의 바른 선택 (창세기 39장)</p>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 최재희" />
+      <input type="text" id="name-input" placeholder="예: 예수사랑" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
@@ -74,7 +76,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과</div>
+  <div id="footer">Distributed by Dr. Choi</div>
 
   <script>
     'use strict';
@@ -82,42 +84,47 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '야곱 아버지가 요셉에게 아름다운 채색옷을 선물했을 때, 형들은 요셉을 축하하며 기뻐해 주었나요?', 
-        answer: 'X',
-        comment: '형들은 요셉만 사랑받는 것 같아서 매우 질투하고 요셉을 미워했어요. 😢'
+        question: '요셉은 나쁜 일을 하자는 유혹을 받았을 때, "제가 어떻게 하나님께 죄를 지을 수 있겠습니까?"라고 하며 단호하게 거절했어요.', 
+        answer: 'O',
+        comment: '맞아요! 요셉은 어디서나 하나님께 순종하며 올바른 선택을 했답니다! ⭐'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "내가 너희를 사랑한 것같이 너희도 (    ) 사랑하라" (요한복음 15:12)', 
-        answer: '서로',
-        comment: '예수님께서는 우리가 시기하지 않고 서로 사랑하기를 원하신답니다! ❤️'
+        question: '기억절: "네가 가진 것을 (    ) 잡아 아무나 네 면류관을 빼앗지 못하게 하라" (요한계시록 3:11)', 
+        answer: '굳게',
+        comment: '믿음을 굳게 잡고 흔들리지 않는 멋진 어린이가 되어요! 👑'
       },
       { 
         type: 'mcq',  
-        question: '야곱 아버지가 다른 형들보다 요셉을 더 사랑해서 특별히 선물해 준 아름다운 옷은 무엇인가요?', 
-        answer: 'B. 채색 옷',
-        options: ['A. 무지개 옷', 'B. 채색 옷', 'C. 가죽 옷', 'D. 비단 옷'], 
-        comment: '아버지는 요셉에게 알록달록 아름다운 채색 옷을 선물해 주셨어요. 🎨'
-      }, 
+        question: '보디발의 아내가 요셉을 붙잡으려 했을 때, 요셉은 무엇을 버려두고 밖으로 도망쳤나요?', 
+        options: ['A. 신발', 'B. 모자', 'C. 옷', 'D. 지팡이'], 
+        answer: 'C. 옷',
+        comment: '요셉은 죄를 짓지 않기 위해 옷까지 버려두고 재빨리 도망쳤어요! 🏃'
+      },
       { 
         type: 'mcq',  
-        question: '가장 큰 형 르우벤은 요셉을 해치지 않고 나중에 몰래 구해내기 위해 요셉을 어디에 넣자고 했나요?', 
-        answer: 'A. 깊은 구덩이',
-        options: ['A. 깊은 구덩이', 'B. 커다란 동굴', 'C. 높은 나무 위', 'D. 양지바른 언덕'], 
-        comment: '르우벤 형은 요셉을 구덩이에 넣었다가 나중에 몰래 구해주려고 했어요. 🕳️'
-      }, 
+        question: '거짓말 때문에 억울하게 감옥에 갇혔을 때도 요셉이 믿었던 것은 무엇일까요?', 
+        options: [
+          'A. 하나님께서 여전히 나와 함께 계신다',
+          'B. 형들이 곧 구하러 올 것이다',
+          'C. 보디발의 아내가 곧 사과할 것이다',
+          'D. 돈으로 감옥에서 나갈 수 있다'
+        ], 
+        answer: 'A. 하나님께서 여전히 나와 함께 계신다',
+        comment: '어려운 감옥 안에서도 하나님께서는 요셉과 함께 계시며 축복해 주셨어요! ✨'
+      },
       { 
         type: 'short',
-        question: '형들은 요셉이 곡식단과 별들이 절하는 특별한 이것을 꾸었다고 해서 "저기 (  )쟁이가 온다!"라고 불렀어요. 빈칸에 들어갈 한 글자는 무엇일까요?', 
-        answer: '꿈', 
-        comment: '하나님께서 요셉에게 미래의 일을 보여주시는 특별한 꿈을 꾸게 하셨어요! 🌙'
+        question: '요셉이 이집트로 팔려가 집안 전체 일을 도맡아 관리했던 주인의 이름은 누구일까요? (3글자)', 
+        answer: '보디발', 
+        comment: '보디발의 집에서도 요셉은 충성스럽게 일하여 큰 인정을 받았답니다! 👏'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#f59e0b', '#d97706', '#b45309', '#ea580c', '#c2410c'];
+    const themes = ['#3b82f6', '#2563eb', '#1d4ed8', '#1e40af', '#1e3a8a'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -188,10 +195,10 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#1d4ed8;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
@@ -204,7 +211,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#b45309';
+      nextBtn.style.backgroundColor = '#1e3a8a';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -218,12 +225,12 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요! 👑" : "정말 수고했어요! 다음 과도 즐겁게 공부해요! 👏";
+      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">👑</div>
-        <p>우리 어린이의 퀴즈 점수는</p>
-        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">🌟</div>
+        <p>우리 어린이의 성경 퀴즈 점수는</p>
+        <p><span style="color:#2563eb; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

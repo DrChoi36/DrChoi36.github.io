@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여호수아반 성경 퀴즈 - 그리스도인의 참된 직무</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(135deg, #EEF2F7 0%, #E2E8F0 100%);
+      color: #2D3748;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 12px;
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+    #app-container {
+      width: 100%;
+      max-width: 680px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 상단 배너/헤더 */
+    .lesson-badge {
+      display: inline-block;
+      background-color: #2B6CB0;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #1A365D;
+      margin-bottom: 8px;
+      word-break: keep-all;
+    }
+
+    .sub-title {
+      font-size: 17px;
+      color: #4A5568;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .memory-verse-box {
+      background-color: #F7FAFC;
+      border-left: 5px solid #2B6CB0;
+      padding: 16px 20px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 17px;
+      color: #2D3748;
+      margin-bottom: 25px;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .memory-verse-box strong {
+      color: #2B6CB0;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* 진행도 표시 바 */
+    .progress-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 700;
+      color: #4A5568;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background-color: #E2E8F0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3182CE, #2B6CB0);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* 문제 카드 */
+    .question-card {
+      background-color: #1A365D;
+      color: #FFFFFF;
+      padding: 24px 20px;
+      border-radius: 16px;
+      font-size: 21px;
+      font-weight: 600;
+      text-align: left;
+      line-height: 1.6;
+      word-break: keep-all;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.15);
+    }
+
+    .question-category {
+      font-size: 14px;
+      color: #90CDF4;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* 선택지 버튼 목록 */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      background-color: #FFFFFF;
+      border: 2.5px solid #CBD5E0;
+      color: #2D3748;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 19px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #EDF2F7;
+      border-color: #4A5568;
+      transform: translateY(-2px);
+    }
+
+    .option-num {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 32px;
+      height: 32px;
+      background-color: #EDF2F7;
+      border-radius: 50%;
+      margin-right: 14px;
+      font-size: 16px;
+      color: #2B6CB0;
+      font-weight: 900;
+    }
+
+    /* OX 문제 전용 스타일 */
+    .ox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .ox-btn {
+      background-color: #FFFFFF;
+      border: 3px solid #CBD5E0;
+      color: #2D3748;
+      padding: 24px 10px;
+      border-radius: 16px;
+      font-size: 38px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ox-btn:hover:not(:disabled) {
+      background-color: #EDF2F7;
+      transform: translateY(-2px);
+    }
+
+    /* 정답/오답 상태 스타일 */
+    .option-btn.correct, .ox-btn.correct {
+      background-color: #C6F6D5 !important;
+      border-color: #38A169 !important;
+      color: #22543D !important;
+    }
+
+    .option-btn.wrong, .ox-btn.wrong {
+      background-color: #FED7D7 !important;
+      border-color: #E53E3E !important;
+      color: #742A2A !important;
+    }
+
+    /* 피드백 및 해설 영역 */
+    .feedback-card {
+      background-color: #F7FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+      margin-top: 15px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-title.correct {
+      color: #2F855A;
+    }
+
+    .feedback-title.wrong {
+      color: #C53030;
+    }
+
+    .feedback-desc {
+      font-size: 17px;
+      color: #4A5568;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .feedback-scripture {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #2B6CB0;
+      font-weight: 700;
+    }
+
+    /* 기본 버튼 */
+    .action-button {
+      background-color: #2B6CB0;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 36px;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(43, 108, 176, 0.3);
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .action-button:hover {
+      background-color: #2C5282;
+      transform: translateY(-2px);
+    }
+
+    .next-btn {
+      background-color: #319795;
+    }
+    .next-btn:hover {
+      background-color: #285E61;
+    }
+
+    /* 결과 화면 */
+    .result-score {
+      font-size: 52px;
+      font-weight: 900;
+      color: #2B6CB0;
+      margin: 15px 0 5px 0;
+    }
+
+    .result-message {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2D3748;
+      margin-bottom: 20px;
+    }
+
+    .result-details {
+      background-color: #F7FAFC;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 17px;
+      text-align: left;
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    /* 푸터 */
+    .footer-text {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #A0AEC0;
+      font-weight: 500;
+    }
+
+    /* 화면 전환용 */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app-container">
+    
+    <!-- 1. 시작 화면 -->
+    <div id="start-screen">
+      <span class="lesson-badge">2026년 9월 5일 안식일 교과</span>
+      <h1 class="main-title">그리스도인의 참된 직무</h1>
+      <p class="sub-title">여호수아반 성경 퀴즈</p>
+      
+      <div class="memory-verse-box">
+        <strong>📖 이번 주 기억절 (고린도후서 4:8-10)</strong>
+        “우리가 사방으로 욱여쌈을 당하여도 싸이지 아니하며 답답한 일을 당하여도 낙심하지 아니하며 박해를 받아도 버린 바 되지 아니하며 거꾸러뜨림을 당하여도 망하지 아니하고 우리가 항상 예수의 죽음을 몸에 짊어짐은 예수의 생명이 또한 우리 몸에 나타나게 하려 함이라”
+      </div>
+
+      <div style="background-color: #EDF2F7; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px;">
+        💡 <strong>안내:</strong> 본 퀴즈는 이번 주 고린도후서 3장~7장의 핵심 말씀을 돌아보는 총 8개의 문제로 구성되어 있습니다.
+      </div>
+
+      <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
+    </div>
+
+    <!-- 2. 퀴즈 진행 화면 -->
+    <div id="quiz-screen" class="hidden">
+      <!-- 진행 바 -->
+      <div class="progress-wrapper">
+        <div class="progress-text">
+          <span id="current-q-num">문제 1 / 8</span>
+          <span id="current-score-text">점수: 0점</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- 문제 카드 -->
+      <div class="question-card">
+        <span id="question-badge" class="question-category">일요일 교과</span>
+        <div id="question-text">문제가 여기에 출력됩니다.</div>
+      </div>
+
+      <!-- 선택지 영역 -->
+      <div id="options-container"></div>
+
+      <!-- 해설 및 정답 확인 -->
+      <div id="feedback-card" class="feedback-card">
+        <div id="feedback-title" class="feedback-title"></div>
+        <div id="feedback-desc" class="feedback-desc"></div>
+        <div id="feedback-scripture" class="feedback-scripture"></div>
+      </div>
+
+      <!-- 다음 버튼 -->
+      <button id="next-button" class="action-button next-btn hidden" onclick="nextQuestion()">다음 문제로 이동 ▶</button>
+    </div>
+
+    <!-- 3. 결과 화면 -->
+    <div id="result-screen" class="hidden">
+      <span class="lesson-badge">퀴즈 완료</span>
+      <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
+      
+      <div id="result-score" class="result-score">100점</div>
+      <div id="result-message" class="result-message">말씀에 대한 열정이 참으로 아름답습니다!</div>
+
+      <div class="result-details">
+        • 총 문항수: <strong>8문제</strong><br>
+        • 맞힌 문제: <strong id="correct-count" style="color: #2F855A;">8문제</strong><br>
+        • 틀린 문제: <strong id="wrong-count" style="color: #C53030;">0문제</strong><br>
+        <hr style="border: none; border-top: 1px dashed #CBD5E0; margin: 12px 0;">
+        📌 <strong>핵심 요약:</strong> 참된 사역은 인간의 능력이 아니라 오직 하나님의 은혜로 이루어집니다. 연약한 질그릇 같은 우리 안에 보배이신 예수님을 품고, 세상에 화목과 거룩함의 향기를 전하는 믿음의 성도님이 되시기를 기도합니다.
+      </div>
+
+      <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
+    </div>
+
+    <div class="footer-text">
+      제칠일안식일예수재림교회 여호수아반 성경 학습실
+    </div>
+
+  </div>
+
+  <script>
+    // 퀴즈 데이터 정의 (2026년 9월 5일 안식일 교과 기반)
+    const quizData = [
+      {
+        category: "일요일 교과 • 참된 사역의 결실",
+        type: "multiple",
+        question: "바울은 자신에게 형식적인 추천서가 필요 없다고 밝히며, 성령으로 변화된 고린도 교인들을 가리켜 무엇이라고 칭하였습니까? (고후 3:2-3)",
+        options: [
+          "세상의 지혜로운 자",
+          "살아 있는 돌판",
+          "그리스도의 편지",
+          "율법의 수호자"
+        ],
+        answer: 2, // 3번
+        explanation: "바울은 먹이나 돌판에 쓴 것이 아니라 살아 계신 하나님의 영으로 육의 마음판에 쓴 '그리스도의 편지'가 바로 성도들이라고 증거했습니다.",
+        scripture: "고린도후서 3:2-3"
+      },
+      {
+        category: "일요일 교과 • 새 언약과 옛 언약",
+        type: "ox",
+        question: "바울이 비판적으로 언급한 '옛 언약의 경험'은 순종의 행위로 스스로 하나님께 인정받으려는 율법주의적 태도를 의미하며, '새 언약'은 하나님의 은혜를 전적으로 의지하는 삶을 뜻한다.",
+        options: ["O", "X"],
+        answer: 0, // O
+        explanation: "맞습니다. 옛 언약은 인간의 행위로 의에 이르려는 율법주의적 실패를 경계하며, 새 언약은 성령께서 마음에 베푸시는 은혜의 구원을 상징합니다.",
+        scripture: "고린도후서 3:6, 갈라디아서 3:8"
+      },
+      {
+        category: "월요일 교과 • 고난과 영광",
+        type: "multiple",
+        question: "바울은 심한 환난 속에서도 심히 큰 능력이 하나님께 있고 우리에게 있지 아니함을 나타내기 위해, 복음을 전하는 우리를 무엇에 비유했습니까? (고후 4:7)",
+        options: [
+          "금 그릇",
+          "질그릇",
+          "은쟁반",
+          "단단한 쇠그릇"
+        ],
+        answer: 1, // 2번 질그릇
+        explanation: "우리는 흙으로 빚어져 깨지기 쉬운 연약한 '질그릇'에 불과하지만, 우리 안에 담긴 예수 그리스도의 복음이라는 '보배'가 심히 큰 능력을 발휘합니다.",
+        scripture: "고린도후서 4:7"
+      },
+      {
+        category: "월요일 교과 • 고난과 영광",
+        type: "ox",
+        question: "바울은 사방으로 욱여쌈을 당하고 박해를 받는 환난 속에서도, 장차 나타날 영원한 영광에 비하면 이 땅의 고난은 '잠시 받는 환난의 가벼운(경한) 것'이라고 고백하였다.",
+        options: ["O", "X"],
+        answer: 0, // O
+        explanation: "맞습니다. 바울은 잠시 받는 환난의 경한 것이 지극히 크고 영원한 영광의 중한 것을 이루어 줄 것을 믿으며 믿음의 눈으로 바라보았습니다.",
+        scripture: "고린도후서 4:17-18"
+      },
+      {
+        category: "화요일 교과 • 화목하게 하는 직분",
+        type: "multiple",
+        question: "그리스도 안에서 새로운 피조물이 된 우리에게 하나님께서 맡겨주신 존귀한 직분과 사명은 무엇입니까? (고후 5:18-20)",
+        options: [
+          "세상을 심판하는 직분",
+          "화목하게 하는 직분 (그리스도의 대사)",
+          "율법을 감독하는 직분",
+          "자기 자랑을 전파하는 직분"
+        ],
+        answer: 1, // 2번 화목하게 하는 직분
+        explanation: "하나님은 그리스도를 통해 우리를 자신과 화목하게 하시고, 우리를 세상에 보내어 하나님과 화목하라고 권면하는 '그리스도의 대사(화목의 직분)'로 세우셨습니다.",
+        scripture: "고린도후서 5:18-20"
+      },
+      {
+        category: "수요일 교과 • 거룩해지라는 부르심",
+        type: "ox",
+        question: "고린도후서 6장에서 바울은 성도들이 하나님의 살아 계신 성전이므로, 불신자나 우상 숭배의 부정한 영향력과 타협하지 말고 거룩함을 온전히 이루라고 권면했다.",
+        options: ["O", "X"],
+        answer: 0, // O
+        explanation: "맞습니다. '너희는 믿지 않는 자와 멍에를 함께 메지 말라', '부정한 것을 만지지 말라' 하시며 하나님을 경외함으로 영과 육의 거룩함을 온전히 이룰 것을 요청하셨습니다.",
+        scripture: "고린도후서 6:14-7:1"
+      },
+      {
+        category: "목요일 교과 • 위로와 기쁨",
+        type: "multiple",
+        question: "바울이 보낸 권면과 책망의 편지를 받고 고린도 교인들이 경험한 회개에 대하여 바울은 어떤 근심이라고 표현했습니까? (고후 7:10)",
+        options: [
+          "세상 근심",
+          "육신의 근심",
+          "하나님의 뜻대로 하는 근심",
+          "멸망에 이르는 근심"
+        ],
+        answer: 2, // 3번
+        explanation: "세상 근심은 사망을 이루는 것이지만, '하나님의 뜻대로 하는 근심'은 후회할 것이 없는 구원에 이르게 하는 참된 회개를 이룹니다.",
+        scripture: "고린도후서 7:10"
+      },
+      {
+        category: "목요일 교과 • 위로와 기쁨",
+        type: "multiple",
+        question: "고린도후서 7장에 7번이나 등장하는 핵심 단어로, 모든 환난 가운데서도 하나님께서 성도와 사역자에게 풍성히 부어주시는 선물은 무엇입니까?",
+        options: [
+          "위로 (파라클레시스)",
+          "재물",
+          "명예",
+          "세상 권세"
+        ],
+        answer: 0, // 1번
+        explanation: "고린도후서 7장에는 헬라어 '파라클레시스(위로)'가 반복되어 나타납니다. 하나님은 환난 속에서도 참된 회개와 사역의 열매를 통해 성도들에게 넘치는 위로와 기쁨을 주십니다.",
+        scripture: "고린도후서 7:4-7"
+      }
+    ];
+
+    // 상태 변수
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let correctCount = 0;
+    let answered = false;
+
+    // DOM 요소
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
+    const resultScreen = document.getElementById('result-screen');
+
+    const questionBadge = document.getElementById('question-badge');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const feedbackCard = document.getElementById('feedback-card');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const feedbackDesc = document.getElementById('feedback-desc');
+    const feedbackScripture = document.getElementById('feedback-scripture');
+    const nextButton = document.getElementById('next-button');
+
+    const currentQNum = document.getElementById('current-q-num');
+    const currentScoreText = document.getElementById('current-score-text');
+    const progressBar = document.getElementById('progress-bar');
+
+    // 퀴즈 시작
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      correctCount = 0;
+      startScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      loadQuestion();
+    }
+
+    // 문제 로드
+    function loadQuestion() {
+      answered = false;
+      const currentQuiz = quizData[currentQuestionIndex];
+
+      // UI 업데이트
+      currentQNum.textContent = `문제 ${currentQuestionIndex + 1} / ${quizData.length}`;
+      currentScoreText.textContent = `점수: ${score}점`;
+      const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      questionBadge.textContent = currentQuiz.category;
+      questionText.textContent = currentQuiz.question;
+
+      // 해설 및 다음 버튼 초기화
+      feedbackCard.style.display = 'none';
+      nextButton.classList.add('hidden');
+      optionsContainer.innerHTML = '';
+
+      if (currentQuiz.type === 'ox') {
+        // OX 퀴즈 렌더링
+        const oxGrid = document.createElement('div');
+        oxGrid.className = 'ox-grid';
+
+        currentQuiz.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'ox-btn';
+          btn.textContent = opt;
+          btn.onclick = () => selectAnswer(idx);
+          oxGrid.appendChild(btn);
+        });
+
+        optionsContainer.appendChild(oxGrid);
+      } else {
+        // 4지선다 객관식 렌더링
+        const optGrid = document.createElement('div');
+        optGrid.className = 'options-grid';
+
+        currentQuiz.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span class="option-num">${idx + 1}</span> <span>${opt}</span>`;
+          btn.onclick = () => selectAnswer(idx);
+          optGrid.appendChild(btn);
+        });
+
+        optionsContainer.appendChild(optGrid);
+      }
+    }
+
+    // 답안 선택 처리
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+
+      const currentQuiz = quizData[currentQuestionIndex];
+      const isCorrect = (selectedIndex === currentQuiz.answer);
+      const buttons = optionsContainer.querySelectorAll('button');
+
+      // 버튼 비활성화 및 스타일 적용
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === currentQuiz.answer) {
+          btn.classList.add('correct');
+        } else if (idx === selectedIndex) {
+          btn.classList.add('wrong');
+        }
+      });
+
+      // 점수 계산
+      if (isCorrect) {
+        score += Math.round(100 / quizData.length);
+        correctCount++;
+        feedbackTitle.className = 'feedback-title correct';
+        feedbackTitle.innerHTML = '✅ 정답입니다! 참 잘하셨습니다.';
+      } else {
+        feedbackTitle.className = 'feedback-title wrong';
+        feedbackTitle.innerHTML = '❌ 아쉽지만 오답입니다.';
+      }
+
+      currentScoreText.textContent = `점수: ${score}점`;
+
+      // 피드백 카드 표시
+      feedbackDesc.textContent = currentQuiz.explanation;
+      feedbackScripture.textContent = `📖 관련 말씀: ${currentQuiz.scripture}`;
+      feedbackCard.style.display = 'block';
+
+      // 다음 버튼 활성화
+      nextButton.classList.remove('hidden');
+      if (currentQuestionIndex === quizData.length - 1) {
+        nextButton.textContent = '최종 결과 확인하기 ▶';
+      } else {
+        nextButton.textContent = '다음 문제로 이동 ▶';
+      }
+
+      // 화면 스크롤 부드럽게 내리기
+      setTimeout(() => {
+        feedbackCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
+    // 다음 문제 또는 결과 화면
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    // 결과 화면 표시
+    function showResult() {
+      quizScreen.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+
+      const finalScore = Math.min(score, 100);
+      document.getElementById('result-score').textContent = `${finalScore}점`;
+      document.getElementById('correct-count').textContent = `${correctCount}문제`;
+      document.getElementById('wrong-count').textContent = `${quizData.length - correctCount}문제`;
+
+      const resultMsg = document.getElementById('result-message');
+      if (finalScore === 100) {
+        resultMsg.textContent = '🌟 완벽합니다! 말씀을 깊이 깨달으셨습니다.';
+      } else if (finalScore >= 75) {
+        resultMsg.textContent = '👏 훌륭합니다! 교과 내용을 아주 잘 이해하고 계십니다.';
+      } else {
+        resultMsg.textContent = '🌱 수고하셨습니다! 말씀을 다시 한번 묵상해 보세요.';
+      }
+    }
+
+    // 다시 시작
+    function restartQuiz() {
+      startQuiz();
+    }
+  </script>
+</body>
+</html>

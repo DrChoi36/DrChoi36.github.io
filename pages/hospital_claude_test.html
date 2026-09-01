@@ -31,7 +31,7 @@
                 <li>정보등급 추정: D1~D2 (병원 내부 교육·운영자료).</li>
                 <li>실제 환자정보·의무기록·직원 개인정보·병원 시스템 비밀을 답안에 적지 마십시오.</li>
                 <li>시험 구성: 객관식 20문항(각 3점) + O/X 5문항(각 2점) + 사례형 5문항(각 6점) = 100점</li>
-                <li><strong>합격 기준: 80점 만점</strong> (오답 시 보기가 랜덤으로 섞인 상태로 재시험 가능)</li>
+                <li><strong>합격 기준: 80점 이상</strong> (오답 시 보기가 랜덤으로 섞인 상태로 재시험 가능)</li>
             </ul>
         </div>
 
@@ -285,8 +285,8 @@
 
             modal.classList.remove('hidden');
 
-            if (score === 80) {
-                // 80점 합격 시
+            if (score >= 80) {
+                // 80점 이상 합격 시
                 content.innerHTML = `
                     <div class="text-green-500 mb-4">
                         <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -296,7 +296,7 @@
                     <div class="bg-gray-50 border rounded p-4 text-sm text-gray-600 text-left mb-6">
                         <p><strong>수료자:</strong> ${name}</p>
                         <p><strong>수료일:</strong> ${date}</p>
-                        <p class="mt-2 text-xs text-gray-500">귀하는 병원 내 Claude Team Premium 사용을 위한 모든 보안 및 프라이버시 지침을 숙지하셨습니다.</p>
+                        <p class="mt-2 text-xs text-gray-500">귀하는 병원 내 Claude Team Premium 사용을 위한 모든 보안 및 프라이버시 지침을 완벽히 숙지하셨습니다.</p>
                     </div>
                     <button onclick="closeModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">확인 (종료)</button>
                 `;

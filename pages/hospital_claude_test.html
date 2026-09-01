@@ -31,7 +31,7 @@
                 <li>정보등급 추정: D1~D2 (병원 내부 교육·운영자료).</li>
                 <li>실제 환자정보·의무기록·직원 개인정보·병원 시스템 비밀을 답안에 적지 마십시오.</li>
                 <li>시험 구성: 객관식 20문항(각 3점) + O/X 5문항(각 2점) + 사례형 5문항(각 6점) = 100점</li>
-                <li><strong>합격 기준: 100점 만점</strong> (오답 시 보기가 랜덤으로 섞인 상태로 재시험 가능)</li>
+                <li><strong>합격 기준: 80점 만점</strong> (오답 시 보기가 랜덤으로 섞인 상태로 재시험 가능)</li>
             </ul>
         </div>
 
@@ -285,8 +285,8 @@
 
             modal.classList.remove('hidden');
 
-            if (score === 100) {
-                // 100점 합격 시
+            if (score === 80) {
+                // 80점 합격 시
                 content.innerHTML = `
                     <div class="text-green-500 mb-4">
                         <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -301,14 +301,14 @@
                     <button onclick="closeModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">확인 (종료)</button>
                 `;
             } else {
-                // 100점 미만 재시험 유도
+                // 80점 미만 재시험 유도
                 content.innerHTML = `
                     <div class="text-red-500 mb-4">
                         <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">불합격입니다</h2>
                     <p class="text-4xl font-black text-red-600 mb-2">${score}점</p>
-                    <p class="text-gray-600 mb-6">합격 기준은 <strong>100점</strong>입니다.<br/>틀린 문항을 복습하고 다시 도전해주세요.</p>
+                    <p class="text-gray-600 mb-6">합격 기준은 <strong>80점</strong>입니다.<br/>틀린 문항을 복습하고 다시 도전해주세요.</p>
                     <button onclick="retakeQuiz()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition">재시험 보기</button>
                 `;
             }

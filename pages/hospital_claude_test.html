@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>병원 직원용 Claude Team Premium 교육 평가</title>
+    <!-- Tailwind CSS를 CDN으로 로드하여 단일 파일 내 스타일링 해결 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 기본 폰트 및 커스텀 스타일 */
+        body { font-family: 'Pretendard', -apple-system, sans-serif; background-color: #f3f4f6; }
+        .question-card { background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        .radio-label { display: flex; align-items: flex-start; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s; margin-bottom: 0.5rem; }
+        .radio-label:hover { background-color: #f9fafb; }
+        .radio-input { margin-top: 0.25rem; margin-right: 0.75rem; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- 헤더 섹션 -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-blue-800 mb-2">병원 직원용 Claude Team Premium 사용자 교육평가</h1>
+            <p class="text-gray-600">의사·간호사 공통 | 개인정보보호 · 정보보안 · 임상안전</p>
+        </header>
+
+        <!-- 시험 정보 안내 -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 text-sm text-gray-700 rounded-r">
+            <h3 class="font-bold mb-2">응시 안내 및 정보등급</h3>
+            <ul class="list-disc pl-5 space-y-1">
+                <li>정보등급 추정: D1~D2 (병원 내부 교육·운영자료).</li>
+                <li>실제 환자정보·의무기록·직원 개인정보·병원 시스템 비밀을 답안에 적지 마십시오.</li>
+                <li>시험 구성: 객관식 20문항(각 3점) + O/X 5문항(각 2점) + 사례형 5문항(각 6점) = 100점</li>
+                <li><strong>합격 기준: 100점 만점</strong> (오답 시 보기가 랜덤으로 섞인 상태로 재시험 가능)</li>
+            </ul>
+        </div>
+
+        <!-- 응시자 정보 폼 -->
+        <div id="userInfoSection" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-bold mb-4 border-b pb-2">응시자 정보 입력</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">소속 부서</label>
+                    <input type="text" id="userDept" class="w-full border-gray-300 rounded-md shadow-sm p-2 border" placeholder="예: 내과">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">직종/직위</label>
+                    <input type="text" id="userTitle" class="w-full border-gray-300 rounded-md shadow-sm p-2 border" placeholder="예: 전문의">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">성명</label>
+                    <input type="text" id="userName" class="w-full border-gray-300 rounded-md shadow-sm p-2 border" placeholder="이름">
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition">시험 시작하기</button>
+            </div>
+        </div>
+
+        <!-- 퀴즈 폼 (초기 숨김) -->
+        <form id="quizForm" class="hidden">
+            <div id="quizContainer"></div>
+            
+            <div class="text-center mt-8 mb-16">
+                <button type="button" onclick="submitQuiz()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-10 rounded-lg shadow-lg text-lg transition">답안 제출하기</button>
+            </div>
+        </form>
+
+        <!-- 결과 모달 -->
+        <div id="resultModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-lg p-8 max-w-md w-full text-center shadow-2xl m-4">
+                <div id="resultContent">
+                    <!-- JS로 내용 채워짐 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 원본 문서 바탕으로 구성된 30문항 데이터베이스
+        const quizData = [
+            // I. 객관식 (1~20번, 각 3점)
+            { id: 1, type: "객관식", points: 3, question: "Claude Team의 Premium 좌석에 대한 설명으로 가장 적절한 것은?", options: [{ text: "환자정보 입력을 허용하는 의료용 보안 좌석이다.", isCorrect: false }, { text: "Standard 좌석 기능에 더 높은 사용량을 추가한 좌석이다.", isCorrect: true }, { text: "Team보다 높은 법적 규제 준수 상태를 자동으로 부여한다.", isCorrect: false }, { text: "가명정보를 별도 승인 없이 처리할 수 있게 하는 좌석이다.", isCorrect: false }] },
+            { id: 2, type: "객관식", points: 3, question: "Claude 상용 Team 계정의 입력·출력이 기본적으로 모델 학습에 사용되지 않는다는 설명의 병원 실무 해석으로 가장 적절한 것은?", options: [{ text: "환자정보도 자유롭게 입력할 수 있다는 의미다.", isCorrect: false }, { text: "데이터가 저장·접근·공유되지 않는다는 의미다.", isCorrect: false }, { text: "학습 미사용과 민감정보 입력 허용은 별개의 문제이므로 병원 정책과 계약을 따져야 한다.", isCorrect: true }, { text: "EMR 원문은 입력 후 즉시 삭제하면 허용된다.", isCorrect: false }] },
+            { id: 3, type: "객관식", points: 3, question: "다음 중 D0(공개 가능 정보)에 가장 가까운 것은?", options: [{ text: "공개된 학회 가이드라인", isCorrect: true }, { text: "내부 인사평가표", isCorrect: false }, { text: "환자번호를 지운 검사결과", isCorrect: false }, { text: "미공개 연구계획서", isCorrect: false }] },
+            { id: 4, type: "객관식", points: 3, question: "다음 중 D2(병원 비공개 업무자료)에 해당할 가능성이 가장 높은 것은?", options: [{ text: "공개 보도자료", isCorrect: false }, { text: "내부 계약 검토 회의록", isCorrect: true }, { text: "이미 공개된 환자교육자료", isCorrect: false }, { text: "완전 합성된 교육용 데이터", isCorrect: false }] },
+            { id: 5, type: "객관식", points: 3, question: "연구대상자 번호로 환자별 자료를 관리하고 별도 연결키가 존재하는 자료의 정보등급으로 가장 적절한 것은?", options: [{ text: "D1", isCorrect: false }, { text: "D2", isCorrect: false }, { text: "D4", isCorrect: true }, { text: "D0", isCorrect: false }] },
+            { id: 6, type: "객관식", points: 3, question: "환자 이름과 환자번호를 삭제한 자유서술 임상기록이라도 공용 AI 입력이 위험할 수 있는 가장 중요한 이유는?", options: [{ text: "한국어 문장이 길기 때문이다.", isCorrect: false }, { text: "날짜·기관·희귀질환·약물·경과가 결합되면 재식별될 수 있기 때문이다.", isCorrect: true }, { text: "AI가 의료용어를 이해하지 못하기 때문이다.", isCorrect: false }, { text: "문장에 영어 약어가 포함되기 때문이다.", isCorrect: false }] },
+            { id: 7, type: "객관식", points: 3, question: "개인정보 보호법상 병원에서 특히 보호해야 하는 건강정보의 성격으로 가장 적절한 것은?", options: [{ text: "일반 공개정보", isCorrect: false }, { text: "민감정보", isCorrect: true }, { text: "저작권 정보", isCorrect: false }, { text: "통계정보", isCorrect: false }] },
+            { id: 8, type: "객관식", points: 3, question: "Claude에 파일을 업로드하기 전 점검으로 부적절한 것은?", options: [{ text: "Word/PDF 작성자·주석·변경이력을 확인한다.", isCorrect: false }, { text: "Excel 숨김 시트·메모·외부링크를 확인한다.", isCorrect: false }, { text: "파일명에 환자정보가 있어도 본문에서 삭제했으면 그대로 업로드한다.", isCorrect: true }, { text: "이미지의 바코드·라벨·EXIF·DICOM tag를 점검한다.", isCorrect: false }] },
+            { id: 9, type: "객관식", points: 3, question: "Web search 사용 원칙으로 가장 적절한 것은?", options: [{ text: "내부 회의자료와 공개 웹 검색을 같은 대화에서 섞어 맥락을 풍부하게 한다.", isCorrect: false }, { text: "공개자료 조사에 사용하고 내부자료 작업과 분리한다.", isCorrect: true }, { text: "검색 결과는 AI가 제공하므로 원문 확인이 불필요하다.", isCorrect: false }, { text: "환자정보가 없으면 미공개 계약자료도 검색 대화에 넣을 수 있다.", isCorrect: false }] },
+            { id: 10, type: "객관식", points: 3, question: "Projects 기능의 병원 권장 기본값으로 가장 적절한 것은?", options: [{ text: "Public", isCorrect: false }, { text: "Private", isCorrect: true }, { text: "Anyone with link", isCorrect: false }, { text: "외부 공개", isCorrect: false }] },
+            { id: 11, type: "객관식", points: 3, question: "Connectors에 대한 설명으로 가장 적절한 것은?", options: [{ text: "단순 편의 기능이므로 별도 보안검토가 필요 없다.", isCorrect: false }, { text: "연결된 서비스의 사용자 권한 범위까지 데이터 접근이 확장될 수 있으므로 최소권한·승인이 필요하다.", isCorrect: true }, { text: "EMR 전체를 연결하면 수작업 입력보다 안전하다.", isCorrect: false }, { text: "전체 메일함과 공유드라이브를 연결하는 것이 권장된다.", isCorrect: false }] },
+            { id: 12, type: "객관식", points: 3, question: "병원 내부자료가 포함된 Claude 대화에서 thumbs up/down 피드백을 제한하는 주된 이유는?", options: [{ text: "답변 속도가 느려지기 때문이다.", isCorrect: false }, { text: "피드백 제출 과정에서 관련 대화가 별도 처리·보관될 수 있기 때문이다.", isCorrect: true }, { text: "Premium 사용량이 줄어들기 때문이다.", isCorrect: false }, { text: "피드백을 누르면 계정이 자동 삭제되기 때문이다.", isCorrect: false }] },
+            { id: 13, type: "객관식", points: 3, question: "Primary Owner와 조직 데이터에 관한 설명으로 가장 적절한 것은?", options: [{ text: "모든 일반 사용자가 Primary Owner이다.", isCorrect: false }, { text: "Primary Owner는 조직 데이터 export를 요청할 수 있어 대화·업로드 자료 등이 조직 관리 범위에 포함될 수 있다.", isCorrect: true }, { text: "Primary Owner는 직원의 개인 비밀번호를 열람하는 역할이다.", isCorrect: false }, { text: "Primary Owner가 있으면 환자정보 입력이 허용된다.", isCorrect: false }] },
+            { id: 14, type: "객관식", points: 3, question: "AI가 생성한 임상 또는 간호 관련 답변을 사용하는 방법으로 가장 적절한 것은?", options: [{ text: "문장이 자연스러우면 바로 EMR에 붙여넣는다.", isCorrect: false }, { text: "AI를 근거 출처로 표기하고 그대로 사용한다.", isCorrect: false }, { text: "담당 전문가가 원문 근거·적용대상·용량·단위·병원규정을 독립적으로 검증한다.", isCorrect: true }, { text: "Premium 좌석의 결과는 검증을 생략할 수 있다.", isCorrect: false }] },
+            { id: 15, type: "객관식", points: 3, question: "의사의 Claude Team Premium 사용 중 가장 적절한 예는?", options: [{ text: "환자 EMR 원문을 붙여넣어 치료계획을 작성한다.", isCorrect: false }, { text: "공개 가이드라인의 권고 변화를 비교하고 원문 출처를 확인한다.", isCorrect: true }, { text: "환자 CT 판독문을 업로드해 최종 진단을 정한다.", isCorrect: false }, { text: "환자별 약물 용량을 AI 답변만으로 결정한다.", isCorrect: false }] },
+            { id: 16, type: "객관식", points: 3, question: "간호사의 사용 예 중 가장 적절한 것은?", options: [{ text: "근무 인계 원문을 붙여넣어 우선순위를 자동 결정한다.", isCorrect: false }, { text: "병실·침상·환자명 포함 병동 리스트를 업로드한다.", isCorrect: false }, { text: "가상의 상황을 이용해 낙상예방 교육용 체크리스트와 퀴즈를 만든다.", isCorrect: true }, { text: "투약오류 사건보고 원문을 분석하게 한다.", isCorrect: false }] },
+            { id: 17, type: "객관식", points: 3, question: "연구자료를 Claude Team Premium에서 다루는 원칙으로 가장 적절한 것은?", options: [{ text: "가명정보는 이름이 없으므로 원문 입력 가능하다.", isCorrect: false }, { text: "연구대상자 원자료·가명정보·미공개 프로토콜은 원문 입력을 피하고 승인된 환경을 사용한다.", isCorrect: true }, { text: "IRB 번호만 삭제하면 모든 연구자료를 입력할 수 있다.", isCorrect: false }, { text: "통계 목적이면 환자별 원자료도 자유롭게 입력할 수 있다.", isCorrect: false }] },
+            { id: 18, type: "객관식", points: 3, question: "AI가 만든 문장을 EMR 또는 공식문서에 반영할 때 가장 적절한 원칙은?", options: [{ text: "AI가 작성했음을 표시하면 검토 없이 사용 가능하다.", isCorrect: false }, { text: "AI 출력은 직접 작성한 초안처럼 문장별로 검토·수정 후 책임 있는 최종본을 만든다.", isCorrect: true }, { text: "AI 대화 전체를 공식 기록으로 저장한다.", isCorrect: false }, { text: "답변이 길면 검증이 필요 없다고 본다.", isCorrect: false }] },
+            { id: 19, type: "객관식", points: 3, question: "오입력·노출 사고가 의심될 때 사용자 STOP 절차의 첫 단계는?", options: [{ text: "대화를 더 진행해 무엇이 노출됐는지 AI에게 묻는다.", isCorrect: false }, { text: "추가 입력·실행·공유를 즉시 중단한다.", isCorrect: true }, { text: "모든 기록을 즉시 완전 삭제해 흔적을 없앤다.", isCorrect: false }, { text: "동료에게 화면 캡처를 메신저로 전송한다.", isCorrect: false }] },
+            { id: 20, type: "객관식", points: 3, question: "오입력 사고 대응에서 “Observe & preserve”의 의미로 가장 적절한 것은?", options: [{ text: "민감 내용을 여러 장 캡처해 널리 공유한다.", isCorrect: false }, { text: "시간·계정·대화/프로젝트 ID·입력 종류·공유범위를 최소한으로 기록하되 민감내용을 불필요하게 복제하지 않는다.", isCorrect: true }, { text: "사고 흔적을 모두 삭제한다.", isCorrect: false }, { text: "AI가 문제없다고 하면 기록하지 않는다.", isCorrect: false }] },
+            // II. O/X (21~25번, 각 2점)
+            { id: 21, type: "O/X", points: 2, question: "환자 원문을 실수로 입력했더라도 바로 대화를 삭제하면 처음부터 입력하지 않은 것과 같은 예방통제가 된다.", options: [{ text: "O", isCorrect: false }, { text: "X", isCorrect: true }] },
+            { id: 22, type: "O/X", points: 2, question: "환자 이름과 환자번호를 삭제했다면 정확한 날짜, 병원명, 희귀질환, 특수검사가 남아 있어도 공용 AI에 입력해도 된다.", options: [{ text: "O", isCorrect: false }, { text: "X", isCorrect: true }] },
+            { id: 23, type: "O/X", points: 2, question: "문서 형식 개발, 코드 테스트, 프롬프트 설계처럼 실제 환자 진실성이 꼭 필요하지 않은 초기 작업에는 합성데이터를 우선 고려하는 것이 바람직하다.", options: [{ text: "O", isCorrect: true }, { text: "X", isCorrect: false }] },
+            { id: 24, type: "O/X", points: 2, question: "비식별 임상자료(D3)는 “비식별”이라는 이름만으로 안전하다고 볼 수 없으며 Claude Team Premium에서는 원칙적으로 회피하는 것이 권장된다.", options: [{ text: "O", isCorrect: true }, { text: "X", isCorrect: false }] },
+            { id: 25, type: "O/X", points: 2, question: "Claude Enterprise 또는 BAA가 존재하면 한국 의료기관에서 환자정보를 별도 병원 심의 없이 자유롭게 입력할 수 있다.", options: [{ text: "O", isCorrect: false }, { text: "X", isCorrect: true }] },
+            // III. 상황형 사례 (26~30번, 각 6점)
+            { id: 26, type: "사례형", points: 6, question: "[사례] 간호 인계 요약 요청\n간호사 A가 야간 인계를 준비하면서 병실, 환자명, 진단명, 검사결과, 배액량, 투약내역이 포함된 인계문을 Claude Team Premium에 붙여넣고 “핵심만 5줄로 요약해줘”라고 요청하려 한다.\n가장 적절한 행동은?", options: [{ text: "병원 Team 계정이므로 그대로 입력한다.", isCorrect: false }, { text: "환자명만 삭제하고 나머지는 그대로 입력한다.", isCorrect: false }, { text: "원문 입력을 중단하고, 필요하면 환자정보 없는 일반 SBAR 템플릿이나 가상사례로 작업한다.", isCorrect: true }, { text: "요약 후 대화를 삭제할 예정이므로 입력한다.", isCorrect: false }] },
+            { id: 27, type: "사례형", points: 6, question: "[사례] 의사의 임상 질문 재설계\n의사 B는 특정 환자의 정확한 내원일, 병원명, 검사수치, 시술기록을 포함한 사례를 Claude에 입력해 감별진단을 묻고 싶다.\n가이드라인에 가장 부합하는 방법은?", options: [{ text: "환자 이름만 삭제하고 원문을 입력한다.", isCorrect: false }, { text: "정확한 날짜를 하루 뒤로 바꿔 입력한다.", isCorrect: false }, { text: "환자 사례를 일반화하여 “고령 성인의 해당 질환에서 일반적 감별진단과 검사전략”처럼 공개 근거 중심 질문으로 재설계한다.", isCorrect: true }, { text: "Premium 좌석이므로 그대로 입력한다.", isCorrect: false }] },
+            { id: 28, type: "사례형", points: 6, question: "[사례] 가명 연구데이터 업로드\n연구자 C가 연구대상자 번호와 날짜 변환값이 있는 환자별 엑셀을 보유하고 있으며, 별도 파일에 연결키가 존재한다. 통계 코드를 만들기 위해 이 엑셀을 Claude Team Premium에 업로드하려 한다.\n가장 적절한 판단은?", options: [{ text: "직접 이름이 없으므로 D1이며 업로드 가능하다.", isCorrect: false }, { text: "가명정보에 해당할 수 있는 D4로 보고 Team Premium 업로드를 금지하며, 합성데이터로 코드를 작성하거나 승인된 분석환경을 사용한다.", isCorrect: true }, { text: "연구 목적이므로 자동 허용한다.", isCorrect: false }, { text: "연결키만 다른 폴더에 있으면 공용 AI 업로드가 가능하다.", isCorrect: false }] },
+            { id: 29, type: "사례형", points: 6, question: "[사례] 파일 메타데이터와 숨김정보\n직원 D가 환자정보를 본문에서 삭제한 Excel 파일을 업로드하려고 한다. 그러나 파일에는 숨김 시트, 메모, 원본 파일명, 외부링크가 남아 있는지 확인하지 않았다.\n가장 적절한 조치는?", options: [{ text: "본문에서 식별자를 지웠으므로 즉시 업로드한다.", isCorrect: false }, { text: "Excel은 메타데이터가 없으므로 그대로 업로드한다.", isCorrect: false }, { text: "숨김 시트·열·메모·이름정의·외부링크·파일명 등을 점검하고 필요한 최소 범위로 정리한 뒤 등급과 허용 여부를 다시 판단한다.", isCorrect: true }, { text: "Claude에 먼저 업로드한 뒤 개인정보를 찾아 삭제해 달라고 한다.", isCorrect: false }] },
+            { id: 30, type: "사례형", points: 6, question: "[사례] 피드백 버튼 사용\n직원 E가 환자정보는 없지만 병원 내부 비공개 운영자료(D2)가 포함된 대화에서 Claude의 답변이 좋지 않아 thumbs down을 누르고 상세 피드백과 transcript를 보내려고 한다.\n가장 적절한 행동은?", options: [{ text: "D2라도 환자정보가 없으므로 전체 transcript를 제출한다.", isCorrect: false }, { text: "내부자료가 포함된 대화에서는 피드백·transcript 공유를 하지 않고, 필요 시 내부자료를 제거한 별도 재현 사례로 병원 지정 절차에 따라 신고한다.", isCorrect: true }, { text: "Premium 좌석이면 피드백 보관이 없으므로 제출한다.", isCorrect: false }, { text: "대화를 Public Project로 바꿔 다른 직원 의견을 받는다.", isCorrect: false }] }
+        ];
+
+        // 배열 무작위 섞기 알고리즘 (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // 퀴즈 시작 함수
+        function startQuiz() {
+            const name = document.getElementById('userName').value.trim();
+            if(!name) {
+                alert("성명을 입력해주세요.");
+                return;
+            }
+            document.getElementById('userInfoSection').classList.add('hidden');
+            document.getElementById('quizForm').classList.remove('hidden');
+            renderQuiz();
+        }
+
+        // 퀴즈 화면 렌더링
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = ''; 
+
+            quizData.forEach((q, index) => {
+                // 보기 무작위 섞기 (재시험 시 보기가 항상 변경됨)
+                const shuffledOptions = shuffleArray([...q.options]);
+                
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                
+                // 줄바꿈 처리를 위한 정규식 적용
+                const formattedQuestion = q.question.replace(/\n/g, '<br/>');
+
+                let html = `
+                    <div class="mb-4">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-semibold tracking-wide uppercase mb-2">${q.type} | ${q.points}점</span>
+                        <h3 class="text-lg font-bold text-gray-800">${index + 1}. ${formattedQuestion}</h3>
+                    </div>
+                    <div class="space-y-2">
+                `;
+
+                shuffledOptions.forEach((opt, optIndex) => {
+                    const optId = `q${q.id}_opt${optIndex}`;
+                    // isCorrect 값을 데이터 속성으로 숨김 처리
+                    html += `
+                        <label class="radio-label" for="${optId}">
+                            <input type="radio" id="${optId}" name="q${q.id}" value="${opt.isCorrect}" class="radio-input" required>
+                            <span class="text-gray-700">${opt.text}</span>
+                        </label>
+                    `;
+                });
+
+                html += `</div>`;
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        // 답안 제출 및 채점
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            // HTML5 기본 유효성 검사 (모든 문제 풀었는지 확인)
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            let totalScore = 0;
+            const formData = new FormData(form);
+
+            for (let [name, value] of formData.entries()) {
+                if (value === "true") {
+                    // name(예: q1)에서 id를 추출하여 해당 문제의 점수를 더함
+                    const qId = parseInt(name.substring(1));
+                    const question = quizData.find(q => q.id === qId);
+                    totalScore += question.points;
+                }
+            }
+
+            showResult(totalScore);
+        }
+
+        // 결과 모달 표시
+        function showResult(score) {
+            const modal = document.getElementById('resultModal');
+            const content = document.getElementById('resultContent');
+            const name = document.getElementById('userName').value;
+            const date = new Date().toLocaleDateString('ko-KR');
+
+            modal.classList.remove('hidden');
+
+            if (score === 100) {
+                // 100점 합격 시
+                content.innerHTML = `
+                    <div class="text-green-500 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">합격을 축하합니다!</h2>
+                    <p class="text-4xl font-black text-blue-600 mb-4">${score}점</p>
+                    <div class="bg-gray-50 border rounded p-4 text-sm text-gray-600 text-left mb-6">
+                        <p><strong>수료자:</strong> ${name}</p>
+                        <p><strong>수료일:</strong> ${date}</p>
+                        <p class="mt-2 text-xs text-gray-500">귀하는 병원 내 Claude Team Premium 사용을 위한 모든 보안 및 프라이버시 지침을 완벽히 숙지하셨습니다.</p>
+                    </div>
+                    <button onclick="closeModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">확인 (종료)</button>
+                `;
+            } else {
+                // 100점 미만 재시험 유도
+                content.innerHTML = `
+                    <div class="text-red-500 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">불합격입니다</h2>
+                    <p class="text-4xl font-black text-red-600 mb-2">${score}점</p>
+                    <p class="text-gray-600 mb-6">합격 기준은 <strong>100점</strong>입니다.<br/>틀린 문항을 복습하고 다시 도전해주세요.</p>
+                    <button onclick="retakeQuiz()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition">재시험 보기</button>
+                `;
+            }
+        }
+
+        // 재시험 세팅
+        function retakeQuiz() {
+            document.getElementById('resultModal').classList.add('hidden');
+            document.getElementById('quizForm').reset();
+            // 재시험 시 renderQuiz를 다시 호출하여 보기를 새롭게 무작위로 섞음
+            renderQuiz(); 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

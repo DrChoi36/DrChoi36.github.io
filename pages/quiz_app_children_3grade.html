@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 - 10과 놓치 마!</title>
+  <title>유년반 성경퀴즈 - 11과 마침내 자유</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #eff6ff; /* 하늘빛 푸른 배경 */
+      background: #fefce8; /* 따뜻하고 밝은 황금빛 햇살 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #3b82f6; /* 밝고 맑은 파란색 */
+      background-color: #eab308; /* 황금빛 노란색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -32,19 +32,19 @@
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #dbeafe; }
+    button:hover { background-color: #fef08a; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #3b82f6; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #eab308; width: 70%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #3b82f6;
+      border: 5px solid #eab308;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,8 +58,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈</h2>
-      <p style="font-size: 20px; margin-top: -10px;">요셉의 바른 선택 (창세기 39장)</p>
+      <h2>유년반 성경퀴즈 11과</h2>
+      <p style="font-size: 20px; margin-top: -10px;">마침내 자유 (창세기 40~41장)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 예수사랑" />
       <br>
@@ -84,47 +84,47 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '요셉은 나쁜 일을 하자는 유혹을 받았을 때, "제가 어떻게 하나님께 죄를 지을 수 있겠습니까?"라고 하며 단호하게 거절했어요.', 
+        question: '요셉은 억울하게 감옥에 갇혔을 때에도 하나님을 원망하지 않고 항상 성실하고 충실하게 행동했어요.', 
         answer: 'O',
-        comment: '맞아요! 요셉은 어디서나 하나님께 순종하며 올바른 선택을 했답니다! ⭐'
+        comment: '맞아요! 요셉은 어디에 있든지 하나님을 굳게 믿고 작은 일에도 충성을 다했답니다! ⭐'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "네가 가진 것을 (    ) 잡아 아무나 네 면류관을 빼앗지 못하게 하라" (요한계시록 3:11)', 
-        answer: '굳게',
-        comment: '믿음을 굳게 잡고 흔들리지 않는 멋진 어린이가 되어요! 👑'
+        question: '기억절: "잘 하였도다 착하고 충성된 종아 네가 (    ) 일에 충성하였으매 내가 많은 것으로 네게 맡기리니" (마태복음 25:23)', 
+        answer: '작은',
+        comment: '작은 일부터 정성을 다해 충성하는 멋진 어린이가 되어요! 👑'
       },
       { 
         type: 'mcq',  
-        question: '보디발의 아내가 요셉을 붙잡으려 했을 때, 요셉은 무엇을 버려두고 밖으로 도망쳤나요?', 
-        options: ['A. 신발', 'B. 모자', 'C. 옷', 'D. 지팡이'], 
-        answer: 'C. 옷',
-        comment: '요셉은 죄를 짓지 않기 위해 옷까지 버려두고 재빨리 도망쳤어요! 🏃'
-      },
-      { 
-        type: 'mcq',  
-        question: '거짓말 때문에 억울하게 감옥에 갇혔을 때도 요셉이 믿었던 것은 무엇일까요?', 
+        question: '바로 왕이 꾼 꿈(살진 소와 마른 소, 풍성한 이삭과 마른 이삭)의 진짜 의미는 무엇이었을까요?', 
         options: [
-          'A. 하나님께서 여전히 나와 함께 계신다',
-          'B. 형들이 곧 구하러 올 것이다',
-          'C. 보디발의 아내가 곧 사과할 것이다',
-          'D. 돈으로 감옥에서 나갈 수 있다'
+          'A. 7일 동안 큰 비가 쏟아진다',
+          'B. 7년의 풍년 뒤에 7년의 큰 흉년이 온다',
+          'C. 다른 나라와 7번의 전쟁을 치른다',
+          'D. 7명의 왕자가 새로 태어난다'
         ], 
-        answer: 'A. 하나님께서 여전히 나와 함께 계신다',
-        comment: '어려운 감옥 안에서도 하나님께서는 요셉과 함께 계시며 축복해 주셨어요! ✨'
+        answer: 'B. 7년의 풍년 뒤에 7년의 큰 흉년이 온다',
+        comment: '하나님께서는 7년 풍년과 7년 흉년을 미리 알려주셔서 지혜롭게 준비하도록 하셨어요! 🌾'
+      },
+      { 
+        type: 'mcq',  
+        question: '하나님의 지혜로 꿈을 멋지게 해석한 요셉을 바로 왕은 애굽(이집트)의 어떤 높은 사람으로 세웠나요?', 
+        options: ['A. 대장군', 'B. 총리', 'C. 의사', 'D. 악기 연주자'], 
+        answer: 'B. 총리',
+        comment: '바로 왕은 요셉에게 반지를 끼워주고 온 나라를 다스리는 총리로 삼았어요! 🏛️'
       },
       { 
         type: 'short',
-        question: '요셉이 이집트로 팔려가 집안 전체 일을 도맡아 관리했던 주인의 이름은 누구일까요? (3글자)', 
-        answer: '보디발', 
-        comment: '보디발의 집에서도 요셉은 충성스럽게 일하여 큰 인정을 받았답니다! 👏'
+        question: '요셉은 7년 풍년 동안 곡식을 가득 모아둘 큰 건물을 짓자고 제안했어요. 곡식을 보관하는 이곳은 어디일까요? (2글자)', 
+        answer: '창고', 
+        comment: '요셉의 지혜로운 창고 준비 덕분에 무서운 흉년 속에서도 많은 사람들이 굶지 않았답니다! 👏'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#3b82f6', '#2563eb', '#1d4ed8', '#1e40af', '#1e3a8a'];
+    const themes = ['#eab308', '#ca8a04', '#d97706', '#b45309', '#92400e'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -141,7 +141,11 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
+      if (!nameVal) { 
+        nameInput.placeholder = "이름을 꼭 입력해 주세요!";
+        nameInput.focus();
+        return; 
+      }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -195,7 +199,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#1d4ed8;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 참 잘했어요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -211,7 +215,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#1e3a8a';
+      nextBtn.style.backgroundColor = '#92400e';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -225,12 +229,14 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
+      let message = score === questions.length 
+        ? "대단해요! 하나님께 충성하는 멋진 성경 박사님이군요!" 
+        : "정말 수고했어요! 요셉처럼 언제나 충실한 어린이가 되어요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🌟</div>
-        <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#2563eb; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">🌾</div>
+        <p>우리 어린이의 11과 성경 퀴즈 점수는</p>
+        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여호수아반 성경 퀴즈 - 청지기 직분과 선교</title>
+  <title>여호수아반 성경 퀴즈 - 거짓 교사들에 맞서는 영적 전쟁</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -16,8 +16,8 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: linear-gradient(135deg, #F0F4F8 0%, #D9E2EC 100%);
-      color: #102A43;
+      background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+      color: #1A202C;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -32,7 +32,7 @@
       max-width: 680px;
       background: #FFFFFF;
       border-radius: 24px;
-      box-shadow: 0 14px 35px rgba(16, 42, 67, 0.12);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
       padding: 32px 24px;
       text-align: center;
       position: relative;
@@ -42,7 +42,7 @@
     /* 상단 배너 및 뱃지 */
     .lesson-badge {
       display: inline-block;
-      background-color: #0B69A3;
+      background-color: #805AD5;
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 700;
@@ -55,33 +55,33 @@
     .main-title {
       font-size: 26px;
       font-weight: 900;
-      color: #0A3254;
+      color: #2D3748;
       margin-bottom: 8px;
       word-break: keep-all;
     }
 
     .sub-title {
       font-size: 17px;
-      color: #486581;
+      color: #4A5568;
       margin-bottom: 22px;
       font-weight: 600;
     }
 
     .memory-verse-box {
-      background-color: #F0F8FF;
-      border-left: 5px solid #0B69A3;
+      background-color: #FAF5FF;
+      border-left: 5px solid #805AD5;
       padding: 16px 20px;
       border-radius: 12px;
       text-align: left;
       font-size: 17px;
-      color: #102A43;
+      color: #2D3748;
       margin-bottom: 22px;
       line-height: 1.7;
       word-break: keep-all;
     }
 
     .memory-verse-box strong {
-      color: #0B69A3;
+      color: #6B46C1;
       display: block;
       margin-bottom: 6px;
       font-size: 18px;
@@ -97,28 +97,28 @@
       justify-content: space-between;
       font-size: 16px;
       font-weight: 700;
-      color: #486581;
+      color: #4A5568;
       margin-bottom: 6px;
     }
 
     .progress-bar-bg {
       width: 100%;
       height: 10px;
-      background-color: #D9E2EC;
+      background-color: #E2E8F0;
       border-radius: 10px;
       overflow: hidden;
     }
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #1992D4, #0B69A3);
+      background: linear-gradient(90deg, #9F7AEA, #6B46C1);
       width: 0%;
       transition: width 0.3s ease;
     }
 
     /* 문제 카드 */
     .question-card {
-      background-color: #0A3254;
+      background-color: #2D3748;
       color: #FFFFFF;
       padding: 24px 20px;
       border-radius: 16px;
@@ -128,12 +128,12 @@
       line-height: 1.6;
       word-break: keep-all;
       margin-bottom: 20px;
-      box-shadow: 0 6px 16px rgba(10, 50, 84, 0.2);
+      box-shadow: 0 6px 16px rgba(45, 55, 72, 0.25);
     }
 
     .question-category {
       font-size: 15px;
-      color: #82C91E;
+      color: #F6AD55;
       font-weight: 800;
       margin-bottom: 6px;
       display: block;
@@ -151,7 +151,7 @@
     .option-btn {
       background-color: #FFFFFF;
       border: 2.5px solid #CBD5E0;
-      color: #102A43;
+      color: #2D3748;
       padding: 16px 20px;
       border-radius: 14px;
       font-size: 19px;
@@ -166,8 +166,8 @@
     }
 
     .option-btn:hover:not(:disabled) {
-      background-color: #F0F4F8;
-      border-color: #486581;
+      background-color: #F7FAFC;
+      border-color: #4A5568;
       transform: translateY(-2px);
     }
 
@@ -177,16 +177,16 @@
       align-items: center;
       min-width: 32px;
       height: 32px;
-      background-color: #E2E8F0;
+      background-color: #EDF2F7;
       border-radius: 50%;
       margin-right: 14px;
       font-size: 16px;
-      color: #0B69A3;
+      color: #6B46C1;
       font-weight: 900;
       flex-shrink: 0;
     }
 
-    /* OX 문제 전용 스타일 */
+    /* OX 문제 스타일 */
     .ox-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -197,7 +197,7 @@
     .ox-btn {
       background-color: #FFFFFF;
       border: 3px solid #CBD5E0;
-      color: #102A43;
+      color: #2D3748;
       padding: 26px 10px;
       border-radius: 16px;
       font-size: 40px;
@@ -210,11 +210,11 @@
     }
 
     .ox-btn:hover:not(:disabled) {
-      background-color: #F0F4F8;
+      background-color: #F7FAFC;
       transform: translateY(-2px);
     }
 
-    /* 입력형 문제 스타일 (단답형 & 주관식 서술형) */
+    /* 입력형 문제 스타일 */
     .input-container {
       margin-bottom: 20px;
       text-align: left;
@@ -225,18 +225,18 @@
       padding: 16px 18px;
       font-size: 20px;
       font-family: inherit;
-      border: 2.5px solid #0B69A3;
+      border: 2.5px solid #805AD5;
       border-radius: 14px;
       outline: none;
-      background-color: #FAFCFF;
-      color: #102A43;
+      background-color: #FAF5FF;
+      color: #1A202C;
       box-sizing: border-box;
       margin-bottom: 12px;
     }
 
     .text-input-field:focus {
-      border-color: #084B75;
-      box-shadow: 0 0 0 3px rgba(11, 105, 163, 0.2);
+      border-color: #6B46C1;
+      box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.25);
     }
 
     .textarea-field {
@@ -245,12 +245,12 @@
       padding: 16px;
       font-size: 18px;
       font-family: inherit;
-      border: 2.5px solid #0B69A3;
+      border: 2.5px solid #805AD5;
       border-radius: 14px;
       outline: none;
       resize: vertical;
-      color: #102A43;
-      background-color: #FAFCFF;
+      color: #1A202C;
+      background-color: #FAF5FF;
       box-sizing: border-box;
       margin-bottom: 12px;
     }
@@ -260,7 +260,7 @@
       padding: 16px;
       font-size: 19px;
       font-weight: 800;
-      background-color: #0B69A3;
+      background-color: #805AD5;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
@@ -269,26 +269,26 @@
     }
 
     .submit-input-btn:hover {
-      background-color: #084B75;
+      background-color: #6B46C1;
     }
 
     /* 정답/오답 상태 스타일 */
     .option-btn.correct, .ox-btn.correct {
-      background-color: #D4EDDA !important;
-      border-color: #28A745 !important;
-      color: #155724 !important;
+      background-color: #C6F6D5 !important;
+      border-color: #38A169 !important;
+      color: #22543D !important;
     }
 
     .option-btn.wrong, .ox-btn.wrong {
-      background-color: #F8D7DA !important;
-      border-color: #DC3545 !important;
-      color: #721C24 !important;
+      background-color: #FED7D7 !important;
+      border-color: #E53E3E !important;
+      color: #742A2A !important;
     }
 
     /* 피드백 및 해설 영역 */
     .feedback-card {
-      background-color: #F0F4F8;
-      border: 2px solid #D9E2EC;
+      background-color: #F7FAFC;
+      border: 2px solid #E2E8F0;
       border-radius: 14px;
       padding: 20px;
       text-align: left;
@@ -312,16 +312,16 @@
     }
 
     .feedback-title.correct {
-      color: #2B8A3E;
+      color: #2F855A;
     }
 
     .feedback-title.wrong {
-      color: #C92A2A;
+      color: #C53030;
     }
 
     .feedback-desc {
       font-size: 17px;
-      color: #334E68;
+      color: #4A5568;
       line-height: 1.7;
       word-break: keep-all;
     }
@@ -329,13 +329,13 @@
     .feedback-scripture {
       margin-top: 10px;
       font-size: 15px;
-      color: #0B69A3;
+      color: #6B46C1;
       font-weight: 700;
     }
 
     /* 기본 동작 버튼 */
     .action-button {
-      background-color: #0B69A3;
+      background-color: #805AD5;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
@@ -344,41 +344,41 @@
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(11, 105, 163, 0.25);
+      box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
       width: 100%;
       margin-top: 20px;
     }
 
     .action-button:hover {
-      background-color: #084B75;
+      background-color: #6B46C1;
       transform: translateY(-2px);
     }
 
     .next-btn {
-      background-color: #2F855A;
+      background-color: #319795;
     }
     .next-btn:hover {
-      background-color: #22543D;
+      background-color: #285E61;
     }
 
     /* 결과 화면 */
     .result-score {
       font-size: 52px;
       font-weight: 900;
-      color: #0B69A3;
+      color: #805AD5;
       margin: 15px 0 5px 0;
     }
 
     .result-message {
       font-size: 22px;
       font-weight: 700;
-      color: #102A43;
+      color: #2D3748;
       margin-bottom: 20px;
       word-break: keep-all;
     }
 
     .result-details {
-      background-color: #F0F4F8;
+      background-color: #FAF5FF;
       border-radius: 14px;
       padding: 22px;
       font-size: 17px;
@@ -392,7 +392,7 @@
     .footer-text {
       margin-top: 25px;
       font-size: 14px;
-      color: #829AB1;
+      color: #718096;
       font-weight: 600;
     }
 
@@ -407,17 +407,17 @@
     
     <!-- 1. 시작 화면 -->
     <div id="start-screen">
-      <span class="lesson-badge">2026년 9월 12일 안식일 교과</span>
-      <h1 class="main-title">청지기 직분과 선교</h1>
+      <span class="lesson-badge">2026년 9월 19일 안식일 교과</span>
+      <h1 class="main-title">거짓 교사들에 맞서는 영적 전쟁</h1>
       <p class="sub-title">여호수아반(장년반) 성경 퀴즈</p>
       
       <div class="memory-verse-box">
-        <strong>📖 이번 주 기억절 (고린도후서 8:9)</strong>
-        “우리 주 예수 그리스도의 은혜를 너희가 알거니와 부요하신 이로서 너희를 위하여 가난하게 되심은 그의 가난함으로 말미암아 너희를 부요하게 하려 하심이라”
+        <strong>📖 이번 주 기억절 (고린도후서 10:4)</strong>
+        “우리의 싸우는 무기는 육신에 속한 것이 아니요 오직 어떤 견고한 진도 무너뜨리는 하나님의 능력이라”
       </div>
 
-      <div style="background-color: #EBF8FF; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px; border: 1px solid #BEE3F8;">
-        💡 <strong>안내:</strong> 본 퀴즈는 이번 주 고린도후서 8~9장의 청지기 사명과 나눔의 원리를 살펴보는 문제로 구성되어 있습니다.
+      <div style="background-color: #EDF2F7; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px; border: 1px solid #E2E8F0;">
+        💡 <strong>안내:</strong> 본 퀴즈는 고린도후서 10~13장에 나타난 영적 전쟁과 바울의 참된 사도직 변호를 살펴보는 <strong>총 11문제</strong>로 구성되어 있습니다.
       </div>
 
       <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
@@ -461,14 +461,14 @@
       <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
       
       <div id="result-score" class="result-score">100점</div>
-      <div id="result-message" class="result-message">말씀에 대한 사랑과 헌신이 참으로 아름답습니다!</div>
+      <div id="result-message" class="result-message">말씀에 굳게 서신 믿음이 참으로 귀하고 아름답습니다!</div>
 
       <div class="result-details">
         • 총 문항수: <strong>11문제</strong><br>
-        • 맞힌 문제: <strong id="correct-count" style="color: #2B8A3E;">11문제</strong><br>
-        • 틀린 문제: <strong id="wrong-count" style="color: #C92A2A;">0문제</strong><br>
+        • 맞힌 문제: <strong id="correct-count" style="color: #2F855A;">11문제</strong><br>
+        • 틀린 문제: <strong id="wrong-count" style="color: #C53030;">0문제</strong><br>
         <hr style="border: none; border-top: 1px dashed #CBD5E0; margin: 12px 0;">
-        📌 <strong>핵심 요약:</strong> 청지기 직분과 선교는 분리될 수 없습니다. 부요하셨으나 우리를 위해 가난해지신 예수님의 사랑을 마음에 품고, 우리의 삶과 물질을 이웃과 복음 사업을 위해 즐거이 나누는 참된 청지기가 되시기를 축복합니다.
+        📌 <strong>핵심 요약:</strong> 우리는 육신에 속한 무기가 아니라 하나님의 말씀과 성령의 능력으로 거짓 가르침을 분별해야 합니다. 그리스도의 온유함과 겸손을 품되 진리를 지키는 일에는 담대히 서며, 날마다 자신이 믿음 안에 거하고 있는지를 점검하는 참된 주님의 제자가 되시길 축복합니다.
       </div>
 
       <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
@@ -494,150 +494,150 @@
       {
         category: "1번 • 핵심 사실 확인",
         type: "ox",
-        question: "청지기 직분과 선교는 분리될 수 없으며, 성도의 참된 나눔은 강요된 의무가 아니라 하나님의 은혜에 대한 자발적인 감사의 표현이다.",
+        question: "거짓 교사들과의 싸움은 단순한 인간적인 세력 다툼이 아니라, 모든 생각을 사로잡아 그리스도께 복종하게 하는 거룩한 영적 전쟁이다.",
         options: ["O", "X"],
         answer: 0, // O
-        explanation: "맞습니다. 청지기 사명과 선교는 동전의 양면과 같으며, 억지나 의무가 아니라 그리스도의 은혜에 감사하는 마음에서 우러나오는 삶의 열매입니다.",
-        scripture: "고린도후서 8:1-5, 요한복음 3:16"
+        explanation: "맞습니다. 바울은 거짓 가르침에 맞서는 교회의 투쟁이 육신에 속한 것이 아니라 오직 어떤 견고한 진도 무너뜨리는 하나님의 능력에 기초한 영적 전쟁임을 밝혔습니다.",
+        scripture: "고린도후서 10:3-5"
       },
       // 2번: 기억절 빈칸 채우기 (단답형)
       {
         category: "2번 • 기억절 외우기",
         type: "fill",
-        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“우리 주 예수 그리스도의 은혜를 너희가 알거니와 (       ) 이로서 너희를 위하여 가난하게 되심은 그의 가난함으로 말미암아 너희를 부요하게 하려 하심이라”(고후 8:9)",
-        correctAnswers: ["부요하신", "부요하신이", "부유하신", "부유하신이"],
-        placeholder: "빈칸의 단어를 입력하세요 (예: 부요하신)",
-        explanation: "하늘 궁정의 영광과 풍요를 누리시던 예수님께서 우리를 구원하시기 위해 스스로 가난해지셨습니다.",
-        scripture: "고린도후서 8:9"
+        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“우리의 싸우는 무기는 육신에 속한 것이 아니요 오직 어떤 견고한 진도 무너뜨리는 (       )이라”(고후 10:4)",
+        correctAnswers: ["하나님의 능력", "하나님의능력", "하나님의 권능", "하나님의권능"],
+        placeholder: "빈칸의 단어를 입력하세요 (예: 하나님의 능력)",
+        explanation: "영적 싸움의 강력한 무기는 인간의 지혜나 육신의 수단이 아니라, 사탄의 진영을 무너뜨리는 하나님의 능력입니다.",
+        scripture: "고린도후서 10:4"
       },
-      // 3번: 일요일 (예수의 모본)
+      // 3번: 일요일 (영적인 전쟁)
       {
-        category: "3번 • 일요일 교과 (예수의 모본)",
+        category: "3번 • 일요일 교과 (영적인 전쟁)",
         type: "mcq",
-        question: "바울이 고린도후서 8장 9절에서 구속의 역사를 재정적 개념으로 설명하며, 본래 하늘의 부유하심을 버리고 우리를 위해 가난을 자처하신 분으로 제시한 궁극적 모본은 누구입니까?",
+        question: "바울이 주님께 부여받았다고 확신한 사도적 권위의 궁극적인 목적은 무엇입니까? (고후 10:8)",
         options: [
-          "믿음의 조상 아브라함",
-          "출애굽의 지도자 모세",
-          "예수 그리스도",
-          "이스라엘의 다윗 왕"
+          "성도들을 위협하고 파괴하는 것",
+          "교회를 무너뜨리지 않고 온전히 세우는 것",
+          "자신의 개인적인 명예를 높이는 것",
+          "로마 제국에 대항하는 권력을 얻는 것"
+        ],
+        answer: 1,
+        explanation: "바울은 주께서 사도들에게 권위를 주신 목적이 교회를 파괴하려는 것이 아니라 성도들을 덕스럽게 세우기 위함(건덕)이라고 분명히 선언했습니다.",
+        scripture: "고린도후서 10:8"
+      },
+      // 4번: 월요일 (주 안에서 자랑할지니라)
+      {
+        category: "4번 • 월요일 교과 (주 안에서 자랑)",
+        type: "mcq",
+        question: "바울이 예레미야 9장 24절을 인용하여 밝힌 성도가 추구해야 할 참된 ‘자랑의 표준’은 무엇입니까? (고후 10:17)",
+        options: [
+          "자신의 지혜와 세상적인 재물",
+          "남들과 비교하여 이룬 사역의 우월성",
+          "오직 주 안에서 주님이 행하신 일",
+          "자신이 가진 가문의 혈통과 권세"
         ],
         answer: 2,
-        explanation: "예수님께서는 하늘 영광의 부요함을 버리고 십자가에 죽기까지 낮아지심으로, 우리로 하여금 영원한 생명의 부요함을 누리게 하셨습니다.",
-        scripture: "고린도후서 8:9, 빌립보서 2:6-8"
+        explanation: "바울은 남과 비교하는 거짓 교사들의 어리석은 자기 자랑을 배격하고, '자랑하는 자는 주 안에서 자랑할지니라'는 성경 말씀대로 그리스도의 은혜만을 높였습니다.",
+        scripture: "고린도후서 10:12-18, 렘 9:24"
       },
-      // 4번: 월요일 (동기)
+      // 5번: 화요일 (거짓 교사들을 밝혀내다)
       {
-        category: "4번 • 월요일 교과 (동기)",
+        category: "5번 • 화요일 교과 (거짓 교사의 실체)",
         type: "mcq",
-        question: "고린도후서 8장과 9장에 반복하여 등장하며, 성도로 하여금 이기심과 탐욕을 극복하고 즐거이 헌신하게 만드는 가장 본질적인 동기는 무엇입니까?",
+        question: "바울은 겉으로는 의의 일꾼인 척 위장하면서 실상은 교회를 미혹하는 거짓 사도들의 기만술을 무엇에 비유하였습니까? (고후 11:14-15)",
         options: [
-          "세상 사람들의 칭찬과 인정",
-          "하나님의 넘치는 은혜(카리스)",
-          "율법의 엄격한 규정과 강요",
-          "교회 내에서의 직분 경쟁"
-        ],
-        answer: 1,
-        explanation: "본문에 거듭 언급되는 헬라어 '카리스(은혜)'는 하나님께서 먼저 값없이 베풀어 주신 사랑이며, 이것이 나눔의 참된 원동력이 됩니다.",
-        scripture: "고린도후서 8:1, 9:14-15"
-      },
-      // 5번: 화요일 (계획)
-      {
-        category: "5번 • 화요일 교과 (계획)",
-        type: "mcq",
-        question: "바울이 ‘각각 그 마음에 정한 대로 할 것’(고후 9:7)을 권면할 때, ‘정한 대로’에 해당하는 헬라어 ‘프로아이레오’가 의미하는 나눔의 원칙은 무엇입니까?",
-        options: [
-          "순간적인 기분과 충동에 따른 결정",
-          "남들의 눈치를 보고 맞추는 결정",
-          "기도하며 미리 심사숙고하여 내린 사전 결정",
-          "지도자가 일방적으로 할당해 준 금액"
-        ],
-        answer: 2,
-        explanation: "‘프로아이레오’는 ‘미리(프로) 선택하다(아이레오)’의 합성어로, 충동적이 아니라 미리 계획하고 마음속으로 결정하여 드리는 원리를 가르칩니다.",
-        scripture: "고린도후서 9:7"
-      },
-      // 6번: 수요일 (마음가짐)
-      {
-        category: "6번 • 수요일 교과 (마음가짐)",
-        type: "mcq",
-        question: "마케도니아 교인들이 극심한 가난과 많은 시련 속에서도 힘에 지나도록 풍성한 구제 헌금을 자원하여 드릴 수 있었던 근본 비결은 무엇이었습니까?",
-        options: [
-          "자신을 먼저 주께 드린 온전한 헌신",
-          "부유한 재정과 여유 자금",
-          "지역 사회에서의 사업적 성공",
-          "세금 감면의 혜택"
+          "사탄이 광명의 천사로 가장하는 것",
+          "포도원을 허는 작은 여우",
+          "양의 가죽을 쓴 늑대",
+          "바람에 날려가는 겨"
         ],
         answer: 0,
-        explanation: "마케도니아 성도들은 재정적으로 쪼들렸으나 '먼저 자신을 주께 드리고' 하나님의 뜻을 따랐기에, 물질을 넘어선 거룩한 나눔의 기쁨을 누렸습니다.",
-        scripture: "고린도후서 8:2-5"
+        explanation: "사탄이 자기를 빛의 천사로 위장하듯, 거짓 교사들도 겉으로는 그리스도의 사도와 의의 일꾼인 것처럼 포장하여 침투한다고 폭로했습니다.",
+        scripture: "고린도후서 11:13-15"
       },
-      // 7번: 목요일 (연합)
+      // 6번: 화요일 (거짓 복음의 경계)
       {
-        category: "7번 • 목요일 교과 (연합)",
+        category: "6번 • 화요일 교과 (참된 복음)",
         type: "mcq",
-        question: "바울이 곤궁에 처한 예루살렘의 유대인 성도들을 돕기 위해 이방인 교회들에게 모금을 독려하며 도모하고자 했던 중요한 영적 목적은 무엇입니까?",
+        question: "바울이 고린도 교인들이 너무도 쉽게 용납하고 받아들이는 것을 보며 깊이 탄식하고 우려했던 치명적인 오류는 무엇입니까? (고후 11:4)",
         options: [
-          "로마 제국의 정치적 승인 획득",
-          "그리스도 안에서 유대인과 이방인 교회의 참된 연합",
-          "개인적인 선교 여행 경비 축적",
-          "유대 율법의 엄격한 복원"
+          "교회 건축 헌금의 부족",
+          "다른 예수, 다른 영, 다른 복음",
+          "안식일 식사 준비의 불화",
+          "예배 순서의 간소화"
         ],
         answer: 1,
-        explanation: "바울은 가난한 형제를 돕는 사랑의 헌금을 통해, 한때 원수였던 유대인과 이방인이 하나님 안에서 한 가족임을 확인하고 연합하기를 소망했습니다.",
-        scripture: "고린도후서 8:13-14, 로마서 15:26-27"
+        explanation: "바울은 고린도 교인들이 사도들이 전한 참된 진리를 버리고 '다른 예수, 다른 영, 다른 복음'을 맹목적으로 받아들이는 위험을 엄중히 경고했습니다.",
+        scripture: "고린도후서 11:4, 갈 1:6-9"
       },
-      // 8번: 금요일 (더 깊은 묵상을 위해)
+      // 7번: 수요일 (복음을 위한 고난)
       {
-        category: "8번 • 금요일 교과 (더 깊은 묵상)",
+        category: "7번 • 수요일 교과 (복음을 위한 고난)",
         type: "mcq",
-        question: "엘렌 화잇의 권면(『청지기에게 보내는 권면』 18-19)에 따르면, 모든 것을 소유하신 하나님께 우리의 진정한 감사와 사랑을 나타낼 수 있는 유일한 방법은 무엇입니까?",
+        question: "바울이 자신의 사도적 진실성을 증명하기 위해 거짓 교사들의 자랑과 대조적으로 제시한 결정적 증거는 무엇입니까? (고후 11:23-28)",
         options: [
-          "그리스도의 자기희생적인 정신을 다른 이들에게 베푸는 것",
-          "화려하고 거대한 성전 건물만을 짓는 것",
-          "말과 지식으로만 교리를 논쟁하는 것",
-          "세상적인 부와 명예를 많이 쌓는 것"
-        ],
-        answer: 0,
-        explanation: "하나님께는 부족한 것이 없으시므로, 우리가 받은 은혜를 동일한 자기희생적 사랑으로 이웃에게 베푸는 것만이 참된 감사의 표현입니다.",
-        scripture: "시편 50:10-12, 사도행적 71"
-      },
-      // 9번: 안식일 본문 (말씀 속으로)
-      {
-        category: "9번 • 안식일 교과 (말씀 속으로)",
-        type: "mcq",
-        question: "바울은 고린도후서 8장 12절에서 하나님께서 기쁘게 흠향하시는 올바른 헌금의 기준을 어떻게 설명하였습니까?",
-        options: [
-          "빚을 내어서라도 남보다 많이 바쳐야 한다",
-          "할 마음만 있으면 있는 대로 받으시고 없는 것은 받지 아니하신다",
-          "오직 일정한 고액의 금액만을 귀하게 보신다",
-          "물질의 양이 많을수록 더 큰 구원을 얻는다"
+          "많은 재산과 화려한 언변",
+          "복음과 교회를 위해 겪은 수많은 고난과 환난",
+          "유력한 정치가들의 추천장",
+          "로마 귀족들과의 친분 관계"
         ],
         answer: 1,
-        explanation: "하나님은 액수의 크기가 아니라 '자원하는 마음의 진실함'을 보시며, 가진 형편대로 드리는 정성을 온전히 받으십니다.",
-        scripture: "고린도후서 8:12"
+        explanation: "바울은 매맞음, 투옥, 난파, 굶주림, 교회를 위한 염려 등 복음을 위해 온몸으로 감내한 극심한 고난의 흔적들을 통해 참된 종임을 입증했습니다.",
+        scripture: "고린도후서 11:23-28"
       },
-      // 10번: 안식일 총괄 (핵심 교훈)
+      // 8번: 수요일 (약함 속의 강함)
       {
-        category: "10번 • 안식일 총괄 (핵심 교훈)",
+        category: "8번 • 수요일 교과 (육체의 가시)",
         type: "mcq",
-        question: "이번 주 교과의 핵심 교훈에 비추어 볼 때, '청지기 직분'과 '선교'의 올바른 신앙적 관계는 무엇입니까?",
+        question: "하나님께서 바울에게 ‘육체의 가시’를 허락하시고 ‘내 은혜가 네게 족하도다’라고 응답하신 영적 교훈은 무엇입니까? (고후 12:7-10)",
         options: [
-          "동전의 양면처럼 결코 뗄 수 없이 하나로 묶인 관계",
-          "물질적인 여유가 넘칠 때만 선택하는 부차적인 활동",
-          "선교 사역이 완전히 끝난 뒤에만 실천하는 행위",
-          "서로 아무런 연관이 없는 독립된 교단 행정"
+          "스스로 자고(교만)하지 않고 약할 때 하나님의 능력이 온전해짐",
+          "신체 건강을 완전히 포기하라는 명령",
+          "더 이상 선교 사역을 하지 말라는 경고",
+          "물질적 부를 더 많이 축적하라는 뜻"
         ],
         answer: 0,
-        explanation: "청지기 사명은 교회에 영적·물적 자원을 공급하여 하나님의 선교를 성취하게 하므로, 둘은 불가분의 관계입니다.",
-        scripture: "고린도전서 4:1-2, 요한복음 3:16"
+        explanation: "하나님은 바울이 지나친 계시로 교만해지지 않도록 가시를 두셨으며, 자신의 약함을 인정할 때 비로소 그리스도의 능력이 온전히 머무는 원리를 깨닫게 하셨습니다.",
+        scripture: "고린도후서 12:7-10"
+      },
+      // 9번: 목요일 (회개하지 않는 자들을 향한 호소)
+      {
+        category: "9번 • 목요일 교과 (자신을 살피라)",
+        type: "mcq",
+        question: "바울이 고린도 교회의 성도들을 향해 세 번째 방문을 앞두고 간절하게 권면한 자기 점검의 말씀은 무엇입니까? (고후 13:5)",
+        options: [
+          "세상 재물이 얼마나 불어났는지 계산해 보라",
+          "자신이 믿음 안에 있는가 스스로 시험하고 확증하라",
+          "누가 가장 높은 직분을 가졌는지 투표하라",
+          "더 큰 예배당을 건축할 자금이 있는지 점검하라"
+        ],
+        answer: 1,
+        explanation: "바울은 남을 비판하기 전에 '너희가 믿음 안에 있는가 너희 자신을 시험하고 너희 자신을 확증하라'며 진정한 신앙의 내적 상태를 살피라고 호소했습니다.",
+        scripture: "고린도후서 13:5"
+      },
+      // 10번: 금요일 (더 깊은 묵상을 위해)
+      {
+        category: "10번 • 금요일 교과 (진리 연구의 태도)",
+        type: "mcq",
+        question: "엘렌 화잇이 『저자와 편집자에게 보내는 권면』에서 지적한, 진리를 그릇되게 해석하고 미혹에 빠지게 되는 근본 원인은 무엇입니까?",
+        options: [
+          "지나치게 겸손한 마음으로 기도하는 것",
+          "자기 생각을 입증하기 위해 성경을 입맛대로 아전인수격 해석하는 것",
+          "오직 하나님의 말씀만을 순수하게 믿는 것",
+          "교회 어르신들을 공경하고 순종하는 것"
+        ],
+        answer: 1,
+        explanation: "자신의 편견이나 이론에 성경을 억지로 꿰맞추고 고집을 버리지 않을 때 오류에 빠지므로, 우리는 겸손한 태도로 말씀 앞에 서야 합니다.",
+        scripture: "벧후 3:16, 권면 36-37"
       },
       // 11번: 느낀 점 서술형 (어떤 내용이든 정답 처리)
       {
         category: "11번 • 삶 속으로 (마음 나누기)",
         type: "any",
-        question: "이번 주 '청지기 직분과 선교' 교과를 묵상하면서 성도님의 마음에 와닿은 감동이나 결심을 한 줄로 편안하게 나누어 주세요. (기록하시면 모두 정답 처리됩니다!)",
-        placeholder: "예) 나를 위해 가난해지신 주님을 생각하며, 나눔과 베풂에 더욱 힘쓰겠습니다.",
-        explanation: "소중한 믿음의 고백에 감사드립니다! 성도님의 삶 속에 그리스도의 풍성한 사랑과 나눔의 기쁨이 넘치시기를 함께 기도합니다.",
-        scripture: "사도행전 20:35"
+        question: "‘거짓 교사들에 맞서는 영적 전쟁’ 교과를 묵상하면서, 날마다 믿음 안에 거하기 위해 품게 된 결심이나 느낀 점을 편안하게 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
+        placeholder: "예) 사람의 칭찬보다 주님 안에서만 자랑하며, 겸손히 말씀 위에 굳게 서겠습니다.",
+        explanation: "귀한 신앙의 다짐을 나누어 주셔서 감사합니다! 성도님의 삶이 하나님의 전신 갑주로 무장되어 늘 승리하시기를 기도로 응원합니다.",
+        scripture: "에베소서 6:10-18, 고후 13:5"
       }
     ];
 
@@ -665,7 +665,7 @@
     const currentScoreText = document.getElementById('current-score-text');
     const progressBar = document.getElementById('progress-bar');
 
-    // 퀴즈 시작 함수
+    // 퀴즈 시작
     function startQuiz() {
       currentQuestionIndex = 0;
       score = 0;
@@ -676,12 +676,12 @@
       loadQuestion();
     }
 
-    // 문제 로드 함수
+    // 문제 로드
     function loadQuestion() {
       answered = false;
       const q = questions[currentQuestionIndex];
 
-      // 상단 상태 업데이트
+      // 상단 진행바 및 번호 업데이트
       currentQNum.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`;
       currentScoreText.textContent = `점수: ${score}점`;
       const progressPercent = (currentQuestionIndex / questions.length) * 100;
@@ -690,7 +690,7 @@
       questionBadge.textContent = q.category;
       questionText.textContent = q.question;
 
-      // 피드백 초기화
+      // 초기화
       feedbackCard.style.display = 'none';
       nextButton.classList.add('hidden');
       interactiveContainer.innerHTML = '';
@@ -723,7 +723,7 @@
       interactiveContainer.appendChild(grid);
     }
 
-    // 2. 단답형 문제 렌더링 (normalize 적용)
+    // 2. 단답형 기억절 문제 렌더링
     function renderFill(q) {
       const container = document.createElement('div');
       container.className = 'input-container';
@@ -752,7 +752,7 @@
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 기억절을 훌륭히 암송하셨습니다.' : '❌ 아쉽지만 오답입니다. 정답은 [부요하신]입니다.');
+        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 기억절 말씀을 정확히 암송하셨습니다.' : '❌ 아쉽지만 오답입니다. 정답은 [하나님의 능력]입니다.');
       };
 
       input.addEventListener('keypress', (e) => {
@@ -781,7 +781,7 @@
       interactiveContainer.appendChild(grid);
     }
 
-    // 4. 서술형 느낀 점 렌더링 (어떤 입력이든 정답 처리)
+    // 4. 서술형 느낀 점 렌더링 (자유 기술, 100% 정답 인정)
     function renderAny(q) {
       const container = document.createElement('div');
       container.className = 'input-container';
@@ -792,12 +792,12 @@
 
       const btn = document.createElement('button');
       btn.className = 'submit-input-btn';
-      btn.textContent = '나눔 완료 및 제출하기 ❤️';
+      btn.textContent = '은혜의 나눔 제출하기 ❤️';
 
       btn.onclick = () => {
         if (answered) return;
         if (!textarea.value.trim()) {
-          alert('한 글자 이상 느낀 점을 간단히 적어 주세요.');
+          alert('한 글자 이상 느낀 점이나 다짐을 간단히 적어 주세요.');
           textarea.focus();
           return;
         }
@@ -805,7 +805,7 @@
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        showFeedback(true, '💐 은혜로운 다짐과 나눔에 깊이 감사드립니다!');
+        showFeedback(true, '💐 은혜로운 결심과 믿음의 고백에 깊이 감사드립니다!');
       };
 
       container.appendChild(textarea);
@@ -814,7 +814,7 @@
       setTimeout(() => textarea.focus(), 150);
     }
 
-    // 객관식/OX 선택 처리
+    // 선택 처리
     function handleChoice(isCorrect, selectedBtn, parentContainer, selectedIdx, answerIdx) {
       if (answered) return;
       answered = true;
@@ -826,16 +826,15 @@
           if (idx === answerIdx) b.classList.add('correct');
           else if (idx === selectedIdx) b.classList.add('wrong');
         } else {
-          // OX의 경우
           if (isCorrect && b === selectedBtn) b.classList.add('correct');
           if (!isCorrect && b === selectedBtn) b.classList.add('wrong');
         }
       });
 
-      showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 해설을 확인해 보세요.');
+      showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 해설을 읽어보세요.');
     }
 
-    // 피드백 및 점수 반영
+    // 피드백 표시 및 점수 반영
     function showFeedback(isCorrect, titleText) {
       answered = true;
       const q = questions[currentQuestionIndex];
@@ -893,11 +892,11 @@
 
       const resultMsg = document.getElementById('result-message');
       if (finalScore >= 90) {
-        resultMsg.textContent = '🌟 완벽합니다! 교과 말씀을 온전히 마음에 새기셨습니다.';
+        resultMsg.textContent = '🌟 완벽합니다! 사탄의 속임수를 분별하는 진리의 말씀에 굳게 서셨습니다.';
       } else if (finalScore >= 70) {
-        resultMsg.textContent = '👏 훌륭하십니다! 청지기 사명을 깊이 이해하고 계십니다.';
+        resultMsg.textContent = '👏 훌륭하십니다! 영적 전쟁에서 승리하는 믿음의 성도님이십니다.';
       } else {
-        resultMsg.textContent = '🌱 수고하셨습니다! 말씀을 다시 한번 묵상해 보시길 권면합니다.';
+        resultMsg.textContent = '🌱 수고하셨습니다! 말씀을 차분히 다시 묵상해 보시길 권면합니다.';
       }
     }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (11과 - 전쟁은 여호와께 달려 있다)</title>
+  <title>소년반 성경 퀴즈 (12과 - 패배 가운데 승리하다)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -34,7 +34,7 @@
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #2B4C6F; 
+      background-color: #4A3B32; 
       box-shadow: 0 10px 25px rgba(0,0,0,0.14); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
@@ -148,9 +148,9 @@
   <div id="quiz-container">
     <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">⚔️ 소년반 성경퀴즈 11과</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"전쟁은 여호와께 달려 있다"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 요셉" autocomplete="off" />
+      <h2 style="margin-top:0; font-size: 28px;">🏛️ 소년반 성경퀴즈 12과</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"패배 가운데 승리하다"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 삼손" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
       <button id="start-btn" style="background-color: #f8fafc; color: #1e293b; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
@@ -174,59 +174,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 11과: 전쟁은 여호와께 달려 있다 (여호수아 5:13~6:20 / 로마서 8:37)
+      // 12과: 패배 가운데 승리하다 (사사기 16:23~31 / 고린도전서 15:57)
       const questions = [
-        // 1번: OX 문제 (사실 관계 및 핵심 규칙 확인)
+        // 1번: OX 문제 (사실 관계 및 핵심 교훈 확인)
         { 
           type: 'ox',   
-          question: '이스라엘 백성들이 여리고 성 주위를 행군하는 6일 동안, 백성들은 아무 말도 하지 않고 침묵을 지켜야 했으며 오직 제사장들의 나팔 소리만 들려야 했다.', 
+          question: '블레셋 사람들은 다곤 신전에서 승리의 축제를 열며 기고만장해 있었지만, 눈먼 삼손이 자신의 잘못을 인정하고 하나님께 간절히 회개했을 때 하나님은 그의 마지막 기도를 들어주셨다.', 
           answer: 'O' 
         }, 
-        // [근거: PDF 82~84쪽] "행군하는 도중에는 단 한마디의 말도, 그 어떤 소리도 내서는 안 된다. 오직 제사장들의 나팔 소리만 들려야 한다"
+        // [근거: PDF 89~92쪽] "삼손은 자신이 스스로 문제를 자초했다는 것을 솔직하게 인정했기 때문이에요... 비록 큰 잘못을 저지르고 망가진 몸이었지만, 하나님은 여전히 삼손을 사랑하고 계셨고 그의 기도를 용서해 주셨던 거예요."
 
-        // 2번: 기억절 문제 (로마서 8:37 빈칸)
+        // 2번: 기억절 문제 (고린도전서 15:57 빈칸)
         { 
           type: 'fill', 
-          question: '기억절: "그러나 이 모든 일에 우리를 사랑하시는 이로 말미암아 우리가 (     ) 이기느니라" (로마서 8:37)', 
-          answer: '넉넉히' 
+          question: '기억절: "우리 주 예수 그리스도로 말미암아 우리에게 (     )를 주시는 하나님께 감사하노니" (고린도전서 15:57)', 
+          answer: '승리' 
         },
-        // [근거: PDF 81쪽] "우리를 사랑하시는 이로 말미암아 우리가 넉넉히 이기느니라"
+        // [근거: PDF 89쪽] "우리 주 예수 그리스도로 말미암아 우리에게 승리를 주시는 하나님께 감사하노니"
 
-        // 3번: 4지 선다형 (본문 핵심 등장인물 확인)
+        // 3번: 4지 선다형 (본문 세부 지명 확인)
         { 
           type: 'mcq',  
-          question: '여호수아가 여리고 성벽 앞에서 만난, 날카로운 칼을 빼들고 서 있던 분은 자신을 누구라고 밝혔나요?', 
+          question: '삼손이 갇혀 무거운 맷돌을 돌리던 감옥과 축제가 벌어졌던 거대한 다곤 신전이 있던 블레셋의 도시 이름은 어디인가요?', 
           options: [
-            'A. 애굽의 바로 왕', 
-            'B. 여호와의 군대 장관 (대장)', 
-            'C. 여리고 성의 수문장', 
-            'D. 천사장 가브리엘'
+            'A. 가자', 
+            'B. 여리고', 
+            'C. 다메섹', 
+            'D. 욥바'
           ], 
-          answer: 'B. 여호와의 군대 장관 (대장)' 
+          answer: 'A. 가자' 
         },
-        // [근거: PDF 81쪽] "아니다. 나는 여호와의 군대 장관(대장)으로 지금 왔느니라."
+        // [근거: PDF 89쪽] "지금 '가자'라는 블레셋 사람들의 도시에 있는 거대한 다곤 신전에는..."
 
-        // 4번: 4지 선다형 (행군 세부 내용 확인)
+        // 4번: 4지 선다형 (본문 세부 등장인물 확인)
         { 
           type: 'mcq',  
-          question: '이스라엘 백성들은 마지막 일곱째 날에 여리고 성 주위를 총 몇 번 돌았나요?', 
-          options: ['A. 1번', 'B. 3번', 'C. 7번', 'D. 12번'], 
-          answer: 'C. 7번' 
+          question: '지치고 눈먼 삼손을 감옥에서 신전으로 인도해 주고, 신전을 지탱하는 큰 기둥에 몸을 기댈 수 있게 자리를 잡아준 사람은 누구인가요?', 
+          options: [
+            'A. 블레셋 군대 장관', 
+            'B. 다곤 신전의 제사장', 
+            'C. 어린 소년', 
+            'D. 이스라엘의 장로'
+          ], 
+          answer: 'C. 어린 소년' 
         },
-        // [근거: PDF 84쪽] "그날은 성을 무려 일곱 번이나 돌았습니다... 마침내 일곱 번째 행군을 마치는 바로 그 순간"
+        // [근거: PDF 92쪽] "삼손은 감옥에서부터 자신을 신전으로 인도해 준 어린 소년을 향해 조용히 가쁜 숨을 내쉬며 말했습니다... 소년은 발을 질질 끌며 힘들어하는 삼손을 안내해 신전 중앙에 있는 거대한 두 기둥 사이에 삼손이 몸을 기댈 수 있도록 도와주었습니다."
 
         // 5번: 단답형 (핵심 키워드)
         { 
           type: 'short',
-          question: '하늘의 군대 대장이 여호수아에게 "네가 서 있는 이곳은 거룩한 곳이니라"라며 가장 먼저 발에서 무엇을 벗으라고 명령했나요? (1글자)', 
-          answer: '신' 
+          question: '블레셋 사람들이 이스라엘의 영웅 삼손을 사로잡은 후, 하나님보다 더 강하다며 제사를 드리고 찬양했던 블레셋 우상 신의 이름은 무엇인가요? (2글자)', 
+          answer: '다곤' 
         },
-        // [근거: PDF 82쪽] "먼저 네 발에서 신을 벗어라. 네가 서 있는 이곳은 거룩한 곳이니라."
+        // [근거: PDF 89~90쪽] "그들은 자신들이 믿는 '다곤' 신이 이스라엘의 하나님보다 더 강하다며... 수많은 사람이 다곤 신이 자신들의 원수인 삼손을 넘겨주었다며..."
 
         // 6번: 느낀점 (type: 'any')
         { 
           type: 'any',  
-          question: '단단하고 높은 여리고 성도 사람의 무기가 아니라 하나님을 향한 순종과 믿음으로 무너졌습니다. 내 힘으로 해결하기 어려운 문제가 생겼을 때, 하나님을 의지하며 어떻게 승리할 수 있을지 자유롭게 적어보세요.' 
+          question: '삼손은 자신의 힘과 쾌락을 좇다 비참하게 넘어졌지만, 자신의 약함을 인정하고 온전히 하나님을 의지했을 때 진짜 승리를 경험했습니다. 내 힘으로 고치기 힘든 나쁜 습관이나 어려움이 있을 때, 하나님께 어떻게 도움을 구하고 승리할 수 있을지 자유롭게 적어보세요.' 
         }
       ];
 
@@ -234,8 +239,8 @@
       let score = 0;
       let participantName = '';
 
-      // 11과 '전쟁과 하나님의 승리' 테마에 맞는 깊이감 있는 세련된 색상 팔레트
-      const themes = ['#2B4C6F', '#3A6B56', '#5C4378', '#A25927', '#43586C', '#28536B'];
+      // 12과 삼손의 고난과 반전의 승리를 표현하는 품격 있는 테마 색상 팔레트
+      const themes = ['#4A3B32', '#2E4057', '#603A40', '#3F5E5A', '#5B4B6F', '#6D4C41'];
 
       // HTML DOM 요소 참조
       const nameInputArea = document.getElementById('name-input-area');
@@ -340,8 +345,8 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 5번 단답형 '신'의 경우 '신발'도 정답으로 유연하게 인정
-          if (nAns === '신' && (nUser === '신' || nUser === '신발')) {
+          // 다곤 신, 다곤신 등 유연한 정답 인정
+          if (nAns === '다곤' && (nUser === '다곤' || nUser === '다곤신')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
@@ -350,7 +355,7 @@
 
         // 결과 피드백 UI 업데이트
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #16a34a;'>멋진 다짐을 적어주어서 고마워요! 🌟</span>";
+          feedbackEl.innerHTML = "<span style='color: #16a34a;'>마음을 담은 멋진 다짐을 적어주어서 고마워요! 🌟</span>";
           score++;
         } else if (isCorrect) {
           feedbackEl.innerHTML = "<span style='color: #16a34a;'>정답입니다! ⭕</span>";
@@ -391,14 +396,14 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "여리고 성벽을 무너뜨리신 하나님의 승리가 우리 친구의 삶에도 늘 함께하길 기도해요! 🛡️";
+        let praiseMsg = "승리는 우리의 힘이 아니라 하나님께로부터 오는 선물임을 항상 기억하는 멋진 친구가 되길 축복해요! 🛡️✨";
         if (score === questions.length) {
-          praiseMsg = "대단해요! 만점입니다! 하나님 안에서 승리하는 멋진 성경 박사님이에요! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 겸손하게 하나님만 의지하는 멋진 성경 박사님이에요! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">11과 총 <strong>${questions.length}</strong>문제 중<br>
+          <p style="font-size:22px;">12과 총 <strong>${questions.length}</strong>문제 중<br>
           <span style="color:#e11d48; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
           <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
           <button onclick="location.reload()" style="background-color:#0284c7; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>

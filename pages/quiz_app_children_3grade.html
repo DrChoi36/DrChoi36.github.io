@@ -86,12 +86,14 @@
         type: 'ox',   
         question: '요셉은 아버지 야곱이 돌아가신 뒤에도 옛날 일로 형들에게 복수하지 않고, 가족들을 끝까지 따뜻한 사랑으로 돌보아 주었어요.', 
         answer: 'O',
+        accepts: ['O', 'o', '0', 'ㅇ', '오', '참', '맞음'],
         comment: '맞아요! 요셉은 형들을 진심으로 용서하고 그들의 자녀들까지 사랑으로 보살펴 주었답니다! 👨‍👩‍👧‍👦'
       }, 
       { 
         type: 'fill', 
         question: '기억절: "그러므로 우리는 기회 있는 대로 모든 이에게 착한 일을 하되 더욱 믿음의 (    )들에게 할지니라" (갈라디아서 6:10)', 
         answer: '가정',
+        accepts: ['가정', '가정들', '가정들에게', '믿음의가정', '믿음의가정들', '가족', '가족들'],
         comment: '우리 곁에 있는 소중한 가족과 믿음의 식구들에게 매일 착하고 다정한 사랑을 베풀어요! 🏡✨'
       },
       { 
@@ -99,6 +101,7 @@
         question: '바로 왕의 큰 배려로 야곱과 온 가족이 편안하게 정착하여 양과 가축을 기르며 살게 된 애굽의 가장 좋은 땅은 어디일까요?', 
         options: ['A. 고센 땅', 'B. 시내산', 'C. 여리고', 'D. 갈릴리'], 
         answer: 'A. 고센 땅',
+        accepts: ['A', 'A.', '고센', '고센땅', 'A고센땅', 'A.고센땅'],
         comment: '바로 왕은 목자인 요셉의 가족들에게 기름지고 푸른 풀밭이 있는 고센 땅을 선물로 주었어요! 🐑🌿'
       },
       { 
@@ -111,12 +114,14 @@
           'D. "선물로 주었던 마차를 다 돌려주세요"'
         ], 
         answer: 'B. 하나님께서 그것을 선으로 바꾸어 주셨습니다',
+        accepts: ['B', 'B.', '하나님께서그것을선으로바꾸어주셨습니다', '선으로바꾸어주셨습니다'],
         comment: '요셉은 형들이 악으로 한 일까지도 많은 생명을 살리는 선한 축복으로 바꾸어주신 하나님의 은혜를 믿었어요! 💖'
       },
       { 
         type: 'short',
         question: '요셉이 기근 중에도 온 정성을 다해 돌보았던 대상이자, 하나님께서 우리에게 서로 사랑하며 도우라고 주신 소중한 사람들은 누구일까요? (2글자)', 
         answer: '가족', 
+        accepts: ['가족', '가족들', '가정', '식구', '식구들', '부모님'],
         comment: '하나님께서는 우리가 부모님과 형제자매, 즉 우리 가족을 예수님의 사랑으로 아끼고 돌보기를 바라신답니다! 🥰'
       }
     ];
@@ -190,12 +195,34 @@
       const q = questions[current];
       let isCorrect = false;
 
-      if (q.type === 'mcq') {
-        isCorrect = (userAns === q.answer);
-      } else if (q.type === 'short') {
-        isCorrect = normalize(userAns).includes(normalize(q.answer));
-      } else {
-        isCorrect = normalize(userAns) === normalize(q.answer);
+      const normUser = normalize(userAns);
+      const normAnswer = normalize(q.answer);
+      const allowedAnswers = (q.accepts || []).map(a => normalize(a));
+
+      // 1. 기본 정답 및 허용 목록과의 정확 일치 확인
+      if (normUser === normAnswer || allowedAnswers.includes(normUser)) {
+        isCorrect = true;
+      } 
+      // 2. 객관식(MCQ)의 경우 보기 기호(A, B 등) 또는 텍스트 부분 일치 확인
+      else if (q.type === 'mcq') {
+        const optionPrefix = normAnswer.charAt(0); // 'A', 'B' 등
+        if (normUser === optionPrefix || normAnswer.includes(normUser) || normUser.includes(normAnswer)) {
+          isCorrect = true;
+        }
+      } 
+      // 3. 주관식/단답형/빈칸 채우기의 경우 키워드 포함 확인
+      else if (q.type === 'fill' || q.type === 'short') {
+        if (normUser.includes(normAnswer) || normAnswer.includes(normUser)) {
+          isCorrect = true;
+        } else {
+          // 허용 단어가 포함되어 있는지 확인 (예: '가정들' 입력 시 '가정' 매칭)
+          for (let allowed of allowedAnswers) {
+            if (normUser.includes(allowed) || allowed.includes(normUser)) {
+              isCorrect = true;
+              break;
+            }
+          }
+        }
       }
 
       if (isCorrect) {
@@ -244,7 +271,12 @@
 
     function normalize(str) {
       if (!str) return '';
-      return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
+      // 공백, 따옴표, 마침표, 괄호 등 모든 문장부호 및 기호 제거
+      try {
+        return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
+      } catch (e) {
+        return str.replace(/[\s.,!?'"~@#$%^&*()_\-+=\[\]{}<>:;\/\\|]/g, '').toLowerCase();
+      }
     }
   </script>
 </body>

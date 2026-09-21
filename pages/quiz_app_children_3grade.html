@@ -93,7 +93,7 @@
         type: 'fill', 
         question: '기억절: "그러므로 우리는 기회 있는 대로 모든 이에게 착한 일을 하되 더욱 믿음의 (    )들에게 할지니라" (갈라디아서 6:10)', 
         answer: '가정',
-        accepts: ['가정', '가정들', '가정들에게', '믿음의가정', '믿음의가정들', '가족', '가족들'],
+        accepts: ['가정', '가정들', '가정들에게'],
         comment: '우리 곁에 있는 소중한 가족과 믿음의 식구들에게 매일 착하고 다정한 사랑을 베풀어요! 🏡✨'
       },
       { 
@@ -121,7 +121,7 @@
         type: 'short',
         question: '요셉이 기근 중에도 온 정성을 다해 돌보았던 대상이자, 하나님께서 우리에게 서로 사랑하며 도우라고 주신 소중한 사람들은 누구일까요? (2글자)', 
         answer: '가족', 
-        accepts: ['가족', '가족들', '가정', '식구', '식구들', '부모님'],
+        accepts: ['가족', '가족들', '식구', '식구들'],
         comment: '하나님께서는 우리가 부모님과 형제자매, 즉 우리 가족을 예수님의 사랑으로 아끼고 돌보기를 바라신답니다! 🥰'
       }
     ];
@@ -203,25 +203,18 @@
       if (normUser === normAnswer || allowedAnswers.includes(normUser)) {
         isCorrect = true;
       } 
-      // 2. 객관식(MCQ)의 경우 보기 기호(A, B 등) 또는 텍스트 부분 일치 확인
+      // 2. 객관식(MCQ)의 경우 보기 기호(A, B 등) 일치 확인
       else if (q.type === 'mcq') {
         const optionPrefix = normAnswer.charAt(0); // 'A', 'B' 등
-        if (normUser === optionPrefix || normAnswer.includes(normUser) || normUser.includes(normAnswer)) {
+        if (normUser === optionPrefix || normUser.startsWith(optionPrefix)) {
           isCorrect = true;
         }
       } 
-      // 3. 주관식/단답형/빈칸 채우기의 경우 키워드 포함 확인
+      // 3. 주관식/단답형/빈칸 채우기: 어린이가 문장 형태("가정입니다" 등)로 적었을 때만 허용
+      // 단, 한 글자('가', '들' 등)나 정답의 일부만 쓴 오답이 정답 처리되지 않도록 길이 검증 추가
       else if (q.type === 'fill' || q.type === 'short') {
-        if (normUser.includes(normAnswer) || normAnswer.includes(normUser)) {
+        if (normUser.length >= normAnswer.length && normUser.includes(normAnswer)) {
           isCorrect = true;
-        } else {
-          // 허용 단어가 포함되어 있는지 확인 (예: '가정들' 입력 시 '가정' 매칭)
-          for (let allowed of allowedAnswers) {
-            if (normUser.includes(allowed) || allowed.includes(normUser)) {
-              isCorrect = true;
-              break;
-            }
-          }
         }
       }
 

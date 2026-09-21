@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 - 12과 드디어 용서받음</title>
+  <title>유년반 성경퀴즈 - 13과 다시 함께 하다</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #f0fdf4; /* 온화하고 평화로운 초록빛 배경 */
+      background: #f0f9ff; /* 평화롭고 포근한 하늘빛 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,8 +19,8 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #10b981; /* 싱그러운 에메랄드 초록색 */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background-color: #0284c7; /* 가족의 포근함과 화목을 상징하는 밝은 블루 */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       line-height: 1.5;
     }
 
@@ -28,23 +28,23 @@
       margin: 10px; padding: 15px 30px; font-size: 22px; 
       border: none; border-radius: 12px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      box-shadow: 0 3px 0 #cbd5e1;
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #d1fae5; }
+    button:hover { background-color: #e0f2fe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #10b981; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #10b981;
+      border: 5px solid #0284c7;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,8 +58,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 12과</h2>
-      <p style="font-size: 20px; margin-top: -10px;">드디어 용서받음 (창세기 42장~45장)</p>
+      <h2>유년반 성경퀴즈 13과</h2>
+      <p style="font-size: 20px; margin-top: -10px;">다시 함께 하다 (창세기 45~47장, 50장)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 사랑이" />
       <br>
@@ -76,7 +76,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 12과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 13과</div>
 
   <script>
     'use strict';
@@ -84,42 +84,47 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '요셉은 자신을 노예로 팔아 큰 아픔을 주었던 형들을 원망하지 않고, 하나님의 사랑으로 너그럽게 용서해 주었어요.', 
+        question: '요셉은 아버지 야곱이 돌아가신 뒤에도 옛날 일로 형들에게 복수하지 않고, 가족들을 끝까지 따뜻한 사랑으로 돌보아 주었어요.', 
         answer: 'O',
-        comment: '맞아요! 요셉은 형들을 미워하거나 벌주지 않고 눈물로 따뜻하게 용서해 주었답니다! 💖'
+        comment: '맞아요! 요셉은 형들을 진심으로 용서하고 그들의 자녀들까지 사랑으로 보살펴 주었답니다! 👨‍👩‍👧‍👦'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "(    )하라 그리하면 너희가 용서를 받을 것이요" (누가복음 6:37)', 
-        answer: '용서',
-        comment: '예수님처럼 다른 사람을 먼저 너그럽게 용서하는 착한 어린이가 되어요! ✨'
+        question: '기억절: "그러므로 우리는 기회 있는 대로 모든 이에게 착한 일을 하되 더욱 믿음의 (    )들에게 할지니라" (갈라디아서 6:10)', 
+        answer: '가정',
+        comment: '우리 곁에 있는 소중한 가족과 믿음의 식구들에게 매일 착하고 다정한 사랑을 베풀어요! 🏡✨'
       },
       { 
         type: 'mcq',  
-        question: '요셉이 형들의 마음이 서로를 사랑하도록 변화되었는지 시험해보기 위해, 동생 베냐민의 자루에 몰래 넣었던 것은 무엇일까요?', 
-        options: ['A. 금반지', 'B. 은잔', 'C. 비단옷', 'D. 황금 열쇠'], 
-        answer: 'B. 은잔',
-        comment: '요셉은 자신의 특별한 은잔을 베냐민의 곡식 자루 속에 넣어 형들의 마음을 시험해 보았어요! 🍷'
+        question: '바로 왕의 큰 배려로 야곱과 온 가족이 편안하게 정착하여 양과 가축을 기르며 살게 된 애굽의 가장 좋은 땅은 어디일까요?', 
+        options: ['A. 고센 땅', 'B. 시내산', 'C. 여리고', 'D. 갈릴리'], 
+        answer: 'A. 고센 땅',
+        comment: '바로 왕은 목자인 요셉의 가족들에게 기름지고 푸른 풀밭이 있는 고센 땅을 선물로 주었어요! 🐑🌿'
       },
       { 
         type: 'mcq',  
-        question: '베냐민이 노예가 될 위험에 처했을 때, 아버지를 위해 "동생 대신 제가 종이 되겠습니다"라며 간절히 애원한 형은 누구였을까요?', 
-        options: ['A. 유다', 'B. 르우벤', 'C. 시므온', 'D. 단'], 
-        answer: 'A. 유다',
-        comment: '형 유다는 동생 베냐민과 연로하신 아버지를 진심으로 사랑하여 자기가 대신 종이 되겠다고 간청했어요! 👏'
+        question: '아버지가 돌아가신 후 "요셉이 우리에게 복수할까?" 하며 두려워 떨던 형들에게 요셉이 전한 감동적인 고백은 무엇일까요?', 
+        options: [
+          'A. "너희의 잘못을 절대 잊지 않겠다"', 
+          'B. "하나님께서 그것을 선으로 바꾸어 주셨습니다"', 
+          'C. "다시는 나를 찾아오지 마십시오"', 
+          'D. "선물로 주었던 마차를 다 돌려주세요"'
+        ], 
+        answer: 'B. 하나님께서 그것을 선으로 바꾸어 주셨습니다',
+        comment: '요셉은 형들이 악으로 한 일까지도 많은 생명을 살리는 선한 축복으로 바꾸어주신 하나님의 은혜를 믿었어요! 💖'
       },
       { 
         type: 'short',
-        question: '요셉은 형들에게 "형들이 나를 보낸 것이 아니라, 우리 생명을 구원하시려고 (     )께서 나를 먼저 보내셨어요"라고 고백했어요. 누구일까요? (3글자)', 
-        answer: '하나님', 
-        comment: '모든 힘든 일 속에서도 우리를 선하게 인도하시는 하나님의 크신 사랑을 믿어요! 🌿'
+        question: '요셉이 기근 중에도 온 정성을 다해 돌보았던 대상이자, 하나님께서 우리에게 서로 사랑하며 도우라고 주신 소중한 사람들은 누구일까요? (2글자)', 
+        answer: '가족', 
+        comment: '하나님께서는 우리가 부모님과 형제자매, 즉 우리 가족을 예수님의 사랑으로 아끼고 돌보기를 바라신답니다! 🥰'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#10b981', '#059669', '#047857', '#0d9488', '#0f766e'];
+    const themes = ['#0284c7', '#0369a1', '#2563eb', '#1d4ed8', '#0f766e'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -194,7 +199,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#065f46;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 훌륭해요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -210,7 +215,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#064e3b';
+      nextBtn.style.backgroundColor = '#1e3a8a';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -225,13 +230,13 @@
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
       let message = score === questions.length 
-        ? "대단해요! 요셉처럼 사랑과 용서가 가득한 멋진 성경 박사님이군요!" 
-        : "정말 수고했어요! 예수님의 사랑으로 서로 용서하는 어린이가 되어요!";
+        ? "대단해요! 요셉처럼 가족을 사랑하고 돌보는 멋진 성경 박사님이군요!" 
+        : "정말 수고했어요! 요셉처럼 가족들에게 언제나 사랑을 나누는 어린이가 되어요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🤝</div>
-        <p>우리 어린이의 12과 성경 퀴즈 점수는</p>
-        <p><span style="color:#059669; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">💖👨‍👩‍👧‍👦</div>
+        <p>우리 어린이의 13과 성경 퀴즈 점수는</p>
+        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

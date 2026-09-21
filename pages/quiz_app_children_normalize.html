@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (12과 - 패배 가운데 승리하다)</title>
+  <title>소년반 성경 퀴즈 (13과 - 하나님의 이끄심)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
-    /* 전체 화면 스타일링 */
     body { 
       margin: 0; 
       padding: 0; 
       font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
-      background: #eef2f6; 
+      background: #fdf6ec; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
@@ -21,7 +20,6 @@
       color: #2d3748;
     }
 
-    /* 퀴즈 메인 컨테이너 */
     #quiz-container { 
       width: 92%; 
       max-width: 650px; 
@@ -29,13 +27,12 @@
       padding: 20px 0 70px 0; 
     }
 
-    /* 질문 및 시작 카드 박스 */
     .question-box, .input-box { 
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #4A3B32; 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.14); 
+      background-color: #6d4c41; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
     }
@@ -46,7 +43,6 @@
       word-break: keep-all;
     }
 
-    /* 인터랙티브 버튼 디자인 */
     button { 
       margin: 8px 6px; 
       padding: 14px 26px; 
@@ -75,7 +71,6 @@
       transform: none;
     }
 
-    /* 객관식 보기 버튼 (전체 폭) */
     .mcq-btn {
       display: block;
       width: 100%;
@@ -84,7 +79,6 @@
       padding: 14px 20px;
     }
 
-    /* 텍스트 입력창 스타일링 */
     input[type="text"] { 
       padding: 12px 18px; 
       font-size: 20px; 
@@ -98,11 +92,10 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      border-color: #8d6e63;
+      box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.25);
     }
 
-    /* 결과창 및 정답 피드백 */
     #result { 
       font-size: 24px; 
       margin-top: 20px; 
@@ -121,15 +114,13 @@
       color: #1e293b; 
     }
 
-    /* 안내 경고 메시지 */
     .alert-msg {
-      color: #f87171;
+      color: #fca5a5;
       font-size: 16px;
       font-weight: 700;
       margin-top: 8px;
     }
 
-    /* 고정 푸터 */
     #footer { 
       position: fixed; 
       bottom: 12px; 
@@ -137,7 +128,7 @@
       width: 100%; 
       text-align: center; 
       font-size: 14px; 
-      color: #94a3b8; 
+      color: #a8a29e; 
       font-weight: 600;
       pointer-events: none; 
     }
@@ -148,17 +139,17 @@
   <div id="quiz-container">
     <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">🏛️ 소년반 성경퀴즈 12과</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"패배 가운데 승리하다"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 삼손" autocomplete="off" />
+      <h2 style="margin-top:0; font-size: 28px;">🌾 소년반 성경퀴즈 13과</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님의 이끄심"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 룻" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn" style="background-color: #f8fafc; color: #1e293b; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #ffffff; color: #4e342e; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
     <!-- 퀴즈 진행 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #64748b; margin-bottom: 12px;"></div>
+      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #78716c; margin-bottom: 12px;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 24px;"></div>
       <div id="feedback"></div>
@@ -174,64 +165,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 12과: 패배 가운데 승리하다 (사사기 16:23~31 / 고린도전서 15:57)
+      // 13과: 하나님의 이끄심 (룻기 1:1~18 / 이사야 41:9 / 룻기 1:16)
       const questions = [
-        // 1번: OX 문제 (사실 관계 및 핵심 교훈 확인)
+        // 1번: OX 문제 (본문의 핵심 사실 및 교훈 확인)
         { 
           type: 'ox',   
-          question: '블레셋 사람들은 다곤 신전에서 승리의 축제를 열며 기고만장해 있었지만, 눈먼 삼손이 자신의 잘못을 인정하고 하나님께 간절히 회개했을 때 하나님은 그의 마지막 기도를 들어주셨다.', 
+          question: '시어머니 나오미는 동방의 관습상 두 며느리를 평생 곁에 두고 부릴 수 있는 권리가 있었지만, 며느리들의 미래와 행복을 위해 고향 친정으로 돌아가 새 가정을 꾸리도록 배려하였다.', 
           answer: 'O' 
         }, 
-        // [근거: PDF 89~92쪽] "삼손은 자신이 스스로 문제를 자초했다는 것을 솔직하게 인정했기 때문이에요... 비록 큰 잘못을 저지르고 망가진 몸이었지만, 하나님은 여전히 삼손을 사랑하고 계셨고 그의 기도를 용서해 주셨던 거예요."
+        // [근거: PDF 96~97쪽] "동방의 오랜 관습에 따르면 시어머니인 나오미는 두 며느리를 평생 자신의 몸종처럼 곁에 두고 부릴 수 있는 권리가 있었습니다. 하지만 나오미는 오직 며느리들의 미래만을 생각하는 사리분별이 바르고 사랑이 많은 어머니였습니다... 너희 고향집과 친정가족들에게로 돌아가는 것이 최선의 길인 것 같구나."
 
-        // 2번: 기억절 문제 (고린도전서 15:57 빈칸)
+        // 2번: 기억절 문제 (룻기 1:16 빈칸 채우기)
         { 
           type: 'fill', 
-          question: '기억절: "우리 주 예수 그리스도로 말미암아 우리에게 (     )를 주시는 하나님께 감사하노니" (고린도전서 15:57)', 
-          answer: '승리' 
+          question: '기억절: "어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 (      )이/가 되시리니" (룻기 1:16)', 
+          answer: '하나님' 
         },
-        // [근거: PDF 89쪽] "우리 주 예수 그리스도로 말미암아 우리에게 승리를 주시는 하나님께 감사하노니"
+        // [근거: PDF 95, 98쪽] "어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니"
 
-        // 3번: 4지 선다형 (본문 세부 지명 확인)
+        // 3번: 4지 선다형 (본문 세부 인물 확인)
         { 
           type: 'mcq',  
-          question: '삼손이 갇혀 무거운 맷돌을 돌리던 감옥과 축제가 벌어졌던 거대한 다곤 신전이 있던 블레셋의 도시 이름은 어디인가요?', 
+          question: '나오미의 진심 어린 권유를 듣고 눈물을 흘리며 작별의 입맞춤을 나눈 뒤, 자신의 친정과 고향 모압으로 돌아간 며느리는 누구인가요?', 
           options: [
-            'A. 가자', 
+            'A. 룻', 
+            'B. 오르바', 
+            'C. 라합', 
+            'D. 한나'
+          ], 
+          answer: 'B. 오르바' 
+        },
+        // [근거: PDF 98쪽] "오르바는 나오미에게 감사의 작별 입맞춤을 하고 슬픈 마음으로 자신의 짐을 챙겼습니다. 그리고 왔던 길을 되돌아 고향으로 향했지요."
+
+        // 4번: 4지 선다형 (본문 세부 지명 확인)
+        { 
+          type: 'mcq',  
+          question: '나오미와 룻이 모압 땅을 떠나 끝까지 서로 의지하며 도착한 나오미의 고향 도시는 어디인가요?', 
+          options: [
+            'A. 베들레헴', 
             'B. 여리고', 
-            'C. 다메섹', 
-            'D. 욥바'
+            'C. 가자', 
+            'D. 다메섹'
           ], 
-          answer: 'A. 가자' 
+          answer: 'A. 베들레헴' 
         },
-        // [근거: PDF 89쪽] "지금 '가자'라는 블레셋 사람들의 도시에 있는 거대한 다곤 신전에는..."
+        // [근거: PDF 99쪽] "룻과 나오미는 서로를 향한 사랑과 하나님을 향한 굳건한 믿음을 가슴에 품은 채, 고향 베들레헴을 향해 다정하게 발걸음을 옮겼습니다."
 
-        // 4번: 4지 선다형 (본문 세부 등장인물 확인)
-        { 
-          type: 'mcq',  
-          question: '지치고 눈먼 삼손을 감옥에서 신전으로 인도해 주고, 신전을 지탱하는 큰 기둥에 몸을 기댈 수 있게 자리를 잡아준 사람은 누구인가요?', 
-          options: [
-            'A. 블레셋 군대 장관', 
-            'B. 다곤 신전의 제사장', 
-            'C. 어린 소년', 
-            'D. 이스라엘의 장로'
-          ], 
-          answer: 'C. 어린 소년' 
-        },
-        // [근거: PDF 92쪽] "삼손은 감옥에서부터 자신을 신전으로 인도해 준 어린 소년을 향해 조용히 가쁜 숨을 내쉬며 말했습니다... 소년은 발을 질질 끌며 힘들어하는 삼손을 안내해 신전 중앙에 있는 거대한 두 기둥 사이에 삼손이 몸을 기댈 수 있도록 도와주었습니다."
-
-        // 5번: 단답형 (핵심 키워드)
+        // 5번: 단답형 (핵심 키워드 확인)
         { 
           type: 'short',
-          question: '블레셋 사람들이 이스라엘의 영웅 삼손을 사로잡은 후, 하나님보다 더 강하다며 제사를 드리고 찬양했던 블레셋 우상 신의 이름은 무엇인가요? (2글자)', 
-          answer: '다곤' 
+          question: '유다 땅에 극심한 가뭄과 기근이 들었을 때, 나오미의 가족이 요단강을 건너 이사했던 이방 땅의 이름은 어디인가요? (2글자)', 
+          answer: '모압' 
         },
-        // [근거: PDF 89~90쪽] "그들은 자신들이 믿는 '다곤' 신이 이스라엘의 하나님보다 더 강하다며... 수많은 사람이 다곤 신이 자신들의 원수인 삼손을 넘겨주었다며..."
+        // [근거: PDF 95쪽] "고향 땅의 극심한 기근을 피해 남편 엘리멜렉과 두 아들을 데리고 요단강을 건너 이방 땅인 모압으로 이사 온 지 벌써 여러 해가 지났지만..."
 
         // 6번: 느낀점 (type: 'any')
         { 
           type: 'any',  
-          question: '삼손은 자신의 힘과 쾌락을 좇다 비참하게 넘어졌지만, 자신의 약함을 인정하고 온전히 하나님을 의지했을 때 진짜 승리를 경험했습니다. 내 힘으로 고치기 힘든 나쁜 습관이나 어려움이 있을 때, 하나님께 어떻게 도움을 구하고 승리할 수 있을지 자유롭게 적어보세요.' 
+          question: '이방 여인이었던 룻은 미래가 불확실한 상황에서도 시어머니 나오미가 믿는 하나님을 온전히 나의 하나님으로 신뢰하며 결단했습니다. 여러분도 삶 속에서 "하나님은 나의 하나님이십니다"라고 고백하며 따르고 싶은 다짐이나 생각을 자유롭게 적어보세요.' 
         }
       ];
 
@@ -239,10 +230,9 @@
       let score = 0;
       let participantName = '';
 
-      // 12과 삼손의 고난과 반전의 승리를 표현하는 품격 있는 테마 색상 팔레트
-      const themes = ['#4A3B32', '#2E4057', '#603A40', '#3F5E5A', '#5B4B6F', '#6D4C41'];
+      // 13과 나오미와 룻의 따뜻한 사랑과 헌신을 상징하는 품격 있는 가을/들판 브라운 테마
+      const themes = ['#6D4C41', '#5D4037', '#795548', '#8D6E63', '#4E342E', '#3E2723'];
 
-      // HTML DOM 요소 참조
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
       const nameAlert = document.getElementById('name-alert');
@@ -298,7 +288,7 @@
             btn.className = 'mcq-btn';
           });
         } else {
-          // 단답형, 빈칸채우기, 서술형 입력창
+          // 단답형, 빈칸채우기, 자유 서술형 입력창
           const input = document.createElement('input');
           input.type = 'text';
           input.placeholder = q.type === 'any' ? '생각이나 다짐을 자유롭게 적어보세요' : '정답 입력';
@@ -310,7 +300,7 @@
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#1e293b';
+          submitBtn.style.backgroundColor = '#4e342e';
           submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(document.createElement('br'));
@@ -318,7 +308,7 @@
 
           input.focus();
           input.addEventListener('keydown', (e) => { 
-            if(e.key === 'Enter') checkAnswer(input.value); 
+            if (e.key === 'Enter') checkAnswer(input.value); 
           });
         }
       }
@@ -332,7 +322,7 @@
       }
 
       function checkAnswer(userAns) {
-        if(answerAreaEl.querySelector('.next-btn')) return;
+        if (answerAreaEl.querySelector('.next-btn')) return;
 
         const q = questions[current];
         let isCorrect = false;
@@ -345,27 +335,26 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 다곤 신, 다곤신 등 유연한 정답 인정
-          if (nAns === '다곤' && (nUser === '다곤' || nUser === '다곤신')) {
+          // 모압 땅, 모압지방 등 유연한 정답 인정
+          if (nAns === '모압' && (nUser === '모압' || nUser === '모압땅' || nUser === '모압지방')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
           }
         }
 
-        // 결과 피드백 UI 업데이트
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #16a34a;'>마음을 담은 멋진 다짐을 적어주어서 고마워요! 🌟</span>";
+          feedbackEl.innerHTML = "<span style='color: #15803d;'>따뜻하고 진심 어린 고백을 적어주어서 고마워요! 🌟</span>";
           score++;
         } else if (isCorrect) {
-          feedbackEl.innerHTML = "<span style='color: #16a34a;'>정답입니다! ⭕</span>";
+          feedbackEl.innerHTML = "<span style='color: #15803d;'>정답입니다! ⭕</span>";
           score++;
         } else {
           let correctHint = (q.type === 'ox' || q.type === 'mcq') ? q.answer : `'${q.answer}'`;
-          feedbackEl.innerHTML = `<span style='color: #dc2626;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
+          feedbackEl.innerHTML = `<span style='color: #b91c1c;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
         }
 
-        // 입력 요소 비활성화
+        // 기존 입력 요소 비활성화
         const inputs = answerAreaEl.querySelectorAll('button, input');
         inputs.forEach(el => el.disabled = true);
 
@@ -373,7 +362,7 @@
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
-        nextBtn.style.backgroundColor = '#1e293b';
+        nextBtn.style.backgroundColor = '#4e342e';
         nextBtn.style.color = '#ffffff';
         nextBtn.style.marginTop = '18px';
         nextBtn.style.padding = '12px 28px';
@@ -396,21 +385,20 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "승리는 우리의 힘이 아니라 하나님께로부터 오는 선물임을 항상 기억하는 멋진 친구가 되길 축복해요! 🛡️✨";
+        let praiseMsg = "어떤 슬픔과 불확실한 미래 앞에서도 우리를 변함없이 사랑으로 이끄시는 하나님을 신뢰하는 멋진 친구가 되길 축복해요! 🌾✨";
         if (score === questions.length) {
-          praiseMsg = "대단해요! 만점입니다! 겸손하게 하나님만 의지하는 멋진 성경 박사님이에요! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 룻처럼 흔들리지 않는 굳건한 믿음을 가진 소년반 최고 성경 박사님이에요! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">12과 총 <strong>${questions.length}</strong>문제 중<br>
-          <span style="color:#e11d48; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
-          <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
-          <button onclick="location.reload()" style="background-color:#0284c7; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
+          <p style="font-size:22px;">13과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#b45309; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="color:#57534e; font-size:18px; line-height:1.6;">${praiseMsg}</p>
+          <button onclick="location.reload()" style="background-color:#78350f; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
         `;
       }
 
-      // 문자열 정규화: 띄어쓰기, 문장 부호, 특수기호 제거 및 소문자 통일
       function normalize(str) {
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

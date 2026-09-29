@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (13과 - 하나님의 이끄심)</title>
+  <title>소년반 성경 퀴즈 (1과 - 너의 삶을 생각하라)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -11,13 +11,13 @@
       margin: 0; 
       padding: 0; 
       font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
-      background: #fdf6ec; 
+      background: #f0fdf4; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
       font-size: 20px; 
-      color: #2d3748;
+      color: #1e293b;
     }
 
     #quiz-container { 
@@ -31,7 +31,7 @@
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #6d4c41; 
+      background-color: #0f766e; 
       box-shadow: 0 10px 25px rgba(0,0,0,0.12); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
@@ -52,7 +52,7 @@
       cursor: pointer; 
       font-family: inherit; 
       background-color: #ffffff; 
-      color: #1e293b; 
+      color: #0f172a; 
       font-weight: 700;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: all 0.2s ease;
@@ -92,8 +92,8 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus {
-      border-color: #8d6e63;
-      box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.25);
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.25);
     }
 
     #result { 
@@ -128,7 +128,7 @@
       width: 100%; 
       text-align: center; 
       font-size: 14px; 
-      color: #a8a29e; 
+      color: #94a3b8; 
       font-weight: 600;
       pointer-events: none; 
     }
@@ -139,17 +139,17 @@
   <div id="quiz-container">
     <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">🌾 소년반 성경퀴즈 13과</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님의 이끄심"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 룻" autocomplete="off" />
+      <h2 style="margin-top:0; font-size: 28px;">💧 소년반 성경퀴즈 1과</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"너의 삶을 생각하라"<br>이름을 입력하고 퀴즈를 시작하세요!</p>
+      <input type="text" id="name-input" placeholder="예: 엘리야" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn" style="background-color: #ffffff; color: #4e342e; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #ffffff; color: #115e59; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
     <!-- 퀴즈 진행 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #78716c; margin-bottom: 12px;"></div>
+      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #64748b; margin-bottom: 12px;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 24px;"></div>
       <div id="feedback"></div>
@@ -165,64 +165,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 13과: 하나님의 이끄심 (룻기 1:1~18 / 이사야 41:9 / 룻기 1:16)
+      // 1과: 너의 삶을 생각하라 (열왕기상 17:1~16)
       const questions = [
-        // 1번: OX 문제 (본문의 핵심 사실 및 교훈 확인)
+        // 1번: OX 문제 (본문의 핵심 교훈 및 사실 관계 확인)
         { 
           type: 'ox',   
-          question: '시어머니 나오미는 동방의 관습상 두 며느리를 평생 곁에 두고 부릴 수 있는 권리가 있었지만, 며느리들의 미래와 행복을 위해 고향 친정으로 돌아가 새 가정을 꾸리도록 배려하였다.', 
+          question: '사르밧 과부는 마지막 남은 한 움큼의 밀가루와 기름으로 엘리야 선지자를 위해 먼저 떡을 만들어 대접한 후, 가뭄이 끝날 때까지 밀가루와 기름이 떨어지지 않는 축복을 받았다.', 
           answer: 'O' 
         }, 
-        // [근거: PDF 96~97쪽] "동방의 오랜 관습에 따르면 시어머니인 나오미는 두 며느리를 평생 자신의 몸종처럼 곁에 두고 부릴 수 있는 권리가 있었습니다. 하지만 나오미는 오직 며느리들의 미래만을 생각하는 사리분별이 바르고 사랑이 많은 어머니였습니다... 너희 고향집과 친정가족들에게로 돌아가는 것이 최선의 길인 것 같구나."
+        // [근거: 본문 15쪽] "엘리야가 말했습니다. '두려워 말고 가서 먼저 그것으로 나를 위해 작은 떡 하나를 만들어 내게로 가져오고 그 후에 너와 네 아들을 위해 만들라...' 그 말은 그대로 실현되었습니다. 남은 삼년 동안 날마다 그 과부는 통의 밀가루와 병의 기름을 사용하여 빵을 만들었습니다."
 
-        // 2번: 기억절 문제 (룻기 1:16 빈칸 채우기)
+        // 2번: 기억절 문제 (열왕기상 17:5 빈칸 채우기)
         { 
           type: 'fill', 
-          question: '기억절: "어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 (      )이/가 되시리니" (룻기 1:16)', 
-          answer: '하나님' 
+          question: '기억절: "그가 여호와의 말씀과 같이 하여 곧 가서 요단 앞 (      ) 시냇가에 머물매" (열왕기상 17:5)', 
+          answer: '그릿' 
         },
-        // [근거: PDF 95, 98쪽] "어머니의 백성이 나의 백성이 되고 어머니의 하나님이 나의 하나님이 되시리니"
+        // [근거: 본문 11쪽 기억절] "그가 여호와의 말씀과 같이 하여 곧 가서 요단 앞 그릿 시냇가에 머물매(열왕기상 17:5)"
 
-        // 3번: 4지 선다형 (본문 세부 인물 확인)
+        // 3번: 4지 선다형 (본문 세부 내용 확인)
         { 
           type: 'mcq',  
-          question: '나오미의 진심 어린 권유를 듣고 눈물을 흘리며 작별의 입맞춤을 나눈 뒤, 자신의 친정과 고향 모압으로 돌아간 며느리는 누구인가요?', 
+          question: '엘리야가 그릿 시냇가에 머무는 동안, 아침과 저녁으로 빵과 음식을 날라다 준 하나님의 일꾼 동물은 무엇인가요?', 
           options: [
-            'A. 룻', 
-            'B. 오르바', 
-            'C. 라합', 
-            'D. 한나'
+            'A. 까마귀', 
+            'B. 비둘기', 
+            'C. 독수리', 
+            'D. 참새'
           ], 
-          answer: 'B. 오르바' 
+          answer: 'A. 까마귀' 
         },
-        // [근거: PDF 98쪽] "오르바는 나오미에게 감사의 작별 입맞춤을 하고 슬픈 마음으로 자신의 짐을 챙겼습니다. 그리고 왔던 길을 되돌아 고향으로 향했지요."
+        // [근거: 본문 14쪽] "아침과 저녁으로 까마귀들이 빵을 물어다 주었습니다."
 
-        // 4번: 4지 선다형 (본문 세부 지명 확인)
+        // 4번: 4지 선다형 (본문 세부 내용 확인)
         { 
           type: 'mcq',  
-          question: '나오미와 룻이 모압 땅을 떠나 끝까지 서로 의지하며 도착한 나오미의 고향 도시는 어디인가요?', 
+          question: '엘리야가 하나님의 기별을 전하러 사마리아의 궁전으로 찾아가 "내 말이 없으면 수년 동안 비도 이슬도 있지 아니하리라"고 선포했던 이스라엘 왕은 누구인가요?', 
           options: [
-            'A. 베들레헴', 
-            'B. 여리고', 
-            'C. 가자', 
-            'D. 다메섹'
+            'A. 사울 왕', 
+            'B. 아합 왕', 
+            'C. 다윗 왕', 
+            'D. 솔로몬 왕'
           ], 
-          answer: 'A. 베들레헴' 
+          answer: 'B. 아합 왕' 
         },
-        // [근거: PDF 99쪽] "룻과 나오미는 서로를 향한 사랑과 하나님을 향한 굳건한 믿음을 가슴에 품은 채, 고향 베들레헴을 향해 다정하게 발걸음을 옮겼습니다."
+        // [근거: 본문 11, 12쪽] "너는 나의 기별을 가지고 아합 왕에게 가거라... 놀란 아합 왕 앞에 섰습니다."
 
-        // 5번: 단답형 (핵심 키워드 확인)
+        // 5번: 단답형 (핵심 지명 맞히기)
         { 
           type: 'short',
-          question: '유다 땅에 극심한 가뭄과 기근이 들었을 때, 나오미의 가족이 요단강을 건너 이사했던 이방 땅의 이름은 어디인가요? (2글자)', 
-          answer: '모압' 
+          question: '그릿 시냇물이 완전히 말라버렸을 때, 하나님께서 엘리야에게 일어나 가라고 명하신 시돈에 속한 페니키아의 작은 마을 이름은 어디인가요? (3글자)', 
+          answer: '사르밧' 
         },
-        // [근거: PDF 95쪽] "고향 땅의 극심한 기근을 피해 남편 엘리멜렉과 두 아들을 데리고 요단강을 건너 이방 땅인 모압으로 이사 온 지 벌써 여러 해가 지났지만..."
+        // [근거: 본문 14쪽] "하나님께서 '너는 일어나 시돈에 속한 사르밧으로 가서 거기 머물라.'고 하셨습니다."
 
-        // 6번: 느낀점 (type: 'any')
+        // 6번: 느낀점 (자유 서술형)
         { 
           type: 'any',  
-          question: '이방 여인이었던 룻은 미래가 불확실한 상황에서도 시어머니 나오미가 믿는 하나님을 온전히 나의 하나님으로 신뢰하며 결단했습니다. 여러분도 삶 속에서 "하나님은 나의 하나님이십니다"라고 고백하며 따르고 싶은 다짐이나 생각을 자유롭게 적어보세요.' 
+          question: '가뭄 속에서도 엘리야와 사르밧 과부를 매일 돌보아 주신 하나님처럼, 하나님께서 여러분과 가족에게 날마다 베풀어 주시는 은혜에 대해 감사한 마음이나 다짐을 자유롭게 적어보세요.' 
         }
       ];
 
@@ -230,8 +230,8 @@
       let score = 0;
       let participantName = '';
 
-      // 13과 나오미와 룻의 따뜻한 사랑과 헌신을 상징하는 품격 있는 가을/들판 브라운 테마
-      const themes = ['#6D4C41', '#5D4037', '#795548', '#8D6E63', '#4E342E', '#3E2723'];
+      // 그릿 시냇가와 공급하시는 은혜를 상징하는 청록/딥그린/에메랄드 테마
+      const themes = ['#0F766E', '#0D9488', '#047857', '#059669', '#15803D', '#115E59'];
 
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
@@ -288,10 +288,9 @@
             btn.className = 'mcq-btn';
           });
         } else {
-          // 단답형, 빈칸채우기, 자유 서술형 입력창
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '생각이나 다짐을 자유롭게 적어보세요' : '정답 입력';
+          input.placeholder = q.type === 'any' ? '생각이나 감사의 다짐을 자유롭게 적어보세요' : '정답 입력';
           if (q.type === 'any') {
             input.style.width = '88%';
             input.style.textAlign = 'left';
@@ -300,7 +299,7 @@
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#4e342e';
+          submitBtn.style.backgroundColor = '#115e59';
           submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(document.createElement('br'));
@@ -335,8 +334,10 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 모압 땅, 모압지방 등 유연한 정답 인정
-          if (nAns === '모압' && (nUser === '모압' || nUser === '모압땅' || nUser === '모압지방')) {
+          // 사르밧 / 사르밧마을 등 유연한 정답 인정
+          if (nAns === '사르밧' && (nUser === '사르밧' || nUser === '사르밧마을')) {
+            isCorrect = true;
+          } else if (nAns === '그릿' && (nUser === '그릿' || nUser === '그릿시냇가')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
@@ -344,7 +345,7 @@
         }
 
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #15803d;'>따뜻하고 진심 어린 고백을 적어주어서 고마워요! 🌟</span>";
+          feedbackEl.innerHTML = "<span style='color: #15803d;'>매일 우리를 돌보시는 하나님께 대한 멋진 생각을 나누어주어 고마워요! 💧✨</span>";
           score++;
         } else if (isCorrect) {
           feedbackEl.innerHTML = "<span style='color: #15803d;'>정답입니다! ⭕</span>";
@@ -362,7 +363,7 @@
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
-        nextBtn.style.backgroundColor = '#4e342e';
+        nextBtn.style.backgroundColor = '#115e59';
         nextBtn.style.color = '#ffffff';
         nextBtn.style.marginTop = '18px';
         nextBtn.style.padding = '12px 28px';
@@ -385,20 +386,21 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "어떤 슬픔과 불확실한 미래 앞에서도 우리를 변함없이 사랑으로 이끄시는 하나님을 신뢰하는 멋진 친구가 되길 축복해요! 🌾✨";
+        let praiseMsg = "가뭄 중에도 엘리야를 신실하게 먹이시고 돌보신 하나님처럼, 매일 우리를 이끄시는 하나님의 은혜를 신뢰하는 멋진 친구가 되길 축복해요! 🍞🕊️";
         if (score === questions.length) {
-          praiseMsg = "대단해요! 만점입니다! 룻처럼 흔들리지 않는 굳건한 믿음을 가진 소년반 최고 성경 박사님이에요! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 엘리야처럼 굳건한 믿음으로 하나님을 의지하는 소년반 최고 성경 박사님이에요! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">13과 총 <strong>${questions.length}</strong>문제 중<br>
-          <span style="color:#b45309; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
-          <p style="color:#57534e; font-size:18px; line-height:1.6;">${praiseMsg}</p>
-          <button onclick="location.reload()" style="background-color:#78350f; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
+          <p style="font-size:22px;">1과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#0f766e; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
+          <button onclick="location.reload()" style="background-color:#115e59; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
         `;
       }
 
+      // 문자열 정규화 (띄어쓰기, 특수문자 제거)
       function normalize(str) {
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

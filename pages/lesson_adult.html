@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여호수아반 성경 퀴즈 - 말씀하시는 창조주</title>
+  <title>여호수아반 성경 퀴즈 - 선지자가 되라는 부르심</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F2847 100%);
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #172554 100%);
       color: #1E293B;
       min-height: 100vh;
       display: flex;
@@ -33,7 +33,7 @@
       max-width: 680px;
       background: #FFFFFF;
       border-radius: 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
       padding: 32px 24px;
       text-align: center;
       position: relative;
@@ -43,7 +43,7 @@
     /* 상단 배너 및 뱃지 */
     .lesson-badge {
       display: inline-block;
-      background-color: #0284C7;
+      background-color: #2563EB;
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 700;
@@ -69,20 +69,20 @@
     }
 
     .memory-verse-box {
-      background-color: #F0F9FF;
-      border-left: 5px solid #0284C7;
+      background-color: #EFF6FF;
+      border-left: 5px solid #2563EB;
       padding: 18px 20px;
       border-radius: 12px;
       text-align: left;
       font-size: 17.5px;
-      color: #0C4A6E;
+      color: #1E3A8A;
       margin-bottom: 22px;
       line-height: 1.7;
       word-break: keep-all;
     }
 
     .memory-verse-box strong {
-      color: #0369A1;
+      color: #1D4ED8;
       display: block;
       margin-bottom: 6px;
       font-size: 18px;
@@ -125,14 +125,14 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #38BDF8, #0284C7);
+      background: linear-gradient(90deg, #60A5FA, #2563EB);
       width: 0%;
       transition: width 0.3s ease;
     }
 
     /* 문제 카드 */
     .question-card {
-      background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+      background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
       color: #FFFFFF;
       padding: 24px 20px;
       border-radius: 16px;
@@ -181,7 +181,7 @@
 
     .option-btn:hover:not(:disabled) {
       background-color: #F8FAFC;
-      border-color: #0284C7;
+      border-color: #2563EB;
       transform: translateY(-2px);
     }
 
@@ -191,11 +191,11 @@
       align-items: center;
       min-width: 32px;
       height: 32px;
-      background-color: #E0F2FE;
+      background-color: #DBEAFE;
       border-radius: 50%;
       margin-right: 14px;
       font-size: 16px;
-      color: #0369A1;
+      color: #1D4ED8;
       font-weight: 900;
       flex-shrink: 0;
     }
@@ -239,18 +239,18 @@
       padding: 16px 18px;
       font-size: 20px;
       font-family: inherit;
-      border: 2.5px solid #0284C7;
+      border: 2.5px solid #2563EB;
       border-radius: 14px;
       outline: none;
-      background-color: #F0F9FF;
+      background-color: #EFF6FF;
       color: #0F172A;
       box-sizing: border-box;
       margin-bottom: 12px;
     }
 
     .text-input-field:focus {
-      border-color: #0369A1;
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+      border-color: #1D4ED8;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
     }
 
     .textarea-field {
@@ -259,12 +259,12 @@
       padding: 16px;
       font-size: 18.5px;
       font-family: inherit;
-      border: 2.5px solid #0284C7;
+      border: 2.5px solid #2563EB;
       border-radius: 14px;
       outline: none;
       resize: vertical;
       color: #0F172A;
-      background-color: #F0F9FF;
+      background-color: #EFF6FF;
       box-sizing: border-box;
       margin-bottom: 12px;
       line-height: 1.6;
@@ -275,7 +275,7 @@
       padding: 16px;
       font-size: 19px;
       font-weight: 800;
-      background-color: #0284C7;
+      background-color: #2563EB;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
@@ -284,7 +284,7 @@
     }
 
     .submit-input-btn:hover {
-      background-color: #0369A1;
+      background-color: #1D4ED8;
     }
 
     /* 정답/오답 상태 스타일 */
@@ -344,13 +344,13 @@
     .feedback-scripture {
       margin-top: 10px;
       font-size: 15px;
-      color: #0284C7;
+      color: #2563EB;
       font-weight: 700;
     }
 
     /* 기본 동작 버튼 */
     .action-button {
-      background-color: #0284C7;
+      background-color: #2563EB;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
@@ -359,13 +359,13 @@
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       width: 100%;
       margin-top: 20px;
     }
 
     .action-button:hover {
-      background-color: #0369A1;
+      background-color: #1D4ED8;
       transform: translateY(-2px);
     }
 
@@ -380,7 +380,7 @@
     .result-score {
       font-size: 52px;
       font-weight: 900;
-      color: #0284C7;
+      color: #2563EB;
       margin: 15px 0 5px 0;
     }
 
@@ -393,7 +393,7 @@
     }
 
     .result-details {
-      background-color: #F0F9FF;
+      background-color: #EFF6FF;
       border-radius: 14px;
       padding: 22px;
       font-size: 17px;
@@ -411,7 +411,7 @@
       font-weight: 600;
     }
 
-    /* 인라인 안내창 (alert 대체) */
+    /* 알림 메시지 상자 */
     .notice-dialog {
       background-color: #FFFBEB;
       border: 1.5px solid #F59E0B;
@@ -436,17 +436,17 @@
     
     <!-- 1. 시작 화면 -->
     <div id="start-screen">
-      <span class="lesson-badge">2026년 10월 3일 안식일 교과 (제1과)</span>
-      <h1 class="main-title">말씀하시는 창조주</h1>
+      <span class="lesson-badge">2026년 10월 10일 안식일 교과 (제2과)</span>
+      <h1 class="main-title">선지자가 되라는 부르심</h1>
       <p class="sub-title">여호수아반(장년반) 성경 퀴즈</p>
       
       <div class="memory-verse-box">
-        <strong>📖 이번 주 기억절 (히브리서 1:1, 2)</strong>
-        “옛적에 선지자들을 통하여 여러 부분과 여러 모양으로 우리 조상들에게 말씀하신 하나님이 이 모든 날 마지막에는 아들을 통하여 우리에게 말씀하셨으니 이 아들을 만유의 상속자로 세우시고 또 그로 말미암아 모든 세계를 지으셨느니라”
+        <strong>📖 이번 주 기억절 (이사야 6:8)</strong>
+        “내가 또 주의 목소리를 들으니 주께서 이르시되 내가 누구를 보내며 누가 우리를 위하여 갈꼬 하시니 그때에 내가 이르되 내가 여기 있나이다 나를 보내소서 하였더니”
       </div>
 
       <div class="info-box">
-        💡 <strong>안내:</strong> 본 퀴즈는 에덴에서부터 오늘날까지 우리에게 끊임없이 찾아오셔서 말씀하시는 <strong>창조주 하나님의 사랑과 소통</strong>을 살펴보는 <strong>총 11문제</strong>로 구성되어 있습니다.
+        💡 <strong>안내:</strong> 본 퀴즈는 각 시대마다 충실한 남은 무리를 부르셔서 회개와 구원의 소망을 전하게 하신 하나님의 섭리를 살펴보는 <strong>총 11문제</strong>로 구성되어 있습니다.
       </div>
 
       <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
@@ -470,7 +470,7 @@
         <div id="question-text">문제가 여기에 출력됩니다.</div>
       </div>
 
-      <!-- 입력 안내용 알림 상자 -->
+      <!-- 입력 알림창 -->
       <div id="notice-dialog" class="notice-dialog"></div>
 
       <!-- 상호작용 영역 -->
@@ -493,14 +493,14 @@
       <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
       
       <div id="result-score" class="result-score">100점</div>
-      <div id="result-message" class="result-message">말씀하시는 하나님의 음성에 귀 기울이신 아름다운 시간입니다!</div>
+      <div id="result-message" class="result-message">시대의 부르심에 믿음으로 응답하신 은혜로운 시간입니다!</div>
 
       <div class="result-details">
         • 총 문항수: <strong>11문제</strong><br>
         • 맞힌 문제: <strong id="correct-count" style="color: #15803D;">11문제</strong><br>
         • 틀린 문제: <strong id="wrong-count" style="color: #B91C1C;">0문제</strong><br>
         <hr style="border: none; border-top: 1px dashed #CBD5E1; margin: 12px 0;">
-        📌 <strong>핵심 요약:</strong> 하나님은 인간을 교제하는 존재로 창조하셨으며, 죄로 인해 단절되었을 때에도 먼저 찾아오셔서 여자의 후손(구주)을 약속하셨습니다. 하나님은 자연과 선지자, 성경, 그리고 마침내 이 땅에 오신 독생자 예수 그리스도를 통해 당신의 구원과 사랑을 완전하게 계시하셨습니다. 날마다 말씀과 기도로 다정하게 들려오는 주님의 음성을 따르는 여호수아반 성도님들이 되시기를 축복합니다.
+        📌 <strong>핵심 요약:</strong> 성경 역사 속에서 선지자들의 길은 결코 평탄하거나 환영받는 길이 아니었습니다. 그들은 배도와 조롱, 박해 속에서도 하나님을 절대적으로 신뢰하며 백성들에게 언약의 충성과 회개, 그리고 십자가 대속의 복음을 외쳤습니다. 아브라함, 엘리야, 이사야, 다니엘, 침례 요한처럼 오늘날 우리도 “내가 여기 있나이다 나를 보내소서” 고백하며, 어두운 세상을 향해 세 천사의 기별과 그리스도의 사랑을 담대히 전하는 여호수아반 성도님들이 되시기를 축복합니다.
       </div>
 
       <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
@@ -520,156 +520,156 @@
       return str.toString().trim().replace(/[\s\t\r\n\.,'"`~!?]/g, '').toLowerCase();
     }
 
-    // 퀴즈 데이터 정의 (2026년 10월 3일 안식일 제1과: 말씀하시는 창조주 총 11문항)
+    // 퀴즈 데이터 정의 (2026년 10월 10일 안식일 제2과: 선지자가 되라는 부르심 총 11문항)
     const questions = [
       // 1번: OX 문제 (본문 핵심 교훈)
       {
         category: "1번 • 핵심 사실 확인 (OX)",
         type: "ox",
-        question: "아담과 하와가 죄를 짓고 두려움에 숨었을 때, 하나님께서는 그들을 저버리지 않으시고 먼저 찾아오셔서 구원과 회복의 길인 최초의 복음을 약속해 주셨다.",
+        question: "성경 역사에서 하나님의 선지자들은 백성들에게 늘 열렬한 환영과 존경을 받았으며, 세상에서 안락하고 순탄한 삶을 살면서 하나님의 기별을 쉽게 전파하였다.",
         options: ["O", "X"],
-        answer: 0, // O
-        explanation: "맞습니다. 죄로 인해 숨은 인간을 하나님께서 먼저 찾아오셔서 “네가 어디 있느냐” 부르시고, 창세기 3장 15절의 여자의 후손(메시아)을 통한 구속의 길을 열어 주셨습니다.",
-        scripture: "창세기 3:9, 15"
+        answer: 1, // X
+        explanation: "틀렸습니다. 선지자의 길은 어려운 부르심이었습니다. 그들은 환영받기보다 오히려 거센 반대와 조롱, 투옥, 박해를 받았으며 어떤 이들은 순교를 당하기까지 고난 속에서 충성했습니다.",
+        scripture: "사 6:8, 히 11:36-38"
       },
       // 2번: 기억절 빈칸 채우기 (단답형)
       {
         category: "2번 • 기억절 외우기 (단답형)",
         type: "fill",
-        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“옛적에 선지자들을 통하여 여러 부분과 여러 모양으로 우리 조상들에게 말씀하신 하나님이 이 모든 날 마지막에는 (       )을 통하여 우리에게 말씀하셨으니”(히 1:1, 2)",
-        correctAnswers: ["아들", "예수", "예수님", "예수그리스도", "독생자"],
-        placeholder: "빈칸의 단어를 입력하세요 (예: 아들)",
-        explanation: "하나님께서는 구약 시대에는 선지자들을 통해 말씀하셨으나, 신약의 마지막 때에는 독생자이신 '아들' 예수 그리스도를 통해 당신의 뜻과 사랑을 온전히 나타내셨습니다.",
-        scripture: "히브리서 1:1, 2"
+        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 표현을 적어 보세요.\n\n“내가 또 주의 목소리를 들으니 주께서 이르시되 내가 누구를 보내며 누가 우리를 위하여 갈꼬 하시니 그때에 내가 이르되 내가 여기 있나이다 (             ) 하였더니”(사 6:8)",
+        correctAnswers: ["나를 보내소서", "나를보내소서", "나를 보내소서."],
+        placeholder: "빈칸의 단어를 입력하세요 (예: 나를 보내소서)",
+        explanation: "하나님의 거룩한 위엄 앞에서 죄 사함을 경험한 이사야는 부르시는 하나님의 음성에 '내가 여기 있나이다 나를 보내소서'라고 자원하여 화답했습니다.",
+        scripture: "이사야 6:8"
       },
-      // 3번: 9월 27일 일요일 (에덴에서 누린 교제)
+      // 3번: 10월 4일 일요일 (언약의 옹호자 아브라함)
       {
-        category: "3번 • 9월 27일 일요일 교과 (에덴에서 누린 교제)",
+        category: "3번 • 10월 4일 일요일 교과 (언약의 옹호자 아브라함)",
         type: "mcq",
-        question: "창세기 1~2장에 따르면, 인간이 지상의 다른 모든 피조물과 구별되며 창조주 하나님과 얼굴을 마주 보며 직접 교제할 수 있었던 근본적인 이유는 무엇입니까?",
+        question: "우상 숭배와 배도가 만연한 세상에서 아브라함이 하나님의 부르심을 받고 ‘믿음의 조상’이자 언약의 본보기가 될 수 있었던 결정적 이유는 무엇입니까? (창 15:6, 갈 3:6-9)",
         options: [
-          "지상의 어떤 동물보다 몸집이 크고 힘이 세어서",
-          "오직 인간만이 ‘하나님의 형상대로’ 창조되었기 때문에",
-          "에덴동산의 모든 기후를 인간의 과학 기술로 다스렸기 때문에",
-          "천사들과 똑같은 날개를 달고 지음 받았기 때문에"
+          "당대 최고로 부유한 재산과 강력한 사병 군대를 소유했기 때문에",
+          "자신의 공로나 행위가 아닌 하나님의 약속을 절대적으로 신뢰하고 순종했기 때문에",
+          "메소포타미아 문명의 탁월한 과학 지식을 널리 가르쳤기 때문에",
+          "단 한 번도 실수나 연약함을 보이지 않은 완전한 사람이었기 때문에"
         ],
         answer: 1,
-        explanation: "창조물 중 오직 인간만이 ‘하나님의 형상대로’ 지음 받았기에, 온전한 사랑과 지성으로 하나님과 직접 인격적인 교제를 나누는 특권을 누렸습니다.",
-        scripture: "창세기 1:27, 28"
+        explanation: "아브라함은 결함이 있는 인간이었지만 “여호와를 믿으니 여호와께서 이를 그의 의로 여기셨다”(창 15:6)고 하였습니다. 그는 하나님의 약속을 전적으로 신뢰하며 믿음으로 나아갔습니다.",
+        scripture: "창세기 15:6, 갈라디아서 3:6-9"
       },
-      // 4번: 9월 28일 월요일 (하나님을 피해 숨다)
+      // 4번: 10월 5일 월요일 (엘리야의 기별)
       {
-        category: "4번 • 9월 28일 월요일 교과 (하나님을 피해 숨다)",
+        category: "4번 • 10월 5일 월요일 교과 (엘리야의 기별)",
         type: "mcq",
-        question: "아담과 하와가 뱀의 유혹을 받아 선악과를 먹고 범죄한 직후, 하나님을 피하여 동산 나무 사이에 숨었던 근본적인 원인은 무엇입니까?",
+        question: "갈멜산에서 엘리야가 바알과 아스다롯 선지자들에 맞서 하나님의 불이 내리기를 간구하며 선포한 기별의 궁극적인 목적은 무엇이었습니까? (왕상 18:37-39)",
         options: [
-          "하나님이 입혀 주셨던 빛의 옷을 잃고, 죄책감과 두려움이 생겨서",
-          "동산 관리 일이 너무 고되어 잠시 휴식을 취하려고",
-          "선악과를 더 몰래 따먹기 위한 은밀한 장소를 찾으려고",
-          "사탄이 에덴동산 밖으로 도망치라고 강제로 끌고 가서"
-        ],
-        answer: 0,
-        explanation: "불순종한 직후 그들을 감싸던 빛과 영광의 옷이 사라지고 벌거벗음을 보게 되었으며, 마음에 찾아온 죄책감과 수치심 때문에 하나님의 낯을 피하여 숨었습니다.",
-        scripture: "창세기 3:7, 8, 시편 104:1, 2"
-      },
-      // 5번: 9월 29일 화요일 (인간을 찾으시는 하나님)
-      {
-        category: "5번 • 9월 29일 화요일 교과 (인간을 찾으시는 하나님)",
-        type: "mcq",
-        question: "범죄 후 숨어 있던 아담에게 하나님께서 “네가 어디 있느냐”(창 3:9)라고 부르신 질문에 담긴 참된 사랑의 의미는 무엇입니까?",
-        options: [
-          "아담이 숨은 위치를 하나님께서 정말 몰라서 물으신 것이다",
-          "인간을 즉시 멸망시키기 위한 법정 사형 선고의 부르심이다",
-          "자신의 비참한 영적 상태를 깨닫게 하고 구원으로 인도하시려는 자비로운 부르심이다",
-          "하와와 뱀의 잘못을 아담에게 대신 심문하기 위해서이다"
-        ],
-        answer: 2,
-        explanation: "하나님은 이미 모든 것을 알고 계셨습니다. 이 질문은 단죄하기 위함이 아니라, 죄로 망가진 자녀의 영적 처지를 일깨우고 교제와 회복으로 다시 부르시는 하나님의 부모 같은 사랑입니다.",
-        scripture: "창세기 3:9, 누가복음 15:20-24"
-      },
-      // 6번: 9월 30일 수요일 (동산에서 추방당하다 - 최초의 복음)
-      {
-        category: "6번 • 9월 30일 수요일 교과 (동산에서 추방당하다)",
-        type: "mcq",
-        question: "에덴에서 추방당하는 안타까운 상황 속에서도, 하나님께서 창세기 3장 15절을 통해 인간에게 주신 ‘최초의 복음 약속(원시복음)’의 핵심은 무엇입니까?",
-        options: [
-          "인간의 과학 문명으로 언젠가 에덴동산을 되찾게 될 것이다",
-          "여자의 후손(메시아)이 오셔서 뱀(사탄)의 머리를 상하게 하고 구원을 이루실 것이다",
-          "땅에 내린 가시덤불과 엉겅퀴가 당장 내일이면 완전히 사라질 것이다",
-          "아담의 후손은 다시는 육체적 죽음을 겪지 않을 것이다"
+          "아합 왕을 강제로 폐위시키고 자신이 새로운 이스라엘의 왕이 되기 위해",
+          "우상 숭배에 빠진 백성들의 마음을 돌이켜 하나님께로 돌아오게 하는 영적 부흥과 회개",
+          "바알 제사장들에게 막대한 벌금을 징수하여 국가 재정을 늘리기 위해",
+          "자신의 신비한 초능력을 과시하여 백성들에게 숭배받기 위해"
         ],
         answer: 1,
-        explanation: "창세기 3장 15절은 장차 여자의 후손으로 오실 예수 그리스도께서 십자가의 대속을 통해 사탄의 권세를 멸하시고 인류를 죄에서 구속하실 것을 약속한 최초의 복음입니다.",
-        scripture: "창세기 3:15, 요한복음 14:1-3"
+        explanation: "엘리야의 사명은 이스라엘의 마음을 하나님께로 돌이키는 영적 부흥과 개혁이었습니다. 그는 “주는 그들의 마음을 되돌이키심을 알게 하옵소서”라고 기도했습니다.",
+        scripture: "열왕기상 18:37-39, 말라기 4:5, 6"
       },
-      // 7번: 10월 1일 목요일 (하나님의 대변인들 - 예수 그리스도)
+      // 5번: 10월 6일 화요일 (복음의 선지자 이사야)
       {
-        category: "7번 • 10월 1일 목요일 교과 (가장 온전한 계시)",
+        category: "5번 • 10월 6일 화요일 교과 (복음의 선지자 이사야)",
         type: "mcq",
-        question: "죄로 인해 하나님을 직접 대면할 수 없게 된 인류에게, 하나님의 사랑과 구원의 품성을 ‘가장 완전하고 효과적으로’ 나타내 보여 주신 분은 누구입니까?",
+        question: "십자가 사건보다 500년 이상 앞서 기록된 이사야 53장에서 선포된 그리스도의 대속 희생에 대한 가장 분명한 복음의 진리는 무엇입니까?",
         options: [
-          "구약의 위대한 족장 아브라함",
-          "율법을 받아 전한 모세 선지자",
-          "사람의 몸을 입고 이 땅에 오신 예수 그리스도",
-          "신비한 꿈과 환상을 해석하는 점성술사들"
-        ],
-        answer: 2,
-        explanation: "자연과 선지자들도 하나님을 증거하지만, 예수 그리스도는 하나님의 본체이시며 “나를 본 자는 아버지를 보았다”(요 14:9)고 하실 만큼 하나님의 사랑과 구원을 가장 완전하게 계시하셨습니다.",
-        scripture: "히브리서 1:1, 2, 요한복음 14:7-9"
-      },
-      // 8번: 10월 1일 목요일 (성경과 선지자의 역할)
-      {
-        category: "8번 • 10월 1일 목요일 교과 (선지자와 성경)",
-        type: "mcq",
-        question: "하나님께서 선지자들을 통해 우리에게 ‘성경 말씀’을 기록하여 주신 가장 중요한 목적은 무엇입니까? (딤후 3:16, 17)",
-        options: [
-          "한 사람도 하늘에 가는 구원의 길을 잃어버리지 않도록 삶의 지침서로 주신 것이다",
-          "고대 중동 지역의 역사와 족보를 암기하도록 하기 위해서이다",
-          "세상 사람들과 학문적 토론에서 이기기 위한 지식을 주기 위해서이다",
-          "오직 신학자들만 해독할 수 있는 비밀 암호를 남기기 위해서이다"
+          "우리의 죄악을 메시아에게 담당시키사 그가 찔리고 채찍에 맞음으로 우리가 나음을 얻음",
+          "메시아는 칼과 창을 들고 로마 제국을 무력으로 멸망시키는 정치적 영웅으로 올 것임",
+          "인간 스스로의 도덕적 수양과 고행을 통해서만 죄의 용서를 받을 수 있음",
+          "착하고 죄가 적은 사람들만을 골라서 구원하시는 하나님의 선택적 사랑"
         ],
         answer: 0,
-        explanation: "구약과 신약의 성경 말씀은 타락한 세상에 살아가는 인간이 하늘로 가는 구원의 길을 잃지 않고 하나님의 사랑을 배워 온전케 되도록 주신 축복의 지침서입니다.",
-        scripture: "디모데후서 3:16, 17, 가려 뽑은 기별 1권 16"
+        explanation: "이사야 53장 5, 6절은 “그가 찔림은 우리의 허물 때문이요 그가 상함은 우리의 죄악 때문이라… 여호와께서는 우리 모두의 죄악을 그에게 담당시키셨도다”라며 그리스도의 대속적 죽음을 놀랍도록 명확히 예언했습니다.",
+        scripture: "이사야 53:5, 6"
       },
-      // 9번: 10월 2일 금요일 (엘렌 화잇의 어린 시절 체험)
+      // 6번: 10월 7일 수요일 (충성스런 선견자 다니엘)
       {
-        category: "9번 • 10월 2일 금요일 교과 (더 깊은 묵상을 위해)",
+        category: "6번 • 10월 7일 수요일 교과 (충성스런 선견자 다니엘)",
         type: "mcq",
-        question: "어린 시절 부상과 두려움으로 고통받던 젊은 엘렌 하먼(화잇)이 하나님을 ‘가혹한 폭군’이 아니라 ‘자상하고 부드러운 사랑의 아버지’로 깊이 깨닫게 된 결정적 계기는 무엇입니까?",
+        question: "바벨론과 페르시아의 이방 왕들로 하여금 여호와를 가리켜 “참으로 모든 신들의 신이요 모든 왕의 주재”(단 2:47)라고 찬양하게 만든 다니엘의 비결은 무엇이었습니까?",
         options: [
-          "거액의 돈을 벌어 경제적으로 부유해졌을 때",
-          "꿈과 스토크먼 목사와의 면담을 통해 성령의 죄 사함과 하나님의 무조건적인 사랑을 확신했을 때",
-          "자신에게 돌을 던진 동급생에게 복수하여 마음의 분노를 풀었을 때",
-          "영원히 불타는 지옥의 공포를 사람들에게 전파하기 시작했을 때"
+          "이방의 우상 신전 제사에 동참하며 세속 권력과 적당히 타협했기 때문에",
+          "왕의 진미를 거절하는 절제와 사자굴의 위협 속에서도 굽히지 않은 신실한 기도의 삶",
+          "바벨론 마술사들과 결탁하여 신비주의 주술로 왕을 현혹했기 때문에",
+          "막대한 뇌물을 바쳐 고위 관직자들과 친분을 쌓았기 때문에"
         ],
         answer: 1,
-        explanation: "엘렌 화잇은 꿈과 성경적 면담을 통해 성령의 증언과 용서의 확신을 얻고, 하나님이 가혹한 폭군이 아니라 깊고 부드러운 사랑으로 우리를 품으시는 아버지이심을 깨닫고 삶이 180도 변화되었습니다.",
-        scripture: "엘렌 G. 화잇 자서전 39, 요한일서 4:16"
+        explanation: "다니엘은 뜻을 정하여 왕의 진미로 자신을 더럽히지 않았고(단 1:8), 목숨을 건 위기 속에서도 하나님을 향한 신실함과 기도를 쉬지 않음으로 이방 세계에 참 하나님의 영광을 드러냈습니다.",
+        scripture: "다니엘 1:8, 2:47, 6:10, 26"
       },
-      // 10번: 안식일 총결 (말씀하시는 창조주)
+      // 7번: 10월 7일 수요일 (다니엘 2장의 예언)
       {
-        category: "10번 • 안식일 결론 (말씀하시는 창조주)",
+        category: "7번 • 10월 7일 수요일 교과 (다니엘의 신상 예언)",
         type: "mcq",
-        question: "창조주 하나님께서 지금도 자연과 성경, 그리고 특별히 ‘안식일’을 통해 우리에게 교제를 요청하시는 참된 뜻은 무엇입니까?",
+        question: "다니엘 2장의 거대한 신상 예언에서 발과 발가락(쇠와 진흙)으로 상징된 오늘날 분열된 유럽 국가들에 대해 성경이 정확히 예언한 내용은 무엇입니까?",
         options: [
-          "창조주와 교제하며 하나님의 음성에 귀 기울이고 영원한 구원의 사랑을 누리게 하기 위함이다",
-          "엄격한 종교적 규칙을 잘 지키는지 감시하고 처벌하기 위함이다",
-          "모든 교인들이 사회 활동을 완전히 중단하고 고립되게 하기 위함이다",
-          "사람들의 자유의지를 완전히 빼앗아 로봇처럼 순종하게 하기 위함이다"
+          "온 세계가 하나의 강력한 단일 제국으로 영원히 통합될 것이다",
+          "그들이 서로 섞일 것이나 쇠와 진흙이 합하지 않음과 같이 피차에 합하지 아니할 것이다",
+          "바벨론 제국이 다시 부활하여 전 세계를 지배할 것이다",
+          "인간의 과학 기술로 영원히 전쟁이 없는 낙원이 완성될 것이다"
+        ],
+        answer: 1,
+        explanation: "다니엘 2장 43절은 로마 제국 분열 이후 유럽이 통혼과 정치적 통합을 시도할지라도 “쇠와 진흙이 합하지 않음과 같이 피차에 합하지 아니하리라”고 놀랍도록 정확하게 예언했습니다.",
+        scripture: "다니엘 2:43-44"
+      },
+      // 8번: 10월 8일 목요일 (백성을 준비시킨 침례 요한)
+      {
+        category: "8번 • 10월 8일 목요일 교과 (침례 요한의 사명)",
+        type: "mcq",
+        question: "광야의 외치는 자의 소리로 보냄을 받아 메시아의 길을 예비한 침례 요한 사역의 핵심은 무엇이었습니까? (막 1:2-5)",
+        options: [
+          "죄 사함을 받게 하는 회개의 침례를 전파하며 ‘세상 죄를 지고 가는 어린양’을 증언함",
+          "헤롯 왕과 타협하여 화려한 궁중 예복을 입고 안락한 삶을 누리는 것",
+          "로마 군대를 물리치기 위한 독립 무장 결사대를 조직하는 것",
+          "광야에 거대한 상업 도시를 건설하여 경제적 이익을 얻는 것"
         ],
         answer: 0,
-        explanation: "안식일은 우리의 생각을 자연과 말씀으로 이끌어 창조주와 깊이 교제하는 시간입니다. 하나님은 지금도 그분의 자녀들이 주님의 사랑의 음성을 듣고 참된 안식과 회복을 누리기를 원하십니다.",
-        scripture: "시대의 소망 281, 요한복음 10:27, 28"
+        explanation: "침례 요한은 이사야의 예언대로 광야에서 회개의 침례를 전파하며 백성들의 마음을 메시아이신 예수 그리스도께로 인도하기 위해 자신을 낮추고 주님만을 높였습니다.",
+        scripture: "마가복음 1:2-5, 요한복음 1:29"
+      },
+      // 9번: 10월 8일 목요일 (시련 속의 신뢰)
+      {
+        category: "9번 • 10월 8일 목요일 교과 (시련 속의 믿음)",
+        type: "mcq",
+        question: "옥에 갇혀 순교를 앞둔 침례 요한에게 예수님께서 보내신 격려(마 11:1-6)와 엘렌 화잇의 권면을 통해 우리가 고난 속에서 붙잡아야 할 참된 신앙은 무엇입니까?",
+        options: [
+          "눈앞의 상황이 다 이해되지 않아도 우리를 인도하시는 하나님의 사랑과 궁극적 목적을 신뢰함",
+          "고난과 억울한 일이 생기면 하나님이 계시지 않는 것이므로 즉시 신앙을 버려야 함",
+          "참된 믿음을 가진 자는 이 세상에서 결코 핍박이나 사별을 겪지 않는다는 확신",
+          "어떤 어려움이 오든 인간적인 수단과 타협으로 감옥에서 탈출해야 한다는 것"
+        ],
+        answer: 0,
+        explanation: "“하나님은 만약 우리가 처음부터 끝을 내다볼 수 있고 그분의 동역자로 실현하고 있는 목적의 아름다움을 헤아릴 수 있다면 선택하게 될 길 외에는 결코 다른 길로 우리를 이끌지 않으신다”(시대의 소망, 224) 하셨습니다.",
+        scripture: "마태복음 11:1-6, 시대의 소망 224"
+      },
+      // 10번: 10월 9일 금요일 (1844년 대실망과 첫 환상)
+      {
+        category: "10번 • 10월 9일 금요일 교과 (엘렌 화잇의 첫 환상)",
+        type: "mcq",
+        question: "1844년 10월 22일 대실망의 극심한 혼란 속에서 17세의 엘렌 하먼(화잇)에게 주어진 첫 환상의 핵심 위로와 기별은 무엇이었습니까?",
+        options: [
+          "재림 신앙 운동은 완전히 실패했으니 성경 연구를 중단하라는 책망",
+          "하늘 도성으로 향하는 좁은 길 위에서 예수님께 시선을 고정하는 한 그들은 안전하다는 소망",
+          "재림의 또 다른 구체적인 날짜와 시간을 새로 정하라는 지시",
+          "세상 속으로 돌아가 평범하게 세속적 부를 쌓으라는 권고"
+        ],
+        answer: 1,
+        explanation: "하나님께서는 실망에 빠진 신자들을 버리지 않으시고, 하늘 도성으로 향하는 백성들 바로 앞에서 이끌고 계시는 예수님께 시선을 고정하는 한 안전하다는 큰 위로와 복음의 소망을 주셨습니다.",
+        scripture: "영적 선물 2권 31, 히브리서 12:2"
       },
       // 11번: 서술형 나눔 (삶 속으로)
       {
         category: "11번 • 삶 속으로 (마음 나누기)",
         type: "any",
-        question: "‘말씀하시는 창조주’ 교과를 묵상하며, 죄 중에 숨지 않고 매일 말씀과 기도로 나를 먼저 찾아오시는 주님의 음성에 귀 기울이기 위해 마음에 품은 다짐이나 감사를 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
-        placeholder: "예) 매일 아침 성경 말씀과 기도로 나를 부르시는 주님의 사랑의 음성에 먼저 귀 기울이겠습니다.",
-        explanation: "마음을 담은 귀하고 은혜로운 신앙의 고백을 나누어 주셔서 참으로 감사합니다! 에덴에서 먼저 찾아오신 하나님의 자비로운 부르심이 이번 한 주 동안 성도님의 삶과 가정 속에 날마다 따뜻한 평안으로 함께하시기를 기도합니다.",
-        scripture: "창세기 3:9, 히브리서 1:1, 2, 요한복음 10:27"
+        question: "“내가 여기 있나이다 나를 보내소서”(사 6:8)라고 고백한 이사야처럼, 오늘날 나의 가정과 교회, 이웃 속에서 그리스도의 증인으로 살아가기 위해 마음에 품은 다짐이나 감사를 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
+        placeholder: "예) 어려운 상황 속에서도 불평하지 않고, 이웃들에게 그리스도의 사랑과 소망을 전하는 신실한 증인이 되겠습니다.",
+        explanation: "마음을 담은 귀하고 은혜로운 고백을 나누어 주셔서 참으로 감사합니다! 선지자들을 부르시고 끝까지 붙드셨던 신실하신 하나님께서, 이번 한 주 동안 성도님의 삶 속에도 담대한 믿음과 평안으로 함께하시기를 기도합니다.",
+        scripture: "이사야 6:8, 마태복음 28:19, 20"
       }
     ];
 
@@ -697,7 +697,7 @@
     const currentScoreText = document.getElementById('current-score-text');
     const progressBar = document.getElementById('progress-bar');
 
-    // 부드러운 안내 메시지 출력 (alert 미사용)
+    // 안내 메시지 표시
     function showNotice(msg) {
       noticeDialog.textContent = msg;
       noticeDialog.style.display = 'block';
@@ -717,13 +717,12 @@
       loadQuestion();
     }
 
-    // 문제 로드 함수
+    // 문제 로드
     function loadQuestion() {
       answered = false;
       noticeDialog.style.display = 'none';
       const q = questions[currentQuestionIndex];
 
-      // 상단 진행바 및 상태 업데이트
       currentQNum.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`;
       currentScoreText.textContent = `점수: ${score}점`;
       const progressPercent = (currentQuestionIndex / questions.length) * 100;
@@ -732,12 +731,10 @@
       questionBadge.textContent = q.category;
       questionText.textContent = q.question;
 
-      // 초기화
       feedbackCard.style.display = 'none';
       nextButton.classList.add('hidden');
       interactiveContainer.innerHTML = '';
 
-      // 타입별 렌더링
       if (q.type === 'ox') {
         renderOX(q);
       } else if (q.type === 'fill') {
@@ -794,7 +791,7 @@
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 기억절 말씀을 바르게 암송하고 계십니다.' : '❌ 아쉽지만 오답입니다. 정답은 [아들]입니다.');
+        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 이사야의 자원하는 믿음의 고백을 정확히 알고 계십니다.' : '❌ 아쉽지만 오답입니다. 정답은 [나를 보내소서]입니다.');
       };
 
       input.addEventListener('keypress', (e) => {
@@ -856,7 +853,7 @@
       setTimeout(() => textarea.focus(), 150);
     }
 
-    // 답안 선택 처리 함수
+    // 선택 처리
     function handleChoice(isCorrect, selectedBtn, parentContainer, selectedIdx, answerIdx) {
       if (answered) return;
       answered = true;
@@ -876,7 +873,7 @@
       showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 해설을 확인해 보세요.');
     }
 
-    // 피드백 표시 및 점수 반영
+    // 피드백 표시
     function showFeedback(isCorrect, titleText) {
       answered = true;
       const q = questions[currentQuestionIndex];
@@ -912,7 +909,7 @@
       }, 100);
     }
 
-    // 다음 문제로 이동
+    // 다음 문제 이동
     function nextQuestion() {
       currentQuestionIndex++;
       if (currentQuestionIndex < questions.length) {
@@ -922,7 +919,7 @@
       }
     }
 
-    // 최종 결과 화면 출력
+    // 결과 표시
     function showResult() {
       quizScreen.classList.add('hidden');
       resultScreen.classList.remove('hidden');
@@ -934,11 +931,11 @@
 
       const resultMsg = document.getElementById('result-message');
       if (finalScore >= 90) {
-        resultMsg.textContent = '🌟 완벽합니다! 말씀하시는 하나님의 사랑을 깊이 깨달으셨습니다.';
+        resultMsg.textContent = '🌟 완벽합니다! 시대를 향한 선지자의 부르심을 온전히 깨달으셨습니다.';
       } else if (finalScore >= 70) {
         resultMsg.textContent = '👏 훌륭하십니다! 이번 주 교과 내용을 충실히 학습하셨습니다.';
       } else {
-        resultMsg.textContent = '🌱 수고 많으셨습니다! 말씀하시는 하나님의 음성을 다시금 묵상해 보세요.';
+        resultMsg.textContent = '🌱 수고 많으셨습니다! 선지자들의 신실한 삶을 다시금 묵상해 보세요.';
       }
     }
 

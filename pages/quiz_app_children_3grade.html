@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 1과 - 우리 집에 오세요!</title>
+  <title>유년반 성경퀴즈 2과 - 사명을 가진 메신저</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #fefce8; /* 따뜻하고 포근한 집을 상징하는 온화한 옐로우/크림빛 배경 */
+      background: #f0f9ff; /* 바다와 복음의 메신저를 상징하는 시원한 스카이블루 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #d97706; /* 손님을 환대하는 따뜻한 주황빛/앰버 테마 */
+      background-color: #0284c7; /* 사랑의 편지와 사명을 전하는 파란색 테마 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       line-height: 1.5;
     }
@@ -32,19 +32,19 @@
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fef3c7; }
+    button:hover { background-color: #e0f2fe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #d97706; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #d97706;
+      border: 5px solid #0284c7;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,8 +58,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 1과</h2>
-      <p style="font-size: 20px; margin-top: -10px;">우리 집에 오세요! (사도행전 18장)</p>
+      <h2>유년반 성경퀴즈 2과</h2>
+      <p style="font-size: 20px; margin-top: -10px;">사명을 가진 메신저 (고린도후서)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 사랑이" />
       <br>
@@ -76,7 +76,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 1과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 2과</div>
 
   <script>
     'use strict';
@@ -84,52 +84,52 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '브리스길라와 아굴라는 바울과 아볼로를 집으로 초대하여 맛있는 음식을 대접하고 예수님에 대한 이야기를 함께 나누었어요.', 
+        question: '디도는 바울의 사랑과 염려가 담긴 편지를 전하고, 교회가 서로 화해하도록 기쁜 마음으로 도왔어요.', 
         answer: 'O',
         accepts: ['O', 'o', '0', 'ㅇ', '오', '참', '맞음'],
-        comment: '맞아요! 브리스길라와 아굴라는 따뜻한 마음으로 손님들을 집으로 초대해 정성껏 섬겼답니다! 🏡💖'
+        comment: '맞아요! 디도는 바울의 마음을 고린도 성도들에게 전하고 화해를 돕는 기쁜 메신저였어요! 🕊️💌'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "성도들의 쓸 것을 공급하며 손 (    )하기를 힘쓰라" (로마서 12:13)', 
-        answer: '대접',
-        accepts: ['대접', '대접하기', '손대접'],
-        comment: '하나님께서는 우리가 도움이 필요한 사람들과 손님들을 기쁜 마음으로 대접하기를 원하세요! 🍞✨'
+        question: '기억절: "아버지께서 나를 보내신 것 같이 나도 너희를 (    )노라" (요한복음 20:21)', 
+        answer: '보내',
+        accepts: ['보내', '보내노라'],
+        comment: '예수님께서 우리를 사랑의 메신저로 세상에 보내셨답니다! 🌟'
       },
       { 
         type: 'mcq',  
-        question: '바울과 브리스길라, 아굴라는 생활비를 벌기 위해 함께 손으로 무엇을 만드는 일을 하였나요?', 
-        options: ['A. 천막(텐트)', 'B. 빵과 과자', 'C. 가죽 신발', 'D. 나무 배'], 
-        answer: 'A. 천막(텐트)',
-        accepts: ['A', 'A.', '천막', '텐트', 'A천막', 'A천막(텐트)', 'A.천막(텐트)'],
-        comment: '그들은 천막(텐트)을 만드는 같은 직업을 가지고 있어서 함께 일하며 복음을 전했어요! ⛺'
+        question: '바울이 드로아 항구와 마케도니아에서 애타게 기다리며 찾았던 믿음직한 친구이자 사랑의 메신저는 누구일까요?', 
+        options: ['A. 디도', 'B. 골리앗', 'C. 바로 왕', 'D. 헤롯'], 
+        answer: 'A. 디도',
+        accepts: ['A', 'A.', '디도', 'A디도', 'A.디도'],
+        comment: '바울은 화해를 돕고 편지를 전해줄 든든한 친구 디도를 간절히 기다렸어요! ⛵'
       },
       { 
         type: 'mcq',  
-        question: '성경 말씀은 열심히 전했지만 예수님에 대해 더 알아야 했던 아볼로를 집으로 초대해 친절히 가르쳐준 부부는 누구일까요?', 
+        question: '디도가 전해준 기쁜 소식을 듣고 안도한 바울이 고린도 교인들에게 보낸 편지로 성경에 기록된 책은 무엇일까요?', 
         options: [
-          'A. 아브라함과 사라', 
-          'B. 이삭과 리브가', 
-          'C. 브리스길라와 아굴라', 
-          'D. 요셉과 마리아'
+          'A. 창세기', 
+          'B. 고린도후서', 
+          'C. 시편', 
+          'D. 요나서'
         ], 
-        answer: 'C. 브리스길라와 아굴라',
-        accepts: ['C', 'C.', '브리스길라와아굴라', '브리스길라아굴라', 'C브리스길라와아굴라', 'C.브리스길라와아굴라'],
-        comment: '브리스길라와 아굴라는 아볼로를 집으로 초대해 재워주고 맛있는 음식을 주며 예수님에 대해 더 자세히 알려주었어요! 📖'
+        answer: 'B. 고린도후서',
+        accepts: ['B', 'B.', '고린도후서', 'B고린도후서', 'B.고린도후서'],
+        comment: '바울은 고린도 교인들을 향한 사랑과 예루살렘의 어려운 사람들을 돕자는 격려를 담아 고린도후서를 썼어요! 📜'
       },
       { 
         type: 'short',
-        question: '바울이 선교 여행 중에 브리스길라와 아굴라를 처음 만나 1년 반 동안 함께 지내며 복음을 전했던 큰 도시는 어디일까요? (3글자)', 
-        answer: '고린도', 
-        accepts: ['고린도', '고린도시'],
-        comment: '바울은 상업과 무역의 중심 도시였던 고린도에서 브리스길라와 아굴라를 만나 귀한 믿음의 동역자가 되었어요! 🏛️'
+        question: '교회 안에 다툼이 생겼을 때, 디도가 서로 다른 생각을 이해하고 다시 친해지도록 도와준 일은 무엇일까요? (2글자)', 
+        answer: '화해', 
+        accepts: ['화해', '화해함', '화해하기'],
+        comment: '디도는 다툼이 있는 사람들에게 서로의 생각을 나누게 하고 화해하도록 따뜻하게 도와주었어요! 🤝💖'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#d97706', '#b45309', '#ca8a04', '#ea580c', '#c2410c'];
+    const themes = ['#0284c7', '#0369a1', '#2563eb', '#1d4ed8', '#4338ca'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -203,14 +203,14 @@
       if (normUser === normAnswer || allowedAnswers.includes(normUser)) {
         isCorrect = true;
       } 
-      // 2. 객관식(MCQ)의 경우 보기 기호(A, C 등) 일치 확인
+      // 2. 객관식(MCQ)의 경우 보기 기호(A, B 등) 일치 확인
       else if (q.type === 'mcq') {
         const optionPrefix = normAnswer.charAt(0);
         if (normUser === optionPrefix || normUser.startsWith(optionPrefix)) {
           isCorrect = true;
         }
       } 
-      // 3. 주관식/빈칸 채우기: 어린이가 "대접입니다", "고린도예요" 등 문장 형태로 적었을 때 허용
+      // 3. 주관식/빈칸 채우기: 어린이가 "보내노라예요", "화해입니다" 등 문장 형태로 적었을 때 허용
       else if (q.type === 'fill' || q.type === 'short') {
         if (normUser.length >= normAnswer.length && normUser.includes(normAnswer)) {
           isCorrect = true;
@@ -218,7 +218,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 훌륭해요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 훌륭해요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -234,7 +234,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#78350f';
+      nextBtn.style.backgroundColor = '#1e3a8a';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -249,13 +249,13 @@
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
       let message = score === questions.length 
-        ? "대단해요! 브리스길라와 아굴라처럼 이웃을 사랑으로 대접하는 멋진 어린이예요!" 
-        : "정말 수고했어요! 손님을 따뜻하게 맞이하고 사랑을 나누는 착한 어린이가 되어요!";
+        ? "대단해요! 디도처럼 기쁜 마음으로 이웃을 돕고 화해를 전하는 멋진 사랑의 메신저예요!" 
+        : "정말 수고했어요! 어디서나 이웃을 사랑으로 돕는 착한 어린이가 되어요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🏡🍞✨</div>
+        <div style="font-size: 60px; margin: 20px 0;">💌🕊️✨</div>
         <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

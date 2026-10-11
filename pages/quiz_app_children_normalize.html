@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (2과 - 처음엔 불, 다음엔 비)</title>
+  <title>소년반 성경 퀴즈 (3과 - 지켜진 약속)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -11,13 +11,13 @@
       margin: 0; 
       padding: 0; 
       font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
-      background: #fff7ed; 
+      background: #f0f9ff; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
       font-size: 20px; 
-      color: #1e293b;
+      color: #0f172a;
     }
 
     #quiz-container { 
@@ -31,8 +31,8 @@
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #c2410c; 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12); 
+      background-color: #0284c7; 
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
     }
@@ -83,7 +83,7 @@
       padding: 12px 18px; 
       font-size: 20px; 
       border-radius: 10px; 
-      border: 2px solid #cbd5e1; 
+      border: 2px solid #bae6fd; 
       width: 75%; 
       font-family: inherit; 
       text-align: center; 
@@ -92,14 +92,14 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus {
-      border-color: #ea580c;
-      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
     }
 
     #result { 
       font-size: 24px; 
       margin-top: 20px; 
-      color: #1e293b; 
+      color: #0f172a; 
       background: #ffffff; 
       padding: 32px 24px; 
       border-radius: 20px; 
@@ -111,11 +111,11 @@
       margin-top: 20px; 
       font-size: 23px; 
       font-weight: 800; 
-      color: #1e293b; 
+      color: #0f172a; 
     }
 
     .alert-msg {
-      color: #fecdd3;
+      color: #fee2e2;
       font-size: 16px;
       font-weight: 700;
       margin-top: 8px;
@@ -128,7 +128,7 @@
       width: 100%; 
       text-align: center; 
       font-size: 14px; 
-      color: #94a3b8; 
+      color: #64748b; 
       font-weight: 600;
       pointer-events: none; 
     }
@@ -139,12 +139,12 @@
   <div id="quiz-container">
     <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">🔥 소년반 성경퀴즈 2과 🌧️</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"처음엔 불, 다음엔 비"<br>이름을 입력하고 갈멜산의 승리 퀴즈를 시작하세요!</p>
+      <h2 style="margin-top:0; font-size: 28px;">🌧️ 소년반 성경퀴즈 3과 ☁️</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"지켜진 약속"<br>이름을 입력하고 약속을 지키시는 하나님의 은혜 퀴즈를 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 엘리야" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn" style="background-color: #ffffff; color: #9a3412; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #ffffff; color: #0369a1; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
     <!-- 퀴즈 진행 영역 -->
@@ -165,64 +165,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 2과: 처음엔 불, 다음엔 비 (열왕기상 18:1~40)
+      // 3과: 지켜진 약속 (열왕기상 18:41~46)
       const questions = [
-        // 1번: OX 문제 (본문의 핵심 사건 확인)
+        // 1번: OX 문제 (비 내리는 표징과 엘리야의 믿음)
         { 
           type: 'ox',   
-          question: '엘리야는 하나님께 기도하기 전에 번제물과 제단 위에 물을 세 번에 걸쳐 흠뻑 부어 도랑까지 물이 가득 차게 만들었다.', 
-          answer: 'O' 
+          question: '엘리야는 하늘이 온통 먹구름으로 뒤덮이고 굵은 장대비가 쏟아질 때까지 기다린 후에야 비로소 아합 왕에게 마차를 준비하라고 알렸다.', 
+          answer: 'X' 
         }, 
-        // [근거: 본문 22쪽] "통 넷에 물을 채워다가 번제물과 나무 위에 부으라... 다시 그리하라... 세 번째로 그리하라... 도랑에 물이 가득찼습니다."
+        // [근거: 본문 28쪽] "그는 하늘이 검은 구름으로 뒤덮일 때까지 기다리지 않았습니다. 빗줄기가 뿌리기 시작할 때까지 기다리지 않았습니다. 그는 작은 구름이 비가 내릴 하나님의 징조라고 인정했습니다."
 
-        // 2번: 기억절 문제 (열왕기상 18:37 빈칸 채우기)
+        // 2번: 기억절 문제 (베드로후서 3:9 빈칸 채우기)
         { 
           type: 'fill', 
-          question: '기억절: "여호와여 내게 응답하옵소서 내게 응답하옵소서 이 백성에게 주 여호와는 하나님이신 것과 주는 그들의 마음을 (         )을 알게 하옵소서 하매" (열왕기상 18:37)', 
-          answer: '되돌이키심' 
+          question: '기억절: "주의 약속은 어떤 이들이 더디다고 생각하는 것 같이 더딘 것이 아니라 오직 주께서는 너희를 대하여 오래 참으사 아무도 멸망하지 아니하고 다 (      )하기에 이르기를 원하시느니라" (베드로후서 3:9)', 
+          answer: '회개' 
         },
-        // [근거: 본문 19쪽 기억절] "주는 그들의 마음을 되돌이키심을 알게 하옵소서 하매(열왕기상 18:37)"
+        // [근거: 본문 25쪽 기억절] "다 회개하기에 이르기를 원하시느니라(베드로후서 3:9)"
 
-        // 3번: 4지 선다형 (본문 세부 내용 확인 - 대결 장소)
+        // 3번: 4지 선다형 (기도와 응답의 횟수)
         { 
           type: 'mcq',  
-          question: '엘리야와 바알의 선지자들이 모여 불로 응답하시는 참된 신이 누구인지 증명하는 대결을 펼쳤던 장소(산)는 어디인가요?', 
+          question: '엘리야가 갈멜산 꼭대기에서 얼굴을 땅에 대고 비를 위해 간절히 기도했을 때, 하인이 바다에서 비의 징조인 구름을 발견한 것은 몇 번째로 바다를 살폈을 때였나요?', 
           options: [
-            'A. 시내산', 
-            'B. 갈멜산', 
-            'C. 감람산', 
-            'D. 헤르몬산'
+            'A. 세 번째', 
+            'B. 다섯 번째', 
+            'C. 일곱 번째', 
+            'D. 열 번째'
           ], 
-          answer: 'B. 갈멜산' 
+          answer: 'C. 일곱 번째' 
         },
-        // [근거: 본문 20쪽] "그는 아합에게 바알의 모든 제사장들과 사람들을 갈멜산으로 모이게 해달라고 요청했습니다."
+        // [근거: 본문 26쪽] "그런 다음 엘리야는 일곱 번째로 하인을 보냈습니다... 이번에는 사환이 놀라운 소식을 가지고 돌아왔습니다."
 
-        // 4번: 4지 선다형 (본문 세부 내용 확인 - 바알 선지자의 수)
+        // 4번: 4지 선다형 (비의 징조의 모양)
         { 
           type: 'mcq',  
-          question: '갈멜산에 당당하게 올라와 엘리야를 둘러싸고 위협하며 제단 주위에서 헛되이 춤추고 소리 질렀던 바알의 선지자는 총 몇 명이었나요?', 
+          question: '일곱 번째로 바다를 살펴본 하인이 엘리야에게 달려와 전했던 구름의 크기는 어떤 모양이었나요?', 
           options: [
-            'A. 50명', 
-            'B. 100명', 
-            'C. 450명', 
-            'D. 850명'
+            'A. 사람의 얼굴만 한 구름', 
+            'B. 사람의 손만 한 작은 구름', 
+            'C. 하늘을 가득 채운 먹구름', 
+            'D. 수레바퀴만 한 둥근 구름'
           ], 
-          answer: 'C. 450명' 
+          answer: 'B. 사람의 손만 한 작은 구름' 
         },
-        // [근거: 본문 20쪽] "바알의 450명의 선지자들이 당당하게 산으로 올라와서 엘리야를 둘러쌌습니다."
+        // [근거: 본문 27쪽] "바다에서 사람의 손 만한 작은 구름이 일어나나이다(열왕기상 18:44)"
 
-        // 5번: 단답형 (핵심 숫자/키워드)
+        // 5번: 단답형 (행선지 성읍 이름)
         { 
           type: 'short',
-          question: '엘리야가 무너진 여호와의 제단을 다시 수축할 때, 이스라엘의 지파 수를 상징하여 올려놓은 돌은 모두 몇 개인가요? (숫자 또는 한글로 입력)', 
-          answer: '12' 
+          question: '엘리야가 허리띠로 옷을 동이고 비바람 속에서 아합 왕의 마차 앞에서 달려 안전하게 인도해 주었던 약 45km 떨어진 도성의 이름은 어디인가요?', 
+          answer: '이스르엘' 
         },
-        // [근거: 본문 21쪽] "엘리야는 여호와께 바치는 무너진 제단으로 갔습니다. 그는 12지파를 상징하는 각 돌을 제자리에 올려놓았습니다."
+        // [근거: 본문 28쪽] "왕은 약 45km 떨어진 이스르엘 성으로 여행을 시작했습니다... 엘리야는 말고삐를 붙잡고 왕의 마차 앞에서 달려 아합을 안전하게 도성으로 인도했습니다."
 
         // 6번: 느낀점 (자유 서술형)
         { 
           type: 'any',  
-          question: '바알 제사장들의 시끄러운 외침과 달리, 엘리야의 짧고 단순하지만 진실했던 기도를 들으시고 불로 응답하신 하나님께 여러분은 어떤 믿음의 기도를 드리고 싶은지 자유롭게 적어보세요.' 
+          question: '기도하고 바로 응답이 보이지 않아도 여섯 번이나 포기하지 않고 일곱 번째까지 기도했던 엘리야처럼, 여러분은 응답이 더디게 느껴질 때 어떤 믿음으로 하나님께 계속 기도하고 싶은지 자유롭게 적어보세요.' 
         }
       ];
 
@@ -230,8 +230,8 @@
       let score = 0;
       let participantName = '';
 
-      // 하늘에서 내린 불과 생명의 비를 상징하는 오렌지 / 앰버 / 딥블루 / 인디고 테마
-      const themes = ['#C2410C', '#B45309', '#D97706', '#0369A1', '#1D4ED8', '#4338CA'];
+      // 지중해 바다와 비구름, 신실한 언약의 푸른 하늘을 상징하는 블루/스카이/인디고 테마
+      const themes = ['#0284C7', '#0369A1', '#0F766E', '#1D4ED8', '#2563EB', '#4338CA'];
 
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
@@ -290,7 +290,7 @@
         } else {
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '생각이나 감사의 다짐을 자유롭게 적어보세요' : '정답 입력';
+          input.placeholder = q.type === 'any' ? '생각이나 결심을 자유롭게 적어보세요' : '정답 입력';
           if (q.type === 'any') {
             input.style.width = '88%';
             input.style.textAlign = 'left';
@@ -299,7 +299,7 @@
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#9a3412';
+          submitBtn.style.backgroundColor = '#0284c7';
           submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(document.createElement('br'));
@@ -334,10 +334,10 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 12개, 열두개, 열둘 등 유연한 정답 인정
-          if (nAns === '12' && (nUser === '12' || nUser === '12개' || nUser === '열두개' || nUser === '열둘' || nUser === '열두개의돌' || nUser === '12개의돌')) {
+          // 이스르엘 / 이스르엘성 등 유연한 정답 허용
+          if (nAns === '이스르엘' && (nUser === '이스르엘' || nUser === '이스르엘성' || nUser === '이스르엘도성')) {
             isCorrect = true;
-          } else if (nAns === '되돌이키심' && (nUser === '되돌이키심' || nUser === '되돌이키시는것' || nUser === '되돌이킴')) {
+          } else if (nAns === '회개' && (nUser === '회개' || nUser === '회개함' || nUser === '회개하기')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
@@ -345,14 +345,14 @@
         }
 
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #15803d;'>우리의 기도를 들으시고 응답하시는 참 하나님께 멋진 다짐을 나누어주어 고마워요! 🔥🌧️✨</span>";
+          feedbackEl.innerHTML = "<span style='color: #0369a1;'>포기하지 않고 끝까지 신뢰하며 기도하겠다는 멋진 결심을 나누어주어 고마워요! 🌧️🙏✨</span>";
           score++;
         } else if (isCorrect) {
-          feedbackEl.innerHTML = "<span style='color: #15803d;'>정답입니다! ⭕</span>";
+          feedbackEl.innerHTML = "<span style='color: #059669;'>정답입니다! ⭕</span>";
           score++;
         } else {
           let correctHint = (q.type === 'ox' || q.type === 'mcq') ? q.answer : `'${q.answer}'`;
-          feedbackEl.innerHTML = `<span style='color: #b91c1c;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
+          feedbackEl.innerHTML = `<span style='color: #dc2626;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
         }
 
         // 기존 입력 요소 비활성화
@@ -363,7 +363,7 @@
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
-        nextBtn.style.backgroundColor = '#9a3412';
+        nextBtn.style.backgroundColor = '#0284c7';
         nextBtn.style.color = '#ffffff';
         nextBtn.style.marginTop = '18px';
         nextBtn.style.padding = '12px 28px';
@@ -386,17 +386,17 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "갈멜산에서 불과 비로 응답하신 하나님처럼, 오직 살아계신 참 하나님만을 마음 다해 예배하고 따르는 멋진 믿음의 용사가 되길 응원해요! 🔥🌧️";
+        let praiseMsg = "작은 구름 하나에도 하나님의 약속을 믿었던 엘리야처럼, 언제나 신실하신 하나님의 약속을 굳게 붙잡는 소년반 친구가 되길 응원해요! ☁️🌧️";
         if (score === questions.length) {
-          praiseMsg = "대단해요! 만점입니다! 엘리야처럼 참 하나님을 굳건히 의지하고 담대하게 믿음을 고백하는 소년반 최고 성경 박사님이에요! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 기도의 인내와 순종을 완벽하게 이해한 소년반 최고의 믿음 박사님이에요! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">2과 총 <strong>${questions.length}</strong>문제 중<br>
-          <span style="color:#c2410c; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="font-size:22px;">3과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#0284c7; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
           <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
-          <button onclick="location.reload()" style="background-color:#9a3412; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
+          <button onclick="location.reload()" style="background-color:#0284c7; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
         `;
       }
 

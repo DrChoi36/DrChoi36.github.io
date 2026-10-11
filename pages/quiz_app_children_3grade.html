@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 2과 - 사명을 가진 메신저</title>
+  <title>유년반 성경퀴즈 3과 - 돌아온 도망자</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #f0f9ff; /* 바다와 복음의 메신저를 상징하는 시원한 스카이블루 배경 */
+      background: #fefce8; /* 따뜻한 용서와 섬김의 햇살을 담은 부드러운 옐로우/베이지 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #0284c7; /* 사랑의 편지와 사명을 전하는 파란색 테마 */
+      background-color: #d97706; /* 회복과 사랑의 편지를 상징하는 따뜻한 앰버/오렌지 테마 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       line-height: 1.5;
     }
@@ -32,19 +32,19 @@
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #e0f2fe; }
+    button:hover { background-color: #fef3c7; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #d97706; width: 70%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #0284c7;
+      border: 5px solid #d97706;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,8 +58,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 2과</h2>
-      <p style="font-size: 20px; margin-top: -10px;">사명을 가진 메신저 (고린도후서)</p>
+      <h2>유년반 성경퀴즈 3과</h2>
+      <p style="font-size: 20px; margin-top: -10px;">돌아온 도망자 (빌레몬서)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 사랑이" />
       <br>
@@ -76,7 +76,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 2과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 3과</div>
 
   <script>
     'use strict';
@@ -84,52 +84,52 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '디도는 바울의 사랑과 염려가 담긴 편지를 전하고, 교회가 서로 화해하도록 기쁜 마음으로 도왔어요.', 
+        question: '도망쳤던 종 오네시모는 바울을 만나 예수님을 믿은 후, 이전과 달리 기쁜 마음으로 이웃을 섬기는 성실한 사람이 되었어요.', 
         answer: 'O',
         accepts: ['O', 'o', '0', 'ㅇ', '오', '참', '맞음'],
-        comment: '맞아요! 디도는 바울의 마음을 고린도 성도들에게 전하고 화해를 돕는 기쁜 메신저였어요! 🕊️💌'
+        comment: '맞아요! 오네시모는 예수님의 사랑을 배우고 변화되어 온 마음으로 다른 사람을 섬기는 그리스도인이 되었답니다! 💖'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "아버지께서 나를 보내신 것 같이 나도 너희를 (    )노라" (요한복음 20:21)', 
-        answer: '보내',
-        accepts: ['보내', '보내노라'],
-        comment: '예수님께서 우리를 사랑의 메신저로 세상에 보내셨답니다! 🌟'
+        question: '기억절: "기쁜 마음으로 (    )기를 주께 하듯 하고 사람들에게 하듯 하지 말라" (에베소서 6:7)', 
+        answer: '섬기',
+        accepts: ['섬기', '섬기기', '섬기는', '섬기기를'],
+        comment: '우리가 가정과 학교에서 기쁜 마음으로 예수님을 섬기듯 서로를 도우면 하나님께서 기뻐하세요! 🌟'
       },
       { 
         type: 'mcq',  
-        question: '바울이 드로아 항구와 마케도니아에서 애타게 기다리며 찾았던 믿음직한 친구이자 사랑의 메신저는 누구일까요?', 
-        options: ['A. 디도', 'B. 골리앗', 'C. 바로 왕', 'D. 헤롯'], 
-        answer: 'A. 디도',
-        accepts: ['A', 'A.', '디도', 'A디도', 'A.디도'],
-        comment: '바울은 화해를 돕고 편지를 전해줄 든든한 친구 디도를 간절히 기다렸어요! ⛵'
+        question: '오네시모가 원래 섬기던 주인이자, 바울이 오네시모를 용서하고 형제로 받아달라는 편지를 보낸 대상은 누구일까요?', 
+        options: ['A. 바로 왕', 'B. 빌레몬', 'C. 골리앗', 'D. 느부갓네살'], 
+        answer: 'B. 빌레몬',
+        accepts: ['B', 'B.', '빌레몬', 'B빌레몬', 'B.빌레몬'],
+        comment: '바울은 친구 빌레몬에게 편지를 써서 오네시모를 사랑으로 용서하고 한 형제로 받아달라고 부탁했어요! 📜'
       },
       { 
         type: 'mcq',  
-        question: '디도가 전해준 기쁜 소식을 듣고 안도한 바울이 고린도 교인들에게 보낸 편지로 성경에 기록된 책은 무엇일까요?', 
+        question: '바울이 주인 빌레몬에게 보낸 편지에서 오네시모에 대해 간절히 부탁한 내용은 무엇일까요?', 
         options: [
-          'A. 창세기', 
-          'B. 고린도후서', 
-          'C. 시편', 
-          'D. 요나서'
+          'A. 오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요', 
+          'B. 오네시모를 다시 감옥에 가두어 주세요', 
+          'C. 오네시모를 멀리 다른 나라로 쫓아내 주세요', 
+          'D. 오네시모에게 무거운 벌을 내려주세요'
         ], 
-        answer: 'B. 고린도후서',
-        accepts: ['B', 'B.', '고린도후서', 'B고린도후서', 'B.고린도후서'],
-        comment: '바울은 고린도 교인들을 향한 사랑과 예루살렘의 어려운 사람들을 돕자는 격려를 담아 고린도후서를 썼어요! 📜'
+        answer: 'A. 오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요',
+        accepts: ['A', 'A.', 'A.오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요', '오네시모를종을넘어사랑받는그리스도인한형제로맞아주세요'],
+        comment: '바울은 예수님 안에서 이제 둘이 주종 관계를 넘어 소중한 한 가족이자 형제라고 알려주었어요! 🤝'
       },
       { 
         type: 'short',
-        question: '교회 안에 다툼이 생겼을 때, 디도가 서로 다른 생각을 이해하고 다시 친해지도록 도와준 일은 무엇일까요? (2글자)', 
-        answer: '화해', 
-        accepts: ['화해', '화해함', '화해하기'],
-        comment: '디도는 다툼이 있는 사람들에게 서로의 생각을 나누게 하고 화해하도록 따뜻하게 도와주었어요! 🤝💖'
+        question: '주인에게서 도망쳤으나 바울을 만나 변화되어, 다시 주인에게 용서를 구하러 돌아간 청년의 이름은 누구일까요? (4글자)', 
+        answer: '오네시모', 
+        accepts: ['오네시모'],
+        comment: '오네시모는 두려운 마음도 있었지만 용기를 내어 편지를 품에 안고 주인을 기쁨으로 섬기기 위해 돌아갔답니다! 🏃‍♂️'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#0284c7', '#0369a1', '#2563eb', '#1d4ed8', '#4338ca'];
+    const themes = ['#d97706', '#b45309', '#ca8a04', '#ea580c', '#c2410c'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -210,7 +210,7 @@
           isCorrect = true;
         }
       } 
-      // 3. 주관식/빈칸 채우기: 어린이가 "보내노라예요", "화해입니다" 등 문장 형태로 적었을 때 허용
+      // 3. 주관식/빈칸 채우기: 어린이가 "섬기입니다", "오네시모예요" 등 문장 형태로 적었을 때 허용
       else if (q.type === 'fill' || q.type === 'short') {
         if (normUser.length >= normAnswer.length && normUser.includes(normAnswer)) {
           isCorrect = true;
@@ -218,7 +218,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 훌륭해요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 훌륭해요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -234,7 +234,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#1e3a8a';
+      nextBtn.style.backgroundColor = '#92400e';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -249,13 +249,13 @@
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
       let message = score === questions.length 
-        ? "대단해요! 디도처럼 기쁜 마음으로 이웃을 돕고 화해를 전하는 멋진 사랑의 메신저예요!" 
-        : "정말 수고했어요! 어디서나 이웃을 사랑으로 돕는 착한 어린이가 되어요!";
+        ? "대단해요! 오네시모처럼 기쁜 마음으로 주님을 섬기듯 이웃과 가족을 돕는 멋진 어린이예요!" 
+        : "정말 수고했어요! 가정에서 예수님을 섬기듯 서로를 사랑으로 돕는 착한 어린이가 되어요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">💌🕊️✨</div>
+        <div style="font-size: 60px; margin: 20px 0;">📜🤝✨</div>
         <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

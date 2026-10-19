@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 3과 - 돌아온 도망자</title>
+  <title>유년반 성경퀴즈 4과 - 나의 겉옷을 가져오라</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #fefce8; /* 따뜻한 용서와 섬김의 햇살을 담은 부드러운 옐로우/베이지 배경 */
+      background: #f1f5f9; /* 차가운 감옥을 녹이는 은혜롭고 차분한 슬레이트 블루 톤 배경 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #d97706; /* 회복과 사랑의 편지를 상징하는 따뜻한 앰버/오렌지 테마 */
+      background-color: #0284c7; /* 따뜻한 겉옷과 헌신적인 사랑을 상징하는 스카이/오션 블루 테마 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       line-height: 1.5;
     }
@@ -32,19 +32,19 @@
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fef3c7; }
+    button:hover { background-color: #e0f2fe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #d97706; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
       outline: none;
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #d97706;
+      border: 5px solid #0284c7;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,8 +58,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 3과</h2>
-      <p style="font-size: 20px; margin-top: -10px;">돌아온 도망자 (빌레몬서)</p>
+      <h2>유년반 성경퀴즈 4과</h2>
+      <p style="font-size: 20px; margin-top: -10px;">나의 겉옷을 가져오라 (디모데후서)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 사랑이" />
       <br>
@@ -76,7 +76,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 3과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 4과</div>
 
   <script>
     'use strict';
@@ -84,52 +84,52 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '도망쳤던 종 오네시모는 바울을 만나 예수님을 믿은 후, 이전과 달리 기쁜 마음으로 이웃을 섬기는 성실한 사람이 되었어요.', 
+        question: '바울은 차가운 로마 감옥에 갇혀 외롭고 힘들었지만, 끝까지 예수님을 전하고 교회를 사랑하는 믿음을 지켰어요.', 
         answer: 'O',
         accepts: ['O', 'o', '0', 'ㅇ', '오', '참', '맞음'],
-        comment: '맞아요! 오네시모는 예수님의 사랑을 배우고 변화되어 온 마음으로 다른 사람을 섬기는 그리스도인이 되었답니다! 💖'
+        comment: '맞아요! 바울은 감옥에서도 하나님을 신뢰하며 죽음을 이기신 예수님의 복음을 끝까지 전했답니다! ⛓️✨'
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "기쁜 마음으로 (    )기를 주께 하듯 하고 사람들에게 하듯 하지 말라" (에베소서 6:7)', 
-        answer: '섬기',
-        accepts: ['섬기', '섬기기', '섬기는', '섬기기를'],
-        comment: '우리가 가정과 학교에서 기쁜 마음으로 예수님을 섬기듯 서로를 도우면 하나님께서 기뻐하세요! 🌟'
+        question: '기억절: "하나님은... 너희 행위와 그의 이름을 위하여 나타낸 사랑으로 이미 성도를 (    ) 것과 이제도 섬기고 있는 것을 잊어버리지 아니하시느니라" (히브리서 6:10)', 
+        answer: '섬긴',
+        accepts: ['섬긴', '섬긴것', '섬김'],
+        comment: '하나님께서는 우리가 성도들과 이웃을 예수님의 사랑으로 도운 모든 섬김을 결코 잊지 않으세요! 💖'
       },
       { 
         type: 'mcq',  
-        question: '오네시모가 원래 섬기던 주인이자, 바울이 오네시모를 용서하고 형제로 받아달라는 편지를 보낸 대상은 누구일까요?', 
-        options: ['A. 바로 왕', 'B. 빌레몬', 'C. 골리앗', 'D. 느부갓네살'], 
-        answer: 'B. 빌레몬',
-        accepts: ['B', 'B.', '빌레몬', 'B빌레몬', 'B.빌레몬'],
-        comment: '바울은 친구 빌레몬에게 편지를 써서 오네시모를 사랑으로 용서하고 한 형제로 받아달라고 부탁했어요! 📜'
+        question: '바울이 마치 친아들처럼 아끼며 사랑했고, 로마 감옥에서 마지막 편지(디모데후서)를 보낸 젊은 동역자는 누구일까요?', 
+        options: ['A. 아굴라', 'B. 디모데', 'C. 골리앗', 'D. 빌레몬'], 
+        answer: 'B. 디모데',
+        accepts: ['B', 'B.', '디모데', 'B디모데', 'B.디모데'],
+        comment: '바울은 어릴 때부터 믿음으로 자라 함께 복음을 전했던 사랑하는 아들 디모데를 매우 보고 싶어 했어요! 📜'
       },
       { 
         type: 'mcq',  
-        question: '바울이 주인 빌레몬에게 보낸 편지에서 오네시모에 대해 간절히 부탁한 내용은 무엇일까요?', 
+        question: '차가운 감옥에서 추운 겨울을 맞이하게 된 바울이 디모데에게 꼭 가져다 달라고 간절히 부탁한 물건은 무엇일까요?', 
         options: [
-          'A. 오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요', 
-          'B. 오네시모를 다시 감옥에 가두어 주세요', 
-          'C. 오네시모를 멀리 다른 나라로 쫓아내 주세요', 
-          'D. 오네시모에게 무거운 벌을 내려주세요'
+          'A. 따뜻한 겉옷', 
+          'B. 황금 보석', 
+          'C. 번쩍이는 칼', 
+          'D. 시원한 얼음물'
         ], 
-        answer: 'A. 오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요',
-        accepts: ['A', 'A.', 'A.오네시모를 종을 넘어 사랑받는 그리스도인 한 형제로 맞아주세요', '오네시모를종을넘어사랑받는그리스도인한형제로맞아주세요'],
-        comment: '바울은 예수님 안에서 이제 둘이 주종 관계를 넘어 소중한 한 가족이자 형제라고 알려주었어요! 🤝'
+        answer: 'A. 따뜻한 겉옷',
+        accepts: ['A', 'A.', 'A.따뜻한겉옷', '따뜻한겉옷', '겉옷'],
+        comment: '바울은 겨울이 오기 전에 따뜻한 겉옷을 가져와 달라고 부탁했어요. 감옥의 추위를 견디기 위해 꼭 필요했답니다! 🧥'
       },
       { 
         type: 'short',
-        question: '주인에게서 도망쳤으나 바울을 만나 변화되어, 다시 주인에게 용서를 구하러 돌아간 청년의 이름은 누구일까요? (4글자)', 
-        answer: '오네시모', 
-        accepts: ['오네시모'],
-        comment: '오네시모는 두려운 마음도 있었지만 용기를 내어 편지를 품에 안고 주인을 기쁨으로 섬기기 위해 돌아갔답니다! 🏃‍♂️'
+        question: '바울처럼 하나님을 위해 일하는 목사님과 성도들을 돕고 사랑으로 돌보는 착한 행동을 무엇이라고 할까요? (2글자)', 
+        answer: '섬김', 
+        accepts: ['섬김', '봉사'],
+        comment: '교회 지도자들과 이웃들에게 미소와 친절, 사랑을 베푸는 섬김은 곧 하나님을 섬기는 멋진 일이랍니다! 🤝'
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#d97706', '#b45309', '#ca8a04', '#ea580c', '#c2410c'];
+    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0891b2'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -210,7 +210,7 @@
           isCorrect = true;
         }
       } 
-      // 3. 주관식/빈칸 채우기: 어린이가 "섬기입니다", "오네시모예요" 등 문장 형태로 적었을 때 허용
+      // 3. 주관식/빈칸 채우기: 어린이가 "섬긴입니다", "섬김이에요" 등 문장 형태로 적었을 때 허용
       else if (q.type === 'fill' || q.type === 'short') {
         if (normUser.length >= normAnswer.length && normUser.includes(normAnswer)) {
           isCorrect = true;
@@ -218,7 +218,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 훌륭해요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 훌륭해요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -234,7 +234,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#92400e';
+      nextBtn.style.backgroundColor = '#075985';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -249,13 +249,13 @@
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
       let message = score === questions.length 
-        ? "대단해요! 오네시모처럼 기쁜 마음으로 주님을 섬기듯 이웃과 가족을 돕는 멋진 어린이예요!" 
-        : "정말 수고했어요! 가정에서 예수님을 섬기듯 서로를 사랑으로 돕는 착한 어린이가 되어요!";
+        ? "대단해요! 바울과 디모데처럼 예수님의 사랑으로 사람들을 돕고 섬기는 최고의 어린이예요!" 
+        : "정말 수고했어요! 교회와 가정에서 서로를 따뜻하게 돕고 섬기는 착한 어린이가 되어요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">📜🤝✨</div>
+        <div style="font-size: 60px; margin: 20px 0;">🧥📜✨</div>
         <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#d97706; font-size:45px;">${score} / ${questions.length}</span></p>
+        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

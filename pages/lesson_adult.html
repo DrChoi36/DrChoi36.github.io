@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여호수아반 성경 퀴즈 - 신약의 선지자들</title>
+  <title>여호수아반 성경 퀴즈 - 계시와 영감</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
   
   <style>
+    :root {
+      --app-font-scale: 1; /* 글자 크기 동적 스케일 */
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -24,7 +28,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px 12px;
-      font-size: 19px;
+      font-size: calc(19px * var(--app-font-scale));
       line-height: 1.6;
     }
 
@@ -40,12 +44,45 @@
       overflow: hidden;
     }
 
+    /* 글자 크기 조절 플로팅 컨트롤 */
+    .font-zoom-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: calc(14px * var(--app-font-scale));
+      font-weight: 700;
+      color: #64748B;
+    }
+
+    .zoom-btn {
+      background: #F1F5F9;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      font-size: calc(18px * var(--app-font-scale));
+      font-weight: 900;
+      color: #0F172A;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .zoom-btn:hover {
+      background: #E2E8F0;
+      border-color: #94A3B8;
+    }
+
     /* 상단 배너 및 뱃지 */
     .lesson-badge {
       display: inline-block;
       background-color: #0284C7;
       color: #FFFFFF;
-      font-size: 15px;
+      font-size: calc(15px * var(--app-font-scale));
       font-weight: 700;
       padding: 6px 16px;
       border-radius: 20px;
@@ -54,7 +91,7 @@
     }
 
     .main-title {
-      font-size: 27px;
+      font-size: calc(27px * var(--app-font-scale));
       font-weight: 900;
       color: #0F172A;
       margin-bottom: 8px;
@@ -62,7 +99,7 @@
     }
 
     .sub-title {
-      font-size: 17px;
+      font-size: calc(17px * var(--app-font-scale));
       color: #475569;
       margin-bottom: 22px;
       font-weight: 600;
@@ -74,7 +111,7 @@
       padding: 18px 20px;
       border-radius: 12px;
       text-align: left;
-      font-size: 17.5px;
+      font-size: calc(17.5px * var(--app-font-scale));
       color: #0369A1;
       margin-bottom: 22px;
       line-height: 1.7;
@@ -85,7 +122,7 @@
       color: #0284C7;
       display: block;
       margin-bottom: 6px;
-      font-size: 18px;
+      font-size: calc(18px * var(--app-font-scale));
     }
 
     /* 안내 메시지 상자 */
@@ -96,7 +133,7 @@
       border-radius: 12px;
       margin-bottom: 24px;
       text-align: left;
-      font-size: 16.5px;
+      font-size: calc(16.5px * var(--app-font-scale));
       color: #334155;
       line-height: 1.6;
     }
@@ -109,7 +146,7 @@
     .progress-text {
       display: flex;
       justify-content: space-between;
-      font-size: 16px;
+      font-size: calc(16px * var(--app-font-scale));
       font-weight: 700;
       color: #475569;
       margin-bottom: 6px;
@@ -136,7 +173,7 @@
       color: #FFFFFF;
       padding: 24px 20px;
       border-radius: 16px;
-      font-size: 21px;
+      font-size: calc(21px * var(--app-font-scale));
       font-weight: 600;
       text-align: left;
       line-height: 1.65;
@@ -146,7 +183,7 @@
     }
 
     .question-category {
-      font-size: 14.5px;
+      font-size: calc(14.5px * var(--app-font-scale));
       color: #38BDF8;
       font-weight: 800;
       margin-bottom: 6px;
@@ -168,7 +205,7 @@
       color: #1E293B;
       padding: 16px 20px;
       border-radius: 14px;
-      font-size: 19px;
+      font-size: calc(19px * var(--app-font-scale));
       font-weight: 700;
       cursor: pointer;
       text-align: left;
@@ -194,7 +231,7 @@
       background-color: #F0F9FF;
       border-radius: 50%;
       margin-right: 14px;
-      font-size: 16px;
+      font-size: calc(16px * var(--app-font-scale));
       color: #0284C7;
       font-weight: 900;
       flex-shrink: 0;
@@ -214,7 +251,7 @@
       color: #1E293B;
       padding: 24px 10px;
       border-radius: 16px;
-      font-size: 38px;
+      font-size: calc(38px * var(--app-font-scale));
       font-weight: 900;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -238,7 +275,7 @@
     .text-input-field {
       width: 100%;
       padding: 16px 18px;
-      font-size: 20px;
+      font-size: calc(20px * var(--app-font-scale));
       font-family: inherit;
       border: 2.5px solid #0284C7;
       border-radius: 14px;
@@ -258,7 +295,7 @@
       width: 100%;
       min-height: 120px;
       padding: 16px;
-      font-size: 18.5px;
+      font-size: calc(18.5px * var(--app-font-scale));
       font-family: inherit;
       border: 2.5px solid #0284C7;
       border-radius: 14px;
@@ -274,7 +311,7 @@
     .submit-input-btn {
       width: 100%;
       padding: 16px;
-      font-size: 19px;
+      font-size: calc(19px * var(--app-font-scale));
       font-weight: 800;
       background-color: #0284C7;
       color: #FFFFFF;
@@ -319,7 +356,7 @@
     }
 
     .feedback-title {
-      font-size: 20px;
+      font-size: calc(20px * var(--app-font-scale));
       font-weight: 900;
       margin-bottom: 8px;
       display: flex;
@@ -336,7 +373,7 @@
     }
 
     .feedback-desc {
-      font-size: 17px;
+      font-size: calc(17px * var(--app-font-scale));
       color: #334155;
       line-height: 1.7;
       word-break: keep-all;
@@ -344,7 +381,7 @@
 
     .feedback-scripture {
       margin-top: 10px;
-      font-size: 15px;
+      font-size: calc(15px * var(--app-font-scale));
       color: #0284C7;
       font-weight: 700;
     }
@@ -356,7 +393,7 @@
       border: none;
       border-radius: 14px;
       padding: 16px 36px;
-      font-size: 20px;
+      font-size: calc(20px * var(--app-font-scale));
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -379,14 +416,14 @@
 
     /* 결과 화면 */
     .result-score {
-      font-size: 52px;
+      font-size: calc(52px * var(--app-font-scale));
       font-weight: 900;
       color: #0284C7;
       margin: 15px 0 5px 0;
     }
 
     .result-message {
-      font-size: 22px;
+      font-size: calc(22px * var(--app-font-scale));
       font-weight: 700;
       color: #0F172A;
       margin-bottom: 20px;
@@ -397,7 +434,7 @@
       background-color: #F0F9FF;
       border-radius: 14px;
       padding: 22px;
-      font-size: 17px;
+      font-size: calc(17px * var(--app-font-scale));
       text-align: left;
       margin-bottom: 25px;
       line-height: 1.8;
@@ -407,7 +444,7 @@
     /* 푸터 */
     .footer-text {
       margin-top: 25px;
-      font-size: 14px;
+      font-size: calc(14px * var(--app-font-scale));
       color: #64748B;
       font-weight: 600;
     }
@@ -419,7 +456,7 @@
       color: #92400E;
       padding: 12px 16px;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: calc(16px * var(--app-font-scale));
       font-weight: 700;
       margin-bottom: 12px;
       display: none;
@@ -435,19 +472,27 @@
 
   <div id="app-container">
     
+    <!-- 글씨 크기 조절 헤더 -->
+    <div class="font-zoom-bar">
+      <span>글씨크기</span>
+      <button class="zoom-btn" onclick="adjustFontSize(0.1)" title="글씨 크게">+</button>
+      <button class="zoom-btn" onclick="adjustFontSize(-0.1)" title="글씨 작게">-</button>
+      <button class="zoom-btn" onclick="resetFontSize()" style="font-size: 13px;" title="원래대로">초기화</button>
+    </div>
+
     <!-- 1. 시작 화면 -->
     <div id="start-screen">
-      <span class="lesson-badge">2026년 10월 24일 안식일 교과 (제4과)</span>
-      <h1 class="main-title">신약의 선지자들</h1>
+      <span class="lesson-badge">2026년 10월 31일 안식일 교과 (제5과)</span>
+      <h1 class="main-title">계시와 영감</h1>
       <p class="sub-title">여호수아반(장년반) 성경 퀴즈</p>
       
       <div class="memory-verse-box">
-        <strong>📖 이번 주 기억절 (고린도전서 12:4-6)</strong>
-        “은사는 여러 가지나 성령은 같고 직분은 여러 가지나 주는 같으며 또 사역은 여러 가지나 모든 것을 모든 사람 가운데서 이루시는 하나님은 같으니”
+        <strong>📖 이번 주 기억절 (요한계시록 1:1, 2)</strong>
+        “예수 그리스도의 계시라 이는 하나님이 그에게 주사 반드시 속히 일어날 일들을 그 종들에게 보이시려고 그의 천사를 그 종 요한에게 보내어 알게 하신 것이라 요한은 하나님의 말씀과 예수 그리스도의 증거 곧 자기가 본 것을 <strong>다 증언하였느니라</strong>”
       </div>
 
       <div class="info-box">
-        💡 <strong>안내:</strong> 본 퀴즈는 사도들과 함께 예수 그리스도를 중심으로 사역했던 신약의 선지자들과 남녀노소 일꾼들, 그리고 마지막 때 분별력을 다루는 <strong>총 11문제</strong>
+        💡 <strong>안내:</strong> 본 퀴즈는 하나님께서 자연과 성경, 선지자들을 통해 자신의 뜻을 전달하신 <strong>계시와 영감</strong>의 다양한 과정을 살펴보는 <strong>총 11문제</strong>로 구성되어 있습니다.
       </div>
 
       <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
@@ -494,14 +539,14 @@
       <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
       
       <div id="result-score" class="result-score">100점</div>
-      <div id="result-message" class="result-message">신약 선지자들의 가르침과 분별력을 깊이 되새긴 은혜로운 시간입니다!</div>
+      <div id="result-message" class="result-message">하나님의 말씀에 대한 깊은 깨달음과 은혜가 넘치는 시간입니다!</div>
 
       <div class="result-details">
         • 총 문항수: <strong>11문제</strong><br>
         • 맞힌 문제: <strong id="correct-count" style="color: #15803D;">11문제</strong><br>
         • 틀린 문제: <strong id="wrong-count" style="color: #B91C1C;">0문제</strong><br>
         <hr style="border: none; border-top: 1px dashed #CBD5E1; margin: 12px 0;">
-        📌 <strong>핵심 요약:</strong> 구약과 신약의 선지자들은 동일한 영감의 근원이신 성령님을 통해 언제나 예수 그리스도를 증언했습니다. 신약 시대에는 사도뿐만 아니라 안나, 빌립의 네 딸과 같은 여선지자들과 디모데와 디도 같은 청년 목회자 등 다양한 일꾼들이 교회를 세우는 데 동참했습니다. 마지막 때 큰 표적과 기사로 미혹하는 거짓 선지자들에 맞서, 오직 성경을 최종 표준으로 삼아 진리의 전신 갑주를 입고 서는 여호수아반 성도님들이 되시기를 축복합니다.
+        📌 <strong>핵심 요약:</strong> 하나님은 자연(일반 계시)과 예수 그리스도 및 성경(특별 계시)을 통해 타락한 인간에게 다가오셨습니다. 성령께서는 선지자들의 기계적인 손가락이 아니라 그들의 전 인격과 사상에 빛을 비추셨으며(사상 영감), 구술, 기록, 극적 상징 행위 등 다양한 방식으로 진리를 보존하셨습니다. 성경은 시대를 초월하는 신뢰할 수 있는 하나님의 말씀이므로, 사람의 이론이나 세상의 시류에 흔들리지 말고 성경만을 우리 신앙과 생활의 유일한 최고 표준으로 삼으시길 바랍니다.
       </div>
 
       <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
@@ -515,162 +560,175 @@
   </div>
 
   <script>
+    // 글자 크기 동적 스케일 조절
+    let currentScale = 1.0;
+    function adjustFontSize(delta) {
+      currentScale += delta;
+      if (currentScale < 0.8) currentScale = 0.8;
+      if (currentScale > 1.4) currentScale = 1.4;
+      document.documentElement.style.setProperty('--app-font-scale', currentScale);
+    }
+    function resetFontSize() {
+      currentScale = 1.0;
+      document.documentElement.style.setProperty('--app-font-scale', 1.0);
+    }
+
     // 텍스트 정규화 함수 (단답형 공백 및 특수문자 오차 허용)
     function normalize(str) {
       if (!str) return '';
       return str.toString().trim().replace(/[\s\t\r\n\.,'"`~!?]/g, '').toLowerCase();
     }
 
-    // 퀴즈 데이터 정의 (2026년 10월 24일 안식일 제4과: 신약의 선지자들 총 11문항)
+    // 퀴즈 데이터 정의 (2026년 10월 31일 안식일 제5과: 계시와 영감 총 11문항)
     const questions = [
       // 1번: OX 문제 (핵심 교훈 확인)
       {
         category: "1번 • 핵심 사실 확인 (OX)",
         type: "ox",
-        question: "구약과 신약의 선지자들은 서로 다른 영감의 원천을 가지고 있었으며, 신약 시대에는 오직 예수님의 직속 12사도에게만 예언의 은사가 국한되어 나타났다.",
+        question: "하나님의 예언적 영감은 선지자가 받아 적는 '기계적 단어' 자체에만 임한 것이므로, 성경 기록자 개개인의 문체나 성격은 성경 기록에 일절 반영되지 않았다.",
         options: ["O", "X"],
         answer: 1, // X
-        explanation: "틀렸습니다. 구약과 신약 선지자들의 거룩한 영감의 근원(엔진)은 동일한 성령님이시며, 신약 시대의 예언 은사는 12사도에게만 국한되지 않고 유다, 실라, 안나, 빌립의 네 딸 등 다양한 이들에게 임했습니다.",
-        scripture: "고전 12:4-6, 행 15:32, 행 21:9"
+        explanation: "틀렸습니다. 영감받는 것은 성경의 단어들이 아니라 성령의 감화 아래서 사상이 고취된 사람 자신(사상 영감)입니다. 저자마다 개인의 고유한 문체와 표현 방식이 자연스럽게 사용되었습니다.",
+        scripture: "딤후 3:16, 벧후 1:21, 가려 뽑은 기별 1권 21"
       },
       // 2번: 기억절 빈칸 채우기 (단답형)
       {
         category: "2번 • 기억절 외우기 (단답형)",
         type: "fill",
-        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“은사는 여러 가지나 성령은 같고 직분은 여러 가지나 주는 같으며 또 사역은 여러 가지나 모든 것을 모든 사람 가운데서 이루시는 (         ) 같으니”(고전 12:4-6)",
-        correctAnswers: ["하나님은", "하나님"],
-        placeholder: "빈칸의 단어를 입력하세요",
-        explanation: "모든 은사와 직분과 사역의 다양성 가운데서도 모든 것을 모든 사람 안에서 이루시는 분은 오직 동일하신 '하나님'이십니다.",
-        scripture: "고린도전서 12:4-6"
+        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“예수 그리스도의 계시라 이는 하나님이 그에게 주사 반드시 속히 일어날 일들을 그 종들에게 보이시려고 그의 천사를 그 종 요한에게 보내어 알게 하신 것이라 요한은 하나님의 말씀과 예수 그리스도의 증거 곧 자기가 본 것을 (                )”(계 1:1, 2)",
+        correctAnswers: ["다 증언하였느니라", "다 증언하였느니라.", "다증언하였느니라", "증언하였느니라", "다 증언함"],
+        placeholder: "빈칸의 어구를 입력하세요 (예: 다 증언하였느니라)",
+        explanation: "사도 요한은 하나님께서 예수 그리스도와 천사를 통해 보여주신 모든 계시와 말씀을 가감 없이 '다 증언하였느니라'라고 확언했습니다.",
+        scripture: "요한계시록 1:1, 2"
       },
-      // 3번: 10월 18일 일요일 (선지자 예수 - 모세의 예언)
+      // 3번: 10월 25일 일요일 (일반 계시와 특별 계시)
       {
-        category: "3번 • 10월 18일 일요일 교과 (선지자 예수)",
+        category: "3번 • 10월 25일 일요일 교과 (일반 계시와 특별 계시)",
         type: "mcq",
-        question: "신명기 18장 15절에서 모세가 예언한 바, '네 하나님 여호와께서 너희 가운데 네 형제 중에서 너를 위하여 나와 같은 선지자 하나를 일으키시리니 너희는 그의 말을 들을지니라'는 예언은 궁극적으로 누구를 가리킵니까? (행 3:22)",
+        question: "대자연에 나타난 '일반 계시'에도 불구하고, 우리에게 예수 그리스도와 성경으로 주어지는 '특별 계시'가 반드시 필요한 가장 결정적인 이유는 무엇입니까?",
         options: [
-          "여호수아",
-          "침례 요한",
-          "예수 그리스도",
-          "사도 바울"
+          "자연은 하나님의 능력과 사랑을 전혀 보여주지 못하기 때문에",
+          "자연 속에는 아름다움뿐만 아니라 죄와 타락으로 인한 고통과 악의 존재도 섞여 있기 때문에",
+          "자연은 오직 과학자들만이 이해할 수 있도록 복잡하게 감추어져 있기 때문에",
+          "성경 기록자들은 자연을 관찰하는 것을 금지당했기 때문에"
+        ],
+        answer: 1,
+        explanation: "자연은 하나님의 영원하신 능력과 신성을 증언하지만, 죄로 인해 엉겅퀴와 죽음 등 악의 결과도 함께 보여줍니다. 따라서 구원의 온전한 길은 특별 계시인 예수 그리스도와 성경을 통해서만 바르게 깨달을 수 있습니다.",
+        scripture: "시 19:1, 롬 1:20, 요 5:39"
+      },
+      // 4번: 10월 26일 월요일 (영감의 과정과 사상 영감)
+      {
+        category: "4번 • 10월 26일 월요일 교과 (영감의 과정)",
+        type: "mcq",
+        question: "디모데후서 3장 16절('모든 성경은 하나님의 감동으로 된 것으로...')에 비추어 볼 때, 성경의 영감 과정에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+        options: [
+          "선지자들은 최면 상태에 빠져 자신의 의지와 상관없이 자동 기술 방식으로 글을 썼다",
+          "성경 중 복음서만 온전히 영감받았고 역사서나 율법서는 인간적인 창작물에 불과하다",
+          "무한하신 하나님께서 성령으로 종들의 생각과 마음에 빛을 비추셨고, 계시를 받은 사람은 그 사상을 인간의 언어로 표현했다",
+          "성경의 모든 단어는 하늘에서 번역되어 내려온 완벽한 기계적 활자이다"
         ],
         answer: 2,
-        explanation: "사도행전 3장 22절과 요한복음 6장 14절이 증언하듯 모세와 같은 위대한 선지자에 대한 예언은 세상을 구원하러 오신 메시아 '예수 그리스도'를 가리킵니다.",
-        scripture: "신명기 18:15, 사도행전 3:22, 요한복음 6:14"
+        explanation: "하나님께서는 환상, 꿈, 역사적 연구, 마음의 깊은 감명 등을 통해 종들의 마음에 사상을 계시하셨으며, 선지자들은 성령의 도우심 아래 그 객관적 진리를 인간의 언어로 충실히 표현했습니다.",
+        scripture: "딤후 3:15-17, 벧후 1:20-21, 각 시대의 대쟁투 5-6"
       },
-      // 4번: 10월 18일 일요일 (선지자 예수 - 말씀과 창조)
+      // 5번: 10월 27일 화요일 (말로 전한 메시지)
       {
-        category: "4번 • 10월 18일 일요일 교과 (선지자 예수의 정체성)",
+        category: "5번 • 10월 27일 화요일 교과 (구술 메시지의 권위)",
         type: "mcq",
-        question: "가이사랴 빌립보에서 예수님께서 '사람들이 인자를 누구라 하느냐' 물으셨을 때, 시몬 베드로가 성령의 감동으로 고백한 올바른 신앙고백(마 16:16)은 무엇입니까?",
+        question: "성경 정경의 책을 직접 기록으로 남기지 않고 주로 '말로(구술로)' 하나님의 기별을 충실히 전했던 선지자들에 해당하지 않는 인물은 누구입니까?",
         options: [
-          "주는 침례 요한이요 환생한 엘리야이십니다",
-          "주는 그리스도시요 살아 계신 하나님의 아들이시니이다",
-          "주는 율법을 폐하러 오신 이방인의 왕이십니다",
-          "주는 예레미야와 같은 눈물의 예언자 중 하나이십니다"
+          "의를 전파한 노아",
+          "불의 사자 엘리야와 엘리사",
+          "광야의 외치는 소리 침례 요한",
+          "창세기와 출애굽기를 기록한 모세"
+        ],
+        answer: 3,
+        explanation: "모세는 성경의 첫 다섯 책(모세오경)과 욥기 등을 직접 기록한 대표적인 정경 기록자입니다. 노아, 엘리야, 엘리사, 나단, 침례 요한 등은 성경 책을 쓰지 않았지만 말로 전한 권위 있는 참선지자였습니다.",
+        scripture: "벧후 2:5, 마 7:29, 요 7:46"
+      },
+      // 6번: 10월 27일 화요일 (예수님의 사역 방식)
+      {
+        category: "6번 • 10월 27일 화요일 교과 (예수님의 말씀 권위)",
+        type: "mcq",
+        question: "지상 사역 동안 예수 그리스도께서 직접 글을 쓰셨다고 복음서에 유일하게 언급된 장면은 무엇입니까? (요 8:6)",
+        options: [
+          "산상보훈을 선포하시기 전 양피지에 율법을 쓰심",
+          "성전 뜰 바닥에 손가락으로 글씨를 쓰심",
+          "겟세마네 동산 바위에 제자들을 위한 기도를 새기심",
+          "나사렛 회당에서 두루마리 성경을 필사하심"
         ],
         answer: 1,
-        explanation: "베드로는 세상 사람들의 억측을 넘어 '주는 그리스도시요 살아 계신 하나님의 아들이시니이다'라는 위대한 진리를 온전히 고백했습니다.",
-        scripture: "마태복음 16:13-16"
+        explanation: "예수님께서는 직접 책을 저술하지 않으셨고, 오직 간음 중에 잡혀 온 여인의 사건 때 '손가락으로 땅에 쓰신' 기록이 유일합니다. 그럼에도 그분의 구술 말씀은 살아 계신 최고의 권위를 지녔습니다.",
+        scripture: "요한복음 8:6, 마태복음 7:29"
       },
-      // 5번: 10월 19일 월요일 (사도와 선지자)
+      // 7번: 10월 28일 수요일 (기록된 메시지)
       {
-        category: "5번 • 10월 19일 월요일 교과 (사도와 선지자의 사역)",
+        category: "7번 • 10월 28일 수요일 교과 (기록의 중요성)",
         type: "mcq",
-        question: "에베소서 2장 20절에서 바울은 교회가 누구의 터 위에 세워졌으며, 친히 그 모퉁잇돌이 되신 분은 누구라고 증언합니까?",
+        question: "출애굽기 17장 14절에서 하나님께서 아말렉과의 전투 직후 모세에게 기별을 '책에 기록하여 기념하게 하라'고 명하신 가장 중요한 목적은 무엇입니까?",
         options: [
-          "제사장들의 터와 가이사 황제의 모퉁잇돌",
-          "천사들의 터와 선지자들의 모퉁잇돌",
-          "사도들과 선지자들의 터와 예수 그리스도의 모퉁잇돌",
-          "장로들과 집사들의 터와 모세 율법의 모퉁잇돌"
+          "세월이 흐르며 구전 내용이 왜곡되거나 잊히지 않고 대대로 영속성을 갖도록 보존하기 위해",
+          "왕실 도서관을 세워 이집트인들에게 자랑하기 위해",
+          "제사장들의 시험 교재로 활용하기 위해",
+          "성경 두루마리의 시장 판매 가격을 높이기 위해"
+        ],
+        answer: 0,
+        explanation: "문자로 기록해 두지 않으면 시간의 흐름 속에 기억이 희미해지거나 왜곡되기 쉽습니다. 기록은 하나님의 계시에 영속성을 부여하여 모든 세대에게 순결하게 전달되도록 합니다.",
+        scripture: "출애굽기 17:14, 요한복음 20:30-31, 고전 10:11"
+      },
+      // 8번: 10월 29일 목요일 (극적 연출, 상징, 비유)
+      {
+        category: "8번 • 10월 29일 목요일 교과 (시각적 상징 행위)",
+        type: "mcq",
+        question: "선지자 에스겔이 예루살렘의 포위와 함락을 백성들에게 극적인 시각적 행위로 경고하기 위해 하나님께 명령받아 수행한 행동은 무엇입니까? (겔 4:1-8)",
+        options: [
+          "토판에 예루살렘을 그리고 이스라엘과 유다의 죄악을 위해 좌우로 일정 기간 누워 있음",
+          "성전 미문에서 40일 동안 북을 치며 춤을 춤",
+          "요단강에 금반지를 던져 넣고 다시 찾아 건져냄",
+          "바벨론 성벽 위에 올라가 흰 깃발을 흔듦"
+        ],
+        answer: 0,
+        explanation: "에스겔은 예루살렘 모형을 그린 토판을 두고, 이스라엘의 죄악을 위해 왼쪽으로 390일, 유다의 죄악을 위해 오른쪽으로 40일 동안 눕는 극적 상징 행동을 통해 백성들에게 충격을 주고 회개를 촉구했습니다.",
+        scripture: "에스겔 4:1-8, 호세아 1:2-9"
+      },
+      // 9번: 10월 30일 금요일 (엘렌 G. 화잇의 계시와 영감 이해)
+      {
+        category: "9번 • 10월 30일 금요일 교과 (사상 영감의 원리)",
+        type: "mcq",
+        question: "엘렌 G. 화잇이 설명한 '성경 영감'의 본질에 대한 진술로 가장 정확한 것은 무엇입니까?",
+        options: [
+          "기계적으로 단어 하나하나를 받아쓴 축자 영감이다",
+          "영감받는 것은 성경의 단어가 아니라 성령의 감화로 사상이 고취된 사람 자신이다",
+          "선지자가 일상에서 쓴 개인적인 안부 편지나 쇼핑 목록까지 모두 성경과 동일하게 영감받았다",
+          "선지자는 하나님께 받은 기별의 내용을 자신의 철학에 따라 임의로 변경할 수 있다"
+        ],
+        answer: 1,
+        explanation: "엘렌 화잇은 '영감받는 것은 성경의 단어들이 아니라 사람이다. 영감은 언어가 아니라 성령의 감화 아래 사상이 고취된 그 자신에게 임한다'라고 하여 사상 영감(Thought Inspiration)의 원리를 명확히 밝혔습니다.",
+        scripture: "가려 뽑은 기별 1권 21, 25, 39"
+      },
+      // 10번: 계시 전달의 단계 (요한계시록 1장)
+      {
+        category: "10번 • 연구 범위 (계시의 전달 계통)",
+        type: "mcq",
+        question: "요한계시록 1장 1-2절에 명시된 하나님의 계시 전달 순서로 올바르게 나열된 것은 무엇입니까?",
+        options: [
+          "하나님 아버지 ➔ 사도 요한 ➔ 천사 ➔ 예수 그리스도 ➔ 성도들",
+          "예수 그리스도 ➔ 사도 요한 ➔ 로마 황제 ➔ 천사 ➔ 성도들",
+          "하나님 아버지 ➔ 예수 그리스도 ➔ 천사 ➔ 사도 요한 ➔ 성도들(독자 및 청중)",
+          "천사 ➔ 하나님 아버지 ➔ 예수 그리스도 ➔ 선지자 ➔ 대제사장"
         ],
         answer: 2,
-        explanation: "에베소서 2장 20절은 '너희는 사도들과 선지자들의 터 위에 세우심을 입은 자라 그리스도 예수께서 친히 모퉁잇돌이 되셨느니라'고 기록합니다.",
-        scripture: "에베소서 2:20, 3:5"
-      },
-      // 6번: 10월 20일 화요일 (신약 선지자들의 역할)
-      {
-        category: "6번 • 10월 20일 화요일 교과 (신약 선지자들의 역할)",
-        type: "mcq",
-        question: "고린도전서 14장 3절에 명시된 대로, 신약 교회에서 '예언하는 자'가 사람들에게 말하여 감당하는 세 가지 핵심적인 영적 유익은 무엇입니까?",
-        options: [
-          "부의 축적, 건강 증진, 사회적 명예",
-          "덕을 세우며, 권면하며, 위로함",
-          "죄책감 유발, 엄격한 감시, 벌금 징수",
-          "신비한 주문 암송, 점술, 미래의 길흉 예측"
-        ],
-        answer: 1,
-        explanation: "바울은 '예언하는 자는 사람에게 말하여 덕을 세우며 권면하며 위로하는 것이요'(고전 14:3)라고 하여 교회의 영적 성장을 돕는 예언의 역할을 설명했습니다.",
-        scripture: "고린도전서 14:3, 31, 에베소서 4:11-13"
-      },
-      // 7번: 10월 20일 화요일 (성경을 기록하지 않은 신약 선지자)
-      {
-        category: "7번 • 10월 20일 화요일 교과 (신약 선지자의 실례)",
-        type: "mcq",
-        question: "사도행전 15장 32절에서 성경 정경을 직접 기록하지는 않았지만, 선지자로서 '여러 말로 형제를 권면하여 굳게' 해 주었던 인물들은 누구입니까?",
-        options: [
-          "아나니아와 삽비라",
-          "유다와 실라",
-          "더둘로와 벨릭스",
-          "바예수와 시몬"
-        ],
-        answer: 1,
-        explanation: "사도행전 15장 32절은 '유다와 실라도 선지자라 여러 말로 형제를 권면하여 굳게 하고'라고 증언합니다.",
-        scripture: "사도행전 15:32"
-      },
-      // 8번: 10월 21일 수요일 (여선지자와 젊은 동역자들)
-      {
-        category: "8번 • 10월 21일 수요일 교과 (여선지자와 젊은 동역자들)",
-        type: "mcq",
-        question: "신약 성경에 등장하는 여선지자들에 관한 설명으로 가장 올바른 것은 무엇입니까?",
-        options: [
-          "신약 시대에는 여성이 선지자로 부름받은 사례가 전혀 없었다",
-          "아기 예수님을 보고 찬양한 안나와 빌립 집사의 예언하는 네 처녀 딸 등 신약에도 신실한 여선지자들이 있었다",
-          "여선지자들의 모든 예언은 구약 성경에 빠짐없이 기록되었다",
-          "여선지자들은 교회 안에서 결코 기도하거나 찬양할 수 없었다"
-        ],
-        answer: 1,
-        explanation: "누가복음 2장의 나이 많은 선지자 안나와 사도행전 21장의 빌립의 네 딸처럼, 신약 시대에도 비정경 여선지자들이 교회를 섬겼습니다.",
-        scripture: "누가복음 2:36-38, 사도행전 21:9"
-      },
-      // 9번: 10월 22일 목요일 (신약의 거짓 선지자들)
-      {
-        category: "9번 • 10월 22일 목요일 교과 (거짓 선지자의 위험)",
-        type: "mcq",
-        question: "예수님께서 마태복음 24장 24절에서 마지막 때에 관해 엄중히 경고하신 거짓 선지자들의 두드러진 특징은 무엇입니까?",
-        options: [
-          "누구나 쉽게 알아볼 수 있도록 흉측한 모습으로 나타남",
-          "큰 표적과 기사를 보여 할 수만 있으면 택하신 자들도 미혹함",
-          "하나님의 계명과 안식일을 철저히 순종할 것을 가르침",
-          "어떤 이적이나 초자연적인 표적도 행하지 못함"
-        ],
-        answer: 1,
-        explanation: "예수께서는 '거짓 그리스도들과 거짓 선지자들이 일어나 큰 표적과 기사를 보여 할 수만 있으면 택하신 자들도 미혹하리라'(마 24:24)고 엄중히 경고하셨습니다. 표적 자체가 진리의 보증이 아닙니다.",
-        scripture: "마태복음 24:23-24, 에베소서 6:10-18"
-      },
-      // 10번: 10월 23일 금요일 (성경과 예수님 중심의 신앙)
-      {
-        category: "10번 • 10월 23일 금요일 교과 (엘렌 G. 화잇의 사역)",
-        type: "mcq",
-        question: "엘렌 G. 화잇이 자신의 모든 영감적인 글과 사역에 대해 성경과의 관계를 설명하며 사용한 가장 적절한 비유는 무엇입니까?",
-        options: [
-          "성경을 대체하는 전혀 새로운 최고의 빛",
-          "성경보다 훨씬 앞선 최후의 완성된 빛",
-          "사람들을 '큰 빛'인 성경으로 이끄는 '작은 빛'",
-          "오직 재림교인들만을 위해 비밀리에 감추어진 은밀한 빛"
-        ],
-        answer: 2,
-        explanation: "엘렌 화잇은 자신의 글을 결코 성경 위에 두지 않았으며, 사람들을 영원한 '큰 빛'인 성경 말씀과 예수 그리스도께로 인도하는 '작은 빛'이라고 겸손히 증언했습니다.",
-        scripture: "가려 뽑은 기별 3권 29-30, 시대의 소망 826"
+        explanation: "요한계시록 1장 1절은 '하나님이 그(예수 그리스도)에게 주사... 그의 천사를 그 종 요한에게 보내어 알게 하신 것'이라 하여 하나님 ➔ 예수님 ➔ 천사 ➔ 선지자(요한) ➔ 성도들로 이어지는 완전한 전달 경로를 보여줍니다.",
+        scripture: "요한계시록 1:1-3"
       },
       // 11번: 서술형 나눔 (삶 속으로)
       {
         category: "11번 • 삶 속으로 (마음 나누기)",
         type: "any",
-        question: "마지막 때 수많은 속임수와 이설이 넘쳐나는 세상 속에서, 하나님의 말씀(성경)을 굳게 붙잡고 믿음의 전신 갑주를 입기 위해 내가 실천하고 싶은 신앙 다짐을 자유롭게 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
-        placeholder: "예) 매일 아침 성경을 먼저 펼쳐 묵상하고, 사람의 말이 아닌 하나님의 말씀만을 신앙의 유일한 잣대로 삼겠습니다.",
-        explanation: "귀하고 진실한 결심의 고백을 나누어 주셔서 진심으로 감사합니다! 성령의 검 곧 하나님의 말씀으로 무장하여, 어떤 미혹 앞에서도 흔들리지 않는 굳건한 여호수아반 성도님이 되시기를 간절히 기도합니다.",
-        scripture: "에베소서 6:13-17, 베드로후서 1:19"
+        question: "하나님께서는 성경 말씀을 통해 오늘날 나에게도 분명하게 말씀하고 계십니다. 이번 주 교과를 배우며, 하나님의 기록된 말씀을 내 삶의 기준과 나침반으로 삼기 위해 실천하고 싶은 신앙적 다짐을 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
+        placeholder: "예) 매일 아침 성경을 펴서 하나님의 음성에 귀 기울이고, 세상의 여론보다 기록된 성경 말씀을 최우선 기준으로 삼겠습니다.",
+        explanation: "마음에서 우러나온 진실한 결심을 나누어 주셔서 참으로 감사합니다! 성경은 어두운 세상을 비추는 발의 등이요 길의 빛입니다. 성령의 조명을 구하며 성경을 깊이 상고하시는 복된 여호수아반 성도님이 되시기를 축복합니다.",
+        scripture: "시편 119:105, 디모데후서 3:15-17"
       }
     ];
 
@@ -698,7 +756,7 @@
     const currentScoreText = document.getElementById('current-score-text');
     const progressBar = document.getElementById('progress-bar');
 
-    // 알림 메시지 표시
+    // 안내 메시지 표시
     function showNotice(msg) {
       noticeDialog.textContent = msg;
       noticeDialog.style.display = 'block';
@@ -792,7 +850,7 @@
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 모든 은사를 주시는 분은 한 하나님이십니다.' : '❌ 아쉽지만 오답입니다. 정답은 [하나님은]입니다.');
+        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 요한은 보고 들은 것을 [다 증언하였느니라]라고 확언했습니다.' : '❌ 아쉽지만 오답입니다. 정답은 [다 증언하였느니라]입니다.');
       };
 
       input.addEventListener('keypress', (e) => {
@@ -871,7 +929,7 @@
         }
       });
 
-      showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 해설을 확인해 보세요.');
+      showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 아래 해설을 확인해 보세요.');
     }
 
     // 피드백 표시
@@ -932,9 +990,9 @@
 
       const resultMsg = document.getElementById('result-message');
       if (finalScore >= 90) {
-        resultMsg.textContent = '🌟 완벽합니다! 신약 선지자들의 가르침과 사역의 원리를 온전히 깨달으셨습니다.';
+        resultMsg.textContent = '🌟 완벽합니다! 하나님의 계시와 영감의 원리를 온전히 깨달으셨습니다.';
       } else if (finalScore >= 70) {
-        resultMsg.textContent = '👏 훌륭하십니다! 이번 주 교과 내용을 충실히 학습하셨습니다.';
+        resultMsg.textContent = '👏 훌륭하십니다! 이번 주 교과 내용을 충실히 이해하셨습니다.';
       } else {
         resultMsg.textContent = '🌱 수고 많으셨습니다! 말씀과 영감의 글을 다시금 묵상해 보세요.';
       }

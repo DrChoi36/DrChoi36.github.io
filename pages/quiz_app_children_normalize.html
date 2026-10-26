@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (4과 - 하나님으로부터 도망치다)</title>
+  <title>소년반 성경 퀴즈 (4과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -109,7 +109,7 @@
     #feedback { 
       min-height: 48px; 
       margin-top: 20px; 
-      font-size: 23px; 
+      font-size: 22px; 
       font-weight: 800; 
       color: #1e293b; 
     }
@@ -137,17 +137,17 @@
 <body>
 
   <div id="quiz-container">
-    <!-- 이름 입력 영역 -->
+    <!-- 이름 입력 화면 -->
     <div id="name-input-area" class="input-box">
       <h2 style="margin-top:0; font-size: 28px;">🔥 소년반 성경퀴즈 4과 🌿</h2>
       <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님으로부터 도망치다"<br>이름을 입력하고 낙심한 우리를 위로하시는 하나님을 만나보세요!</p>
-      <input type="text" id="name-input" placeholder="예: 엘리야" autocomplete="off" />
+      <input type="text" id="name-input" placeholder="예: 최재희" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
       <button id="start-btn" style="background-color: #ffffff; color: #b45309; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
-    <!-- 퀴즈 진행 영역 -->
+    <!-- 퀴즈 문제 화면 -->
     <div id="quiz-area" style="display:none;">
       <div id="question-number" style="font-size: 18px; font-weight: 700; color: #78716c; margin-bottom: 12px;"></div>
       <div id="question-text" class="question-box"></div>
@@ -155,7 +155,7 @@
       <div id="feedback"></div>
     </div>
 
-    <!-- 최종 결과 표시 영역 -->
+    <!-- 결과 화면 -->
     <div id="result" style="display:none;"></div>
   </div>
 
@@ -165,28 +165,28 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 4과: 하나님으로부터 도망치다 (열왕기상 19:1~18)
+      // 4과 퀴즈 데이터 (열왕기상 19:1~18)
       const questions = [
-        // 1번: OX 문제 (바람, 지진, 불과 세미한 음성)
+        // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '호렙산 동굴 앞에 선 엘리야에게 강한 바람, 지진, 불이 지나간 후, 하나님께서는 부드러운 속삭임(세미한 소리) 가운데 계셨다.', 
+          question: '호렙산 동굴 앞에 선 엘리야에게 강한 바람, 지진, 불이 차례로 지나간 후, 하나님께서는 부드러운 속삭임(세미한 소리) 가운데 임재하셨다.', 
           answer: 'O' 
         }, 
         // [근거: 본문 34, 36쪽] "강한 바람이 산을 찢고 바위를 흩어지게 했지만 하나님은 그 바람 속에 계시지 않았습니다... 다음에는 불이 산을 쓸고 지나갔지만 하나님은 그 불속에도 안 계셨습니다. 마지막으로 부드러운 속삭임이 있었습니다. 엘리야는 작은 속삭임 속에 하나님이 계신 것을 알았습니다."
 
-        // 2번: 기억절 문제 (히브리서 13:5 빈칸 채우기)
+        // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "돈을 사랑하지 말고 있는 바를 족한 줄로 알라 그가 친히 말씀하시기를 내가 결코 너희를 (      ) 아니하고 너희를 떠나지 아니하리라 하셨느니라" (히브리서 13:5)', 
+          question: '기억절: "돈을 사랑하지 말고 있는 바를 족한 줄로 알라 그가 친히 말씀하시기를 내가 결코 너희를 (      )하지 아니하고 너희를 떠나지 아니하리라 하셨느니라" (히브리서 13:5)', 
           answer: '버리지' 
         },
         // [근거: 본문 33쪽 기억절] "내가 결코 너희를 버리지 아니하고 너희를 떠나지 아니하리라 하셨느니라(히브리서 13:5)"
 
-        // 3번: 4지 선다형 (엘리야를 죽이겠다고 위협한 인물)
+        // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '갈멜산의 기적과 비가 내린 소식을 듣고도 회개하지 않고, 엘리야에게 심부름꾼을 보내 "내일 이맘때에 반드시 네 생명을 빼앗겠다"며 위협한 인물은 누구인가요?', 
+          question: '갈멜산의 승리와 비가 내린 소식을 듣고도 회개하지 않고, 엘리야에게 심부름꾼을 보내 "내일 이맘때에 반드시 네 생명을 빼앗겠다"며 위협한 인물은 누구인가요?', 
           options: [
             'A. 이세벨 왕비', 
             'B. 아달랴 왕비', 
@@ -197,10 +197,10 @@
         },
         // [근거: 본문 33쪽] "그러나 이세벨 왕비는 감동을 받지 않았습니다... 이세벨 왕비의 심부름꾼이 엘리야 선지자에게 찾아와 무서운 경고를 전했습니다."
 
-        // 4번: 4지 선다형 (바알에게 무릎 꿇지 않은 남은 자의 수)
+        // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '"오직 나만 홀로 남았습니다"라며 외로워하고 절망하던 엘리야에게, 하나님께서 바알에게 절하지 않고 여호와를 충성스럽게 따르고 있다고 알려주신 남은 사람들의 수는 몇 명이었나요?', 
+          question: '"오직 나만 홀로 남았습니다"라며 절망하던 엘리야에게, 하나님께서 바알에게 무릎 꿇지 않고 여호와께 충성하도록 남겨두셨다고 알려주신 성도의 수는 몇 명이었나요?', 
           options: [
             'A. 70명', 
             'B. 700명', 
@@ -211,18 +211,18 @@
         },
         // [근거: 본문 36쪽] "주님께서는 바알에게 절하지 않고 하나님을 따르는 7,000명이 있다며 '너는 네 길을 돌이켜' 가라고 말씀하셨습니다."
 
-        // 5번: 단답형 (엘리야가 40일 밤낮을 걸어 도착한 하나님의 산)
+        // 5번: 단답형
         { 
           type: 'short',
-          question: '천사가 준 구운 빵과 물을 먹고 힘을 얻은 엘리야가 40일 동안 걸어가 동굴에 머물렀던 남쪽 팔레스타인의 거룩한 산 이름은 무엇인가요?', 
+          question: '천사가 준 따뜻한 빵과 물병의 물을 마시고 힘을 얻은 엘리야가 40일 밤낮을 걸어가 머물렀던 남쪽 팔레스타인의 거룩한 산 이름은 무엇인가요?', 
           answer: '호렙산' 
         },
         // [근거: 본문 34쪽] "엘리야는 40일 동안 160km 이상을 여행했습니다. 마침내 남쪽 팔레스타인의 호렙산에서 엘리야는 멈추었습니다."
 
-        // 6번: 느낀점 (자유 서술형)
+        // 6번: 느낀점 적기
         { 
           type: 'any',  
-          question: '갈멜산에서 큰 승리를 거두었던 엘리야도 두려움과 외로움 때문에 낙심하여 도망쳤지만, 하나님께서는 따뜻한 음식과 세미한 음성으로 다시 힘을 주셨습니다. 여러분도 걱정이나 무서움으로 낙심될 때 하나님께서 나와 함께하신다는 것을 어떻게 기억하고 힘을 얻고 싶은지 자유롭게 적어보세요.' 
+          question: '갈멜산의 큰 기적을 체험했던 엘리야도 두려움과 외로움으로 낙심해 도망쳤지만, 하나님께서는 따뜻한 음식과 세미한 음성으로 다시 일으켜 주셨습니다. 여러분도 두렵거나 지칠 때 하나님께서 나와 함께하신다는 약속을 어떻게 신뢰하고 싶은지 자유롭게 적어보세요.' 
         }
       ];
 
@@ -230,7 +230,7 @@
       let score = 0;
       let participantName = '';
 
-      // 광야, 황혼, 로뎀나무 그늘, 호렙산 동굴, 고요한 위로를 상징하는 앰버/어스/브라운 톤 테마
+      // 로뎀나무 쉼, 광야, 호렙산 동굴, 세미한 음성을 연상시키는 차분한 앰버/브라운 계열 테마
       const themes = ['#D97706', '#B45309', '#92400E', '#78350F', '#854D0E', '#713F12'];
 
       const nameInputArea = document.getElementById('name-input-area');
@@ -290,7 +290,7 @@
         } else {
           const input = document.createElement('input');
           input.type = 'text';
-          input.placeholder = q.type === 'any' ? '생각이나 결심을 자유롭게 적어보세요' : '정답 입력';
+          input.placeholder = q.type === 'any' ? '생각이나 다짐을 자유롭게 적어보세요' : '정답 입력';
           if (q.type === 'any') {
             input.style.width = '88%';
             input.style.textAlign = 'left';
@@ -334,7 +334,7 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 호렙산 유연 처리 (호렙, 호렙산, 시내산)
+          // 유연한 정답 허용 (호렙산/호렙/시내산, 버리지/버리시지 등)
           if (nAns === '호렙산' && (nUser === '호렙산' || nUser === '호렙' || nUser === '시내산')) {
             isCorrect = true;
           } else if (nAns === '버리지' && (nUser === '버리지' || nUser === '버리시지' || nUser === '버리지아니하고')) {
@@ -345,7 +345,7 @@
         }
 
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #b45309;'>지치고 무서울 때마다 세미한 음성으로 우리를 위로하시는 하나님을 신뢰하겠다는 멋진 다짐이에요! 🌿🙏✨</span>";
+          feedbackEl.innerHTML = "<span style='color: #b45309;'>낙심될 때마다 세미한 음성으로 우리를 위로하시는 하나님을 신뢰하겠다는 멋진 다짐이에요! 🌿🙏✨</span>";
           score++;
         } else if (isCorrect) {
           feedbackEl.innerHTML = "<span style='color: #059669;'>정답입니다! ⭕</span>";
@@ -355,11 +355,9 @@
           feedbackEl.innerHTML = `<span style='color: #dc2626;'>아쉬워요! ❌ (정답: ${correctHint})</span>`;
         }
 
-        // 기존 입력 요소 비활성화
         const inputs = answerAreaEl.querySelectorAll('button, input');
         inputs.forEach(el => el.disabled = true);
 
-        // 다음 문제 버튼 생성
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
@@ -400,7 +398,6 @@
         `;
       }
 
-      // 문자열 정규화 (공백, 문장부호 제거)
       function normalize(str) {
         if (!str) return '';
         return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();

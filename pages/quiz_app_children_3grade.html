@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 성경퀴즈 4과 - 나의 겉옷을 가져오라</title>
+  <title>유년반 교과 퀴즈 (5과: 용서의 불)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
-      font-family: 'Comic Sans MS', 'Comic Neue', 'Noto Sans KR', sans-serif; 
-      background: #f1f5f9; 
+      font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
+      background: #fff7ed; /* 따뜻하고 밝은 주황빛 테마 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,8 +19,8 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #0284c7; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      background-color: #ea580c; /* 제단의 거룩한 불을 상징하는 오렌지 */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
 
@@ -28,23 +28,22 @@
       margin: 10px; padding: 15px 30px; font-size: 22px; 
       border: none; border-radius: 12px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #cbd5e1;
+      box-shadow: 0 3px 0 #ddd;
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #e0f2fe; }
+    button:hover { background-color: #ffedd5; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #0284c7; width: 70%; text-align: center; margin-bottom: 20px; 
-      outline: none;
+      border: 2px solid #ea580c; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #0284c7;
+      border: 5px solid #ea580c;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -58,10 +57,10 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 4과</h2>
-      <p style="font-size: 20px; margin-top: -10px;">나의 겉옷을 가져오라 (디모데후서)</p>
+      <h2>유년반 성경퀴즈 5과</h2>
+      <p style="font-size: 20px;">용서의 불 (이사야의 부르심)</p>
       <p>이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 사랑이" />
+      <input type="text" id="name-input" placeholder="예: 정재일" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
@@ -76,7 +75,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 4과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 5과</div>
 
   <script>
     'use strict';
@@ -84,52 +83,49 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '바울은 차가운 로마 감옥에 갇혀 외롭고 힘들었지만, 끝까지 예수님을 전하고 교회를 사랑하는 믿음을 지켰어요.', 
+        question: '하나님 앞에 자신이 부족하다고 느낀 이사야에게 천사가 제단의 숯을 입술에 대어 죄를 깨끗하게 용서해 주었어요.', 
         answer: 'O',
-        accepts: ['O', 'o', '0', 'ㅇ', '오', '참', '맞음'],
-        comment: '맞아요! 바울은 감옥에서도 하나님을 신뢰하며 죽음을 이기신 예수님의 복음을 끝까지 전했답니다! ⛓️✨'
+        comment: '맞아요! 하나님께서는 은혜로 이사야의 죄를 용서하시고 용기를 주셨어요!' 
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "하나님은... 너희 행위와 그의 이름을 위하여 나타낸 사랑으로 이미 성도를 (    ) 것과 이제도 섬기고 있는 것을 잊어버리지 아니하시느니라" (히브리서 6:10)', 
-        answer: '섬긴',
-        accepts: ['섬긴', '섬긴것', '섬김'],
-        comment: '하나님께서는 우리가 성도들과 이웃을 예수님의 사랑으로 도운 모든 섬김을 결코 잊지 않으세요! 💖'
+        question: '기억절: "보라 이것이 네 입에 닿았으니 네 악이 제하여졌고 네 (   )가 사하여졌느니라 하더라" (이사야 6:7)', 
+        answer: '죄',
+        accepts: ['죄', '죄가'],
+        comment: '하나님의 은혜로 우리의 죄를 깨끗하게 용서받을 수 있어요!' 
       },
       { 
         type: 'mcq',  
-        question: '바울이 마치 친아들처럼 아끼며 사랑했고, 로마 감옥에서 마지막 편지(디모데후서)를 보낸 젊은 동역자는 누구일까요?', 
-        options: ['A. 아굴라', 'B. 디모데', 'C. 골리앗', 'D. 빌레몬'], 
-        answer: 'B. 디모데',
-        accepts: ['B', 'B.', '디모데', 'B디모데', 'B.디모데'],
-        comment: '바울은 어릴 때부터 믿음으로 자라 함께 복음을 전했던 사랑하는 아들 디모데를 매우 보고 싶어 했어요! 📜'
+        question: '여섯 날개를 가지고 하나님의 거룩하심을 아름답게 찬양하던 천사들은 누구였나요?', 
+        options: ['A. 가브리엘', 'B. 스랍 천사들', 'C. 미가엘', 'D. 나팔 천사들'], 
+        answer: 'B. 스랍 천사들',
+        comment: '스랍 천사들은 두 날개로 얼굴을 가리고, 두 날개로 발을 가리며 하나님을 경외하고 찬양했어요.' 
       },
       { 
         type: 'mcq',  
-        question: '차가운 감옥에서 추운 겨울을 맞이하게 된 바울이 디모데에게 꼭 가져다 달라고 간절히 부탁한 물건은 무엇일까요?', 
+        question: '"내가 누구를 보내며 누가 우리를 위하여 갈꼬?" 하시는 하나님의 음성에 이사야는 어떻게 대답했나요?', 
         options: [
-          'A. 따뜻한 겉옷', 
-          'B. 황금 보석', 
-          'C. 번쩍이는 칼', 
-          'D. 시원한 얼음물'
+          'A. "내가 여기 있나이다 나를 보내소서!"', 
+          'B. "저는 너무 어려서 못 가요"', 
+          'C. "다른 사람을 먼저 보내주세요"', 
+          'D. "조금만 더 생각해보겠습니다"'
         ], 
-        answer: 'A. 따뜻한 겉옷',
-        accepts: ['A', 'A.', 'A.따뜻한겉옷', '따뜻한겉옷', '겉옷'],
-        comment: '바울은 겨울이 오기 전에 따뜻한 겉옷을 가져와 달라고 부탁했어요. 감옥의 추위를 견디기 위해 꼭 필요했답니다! 🧥'
+        answer: 'A. "내가 여기 있나이다 나를 보내소서!"',
+        comment: '이사야는 하나님의 큰 사랑과 용서를 경험하고 기쁜 마음으로 자원하여 복음의 메신저가 되었어요!' 
       },
       { 
         type: 'short',
-        question: '바울처럼 하나님을 위해 일하는 목사님과 성도들을 돕고 사랑으로 돌보는 착한 행동을 무엇이라고 할까요? (2글자)', 
-        answer: '섬김', 
-        accepts: ['섬김', '봉사'],
-        comment: '교회 지도자들과 이웃들에게 미소와 친절, 사랑을 베푸는 섬김은 곧 하나님을 섬기는 멋진 일이랍니다! 🤝'
+        question: '천사가 제단에서 부젓가락으로 집어 이사야의 입술에 닿게 하여 깨끗하게 해 준 뜨거운 것은 무엇일까요? (1글자)', 
+        answer: '숯', 
+        accepts: ['숯', '숯불'],
+        comment: '불타는 제단의 숯이 입술에 닿았을 때 아프지 않고 마음에 참된 평안과 용서가 임했어요.' 
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#0284c7', '#0369a1', '#075985', '#0c4a6e', '#0891b2'];
+    const themes = ['#ea580c', '#c2410c', '#9a3412', '#b45309', '#d97706'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -146,11 +142,7 @@
 
     function startGame() {
       const nameVal = nameInput.value.trim();
-      if (!nameVal) { 
-        nameInput.placeholder = "이름을 꼭 입력해 주세요!";
-        nameInput.focus();
-        return; 
-      }
+      if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
       participantName = nameVal;
       nameInputArea.style.display = 'none';
       quizArea.style.display = 'block';
@@ -196,32 +188,21 @@
       let isCorrect = false;
 
       const normUser = normalize(userAns);
-      const normAnswer = normalize(q.answer);
-      const allowedAnswers = (q.accepts || []).map(a => normalize(a));
+      const targetList = q.accepts ? q.accepts.map(normalize) : [normalize(q.answer)];
 
-      // 1. 기본 정답 및 허용 목록과 정확 일치
-      if (normUser === normAnswer || allowedAnswers.includes(normUser)) {
-        isCorrect = true;
-      } 
-      // 2. 객관식(MCQ)의 경우 보기 기호(A, B 등) 일치 확인
-      else if (q.type === 'mcq') {
-        const optionPrefix = normAnswer.charAt(0);
-        if (normUser === optionPrefix || normUser.startsWith(optionPrefix)) {
-          isCorrect = true;
-        }
-      } 
-      // 3. 주관식/빈칸 채우기: 어린이가 "섬긴입니다", "섬김이에요" 등 문장 형태로 적었을 때 허용
-      else if (q.type === 'fill' || q.type === 'short') {
-        if (normUser.length >= normAnswer.length && normUser.includes(normAnswer)) {
-          isCorrect = true;
-        }
+      if (q.type === 'mcq') {
+        isCorrect = (userAns === q.answer) || (normUser === normalize(q.answer));
+      } else if (q.type === 'ox') {
+        isCorrect = (normUser === normalize(q.answer));
+      } else {
+        isCorrect = targetList.some(target => normUser === target || (normUser.length >= 2 && normUser.includes(target)));
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#0369a1;'>우와! 정말 훌륭해요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#c2410c;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#dc2626;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
@@ -234,7 +215,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#075985';
+      nextBtn.style.backgroundColor = '#9a3412';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -248,14 +229,12 @@
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length 
-        ? "대단해요! 바울과 디모데처럼 예수님의 사랑으로 사람들을 돕고 섬기는 최고의 어린이예요!" 
-        : "정말 수고했어요! 교회와 가정에서 서로를 따뜻하게 돕고 섬기는 착한 어린이가 되어요!";
+      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🧥📜✨</div>
-        <p>우리 어린이의 성경 퀴즈 점수는</p>
-        <p><span style="color:#0284c7; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">🔥</div>
+        <p>우리 어린이의 5과 점수는</p>
+        <p><span style="color:#ea580c; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;
@@ -263,11 +242,7 @@
 
     function normalize(str) {
       if (!str) return '';
-      try {
-        return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
-      } catch (e) {
-        return str.replace(/[\s.,!?'"~@#$%^&*()_\-+=\[\]{}<>:;\/\\|]/g, '').toLowerCase();
-      }
+      return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
     }
   </script>
 </body>

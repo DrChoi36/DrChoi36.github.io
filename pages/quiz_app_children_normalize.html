@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (5과 테스트 수정)</title>
+  <title>소년반 성경 퀴즈 (5과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -11,7 +11,7 @@
       margin: 0; 
       padding: 0; 
       font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
-      background: #fdfbf7; 
+      background: #fefcf3; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
@@ -31,8 +31,8 @@
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #d97706; 
-      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.22); 
+      background-color: #ea580c; 
+      box-shadow: 0 10px 25px rgba(234, 88, 12, 0.25); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
     }
@@ -58,7 +58,7 @@
       transition: all 0.2s ease;
     }
     button:hover { 
-      background-color: #fffbeb; 
+      background-color: #fff7ed; 
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
@@ -83,7 +83,7 @@
       padding: 12px 18px; 
       font-size: 20px; 
       border-radius: 10px; 
-      border: 2px solid #fde68a; 
+      border: 2px solid #fed7aa; 
       width: 75%; 
       font-family: inherit; 
       text-align: center; 
@@ -92,8 +92,8 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus {
-      border-color: #d97706;
-      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.25);
+      border-color: #ea580c;
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
     }
 
     #result { 
@@ -139,12 +139,12 @@
   <div id="quiz-container">
     <!-- 이름 입력 화면 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">🔥 소년반 성경퀴즈 5과 테스트🌿</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님으로부터 도망치다"<br>이름을 입력하고 낙심한 우리를 위로하시는 하나님을 만나보세요!</p>
+      <h2 style="margin-top:0; font-size: 28px;">🔥 소년반 성경퀴즈 5과 🛞</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님과 함께 달리기"<br>이름을 입력하고 우리를 다시 일으켜 세우시는 하나님을 만나보세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn" style="background-color: #ffffff; color: #b45309; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #ffffff; color: #ea580c; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
     <!-- 퀴즈 문제 화면 -->
@@ -165,64 +165,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 4과 퀴즈 데이터 (열왕기상 19:1~18)
+      // 5과 퀴즈 데이터 (열왕기상 19장, 열왕기하 2장, 마태복음 17장)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '호렙산 동굴 앞에 선 엘리야에게 강한 바람, 지진, 불이 차례로 지나간 후, 하나님께서는 부드러운 속삭임(세미한 소리) 가운데 임재하셨다.', 
+          question: '엘리야는 다시 사명을 받아 돌아간 뒤, 사무엘 선지자가 세웠던 "선지자 학교" 세 곳을 재건하고 엘리사를 후계자로 세웠다.', 
           answer: 'O' 
         }, 
-        // [근거: 본문 34, 36쪽] "강한 바람이 산을 찢고 바위를 흩어지게 했지만 하나님은 그 바람 속에 계시지 않았습니다... 다음에는 불이 산을 쓸고 지나갔지만 하나님은 그 불속에도 안 계셨습니다. 마지막으로 부드러운 속삭임이 있었습니다. 엘리야는 작은 속삭임 속에 하나님이 계신 것을 알았습니다."
+        // [근거: 교재 40쪽] "학교 세 곳을 재건하는 것도 엘리야가 한 특별한 일이었습니다. 그 학교는 '선지자 학교'라고 불렸습니다. 오래 전에 사무엘 선지자가... 또한 엘리사가 뒤를 이어 엘리야의 일을 맡을 수 있도록 훈련하라고 말씀하셨습니다."
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "돈을 사랑하지 말고 있는 바를 족한 줄로 알라 그가 친히 말씀하시기를 내가 결코 너희를 (      ) 아니하고 너희를 떠나지 아니하리라 하셨느니라" (히브리서 13:5)', 
-          answer: '버리지' 
+          question: '기억절: "여호와께서 사람의 걸음을 정하시고 그의 길을 기뻐하시나니 그는 넘어지나 아주 엎드러지지 아니함은 여호와께서 그의 손으로 (      )이로다" (시편 37:23, 24)', 
+          answer: '붙드심' 
         },
-        // [근거: 본문 33쪽 기억절] "내가 결코 너희를 버리지 아니하고 너희를 떠나지 아니하리라 하셨느니라(히브리서 13:5)"
+        // [근거: 교재 39쪽 기억절] "여호와께서 그의 손으로 붙드심이로다 (시편 37:23, 24)"
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '갈멜산의 승리와 비가 내린 소식을 듣고도 회개하지 않고, 엘리야에게 심부름꾼을 보내 "내일 이맘때에 반드시 네 생명을 빼앗겠다"며 위협한 인물은 누구인가요?', 
+          question: '지상에서의 사명을 모두 마친 엘리야는 죽음을 맛보지 않고 하늘로 올라갔습니다. 이때 나타난 거대한 불덩어리 모습의 탈것은 무엇이었나요?', 
           options: [
-            'A. 이세벨 왕비', 
-            'B. 아달랴 왕비', 
-            'C. 미갈 공주', 
-            'D. 헤로디아'
+            'A. 불마차 (불병거)', 
+            'B. 불기둥', 
+            'C. 불사다리', 
+            'D. 불수레바퀴'
           ], 
-          answer: 'A. 이세벨 왕비' 
+          answer: 'A. 불마차 (불병거)' 
         },
-        // [근거: 본문 33쪽] "그러나 이세벨 왕비는 감동을 받지 않았습니다... 이세벨 왕비의 심부름꾼이 엘리야 선지자에게 찾아와 무서운 경고를 전했습니다."
+        // [근거: 교재 39, 40쪽] "특별한 불병거를 타고 하늘로 올라갔습니다... 하늘에 거대한 불덩어리 모습을 한 마차가 내려와서 엘리야를 데려갔습니다."
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '"오직 나만 홀로 남았습니다"라며 절망하던 엘리야에게, 하나님께서 바알에게 무릎 꿇지 않고 여호와께 충성하도록 남겨두셨다고 알려주신 성도의 수는 몇 명이었나요?', 
+          question: '변화산에서 예수님이 영광스러운 모습으로 변형되셨을 때, 하늘에서 내려와 예수님을 격려했던 두 사람은 누구였나요?', 
           options: [
-            'A. 70명', 
-            'B. 700명', 
-            'C. 7,000명', 
-            'D. 12,000명'
+            'A. 아브라함과 다윗', 
+            'B. 모세와 엘리야', 
+            'C. 노아와 다니엘', 
+            'D. 여호수아와 갈렙'
           ], 
-          answer: 'C. 7,000명' 
+          answer: 'B. 모세와 엘리야' 
         },
-        // [근거: 본문 36쪽] "주님께서는 바알에게 절하지 않고 하나님을 따르는 7,000명이 있다며 '너는 네 길을 돌이켜' 가라고 말씀하셨습니다."
+        // [근거: 교재 41쪽] "하늘에서 모세와 함께 내려와 예수님을 격려했습니다. 엘리야는 죽지 않고 하늘로 올라갈 사람들을... 모세는 죽었지만 예수님께서 다시 오실 때 일어나 하늘로 올라갈 수 있는 사람들을 예수님께 상기시켜 주었습니다."
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '천사가 준 따뜻한 빵과 물병의 물을 마시고 힘을 얻은 엘리야가 40일 밤낮을 걸어가 머물렀던 남쪽 팔레스타인의 거룩한 산 이름은 무엇인가요?', 
-          answer: '호렙산' 
+          question: '엘리야의 뒤를 이어 사역을 이어받고, 함께 거닐다 엘리야가 불마차를 타고 승천하는 모습을 목격한 엘리야의 제자 선지자는 누구인가요?', 
+          answer: '엘리사' 
         },
-        // [근거: 본문 34쪽] "엘리야는 40일 동안 160km 이상을 여행했습니다. 마침내 남쪽 팔레스타인의 호렙산에서 엘리야는 멈추었습니다."
+        // [근거: 교재 40쪽] "어느 날 엘리야와 엘리사가 함께 거닐고 있을 때 하늘에 거대한 불덩어리 모습을 한 마차가 내려와서..."
 
         // 6번: 느낀점 적기
         { 
           type: 'any',  
-          question: '갈멜산의 큰 기적을 체험했던 엘리야도 두려움과 외로움으로 낙심해 도망쳤지만, 하나님께서는 따뜻한 음식과 세미한 음성으로 다시 일으켜 주셨습니다. 여러분도 두렵거나 지칠 때 하나님께서 나와 함께하신다는 약속을 어떻게 신뢰하고 싶은지 자유롭게 적어보세요.' 
+          question: '실수하고 도망쳤던 엘리야를 꾸짖지 않으시고 용서하시며 두 번째 기회를 주신 하나님처럼, 우리도 넘어졌을 때 나를 붙들어 주시는 하나님을 어떻게 의지하고 싶은지 자유롭게 적어보세요.' 
         }
       ];
 
@@ -230,8 +230,8 @@
       let score = 0;
       let participantName = '';
 
-      // 로뎀나무 쉼, 광야, 호렙산 동굴, 세미한 음성을 연상시키는 차분한 앰버/브라운 계열 테마
-      const themes = ['#D97706', '#B45309', '#92400E', '#78350F', '#854D0E', '#713F12'];
+      // 불병거, 승천, 하나님의 회복과 은혜를 상징하는 선명하고 따뜻한 오렌지/레드/골드 테마
+      const themes = ['#EA580C', '#C2410C', '#9A3412', '#B45309', '#D97706', '#7C2D12'];
 
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
@@ -299,7 +299,7 @@
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#d97706';
+          submitBtn.style.backgroundColor = '#ea580c';
           submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(document.createElement('br'));
@@ -334,10 +334,10 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 유연한 정답 허용 (호렙산/호렙/시내산, 버리지/버리시지 등)
-          if (nAns === '호렙산' && (nUser === '호렙산' || nUser === '호렙' || nUser === '시내산')) {
+          // 유연한 정답 인정 로직
+          if (nAns === '붙드심' && (nUser.includes('붙드심') || nUser === '붙들다' || nUser === '붙들어주심')) {
             isCorrect = true;
-          } else if (nAns === '버리지' && (nUser === '버리지' || nUser === '버리시지' || nUser === '버리지아니하고')) {
+          } else if (nAns === '엘리사' && (nUser === '엘리사' || nUser === '엘리사선지자')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
@@ -345,7 +345,7 @@
         }
 
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #b45309;'>낙심될 때마다 세미한 음성으로 우리를 위로하시는 하나님을 신뢰하겠다는 멋진 다짐이에요! 🌿🙏✨</span>";
+          feedbackEl.innerHTML = "<span style='color: #c2410c;'>우리의 실수를 용서하시고 다시 손잡아 주시는 하나님을 향한 훌륭한 고백입니다! 🔥🕊️✨</span>";
           score++;
         } else if (isCorrect) {
           feedbackEl.innerHTML = "<span style='color: #059669;'>정답입니다! ⭕</span>";
@@ -361,7 +361,7 @@
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
-        nextBtn.style.backgroundColor = '#d97706';
+        nextBtn.style.backgroundColor = '#ea580c';
         nextBtn.style.color = '#ffffff';
         nextBtn.style.marginTop = '18px';
         nextBtn.style.padding = '12px 28px';
@@ -384,17 +384,17 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "가장 낙심하고 힘든 순간에도 엘리야를 찾아와 먹이시고 세미한 음성으로 품어주셨던 하나님께서 여러분의 곁에 언제나 함께하십니다! 🌿🕊️";
+        let praiseMsg = "우리가 넘어질 때도 아주 엎드러지지 않도록 그분의 강한 손으로 붙들어 주시는 하나님의 사랑을 마음에 품는 소년반 친구가 되길 응원합니다! 🛞🔥";
         if (score === questions.length) {
-          praiseMsg = "놀라워요! 만점입니다! 지친 우리를 결코 버리지 않으시는 하나님의 은혜를 깊이 이해한 소년반 최고의 믿음 용사입니다! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 엘리야처럼 하나님과 함께 끝까지 믿음의 경주를 달릴 소년반 최고의 믿음 용사입니다! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">4과 총 <strong>${questions.length}</strong>문제 중<br>
-          <span style="color:#d97706; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="font-size:22px;">5과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#ea580c; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
           <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
-          <button onclick="location.reload()" style="background-color:#d97706; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
+          <button onclick="location.reload()" style="background-color:#ea580c; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
         `;
       }
 

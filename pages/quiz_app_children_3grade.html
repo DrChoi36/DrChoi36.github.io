@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (5과: 용서의 불)</title>
+  <title>유년반 교과 퀴즈 (6과: 늘어난 시간)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fff7ed; /* 따뜻하고 밝은 주황빛 테마 */
+      background: #fefce8; /* 따뜻하고 찬란한 햇살 테마 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #ea580c; /* 제단의 거룩한 불을 상징하는 오렌지 */
+      background-color: #ca8a04; /* 해시계와 햇살을 상징하는 골드 옐로우 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -32,18 +32,18 @@
       transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #ffedd5; }
+    button:hover { background-color: #fef9c3; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #ea580c; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #ca8a04; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #ea580c;
+      border: 5px solid #ca8a04;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -57,8 +57,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 5과</h2>
-      <p style="font-size: 20px;">용서의 불 (이사야의 부르심)</p>
+      <h2>유년반 성경퀴즈 6과</h2>
+      <p style="font-size: 20px;">늘어난 시간 (히스기야 왕의 기도)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 정재일" />
       <br>
@@ -75,7 +75,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 5과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 6과</div>
 
   <script>
     'use strict';
@@ -83,49 +83,47 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '하나님 앞에 자신이 부족하다고 느낀 이사야에게 천사가 제단의 숯을 입술에 대어 죄를 깨끗하게 용서해 주었어요.', 
+        question: '심각한 병에 걸려 죽게 되었던 히스기야 왕은 얼굴을 벽으로 향하고 하나님께 눈물로 간절히 기도했어요.', 
         answer: 'O',
-        comment: '맞아요! 하나님께서는 은혜로 이사야의 죄를 용서하시고 용기를 주셨어요!' 
+        comment: '맞아요! 아무것도 할 수 없는 어려운 순간에 히스기야 왕은 하나님께 전심으로 부르짖었어요!' 
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "보라 이것이 네 입에 닿았으니 네 악이 제하여졌고 네 (   )가 사하여졌느니라 하더라" (이사야 6:7)', 
-        answer: '죄',
-        accepts: ['죄', '죄가'],
-        comment: '하나님의 은혜로 우리의 죄를 깨끗하게 용서받을 수 있어요!' 
+        question: '기억절: "여호와께서 하신 말씀을 그가 이루신다는 (   )이니라" (이사야 38:7)', 
+        answer: '증거',
+        comment: '하나님은 말씀하신 약속을 반드시 지키시는 신실하신 분이에요!' 
       },
       { 
         type: 'mcq',  
-        question: '여섯 날개를 가지고 하나님의 거룩하심을 아름답게 찬양하던 천사들은 누구였나요?', 
-        options: ['A. 가브리엘', 'B. 스랍 천사들', 'C. 미가엘', 'D. 나팔 천사들'], 
-        answer: 'B. 스랍 천사들',
-        comment: '스랍 천사들은 두 날개로 얼굴을 가리고, 두 날개로 발을 가리며 하나님을 경외하고 찬양했어요.' 
+        question: '하나님께서는 히스기야 왕의 기도를 들으시고 생명을 몇 년 더 살게 해주시겠다고 약속하셨나요?', 
+        options: ['A. 3년', 'B. 7년', 'C. 15년', 'D. 20년'], 
+        answer: 'C. 15년',
+        comment: '"네 기도를 듣고 네 눈물을 보았노라 내가 너를 15년 더 살게 하겠노라"고 약속해 주셨어요!' 
       },
       { 
         type: 'mcq',  
-        question: '"내가 누구를 보내며 누가 우리를 위하여 갈꼬?" 하시는 하나님의 음성에 이사야는 어떻게 대답했나요?', 
+        question: '하나님께서 히스기야 왕에게 약속을 지키신다는 표적으로 보여주신 놀라운 기적은 무엇인가요?', 
         options: [
-          'A. "내가 여기 있나이다 나를 보내소서!"', 
-          'B. "저는 너무 어려서 못 가요"', 
-          'C. "다른 사람을 먼저 보내주세요"', 
-          'D. "조금만 더 생각해보겠습니다"'
+          'A. 하늘에서 번개가 쳤다', 
+          'B. 해시계의 그림자가 뒤로 10도 물러갔다', 
+          'C. 강물이 거꾸로 흘렀다', 
+          'D. 성전 문이 저절로 열렸다'
         ], 
-        answer: 'A. "내가 여기 있나이다 나를 보내소서!"',
-        comment: '이사야는 하나님의 큰 사랑과 용서를 경험하고 기쁜 마음으로 자원하여 복음의 메신저가 되었어요!' 
+        answer: 'B. 해시계의 그림자가 뒤로 10도 물러갔다',
+        comment: '앞으로만 가던 해 그림자를 뒤로 물러나게 하심으로 약속의 확실한 증거를 보여주셨어요!' 
       },
       { 
         type: 'short',
-        question: '천사가 제단에서 부젓가락으로 집어 이사야의 입술에 닿게 하여 깨끗하게 해 준 뜨거운 것은 무엇일까요? (1글자)', 
-        answer: '숯', 
-        accepts: ['숯', '숯불'],
-        comment: '불타는 제단의 숯이 입술에 닿았을 때 아프지 않고 마음에 참된 평안과 용서가 임했어요.' 
+        question: '몸이 몹시 아프고 힘든 순간에 히스기야 왕이 하나님께 간절한 마음으로 드린 것은 무엇일까요? (2글자)', 
+        answer: '기도', 
+        comment: '우리도 힘들고 아플 때 언제나 우리의 기도를 들으시는 하나님께 기도할 수 있어요!' 
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#ea580c', '#c2410c', '#9a3412', '#b45309', '#d97706'];
+    const themes = ['#ca8a04', '#d97706', '#b45309', '#eab308', '#a16207'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -187,19 +185,16 @@
       const q = questions[current];
       let isCorrect = false;
 
-      const normUser = normalize(userAns);
-      const targetList = q.accepts ? q.accepts.map(normalize) : [normalize(q.answer)];
-
       if (q.type === 'mcq') {
-        isCorrect = (userAns === q.answer) || (normUser === normalize(q.answer));
-      } else if (q.type === 'ox') {
-        isCorrect = (normUser === normalize(q.answer));
+        isCorrect = (userAns === q.answer);
+      } else if (q.type === 'short') {
+        isCorrect = normalize(userAns).includes(normalize(q.answer));
       } else {
-        isCorrect = targetList.some(target => normUser === target || (normUser.length >= 2 && normUser.includes(target)));
+        isCorrect = normalize(userAns) === normalize(q.answer);
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#c2410c;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#ca8a04;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -215,7 +210,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#9a3412';
+      nextBtn.style.backgroundColor = '#854d0e';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -232,9 +227,9 @@
       let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🔥</div>
-        <p>우리 어린이의 5과 점수는</p>
-        <p><span style="color:#ea580c; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">☀️</div>
+        <p>우리 어린이의 6과 점수는</p>
+        <p><span style="color:#ca8a04; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;

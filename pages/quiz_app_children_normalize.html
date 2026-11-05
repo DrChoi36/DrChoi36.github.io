@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>소년반 성경 퀴즈 (5과)</title>
+  <title>소년반 성경 퀴즈 (6과)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap');
     
@@ -11,13 +11,13 @@
       margin: 0; 
       padding: 0; 
       font-family: 'Noto Sans KR', 'Comic Neue', sans-serif; 
-      background: #fefcf3; 
+      background: #f8fafc; 
       display: flex; 
       justify-content: center; 
       align-items: center; 
       min-height: 100vh; 
       font-size: 20px; 
-      color: #1e293b;
+      color: #0f172a;
     }
 
     #quiz-container { 
@@ -31,8 +31,8 @@
       padding: 32px 24px; 
       border-radius: 20px; 
       color: #ffffff; 
-      background-color: #ea580c; 
-      box-shadow: 0 10px 25px rgba(234, 88, 12, 0.25); 
+      background-color: #2563eb; 
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25); 
       transition: background-color 0.4s ease, transform 0.2s ease; 
       line-height: 1.6;
     }
@@ -52,13 +52,13 @@
       cursor: pointer; 
       font-family: inherit; 
       background-color: #ffffff; 
-      color: #1e293b; 
+      color: #0f172a; 
       font-weight: 700;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: all 0.2s ease;
     }
     button:hover { 
-      background-color: #fff7ed; 
+      background-color: #eff6ff; 
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
@@ -83,7 +83,7 @@
       padding: 12px 18px; 
       font-size: 20px; 
       border-radius: 10px; 
-      border: 2px solid #fed7aa; 
+      border: 2px solid #bfdbfe; 
       width: 75%; 
       font-family: inherit; 
       text-align: center; 
@@ -92,14 +92,14 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus {
-      border-color: #ea580c;
-      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
     }
 
     #result { 
       font-size: 24px; 
       margin-top: 20px; 
-      color: #1e293b; 
+      color: #0f172a; 
       background: #ffffff; 
       padding: 32px 24px; 
       border-radius: 20px; 
@@ -111,11 +111,11 @@
       margin-top: 20px; 
       font-size: 22px; 
       font-weight: 800; 
-      color: #1e293b; 
+      color: #0f172a; 
     }
 
     .alert-msg {
-      color: #fee2e2;
+      color: #fecaca;
       font-size: 16px;
       font-weight: 700;
       margin-top: 8px;
@@ -128,7 +128,7 @@
       width: 100%; 
       text-align: center; 
       font-size: 14px; 
-      color: #78716c; 
+      color: #64748b; 
       font-weight: 600;
       pointer-events: none; 
     }
@@ -139,17 +139,17 @@
   <div id="quiz-container">
     <!-- 이름 입력 화면 -->
     <div id="name-input-area" class="input-box">
-      <h2 style="margin-top:0; font-size: 28px;">🔥 소년반 성경퀴즈 5과 🛞</h2>
-      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"하나님과 함께 달리기"<br>이름을 입력하고 우리를 다시 일으켜 세우시는 하나님을 만나보세요!</p>
+      <h2 style="margin-top:0; font-size: 28px;">📜 소년반 성경퀴즈 6과 🧱</h2>
+      <p style="font-size: 20px; opacity: 0.95; margin-bottom: 24px;">"느헤미야의 일지"<br>이름을 입력하고 성벽 재건을 향한 느헤미야의 기도의 현장으로 가볼까요?</p>
       <input type="text" id="name-input" placeholder="예: 최재희" autocomplete="off" />
       <div id="name-alert" class="alert-msg" style="display:none;">이름을 꼭 입력해 주세요!</div>
       <br>
-      <button id="start-btn" style="background-color: #ffffff; color: #ea580c; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
+      <button id="start-btn" style="background-color: #ffffff; color: #2563eb; padding: 14px 32px; font-size: 22px;">퀴즈 시작 ▶</button>
     </div>
 
     <!-- 퀴즈 문제 화면 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #78716c; margin-bottom: 12px;"></div>
+      <div id="question-number" style="font-size: 18px; font-weight: 700; color: #64748b; margin-bottom: 12px;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 24px;"></div>
       <div id="feedback"></div>
@@ -165,64 +165,64 @@
     document.addEventListener('DOMContentLoaded', function() {
       'use strict';
 
-      // 5과 퀴즈 데이터 (열왕기상 19장, 열왕기하 2장, 마태복음 17장)
+      // 6과 퀴즈 데이터 (느헤미야 1, 2장)
       const questions = [
         // 1번: OX 문제
         { 
           type: 'ox',   
-          question: '엘리야는 다시 사명을 받아 돌아간 뒤, 사무엘 선지자가 세웠던 "선지자 학교" 세 곳을 재건하고 엘리사를 후계자로 세웠다.', 
+          question: '아닥사스다 왕이 느헤미야에게 무엇을 원하는지 물었을 때, 느헤미야는 왕에게 대답하기 전에 먼저 마음속으로 하나님께 기도드렸다.', 
           answer: 'O' 
         }, 
-        // [근거: 교재 40쪽] "학교 세 곳을 재건하는 것도 엘리야가 한 특별한 일이었습니다. 그 학교는 '선지자 학교'라고 불렸습니다. 오래 전에 사무엘 선지자가... 또한 엘리사가 뒤를 이어 엘리야의 일을 맡을 수 있도록 훈련하라고 말씀하셨습니다."
+        // [근거: 교재 48쪽] "왕은 즉시 내게 무엇을 원하는지 물었다. 나는 답변하기 전에 마음속으로 기도를 드렸다. 그리고 예루살렘 성벽 재건을 위해 돌아가기를 원한다고 말했다."
 
         // 2번: 기억절 문제
         { 
           type: 'fill', 
-          question: '기억절: "여호와께서 사람의 걸음을 정하시고 그의 길을 기뻐하시나니 그는 넘어지나 아주 엎드러지지 아니함은 여호와께서 그의 손으로 (      )이로다" (시편 37:23, 24)', 
-          answer: '붙드심' 
+          question: '기억절: "너희는 여호와께서 너희를 위하여 행하신 그 큰 일을 생각하여 오직 그를 경외하며 너희의 마음을 다하여 (      ) 섬기라" (사무엘상 12:24)', 
+          answer: '진실히' 
         },
-        // [근거: 교재 39쪽 기억절] "여호와께서 그의 손으로 붙드심이로다 (시편 37:23, 24)"
+        // [근거: 교재 47쪽 기억절] "너희의 마음을 다하여 진실히 섬기라 (사무엘상 12:24)"
 
         // 3번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '지상에서의 사명을 모두 마친 엘리야는 죽음을 맛보지 않고 하늘로 올라갔습니다. 이때 나타난 거대한 불덩어리 모습의 탈것은 무엇이었나요?', 
+          question: '페르시아 수산 궁에서 느헤미야에게 예루살렘 성벽이 무너지고 문들이 불타 버렸다는 안타까운 소식을 전해준 사람은 누구인가요?', 
           options: [
-            'A. 불마차 (불병거)', 
-            'B. 불기둥', 
-            'C. 불사다리', 
-            'D. 불수레바퀴'
+            'A. 하나니', 
+            'B. 산발랏', 
+            'C. 도비야', 
+            'D. 게셈'
           ], 
-          answer: 'A. 불마차 (불병거)' 
+          answer: 'A. 하나니' 
         },
-        // [근거: 교재 39, 40쪽] "특별한 불병거를 타고 하늘로 올라갔습니다... 하늘에 거대한 불덩어리 모습을 한 마차가 내려와서 엘리야를 데려갔습니다."
+        // [근거: 교재 47쪽] "하나니가 유다에서 오늘 도착했다. 그와 그의 친구들이 예루살렘 성벽이 무너져 내리고 문이 불타 버렸다고 말했다."
 
         // 4번: 4지 선다형
         { 
           type: 'mcq',  
-          question: '변화산에서 예수님이 영광스러운 모습으로 변형되셨을 때, 하늘에서 내려와 예수님을 격려했던 두 사람은 누구였나요?', 
+          question: '느헤미야는 페르시아의 아닥사스다 왕을 가까이에서 모시며 어떤 직책을 맡고 있었나요?', 
           options: [
-            'A. 아브라함과 다윗', 
-            'B. 모세와 엘리야', 
-            'C. 노아와 다니엘', 
-            'D. 여호수아와 갈렙'
+            'A. 군대 장관', 
+            'B. 술 관원 (술 맡은 관원)', 
+            'C. 문지기', 
+            'D. 재무관'
           ], 
-          answer: 'B. 모세와 엘리야' 
+          answer: 'B. 술 관원 (술 맡은 관원)' 
         },
-        // [근거: 교재 41쪽] "하늘에서 모세와 함께 내려와 예수님을 격려했습니다. 엘리야는 죽지 않고 하늘로 올라갈 사람들을... 모세는 죽었지만 예수님께서 다시 오실 때 일어나 하늘로 올라갈 수 있는 사람들을 예수님께 상기시켜 주었습니다."
+        // [근거: 교재 47, 48쪽 본문 및 성경 느 1:11] 왕의 잔을 맡아 올리고 점심/음식을 차리며 왕의 안전과 음료를 책임지던 직책
 
         // 5번: 단답형
         { 
           type: 'short',
-          question: '엘리야의 뒤를 이어 사역을 이어받고, 함께 거닐다 엘리야가 불마차를 타고 승천하는 모습을 목격한 엘리야의 제자 선지자는 누구인가요?', 
-          answer: '엘리사' 
+          question: '느헤미야의 간청을 들은 이스라엘 백성들이 다 함께 용기를 내어 외치며 시작한 일은 예루살렘 성벽 (      )이었습니다. 빈칸에 들어갈 두 글자는 무엇일까요?', 
+          answer: '재건' 
         },
-        // [근거: 교재 40쪽] "어느 날 엘리야와 엘리사가 함께 거닐고 있을 때 하늘에 거대한 불덩어리 모습을 한 마차가 내려와서..."
+        // [근거: 교재 48, 50쪽] "예루살렘 성벽 재건을 위해... 그들이 건축(재건)을 시작하자고 했다."
 
         // 6번: 느낀점 적기
         { 
           type: 'any',  
-          question: '실수하고 도망쳤던 엘리야를 꾸짖지 않으시고 용서하시며 두 번째 기회를 주신 하나님처럼, 우리도 넘어졌을 때 나를 붙들어 주시는 하나님을 어떻게 의지하고 싶은지 자유롭게 적어보세요.' 
+          question: '편안한 왕궁에 머무를 수 있었음에도 고향 공동체의 아픔을 위해 눈물로 금식하며 기도했던 느헤미야처럼, 나는 오늘 누구를 위해 진심 어린 기도와 도움의 손길을 전하고 싶은지 적어보세요.' 
         }
       ];
 
@@ -230,8 +230,8 @@
       let score = 0;
       let participantName = '';
 
-      // 불병거, 승천, 하나님의 회복과 은혜를 상징하는 선명하고 따뜻한 오렌지/레드/골드 테마
-      const themes = ['#EA580C', '#C2410C', '#9A3412', '#B45309', '#D97706', '#7C2D12'];
+      // 수산 궁전의 신뢰와 성벽 재건의 견고함을 나타내는 블루/네이비/슬레이트 테마
+      const themes = ['#2563EB', '#1D4ED8', '#1E40AF', '#0F766E', '#0369A1', '#334155'];
 
       const nameInputArea = document.getElementById('name-input-area');
       const nameInput = document.getElementById('name-input');
@@ -299,7 +299,7 @@
           
           const submitBtn = document.createElement('button');
           submitBtn.textContent = '제출하기';
-          submitBtn.style.backgroundColor = '#ea580c';
+          submitBtn.style.backgroundColor = '#2563eb';
           submitBtn.style.color = '#ffffff';
           submitBtn.addEventListener('click', () => checkAnswer(input.value));
           answerAreaEl.appendChild(document.createElement('br'));
@@ -334,10 +334,10 @@
           let nUser = normalize(userAns);
           let nAns = normalize(q.answer);
 
-          // 유연한 정답 인정 로직
-          if (nAns === '붙드심' && (nUser.includes('붙드심') || nUser === '붙들다' || nUser === '붙들어주심')) {
+          // 유연한 정답 인정 로직 (띄어쓰기, 유사어 허용)
+          if (nAns === '진실히' && (nUser.includes('진실') || nUser === '진실하게')) {
             isCorrect = true;
-          } else if (nAns === '엘리사' && (nUser === '엘리사' || nUser === '엘리사선지자')) {
+          } else if (nAns === '재건' && (nUser.includes('재건') || nUser.includes('건축') || nUser === '보수')) {
             isCorrect = true;
           } else {
             isCorrect = (nUser === nAns);
@@ -345,7 +345,7 @@
         }
 
         if (q.type === 'any') {
-          feedbackEl.innerHTML = "<span style='color: #c2410c;'>우리의 실수를 용서하시고 다시 손잡아 주시는 하나님을 향한 훌륭한 고백입니다! 🔥🕊️✨</span>";
+          feedbackEl.innerHTML = "<span style='color: #1d4ed8;'>느헤미야처럼 이웃과 하나님의 일에 따뜻한 관심을 갖는 멋진 다짐입니다! 🕊️✨</span>";
           score++;
         } else if (isCorrect) {
           feedbackEl.innerHTML = "<span style='color: #059669;'>정답입니다! ⭕</span>";
@@ -361,7 +361,7 @@
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn'; 
         nextBtn.textContent = (current === questions.length - 1) ? '결과 확인하기 🏆' : '다음 문제 ▶';
-        nextBtn.style.backgroundColor = '#ea580c';
+        nextBtn.style.backgroundColor = '#2563eb';
         nextBtn.style.color = '#ffffff';
         nextBtn.style.marginTop = '18px';
         nextBtn.style.padding = '12px 28px';
@@ -384,17 +384,17 @@
         quizArea.style.display = 'none';
         resultEl.style.display = 'block';
         
-        let praiseMsg = "우리가 넘어질 때도 아주 엎드러지지 않도록 그분의 강한 손으로 붙들어 주시는 하나님의 사랑을 마음에 품는 소년반 친구가 되길 응원합니다! 🛞🔥";
+        let praiseMsg = "어려운 상황에서도 먼저 하나님께 무릎 꿇고 기도하며 공동체를 바로 세운 느헤미야의 믿음을 배우는 소년반 친구가 되길 축복합니다! 📜🧱";
         if (score === questions.length) {
-          praiseMsg = "대단해요! 만점입니다! 엘리야처럼 하나님과 함께 끝까지 믿음의 경주를 달릴 소년반 최고의 믿음 용사입니다! 👑💯";
+          praiseMsg = "대단해요! 만점입니다! 느헤미야처럼 하나님 나라를 온 마음과 진실함으로 섬길 소년반 최고의 리더입니다! 👑💯";
         }
 
         resultEl.innerHTML = `
           <h3 style="margin-top:0; font-size:26px;">${participantName} 학생의 퀴즈 결과</h3>
-          <p style="font-size:22px;">5과 총 <strong>${questions.length}</strong>문제 중<br>
-          <span style="color:#ea580c; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
+          <p style="font-size:22px;">6과 총 <strong>${questions.length}</strong>문제 중<br>
+          <span style="color:#2563eb; font-size:46px; font-weight:900;">${score}</span> 문제를 맞혔어요!</p>
           <p style="color:#475569; font-size:18px; line-height:1.6;">${praiseMsg}</p>
-          <button onclick="location.reload()" style="background-color:#ea580c; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
+          <button onclick="location.reload()" style="background-color:#2563eb; color:#fff; margin-top:16px;">다시 도전하기 🔄</button>
         `;
       }
 

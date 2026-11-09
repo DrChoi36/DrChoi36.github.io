@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여호수아반 성경 퀴즈 - 기록된 예언들</title>
+  <title>여호수아반 성경 퀴즈 - 이제 이 말을 들을지어다!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
-  
   <style>
-    :root {
-      --app-font-scale: 1; /* 글자 크기 동적 스케일 */
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -21,15 +16,16 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
-      color: #1E293B;
+      background: linear-gradient(135deg, #F0F4F8 0%, #D9E2EC 100%);
+      color: #2D3748;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px 12px;
-      font-size: calc(19px * var(--app-font-scale));
+      font-size: 19px;
       line-height: 1.6;
+      transition: font-size 0.2s ease;
     }
 
     #app-container {
@@ -37,105 +33,85 @@
       max-width: 680px;
       background: #FFFFFF;
       border-radius: 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
       padding: 32px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    /* 글자 크기 조절 플로팅 컨트롤 */
-    .font-zoom-bar {
+    /* 글자 크기 조절 바 */
+    .font-control-bar {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      font-size: calc(14px * var(--app-font-scale));
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .font-btn {
+      background-color: #EDF2F7;
+      border: 1.5px solid #CBD5E0;
+      color: #2D3748;
+      font-size: 14px;
       font-weight: 700;
-      color: #64748B;
-    }
-
-    .zoom-btn {
-      background: #F1F5F9;
-      border: 1.5px solid #CBD5E1;
+      padding: 4px 10px;
       border-radius: 8px;
-      width: 34px;
-      height: 34px;
-      font-size: calc(18px * var(--app-font-scale));
-      font-weight: 900;
-      color: #0F172A;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
     }
 
-    .zoom-btn:hover {
-      background: #E2E8F0;
-      border-color: #94A3B8;
+    .font-btn:hover {
+      background-color: #E2E8F0;
+      border-color: #A0AEC0;
     }
 
-    /* 상단 배너 및 뱃지 */
+    /* 상단 배너/헤더 */
     .lesson-badge {
       display: inline-block;
-      background-color: #0D9488;
+      background-color: #8C2D19;
       color: #FFFFFF;
-      font-size: calc(15px * var(--app-font-scale));
+      font-size: 15px;
       font-weight: 700;
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: 20px;
       margin-bottom: 12px;
       letter-spacing: 0.5px;
     }
 
     .main-title {
-      font-size: calc(27px * var(--app-font-scale));
+      font-size: 26px;
       font-weight: 900;
-      color: #0F172A;
+      color: #5C1D0E;
       margin-bottom: 8px;
       word-break: keep-all;
     }
 
     .sub-title {
-      font-size: calc(17px * var(--app-font-scale));
-      color: #475569;
-      margin-bottom: 22px;
+      font-size: 17px;
+      color: #4A5568;
+      margin-bottom: 24px;
       font-weight: 600;
     }
 
     .memory-verse-box {
-      background-color: #F0FDFA;
-      border-left: 5px solid #0D9488;
-      padding: 18px 20px;
-      border-radius: 12px;
+      background-color: #FFFDF9;
+      border-left: 5px solid #8C2D19;
+      padding: 16px 20px;
+      border-radius: 10px;
       text-align: left;
-      font-size: calc(17.5px * var(--app-font-scale));
-      color: #0F766E;
-      margin-bottom: 22px;
+      font-size: 17px;
+      color: #2D3748;
+      margin-bottom: 25px;
       line-height: 1.7;
       word-break: keep-all;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
     .memory-verse-box strong {
-      color: #0D9488;
+      color: #8C2D19;
       display: block;
-      margin-bottom: 6px;
-      font-size: calc(18px * var(--app-font-scale));
-    }
-
-    /* 안내 메시지 상자 */
-    .info-box {
-      background-color: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      padding: 16px 18px;
-      border-radius: 12px;
-      margin-bottom: 24px;
-      text-align: left;
-      font-size: calc(16.5px * var(--app-font-scale));
-      color: #334155;
-      line-height: 1.6;
+      margin-bottom: 4px;
     }
 
     /* 진행도 표시 바 */
@@ -146,9 +122,9 @@
     .progress-text {
       display: flex;
       justify-content: space-between;
-      font-size: calc(16px * var(--app-font-scale));
+      font-size: 16px;
       font-weight: 700;
-      color: #475569;
+      color: #4A5568;
       margin-bottom: 6px;
     }
 
@@ -162,36 +138,35 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #2DD4BF, #0D9488);
+      background: linear-gradient(90deg, #D9534F, #8C2D19);
       width: 0%;
       transition: width 0.3s ease;
     }
 
     /* 문제 카드 */
     .question-card {
-      background: linear-gradient(135deg, #134E4A 0%, #115E59 50%, #0F766E 100%);
+      background-color: #4A1E17;
       color: #FFFFFF;
       padding: 24px 20px;
       border-radius: 16px;
-      font-size: calc(21px * var(--app-font-scale));
+      font-size: 21px;
       font-weight: 600;
       text-align: left;
-      line-height: 1.65;
+      line-height: 1.6;
       word-break: keep-all;
       margin-bottom: 20px;
-      box-shadow: 0 6px 18px rgba(15, 118, 110, 0.25);
+      box-shadow: 0 4px 12px rgba(74, 30, 23, 0.2);
     }
 
     .question-category {
-      font-size: calc(14.5px * var(--app-font-scale));
-      color: #5EEAD4;
-      font-weight: 800;
+      font-size: 14px;
+      color: #FBCFE8;
+      font-weight: 700;
       margin-bottom: 6px;
       display: block;
-      letter-spacing: 0.5px;
     }
 
-    /* 4지선다 선택지 버튼 목록 */
+    /* 선택지 버튼 목록 */
     .options-grid {
       display: flex;
       flex-direction: column;
@@ -201,24 +176,24 @@
 
     .option-btn {
       background-color: #FFFFFF;
-      border: 2.5px solid #CBD5E1;
-      color: #1E293B;
+      border: 2.5px solid #CBD5E0;
+      color: #2D3748;
       padding: 16px 20px;
       border-radius: 14px;
-      font-size: calc(19px * var(--app-font-scale));
+      font-size: 19px;
       font-weight: 700;
       cursor: pointer;
       text-align: left;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      line-height: 1.45;
+      line-height: 1.4;
       word-break: keep-all;
     }
 
     .option-btn:hover:not(:disabled) {
-      background-color: #F8FAFC;
-      border-color: #0D9488;
+      background-color: #F7FAFC;
+      border-color: #4A5568;
       transform: translateY(-2px);
     }
 
@@ -228,13 +203,12 @@
       align-items: center;
       min-width: 32px;
       height: 32px;
-      background-color: #F0FDFA;
+      background-color: #EDF2F7;
       border-radius: 50%;
       margin-right: 14px;
-      font-size: calc(16px * var(--app-font-scale));
-      color: #0D9488;
+      font-size: 16px;
+      color: #8C2D19;
       font-weight: 900;
-      flex-shrink: 0;
     }
 
     /* OX 문제 전용 스타일 */
@@ -247,11 +221,11 @@
 
     .ox-btn {
       background-color: #FFFFFF;
-      border: 3px solid #CBD5E1;
-      color: #1E293B;
+      border: 3px solid #CBD5E0;
+      color: #2D3748;
       padding: 24px 10px;
       border-radius: 16px;
-      font-size: calc(38px * var(--app-font-scale));
+      font-size: 38px;
       font-weight: 900;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -261,151 +235,201 @@
     }
 
     .ox-btn:hover:not(:disabled) {
-      background-color: #F8FAFC;
-      border-color: #0D9488;
+      background-color: #EDF2F7;
       transform: translateY(-2px);
     }
 
-    /* 입력형 문제 스타일 */
-    .input-container {
+    /* 주관식 단답형/서술형 입력 상자 */
+    .input-box-container {
       margin-bottom: 20px;
       text-align: left;
     }
 
-    .text-input-field {
+    .quiz-input {
       width: 100%;
       padding: 16px 18px;
-      font-size: calc(20px * var(--app-font-scale));
-      font-family: inherit;
-      border: 2.5px solid #0D9488;
+      font-size: 19px;
+      border: 2.5px solid #CBD5E0;
       border-radius: 14px;
       outline: none;
-      background-color: #F0FDFA;
-      color: #0F172A;
-      box-sizing: border-box;
-      margin-bottom: 12px;
-    }
-
-    .text-input-field:focus {
-      border-color: #0F766E;
-      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.25);
-    }
-
-    .textarea-field {
-      width: 100%;
-      min-height: 120px;
-      padding: 16px;
-      font-size: calc(18.5px * var(--app-font-scale));
       font-family: inherit;
-      border: 2.5px solid #0D9488;
+      color: #2D3748;
+      transition: border-color 0.2s;
+    }
+
+    .quiz-input:focus {
+      border-color: #8C2D19;
+    }
+
+    .quiz-textarea {
+      width: 100%;
+      height: 120px;
+      padding: 16px 18px;
+      font-size: 18px;
+      border: 2.5px solid #CBD5E0;
       border-radius: 14px;
       outline: none;
-      resize: vertical;
-      color: #0F172A;
-      background-color: #F0FDFA;
-      box-sizing: border-box;
-      margin-bottom: 12px;
-      line-height: 1.6;
+      font-family: inherit;
+      resize: none;
+      color: #2D3748;
+      line-height: 1.5;
     }
 
-    .submit-input-btn {
-      width: 100%;
-      padding: 16px;
-      font-size: calc(19px * var(--app-font-scale));
-      font-weight: 800;
-      background-color: #0D9488;
+    .quiz-textarea:focus {
+      border-color: #8C2D19;
+    }
+
+    .submit-answer-btn {
+      margin-top: 10px;
+      background-color: #8C2D19;
       color: #FFFFFF;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s ease;
+      width: 100%;
+      transition: background-color 0.2s;
     }
 
-    .submit-input-btn:hover {
-      background-color: #0F766E;
+    .submit-answer-btn:hover {
+      background-color: #702313;
     }
+
+    /* 정답/오답 상태 스타일 */
+    .option-btn.correct, .ox-btn.correct {
+      background-color: #C6F6D5 !important;
+      border-color: #38A169 !important;
+      color: #22543D !important;
+    }
+
+    .option-btn.wrong, .ox-btn.wrong {
+      background-color: #FED7D7 !important;
+      border-color: #E53E3E !important;
+      color: #742A2A !important;
+    }
+
+    /* 피드백 및 해설 영역 */
+    .feedback-card {
+      background-color: #FFFDF9;
+      border: 2px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+      margin-top: 15px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-title.correct {
+      color: #2F855A;
+    }
+
+    .feedback-title.wrong {
+      color: #C53030;
+    }
+
+    .feedback-desc {
+      font-size: 17px;
+      color: #4A5568;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
     .feedback-scripture {
-      margin-top: 10px;
-      font-size: calc(15px * var(--app-font-scale));
-      color: #0D9488;
+      margin-top: 8px;
+      font-size: 15px;
+      color: #8C2D19;
       font-weight: 700;
     }
 
-    /* 기본 동작 버튼 */
+    /* 알림창 */
+    .inline-alert {
+      background-color: #FFF5F5;
+      border: 1.5px solid #FEB2B2;
+      color: #C53030;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* 기본 버튼 */
     .action-button {
-      background-color: #0D9488;
+      background-color: #8C2D19;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
       padding: 16px 36px;
-      font-size: calc(20px * var(--app-font-scale));
+      font-size: 20px;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+      box-shadow: 0 4px 10px rgba(140, 45, 25, 0.3);
       width: 100%;
       margin-top: 20px;
     }
 
     .action-button:hover {
-      background-color: #0F766E;
+      background-color: #702313;
       transform: translateY(-2px);
     }
 
     .next-btn {
-      background-color: #0284C7;
+      background-color: #2C7A7B;
     }
     .next-btn:hover {
-      background-color: #0369A1;
+      background-color: #234E52;
     }
 
     /* 결과 화면 */
     .result-score {
-      font-size: calc(52px * var(--app-font-scale));
+      font-size: 52px;
       font-weight: 900;
-      color: #0D9488;
+      color: #8C2D19;
       margin: 15px 0 5px 0;
     }
 
     .result-message {
-      font-size: calc(22px * var(--app-font-scale));
+      font-size: 22px;
       font-weight: 700;
-      color: #0F172A;
+      color: #2D3748;
       margin-bottom: 20px;
-      word-break: keep-all;
     }
 
     .result-details {
-      background-color: #F0F9FF;
-      border-radius: 14px;
-      padding: 22px;
-      font-size: calc(17px * var(--app-font-scale));
+      background-color: #F7FAFC;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 17px;
       text-align: left;
       margin-bottom: 25px;
       line-height: 1.8;
-      word-break: keep-all;
     }
 
     /* 푸터 */
     .footer-text {
       margin-top: 25px;
-      font-size: calc(14px * var(--app-font-scale));
-      color: #64748B;
-      font-weight: 600;
-    }
-
-    /* 알림 메시지 상자 */
-    .notice-dialog {
-      background-color: #FFFBEB;
-      border: 1.5px solid #F59E0B;
-      color: #92400E;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: calc(16px * var(--app-font-scale));
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: none;
-      text-align: left;
+      font-size: 14px;
+      color: #A0AEC0;
+      font-weight: 500;
     }
 
     .hidden {
@@ -417,27 +441,27 @@
 
   <div id="app-container">
     
-    <!-- 글씨 크기 조절 헤더 -->
-    <div class="font-zoom-bar">
-      <span>글씨크기</span>
-      <button class="zoom-btn" onclick="adjustFontSize(0.1)" title="글씨 크게">+</button>
-      <button class="zoom-btn" onclick="adjustFontSize(-0.1)" title="글씨 작게">-</button>
-      <button class="zoom-btn" onclick="resetFontSize()" style="font-size: 13px;" title="원래대로">초기화</button>
+    <!-- 글자 크기 조절 컨트롤 -->
+    <div class="font-control-bar">
+      <span style="font-size: 14px; font-weight: 700; color: #718096; margin-right: 4px;">글자크기</span>
+      <button class="font-btn" onclick="changeFontSize(1)" title="글자 확대">+</button>
+      <button class="font-btn" onclick="changeFontSize(-1)" title="글자 축소">-</button>
+      <button class="font-btn" onclick="resetFontSize()" title="원래 크기">기본</button>
     </div>
 
     <!-- 1. 시작 화면 -->
     <div id="start-screen">
-      <span class="lesson-badge">2026년 11월 7일 안식일 교과 (제6과)</span>
-      <h1 class="main-title">기록된 예언들</h1>
+      <span class="lesson-badge">2026년 11월 14일 안식일 교과</span>
+      <h1 class="main-title">이제 이 말을 들을지어다!</h1>
       <p class="sub-title">여호수아반(장년반) 성경 퀴즈</p>
       
       <div class="memory-verse-box">
-        <strong>📖 이번 주 기억절 (로마서 15:4)</strong>
-        “무엇이든지 전에 기록된 바는 우리의 교훈을 위하여 기록된 것이니 우리로 하여금 인내로 또는 <strong>성경의 위로로</strong> 소망을 가지게 함이니라”
+        <strong>📖 이번 주 기억절 (고린도전서 10:11)</strong>
+        “그들에게 일어난 이런 일은 본보기가 되고 또한 말세를 만난 우리를 깨우치기 위하여 기록되었느니라”
       </div>
 
-      <div class="info-box">
-        💡 <strong>안내:</strong> 본 퀴즈는 하나님께서 선지자들을 통해 영원한 구원의 말씀을 책으로 남기신 <strong>기록된 예언들</strong>의 목적과 과정, 신뢰성을 다루는 <strong>총 11문제</strong>(OX, 기억절 단답형, 요일별 4지선다, 삶의 나눔)로 구성되어 있습니다.
+      <div style="background-color: #FFF5F2; border: 1.5px solid #FED7D7; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px; line-height: 1.7;">
+        💡 <strong>안내:</strong> 이번 주 교과(제7과)는 선지자들의 경고를 거절했던 과거의 역사와 그에 담긴 교훈을 다룹니다. 총 11문제(OX, 기억절 단답형, 요일별 4지선다, 소감 나눔)로 구성되어 있습니다.
       </div>
 
       <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
@@ -455,260 +479,245 @@
         </div>
       </div>
 
-      <!-- 문제 카드 -->
       <div class="question-card">
-        <span id="question-badge" class="question-category">핵심 교훈 확인</span>
-        <div id="question-text">문제가 여기에 출력됩니다.</div>
+        <span id="question-badge" class="question-category">교과 분류</span>
+        <div id="question-text">문제가 출력됩니다.</div>
       </div>
 
-      <!-- 입력 알림창 -->
-      <div id="notice-dialog" class="notice-dialog"></div>
+      <div id="options-container"></div>
+      <div id="inline-alert" class="inline-alert">정답을 입력해 주세요!</div>
 
-      <!-- 상호작용 영역 -->
-      <div id="interactive-container"></div>
-
-      <!-- 해설 피드백 카드 -->
       <div id="feedback-card" class="feedback-card">
         <div id="feedback-title" class="feedback-title"></div>
         <div id="feedback-desc" class="feedback-desc"></div>
         <div id="feedback-scripture" class="feedback-scripture"></div>
       </div>
 
-      <!-- 다음 버튼 -->
       <button id="next-button" class="action-button next-btn hidden" onclick="nextQuestion()">다음 문제로 이동 ▶</button>
     </div>
 
-    <!-- 3. 최종 결과 화면 -->
+    <!-- 3. 결과 화면 -->
     <div id="result-screen" class="hidden">
-      <span class="lesson-badge">학습 완료</span>
+      <span class="lesson-badge">퀴즈 완료</span>
       <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
       
       <div id="result-score" class="result-score">100점</div>
-      <div id="result-message" class="result-message">하나님의 말씀에 대한 깊은 깨달음과 은혜가 넘치는 시간입니다!</div>
+      <div id="result-message" class="result-message">말씀에 대한 깊은 사모함이 아름답습니다!</div>
 
       <div class="result-details">
         • 총 문항수: <strong>11문제</strong><br>
-        • 맞힌 문제: <strong id="correct-count" style="color: #15803D;">11문제</strong><br>
-        • 틀린 문제: <strong id="wrong-count" style="color: #B91C1C;">0문제</strong><br>
-        <hr style="border: none; border-top: 1px dashed #CBD5E1; margin: 12px 0;">
-        📌 <strong>핵심 요약:</strong> 하나님께서는 진리의 말씀을 시대를 초월하여 보존하시고자 선지자들에게 '기록하라'고 명하셨습니다. 성경 기자들은 시, 서신, 역사, 언약 소송 등 다채로운 문학 기법과 서기관(비서), 역사 문헌을 활용하면서도 성령의 온전한 지도를 받았습니다. 비록 연약한 질그릇 같은 인간을 통해 전달되었으나 하늘의 보배인 성경의 신뢰성과 권위는 완전합니다. 말씀 안에서 인내와 위로로 산 소망을 품는 성도님이 되시기를 축복합니다.
+        • 맞힌 문제: <strong id="correct-count" style="color: #2F855A;">11문제</strong><br>
+        • 틀린 문제: <strong id="wrong-count" style="color: #C53030;">0문제</strong><br>
+        <hr style="border: none; border-top: 1px dashed #CBD5E0; margin: 12px 0;">
+        📌 <strong>핵심 요약:</strong> 하나님께서는 백성을 살리시기 위해 때로는 듣기 불편한 책망의 기별도 끝까지 전하셨습니다. 과거 선조들의 불순종과 거절의 실수를 경계로 삼아, 우리 모두 말세를 만난 성도로서 하나님의 예언과 교훈의 말씀 앞에 겸손히 서기를 간절히 기도합니다.
       </div>
 
       <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
     </div>
 
     <div class="footer-text">
-      제칠일안식일예수재림교회 여호수아반 성경 학습실<br>
       Distributed by Dr. Choi
     </div>
 
   </div>
 
   <script>
-    // 글자 크기 동적 스케일 조절
-    let currentScale = 1.0;
-    function adjustFontSize(delta) {
-      currentScale += delta;
-      if (currentScale < 0.8) currentScale = 0.8;
-      if (currentScale > 1.4) currentScale = 1.4;
-      document.documentElement.style.setProperty('--app-font-scale', currentScale);
+    // 텍스트 정규화 (공백 및 특수기호 제거)
+    function normalize(text) {
+      if (!text) return '';
+      return text.toString().replace(/[\s\t\r\n\.,\?!~'"\(\)]/g, '').toLowerCase();
     }
+
+    // 글자 크기 조절 기능
+    let currentFontSize = 19;
+    function changeFontSize(delta) {
+      currentFontSize += delta * 2;
+      if (currentFontSize < 15) currentFontSize = 15;
+      if (currentFontSize > 27) currentFontSize = 27;
+      document.body.style.fontSize = currentFontSize + 'px';
+    }
+
     function resetFontSize() {
-      currentScale = 1.0;
-      document.documentElement.style.setProperty('--app-font-scale', 1.0);
+      currentFontSize = 19;
+      document.body.style.fontSize = '19px';
     }
 
-    // 텍스트 정규화 함수 (단답형 공백 및 특수문자 오차 허용)
-    function normalize(str) {
-      if (!str) return '';
-      return str.toString().trim().replace(/[\s\t\r\n\.,'"`~!?]/g, '').toLowerCase();
-    }
-
-    // 퀴즈 데이터 정의 (2026년 11월 7일 안식일 제6과: 기록된 예언들 총 11문항)
+    // 퀴즈 데이터 정의 (2026년 11월 14일 안식일 교과 제7과 기반)
     const questions = [
-      // 1번: OX 문제 (핵심 사실 확인)
       {
-        category: "1번 • 핵심 사실 확인 (OX)",
+        id: 1,
         type: "ox",
-        question: "성경 기자들이 집필 보조자(서기관)의 도움을 받거나 외부 역사 자료를 인용하여 성경을 기록한 사실은 성경의 거룩한 영감성과 신적 권위를 훼손시킨다.",
+        category: "핵심 요훈 확인 • OX 퀴즈",
+        question: "1번 (OX): 성경의 선지자들은 백성들이 듣기 좋아하는 평안의 말만 전하도록 부름받았으며, 듣기 거북한 심판과 회개의 기별은 전하지 않았다.",
         options: ["O", "X"],
         answer: 1, // X
-        explanation: "틀렸습니다. 성령께서는 선지자들의 자연스러운 지적 기능과 연구, 신실한 보조자들의 수고를 인도하셨으며, 인간적인 전달 과정 속에서도 하나님의 뜻과 사상은 변함없이 완전하게 보존되었습니다.",
-        scripture: "고후 4:7, 딤후 3:16, 각 시대의 대쟁투 6"
+        explanation: "선지자들은 사람들이 듣기 싫어하고 비난과 박해, 심지어 죽음의 위협이 따르는 상황 속에서도 하나님의 책망과 구원의 기별을 타협 없이 충실히 선포했습니다.",
+        scripture: "히브리서 11:32-38, 대하 36:15-16"
       },
-      // 2번: 기억절 빈칸 채우기 (단답형)
       {
-        category: "2번 • 기억절 외우기 (단답형)",
+        id: 2,
         type: "fill",
-        question: "이번 주 기억절의 빈칸에 들어갈 알맞은 단어를 적어 보세요.\n\n“무엇이든지 전에 기록된 바는 우리의 교훈을 위하여 기록된 것이니 우리로 하여금 인내로 또는 (               )으로 소망을 가지게 함이니라”(롬 15:4)",
-        correctAnswers: ["성경의 위로", "성경의위로", "성경의 위로로", "성경의위로로"],
-        placeholder: "빈칸의 어구를 입력하세요 (예: 성경의 위로)",
-        explanation: "과거에 기록된 성경 말씀은 오늘을 살아가는 성도들이 인내와 '성경의 위로'를 통해 굳건한 하늘 소망을 품도록 주어졌습니다.",
-        scripture: "로마서 15:4"
+        category: "기억절 말씀 • 단답형",
+        question: "2번 (단답형): 이번 주 기억절(고전 10:11)의 빈칸에 들어갈 알맞은 단어(어구)를 적어 보세요.\n\n“그들에게 일어난 이런 일은 본보기가 되고 또한 말세를 만난 우리를 깨우치기 위하여 (          )니라”",
+        answer: "기록되었",
+        explanation: "과거 이스라엘 백성에게 일어난 모든 역사는 단순한 옛 이야기가 아니라 말세를 살아가는 우리를 깨우치기 위해 성경에 '기록되었느니라'고 바울은 경고합니다.",
+        scripture: "고린도전서 10:11"
       },
-      // 3번: 11월 1일 일요일 (기록하라는 부르심)
       {
-        category: "3번 • 11월 1일 일요일 교과 (기록하라는 부르심)",
+        id: 3,
         type: "mcq",
-        question: "하나님께서 예레미야 선지자에게 요시야 왕 때부터 주신 모든 말씀을 두루마리 책에 기록하라고 명하신 궁극적인 목적은 무엇이었습니까? (렘 36:3)",
+        category: "일요일 교과 • 하나님의 사자를 향한 분노",
+        question: "3번 (일요일): 가나안 정탐 후 열 명의 정탐꾼이 불신과 두려움으로 백성의 용기를 꺾었을 때, 온 백성 앞에서 '우리가 곧 올라가서 그 땅을 취하자 능히 이기리라'며 하나님을 신뢰하자고 외친 신실한 지도자는 누구였습니까? (민 13:30)",
         options: [
-          "왕실 서고에 보관하여 후대 학자들의 연구 자료로 삼기 위해",
-          "백성이 닥칠 재난의 경고를 듣고 각기 악한 길에서 돌이켜 용서를 받게 하려고",
-          "예레미야의 개인적인 문학적 재능을 세상에 널리 알리기 위해",
-          "성전 재건에 필요한 기금을 모금하기 위해"
-        ],
-        answer: 1,
-        explanation: "예언을 기록하게 하신 목적은 단순한 미래 호기심 만족이 아니라, 경고의 말씀을 읽고 '각기 악한 길에서 돌이켜 죄 사함과 구원'을 얻도록 하기 위함이었습니다.",
-        scripture: "예레미야 36:2-3"
-      },
-      // 4번: 11월 2일 월요일 (문학 양식과 표현 기법)
-      {
-        category: "4번 • 11월 2일 월요일 교과 (문학 양식과 기법)",
-        type: "mcq",
-        question: "선지자 예레미야가 언약을 어긴 이스라엘 백성에 대해 하나님을 공의로운 검사로 묘사하며 심판의 근거를 밝힌 성경의 독특한 문학 형식은 무엇입니까? (렘 2:4-9)",
-        options: [
-          "언약 소송 (Covenant Lawsuit)",
-          "동화와 우화",
-          "연대기적 일기",
-          "찬미가"
-        ],
-        answer: 0,
-        explanation: "성경 선지자들은 법정의 이미지를 빌려 하나님과 백성 사이의 깨어진 언약 관계를 고발하는 '언약 소송' 형식을 활용하여 백성의 각성을 촉구했습니다.",
-        scripture: "예레미야 2:4-9, 이사야 13:1"
-      },
-      // 5번: 11월 3일 화요일 (집필 보조자들 - 로마서)
-      {
-        category: "5번 • 11월 3일 화요일 교과 (집필 보조자들)",
-        type: "mcq",
-        question: "사도 바울의 구술을 받아 로마서 서신을 직접 먹으로 필사하였으며, 로마서 말미에 주 안에서 문안 인사를 남긴 집필 보조자(서기관)는 누구입니까? (롬 16:22)",
-        options: [
-          "바룩",
-          "더디오 (Tertius)",
-          "실라",
-          "디모데"
-        ],
-        answer: 1,
-        explanation: "로마서 16장 22절에는 '이 편지를 기록하는 나 더디오도 주 안에서 너희에게 문안하노라'라고 기록되어 있으며, 그는 바울의 대필 비서로 성실히 섬겼습니다.",
-        scripture: "로마서 16:22"
-      },
-      // 6번: 11월 3일 화요일 (집필 보조자들 - 예레미야)
-      {
-        category: "6번 • 11월 3일 화요일 교과 (구약의 서기관)",
-        type: "mcq",
-        question: "예레미야 선지자가 입으로 불러 준 모든 예언을 먹으로 두루마리에 충실히 받아 적어 백성들과 방백들에게 낭독했던 신실한 비서는 누구입니까? (렘 36:17-18)",
-        options: [
-          "에스라",
-          "게하시",
-          "바룩 (Baruch)",
-          "사반"
+          "고라",
+          "발람",
+          "갈렙",
+          "다단"
         ],
         answer: 2,
-        explanation: "예레미야 36장 18절에서 바룩은 '그가 그의 입으로 이 모든 말을 내게 불러 주기로 내가 먹으로 책에 기록하였노라'라고 증언했습니다.",
-        scripture: "예레미야 36:17-18"
+        explanation: "갈렙(과 여호수아)은 백성들의 불평을 멈추게 하고 하나님께서 기뻐하시면 그 땅을 주실 것이니 두려워 말고 반역하지 말자고 담대히 외쳤습니다.",
+        scripture: "민수기 13:30, 14:6-9"
       },
-      // 7번: 11월 4일 수요일 (외부 문헌과 역사 자료 활용)
       {
-        category: "7번 • 11월 4일 수요일 교과 (자료 조사와 영감)",
+        id: 4,
         type: "mcq",
-        question: "복음서의 기록 과정에서 성령의 감동을 받아 당시에 전해진 목격자들의 증언과 구술 및 문서 자료를 면밀히 조사하여 차례대로 복음서를 저술한 성경 기자는 누구입니까? (눅 1:1-4)",
+        category: "월요일 교과 • 기별을 말살하다 (1)",
+        question: "4번 (월요일): 바룩이 기록한 예레미야의 예언 두루마리 책을 낭독해 들려주었을 때, 신하들의 만류에도 불구하고 칼로 두루마리를 베어 화롯불에 던져 불살라 버린 유다의 왕은 누구입니까? (렘 36:23-25)",
         options: [
-          "의사 누가",
-          "세리 마태",
-          "사도 요한",
-          "마가 요한"
+          "히스기야왕",
+          "여호야김왕",
+          "요시야왕",
+          "아사왕"
+        ],
+        answer: 1,
+        explanation: "여호야김왕은 하나님의 회개 촉구 기별을 멸시하며 면도칼로 두루마리를 베어 화롯불에 모두 태워버리는 오만함을 보였습니다.",
+        scripture: "예레미야 36:23-25"
+      },
+      {
+        id: 5,
+        type: "mcq",
+        category: "화요일 교과 • 기별을 말살하다 (2)",
+        question: "5번 (화요일): 유다 말기에 즉위하여 하나님의 입에서 나오는 말씀을 전하는 선지자 예레미야의 간곡한 권면 앞에서도 겸손하지 않고 목을 곧게 하다가 비극적인 멸망을 자초한 유다의 마지막 왕은 누구입니까? (대하 36:11-12)",
+        options: [
+          "시드기야왕",
+          "여호아하스왕",
+          "여호사밧왕",
+          "웃시야왕"
         ],
         answer: 0,
-        explanation: "누가는 성령의 인도 아래 기존의 문서와 목격자들의 증언을 부지런히 조사·연구하여 정연한 복음서(누가복음 및 사도행전)를 저술했습니다. 영감은 기자의 자연스러운 연구 기능을 배제하지 않습니다.",
-        scripture: "누가복음 1:1-4"
+        explanation: "시드기야왕은 선지자 예레미야가 여호와의 입에서 나오는 말씀을 전했음에도 그 앞에서 마음을 겸손히 낮추지 않았습니다.",
+        scripture: "역대하 36:11-12"
       },
-      // 8번: 11월 4일 수요일 (성경 속 외부 인용)
       {
-        category: "8번 • 11월 4일 수요일 교과 (외부 문헌의 인용)",
+        id: 6,
         type: "mcq",
-        question: "유다서 1장 14-15절에서 아담의 칠 대손 에녹의 예언('보라 주께서 그 수만의 거룩한 자와 함께 임하셨나니...')으로 인용된 신구약 중간기 문헌은 무엇입니까?",
+        category: "수요일 교과 • 위선",
+        question: "6번 (수요일): 예수님께서는 옛 선지자들의 무덤을 단장하면서 '우리가 조상 때에 있었더라면 선지자의 피를 흘리지 않았을 것'이라고 자부하면서도, 정작 참된 메시아를 죽이려 모의했던 서기관과 바리새인들을 무엇에 비유하여 질책하셨습니까? (마 23:27)",
         options: [
-          "마카베오상",
-          "제1에녹서 (1 Enoch)",
-          "토빗기",
-          "지혜서"
+          "푸른 감람나무",
+          "회칠한 무덤",
+          "반석 위의 집",
+          "좋은 포도나무"
         ],
         answer: 1,
-        explanation: "유다 선지자는 당대 유대인들에게 널리 알려졌던 <제1에녹서>의 구절을 성령의 인도로 인용하여 하나님의 확실한 심판 기별을 전달했습니다.",
-        scripture: "유다서 1:14-15"
+        explanation: "겉은 아름답게 보이지만 속에는 죽은 사람의 뼈와 온갖 더러운 것이 가득한 '회칠한 무덤'에 비유하시며 그들의 외식과 위선을 엄히 꾸짖으셨습니다.",
+        scripture: "마태복음 23:27-31"
       },
-      // 9번: 11월 5일 목요일 (보배와 질그릇)
       {
-        category: "9번 • 11월 5일 목요일 교과 (하나님의 메시지와 인간의 연약함)",
+        id: 7,
         type: "mcq",
-        question: "고린도후서 4장 7절에서 복음의 보배를 연약한 '질그릇(인간 기자)'에 담아 주셨다고 바울이 고백한 결정적인 이유는 무엇입니까?",
+        category: "목요일 교과 • 우리를 일깨우려고",
+        question: "7번 (목요일): 사도 바울이 고린도전서 10장에서 광야의 이스라엘 조상들이 악을 즐겨 행하다 멸망당한 과거의 역사를 기록으로 남기신 목적을 경고하며 성도들에게 전한 권면은 무엇입니까? (고전 10:12)",
         options: [
-          "인간 기자의 뛰어난 언어적 천재성을 칭찬하기 위해",
-          "심히 큰 능력이 하나님께 있고 인간에게 있지 아니함을 밝히기 위해",
-          "성경을 아무나 읽지 못하도록 비밀스럽게 감추기 위해",
-          "선지자들에게 경제적인 부를 안겨주기 위해"
+          "재물을 많이 쌓아두라",
+          "선 줄로 생각하는 자는 넘어질까 조심하라",
+          "세상의 풍조와 지혜를 널리 배우라",
+          "다수의 의견을 항상 따르라"
         ],
         answer: 1,
-        explanation: "하나님께서는 완전한 천사가 아닌 연약한 질그릇 같은 인간을 기별꾼으로 삼으심으로, 모든 구원의 지혜와 능력이 오직 하나님께만 있음을 드러내셨습니다.",
-        scripture: "고린도후서 4:7, 교회증언 5권 747"
+        explanation: "사도 바울은 과거의 뼈아픈 역사를 본보기로 삼아 영적 자만심에 빠지지 말고 '선 줄로 생각하는 자는 넘어질까 조심하라'고 권면했습니다.",
+        scripture: "고린도전서 10:6-12"
       },
-      // 10번: 11월 6일 금요일 (엘렌 G. 화잇의 저술과 집필 보조)
       {
-        category: "10번 • 11월 6일 금요일 교과 (화잇의 저술 활동)",
+        id: 8,
         type: "mcq",
-        question: "엘렌 G. 화잇의 문서 저술 과정과 비서(집필 보조자)들의 역할에 대한 설명으로 올바른 것은 무엇입니까?",
+        category: "금요일 교과 • 더 깊은 묵상을 위해",
+        question: "8번 (금요일): 엘렌 G. 화잇이 환상을 볼 때 나타났던 초자연적인 신체적 현상으로 맞지 않는 것은 무엇입니까? (제임스 화잇, 『일생의 사건들』)",
         options: [
-          "비서들은 화잇의 메시지와 상관없이 자기들의 새로운 신학 이론을 임의로 삽입했다",
-          "엘렌 화잇은 자신에게 전달된 영감 메시지를 명확히 표현하기 위해 비서들의 편집적 도움을 받았으며, 자신의 글에 대해 결코 '절대 무오류'를 주장하지 않았다",
-          "엘렌 화잇은 생애 동안 단 한 번도 외부 역사 서적을 참고하거나 인용한 적이 없다",
-          "엘렌 화잇이 쓴 개인적인 안부 편지나 사적인 쪽지까지 모두 성경과 동일한 영감을 받았다"
+          "환상 중에 주변의 일어나는 일들을 전혀 의식하지 못함",
+          "폐에 호흡이 멈추었으나 우아하고 자연스럽게 움직임",
+          "눈을 뜬 상태로 환상을 보았음",
+          "환상이 끝난 후 영구적으로 시력을 완전히 상실함"
+        ],
+        answer: 3,
+        explanation: "엘렌 화잇은 환상이 끝난 직후 일시적으로 빛에 적응하느라 앞이 보이지 않는 현상을 겪었으나 영구적으로 시력이 손상되지는 않았습니다.",
+        scripture: "『일생의 사건들』 271-274"
+      },
+      {
+        id: 9,
+        type: "mcq",
+        category: "금요일 교과 • 더 깊은 묵상을 위해",
+        question: "9번 (금요일): 엘렌 G. 화잇은 하나님께서 자신에게 주신 엄숙한 경고와 책망의 기별을 전하는 자신의 사역에 대해 어떤 마음가짐으로 임한다고 고백했습니까? (교회증언 4권, 231-232)",
+        options: [
+          "사람들의 칭찬과 호감을 얻기 위해 스스로 선택한 일이다",
+          "내 의무는 사람을 기쁘게 함이 아니라 하나님 아버지의 뜻을 행하는 것이다",
+          "기별을 듣기 거절하는 이들을 즉시 정죄하고 징벌해야 한다",
+          "인간적인 감정에 따라 기별의 수위를 조절해야 한다"
         ],
         answer: 1,
-        explanation: "엘렌 화잇의 보조자들은 표현을 다듬는 편집 보조 역할을 성실히 수행했으며, 화잇 자신도 '오류가 없는 분은 오직 하나님뿐이시며 나는 무오류를 주장한 적이 없다'고 분명히 밝혔습니다.",
-        scripture: "가려 뽑은 기별 1권 37, 3권 58"
+        explanation: "화잇은 이 고된 사명이 칭찬받기 위한 것이 아니며, 사람들이 듣든지 아니 듣든지 성령의 지시대로 행하여 하나님 아버지의 뜻을 이루는 것이 본인의 사명이라고 진술했습니다.",
+        scripture: "교회증언 4권, 231-232"
       },
-      // 11번: 서술형 나눔 (삶 속으로)
       {
-        category: "11번 • 삶 속으로 (마음 나누기)",
+        id: 10,
+        type: "mcq",
+        category: "안식일 총결 • 연구 범위",
+        question: "10번 (안식일): 역대하 36장 15-16절에서 하나님께서 이른 아침부터 부지런히 사자들을 보내어 백성을 경고하신 근본적인 동기는 무엇이었습니까?",
+        options: [
+          "유다 민족에게 무거운 세금을 부과하기 위하여",
+          "그의 백성과 그 거하시는 곳을 아끼셨으므로",
+          "바벨론 제국의 국력을 과시하기 위하여",
+          "선지자들의 지위를 높여주기 위하여"
+        ],
+        answer: 1,
+        explanation: "“그의 백성과 그 거하시는 곳을 아끼셨으므로 그의 사자들을 그 백성에게 보내어 부지런히 이르셨으나”(대하 36:15) 백성을 향한 하나님의 깊은 긍휼과 사랑 때문이었습니다.",
+        scripture: "역대하 36:15-16"
+      },
+      {
+        id: 11,
         type: "any",
-        question: "로마서 15장 4절 말씀처럼, 성경은 우리에게 인내를 배우게 하고 하늘의 큰 위로와 소망을 줍니다. 최근에 성경 말씀을 읽으며 마음에 큰 위로와 힘이 되었던 구절이나, 성경을 더욱 사랑하고 묵상하기 위한 나만의 다짐을 적어 보세요. (기록하시면 모두 정답 처리됩니다!)",
-        placeholder: "예) 시편 23편 말씀을 통해 주님이 나의 목자이심을 깨닫고 큰 위로를 받았습니다. 매일 성경을 읽으며 하나님과 동행하겠습니다.",
-        explanation: "소중하고 은혜로운 신앙의 고백을 나누어 주셔서 진심으로 감사합니다! 성경은 시대를 초월하여 우리의 길을 비추는 영원한 등불입니다. 기록된 약속의 말씀을 굳게 붙잡고 날마다 인내와 소망 가운데 승리하시는 여호수아반 성도님이 되시기를 축복합니다.",
-        scripture: "로마서 15:4, 시편 119:105"
+        category: "말씀 나눔 • 삶의 고백",
+        question: "11번 (소감 나눔): 이번 주 교과를 묵상하며, 하나님의 책망과 교훈의 말씀 앞에 나는 어떤 마음가짐으로 서야 할지 느낀 점을 편안하게 나누어 주세요. (정성껏 작성해 주시면 모두 정답 처리됩니다)",
+        answer: "",
+        explanation: "귀한 신앙의 고백을 나누어 주셔서 감사합니다. 과거의 실수를 본보기 삼아 늘 주님의 말씀 앞에 겸손히 엎드려 순종하는 복된 삶이 되시기를 기도합니다.",
+        scripture: "고린도전서 10:11-12"
       }
     ];
 
+    // 상태 변수
     let currentQuestionIndex = 0;
     let score = 0;
     let correctCount = 0;
     let answered = false;
 
-    // DOM 참조
+    // DOM 요소
     const startScreen = document.getElementById('start-screen');
     const quizScreen = document.getElementById('quiz-screen');
     const resultScreen = document.getElementById('result-screen');
 
     const questionBadge = document.getElementById('question-badge');
     const questionText = document.getElementById('question-text');
-    const interactiveContainer = document.getElementById('interactive-container');
+    const optionsContainer = document.getElementById('options-container');
+    const inlineAlert = document.getElementById('inline-alert');
     const feedbackCard = document.getElementById('feedback-card');
     const feedbackTitle = document.getElementById('feedback-title');
     const feedbackDesc = document.getElementById('feedback-desc');
     const feedbackScripture = document.getElementById('feedback-scripture');
     const nextButton = document.getElementById('next-button');
-    const noticeDialog = document.getElementById('notice-dialog');
 
     const currentQNum = document.getElementById('current-q-num');
     const currentScoreText = document.getElementById('current-score-text');
     const progressBar = document.getElementById('progress-bar');
-
-    // 안내 메시지 표시
-    function showNotice(msg) {
-      noticeDialog.textContent = msg;
-      noticeDialog.style.display = 'block';
-      setTimeout(() => {
-        noticeDialog.style.display = 'none';
-      }, 3000);
-    }
 
     // 퀴즈 시작
     function startQuiz() {
@@ -724,181 +733,184 @@
     // 문제 로드
     function loadQuestion() {
       answered = false;
-      noticeDialog.style.display = 'none';
-      const q = questions[currentQuestionIndex];
+      const currentQuiz = questions[currentQuestionIndex];
 
+      // UI 업데이트
       currentQNum.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`;
       currentScoreText.textContent = `점수: ${score}점`;
       const progressPercent = (currentQuestionIndex / questions.length) * 100;
       progressBar.style.width = `${progressPercent}%`;
 
-      questionBadge.textContent = q.category;
-      questionText.textContent = q.question;
+      questionBadge.textContent = currentQuiz.category;
+      questionText.textContent = currentQuiz.question;
 
+      // 해설 및 다음 버튼 초기화
       feedbackCard.style.display = 'none';
+      inlineAlert.style.display = 'none';
       nextButton.classList.add('hidden');
-      interactiveContainer.innerHTML = '';
+      optionsContainer.innerHTML = '';
 
-      if (q.type === 'ox') {
-        renderOX(q);
-      } else if (q.type === 'fill') {
-        renderFill(q);
-      } else if (q.type === 'mcq') {
-        renderMCQ(q);
-      } else if (q.type === 'any') {
-        renderAny(q);
+      if (currentQuiz.type === 'ox') {
+        const oxGrid = document.createElement('div');
+        oxGrid.className = 'ox-grid';
+
+        currentQuiz.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'ox-btn';
+          btn.textContent = opt;
+          btn.onclick = () => selectChoice(idx);
+          oxGrid.appendChild(btn);
+        });
+
+        optionsContainer.appendChild(oxGrid);
+      } else if (currentQuiz.type === 'mcq') {
+        const optGrid = document.createElement('div');
+        optGrid.className = 'options-grid';
+
+        currentQuiz.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.innerHTML = `<span class="option-num">${idx + 1}</span> <span>${opt}</span>`;
+          btn.onclick = () => selectChoice(idx);
+          optGrid.appendChild(btn);
+        });
+
+        optionsContainer.appendChild(optGrid);
+      } else if (currentQuiz.type === 'fill') {
+        const inputWrap = document.createElement('div');
+        inputWrap.className = 'input-box-container';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = 'fill-input';
+        input.className = 'quiz-input';
+        input.placeholder = '정답 단어를 입력하세요 (예: 기록되었)';
+        input.onkeypress = (e) => { if (e.key === 'Enter') submitFillAnswer(); };
+
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'submit-answer-btn';
+        submitBtn.textContent = '정답 제출하기 ✔';
+        submitBtn.onclick = submitFillAnswer;
+
+        inputWrap.appendChild(input);
+        inputWrap.appendChild(submitBtn);
+        optionsContainer.appendChild(inputWrap);
+
+        setTimeout(() => input.focus(), 150);
+      } else if (currentQuiz.type === 'any') {
+        const inputWrap = document.createElement('div');
+        inputWrap.className = 'input-box-container';
+
+        const textarea = document.createElement('textarea');
+        textarea.id = 'any-textarea';
+        textarea.className = 'quiz-textarea';
+        textarea.placeholder = '이곳에 이번 주 교과를 배우며 느낀 점이나 마음에 품은 생각을 편안하게 적어 보세요...';
+
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'submit-answer-btn';
+        submitBtn.textContent = '소감 등록하기 ✍';
+        submitBtn.onclick = submitAnyAnswer;
+
+        inputWrap.appendChild(textarea);
+        inputWrap.appendChild(submitBtn);
+        optionsContainer.appendChild(inputWrap);
+
+        setTimeout(() => textarea.focus(), 150);
       }
     }
 
-    // 1. OX 문제 렌더링
-    function renderOX(q) {
-      const grid = document.createElement('div');
-      grid.className = 'ox-grid';
-
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'ox-btn';
-        btn.textContent = opt;
-        btn.onclick = () => handleChoice(idx === q.answer, btn, grid);
-        grid.appendChild(btn);
-      });
-
-      interactiveContainer.appendChild(grid);
-    }
-
-    // 2. 단답형 기억절 문제 렌더링
-    function renderFill(q) {
-      const container = document.createElement('div');
-      container.className = 'input-container';
-
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.className = 'text-input-field';
-      input.placeholder = q.placeholder || '정답을 입력하세요';
-      input.autocomplete = 'off';
-
-      const btn = document.createElement('button');
-      btn.className = 'submit-input-btn';
-      btn.textContent = '정답 확인하기 ✓';
-
-      btn.onclick = () => {
-        if (answered) return;
-        const val = normalize(input.value);
-        if (!val) {
-          showNotice('💡 빈칸에 들어갈 단어를 먼저 입력해 주세요.');
-          input.focus();
-          return;
-        }
-
-        const isCorrect = q.correctAnswers.some(ans => normalize(ans) === val);
-        input.disabled = true;
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-
-        showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 요한은 보고 들은 것을 [다 증언하였느니라]라고 확언했습니다.' : '❌ 아쉽지만 오답입니다. 정답은 [다 증언하였느니라]입니다.');
-      };
-
-      input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') btn.click();
-      });
-
-      container.appendChild(input);
-      container.appendChild(btn);
-      interactiveContainer.appendChild(container);
-      setTimeout(() => input.focus(), 150);
-    }
-
-    // 3. 4지선다 객관식 렌더링
-    function renderMCQ(q) {
-      const grid = document.createElement('div');
-      grid.className = 'options-grid';
-
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerHTML = `<span class="option-num">${idx + 1}</span> <span>${opt}</span>`;
-        btn.onclick = () => handleChoice(idx === q.answer, btn, grid, idx, q.answer);
-        grid.appendChild(btn);
-      });
-
-      interactiveContainer.appendChild(grid);
-    }
-
-    // 4. 서술형 느낀 점 렌더링 (자유 기술, 100% 정답 인정)
-    function renderAny(q) {
-      const container = document.createElement('div');
-      container.className = 'input-container';
-
-      const textarea = document.createElement('textarea');
-      textarea.className = 'textarea-field';
-      textarea.placeholder = q.placeholder || '자유롭게 느낀 점이나 신앙적 다짐을 나누어 주세요.';
-
-      const btn = document.createElement('button');
-      btn.className = 'submit-input-btn';
-      btn.textContent = '은혜의 고백 제출하기 ❤️';
-
-      btn.onclick = () => {
-        if (answered) return;
-        if (!textarea.value.trim()) {
-          showNotice('💡 한 글자 이상 느낀 점이나 다짐을 간단히 적어 주세요.');
-          textarea.focus();
-          return;
-        }
-        textarea.disabled = true;
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-
-        showFeedback(true, '💐 은혜로운 결심과 믿음의 고백에 깊이 감사드립니다!');
-      };
-
-      container.appendChild(textarea);
-      container.appendChild(btn);
-      interactiveContainer.appendChild(container);
-      setTimeout(() => textarea.focus(), 150);
-    }
-
-    // 선택 처리
-    function handleChoice(isCorrect, selectedBtn, parentContainer, selectedIdx, answerIdx) {
+    // 객관식 및 OX 선택 처리
+    function selectChoice(selectedIndex) {
       if (answered) return;
       answered = true;
 
-      const buttons = parentContainer.querySelectorAll('button');
-      buttons.forEach((b, idx) => {
-        b.disabled = true;
-        if (selectedIdx !== undefined) {
-          if (idx === answerIdx) b.classList.add('correct');
-          else if (idx === selectedIdx) b.classList.add('wrong');
-        } else {
-          if (isCorrect && b === selectedBtn) b.classList.add('correct');
-          if (!isCorrect && b === selectedBtn) b.classList.add('wrong');
+      const currentQuiz = questions[currentQuestionIndex];
+      const isCorrect = (selectedIndex === currentQuiz.answer);
+      const buttons = optionsContainer.querySelectorAll('button');
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === currentQuiz.answer) {
+          btn.classList.add('correct');
+        } else if (idx === selectedIndex) {
+          btn.classList.add('wrong');
         }
       });
 
-      showFeedback(isCorrect, isCorrect ? '✅ 정답입니다! 참 잘하셨습니다.' : '❌ 아쉽지만 오답입니다. 아래 해설을 확인해 보세요.');
+      processAnswer(isCorrect);
     }
 
-    // 피드백 표시
-    function showFeedback(isCorrect, titleText) {
+    // 단답형 빈칸 채우기 제출
+    function submitFillAnswer() {
+      if (answered) return;
+      const input = document.getElementById('fill-input');
+      const val = input.value.trim();
+
+      if (!val) {
+        inlineAlert.textContent = '답안을 입력해 주세요!';
+        inlineAlert.style.display = 'block';
+        input.focus();
+        return;
+      }
+      inlineAlert.style.display = 'none';
       answered = true;
-      const q = questions[currentQuestionIndex];
+      input.disabled = true;
+
+      const currentQuiz = questions[currentQuestionIndex];
+      const userNorm = normalize(val);
+      const targetNorm = normalize(currentQuiz.answer);
+
+      // "기록되었" 또는 "기록되었느니라" 등을 유연하게 허용
+      const isCorrect = userNorm.includes(targetNorm) || targetNorm.includes(userNorm);
+
+      if (isCorrect) {
+        input.style.borderColor = '#38A169';
+        input.style.backgroundColor = '#F0FFF4';
+      } else {
+        input.style.borderColor = '#E53E3E';
+        input.style.backgroundColor = '#FFF5F5';
+      }
+
+      processAnswer(isCorrect);
+    }
+
+    // 서술형 소감 나눔 제출
+    function submitAnyAnswer() {
+      if (answered) return;
+      const textarea = document.getElementById('any-textarea');
+      const val = textarea.value.trim();
+
+      if (!val) {
+        inlineAlert.textContent = '한 줄이라도 짧은 생각을 나누어 주세요!';
+        inlineAlert.style.display = 'block';
+        textarea.focus();
+        return;
+      }
+      inlineAlert.style.display = 'none';
+      answered = true;
+      textarea.disabled = true;
+
+      processAnswer(true);
+    }
+
+    // 정답/오답 사후 처리 공통 함수
+    function processAnswer(isCorrect) {
+      const currentQuiz = questions[currentQuestionIndex];
 
       if (isCorrect) {
         score += Math.round(100 / questions.length);
         correctCount++;
         feedbackTitle.className = 'feedback-title correct';
+        feedbackTitle.innerHTML = '✅ 정답입니다! 참 잘하셨습니다.';
       } else {
         feedbackTitle.className = 'feedback-title wrong';
-      }
-
-      // 만점 보정 (11문제 정답 시 정확히 100점)
-      if (currentQuestionIndex === questions.length - 1 && correctCount === questions.length) {
-        score = 100;
+        feedbackTitle.innerHTML = '❌ 아쉽지만 오답입니다.';
       }
 
       currentScoreText.textContent = `점수: ${score}점`;
-      feedbackTitle.innerHTML = titleText;
-      feedbackDesc.textContent = q.explanation;
-      feedbackScripture.textContent = `📖 관련 말씀: ${q.scripture}`;
+
+      feedbackDesc.textContent = currentQuiz.explanation;
+      feedbackScripture.textContent = `📖 관련 말씀: ${currentQuiz.scripture}`;
       feedbackCard.style.display = 'block';
 
       nextButton.classList.remove('hidden');
@@ -913,7 +925,7 @@
       }, 100);
     }
 
-    // 다음 문제 이동
+    // 다음 문제로 넘어가기
     function nextQuestion() {
       currentQuestionIndex++;
       if (currentQuestionIndex < questions.length) {
@@ -923,7 +935,7 @@
       }
     }
 
-    // 결과 표시
+    // 결과 화면
     function showResult() {
       quizScreen.classList.add('hidden');
       resultScreen.classList.remove('hidden');
@@ -934,16 +946,15 @@
       document.getElementById('wrong-count').textContent = `${questions.length - correctCount}문제`;
 
       const resultMsg = document.getElementById('result-message');
-      if (finalScore >= 90) {
-        resultMsg.textContent = '🌟 완벽합니다! 하나님의 계시와 영감의 원리를 온전히 깨달으셨습니다.';
-      } else if (finalScore >= 70) {
-        resultMsg.textContent = '👏 훌륭하십니다! 이번 주 교과 내용을 충실히 이해하셨습니다.';
+      if (finalScore === 100) {
+        resultMsg.textContent = '🌟 완벽합니다! 교과의 영적 교훈을 온전히 마음에 새기셨습니다.';
+      } else if (finalScore >= 75) {
+        resultMsg.textContent = '👏 훌륭합니다! 교과 내용을 아주 잘 이해하고 계십니다.';
       } else {
-        resultMsg.textContent = '🌱 수고 많으셨습니다! 말씀과 영감의 글을 다시금 묵상해 보세요.';
+        resultMsg.textContent = '🌱 수고 많으셨습니다! 말씀을 다시 한번 묵상해 보세요.';
       }
     }
 
-    // 퀴즈 재시작
     function restartQuiz() {
       startQuiz();
     }

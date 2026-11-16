@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여호수아반 성경 퀴즈 - 이제 이 말을 들을지어다!</title>
+  <title>여호수아반 성경 퀴즈 - 예언 기록의 해석</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: linear-gradient(135deg, #F0F4F8 0%, #D9E2EC 100%);
+      background: linear-gradient(135deg, #EEF6F5 0%, #D5E8E4 100%);
       color: #2D3748;
       min-height: 100vh;
       display: flex;
@@ -25,7 +25,7 @@
       padding: 20px 12px;
       font-size: 19px;
       line-height: 1.6;
-      transition: font-size 0.2s ease;
+      transition: background 0.5s ease, font-size 0.2s ease;
     }
 
     #app-container {
@@ -69,7 +69,7 @@
     /* 상단 배너/헤더 */
     .lesson-badge {
       display: inline-block;
-      background-color: #8C2D19;
+      background-color: #1D635B;
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 700;
@@ -82,7 +82,7 @@
     .main-title {
       font-size: 26px;
       font-weight: 900;
-      color: #5C1D0E;
+      color: #13423D;
       margin-bottom: 8px;
       word-break: keep-all;
     }
@@ -95,8 +95,8 @@
     }
 
     .memory-verse-box {
-      background-color: #FFFDF9;
-      border-left: 5px solid #8C2D19;
+      background-color: #F4FBF9;
+      border-left: 5px solid #1D635B;
       padding: 16px 20px;
       border-radius: 10px;
       text-align: left;
@@ -105,11 +105,10 @@
       margin-bottom: 25px;
       line-height: 1.7;
       word-break: keep-all;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
     .memory-verse-box strong {
-      color: #8C2D19;
+      color: #1D635B;
       display: block;
       margin-bottom: 4px;
     }
@@ -138,14 +137,14 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #D9534F, #8C2D19);
+      background: linear-gradient(90deg, #2C9A8E, #1D635B);
       width: 0%;
       transition: width 0.3s ease;
     }
 
     /* 문제 카드 */
     .question-card {
-      background-color: #4A1E17;
+      background-color: #13423D;
       color: #FFFFFF;
       padding: 24px 20px;
       border-radius: 16px;
@@ -155,12 +154,13 @@
       line-height: 1.6;
       word-break: keep-all;
       margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(74, 30, 23, 0.2);
+      box-shadow: 0 4px 12px rgba(19, 66, 61, 0.18);
+      white-space: pre-line;
     }
 
     .question-category {
       font-size: 14px;
-      color: #FBCFE8;
+      color: #81E6D9;
       font-weight: 700;
       margin-bottom: 6px;
       display: block;
@@ -192,8 +192,8 @@
     }
 
     .option-btn:hover:not(:disabled) {
-      background-color: #F7FAFC;
-      border-color: #4A5568;
+      background-color: #F0FFF4;
+      border-color: #1D635B;
       transform: translateY(-2px);
     }
 
@@ -203,11 +203,11 @@
       align-items: center;
       min-width: 32px;
       height: 32px;
-      background-color: #EDF2F7;
+      background-color: #E6FFFA;
       border-radius: 50%;
       margin-right: 14px;
       font-size: 16px;
-      color: #8C2D19;
+      color: #1D635B;
       font-weight: 900;
     }
 
@@ -235,7 +235,8 @@
     }
 
     .ox-btn:hover:not(:disabled) {
-      background-color: #EDF2F7;
+      background-color: #E6FFFA;
+      border-color: #1D635B;
       transform: translateY(-2px);
     }
 
@@ -258,7 +259,7 @@
     }
 
     .quiz-input:focus {
-      border-color: #8C2D19;
+      border-color: #1D635B;
     }
 
     .quiz-textarea {
@@ -276,12 +277,12 @@
     }
 
     .quiz-textarea:focus {
-      border-color: #8C2D19;
+      border-color: #1D635B;
     }
 
     .submit-answer-btn {
       margin-top: 10px;
-      background-color: #8C2D19;
+      background-color: #1D635B;
       color: #FFFFFF;
       border: none;
       border-radius: 12px;
@@ -294,7 +295,7 @@
     }
 
     .submit-answer-btn:hover {
-      background-color: #702313;
+      background-color: #13423D;
     }
 
     /* 정답/오답 상태 스타일 */
@@ -312,8 +313,8 @@
 
     /* 피드백 및 해설 영역 */
     .feedback-card {
-      background-color: #FFFDF9;
-      border: 2px solid #E2E8F0;
+      background-color: #F4FBF9;
+      border: 2px solid #B2F5EA;
       border-radius: 14px;
       padding: 20px;
       text-align: left;
@@ -354,11 +355,11 @@
     .feedback-scripture {
       margin-top: 8px;
       font-size: 15px;
-      color: #8C2D19;
+      color: #1D635B;
       font-weight: 700;
     }
 
-    /* 알림창 */
+    /* 안내 경고창 */
     .inline-alert {
       background-color: #FFF5F5;
       border: 1.5px solid #FEB2B2;
@@ -373,7 +374,7 @@
 
     /* 기본 버튼 */
     .action-button {
-      background-color: #8C2D19;
+      background-color: #1D635B;
       color: #FFFFFF;
       border: none;
       border-radius: 14px;
@@ -382,28 +383,28 @@
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(140, 45, 25, 0.3);
+      box-shadow: 0 4px 10px rgba(29, 99, 91, 0.3);
       width: 100%;
       margin-top: 20px;
     }
 
     .action-button:hover {
-      background-color: #702313;
+      background-color: #13423D;
       transform: translateY(-2px);
     }
 
     .next-btn {
-      background-color: #2C7A7B;
+      background-color: #2B6CB0;
     }
     .next-btn:hover {
-      background-color: #234E52;
+      background-color: #2C5282;
     }
 
     /* 결과 화면 */
     .result-score {
       font-size: 52px;
       font-weight: 900;
-      color: #8C2D19;
+      color: #1D635B;
       margin: 15px 0 5px 0;
     }
 
@@ -415,7 +416,7 @@
     }
 
     .result-details {
-      background-color: #F7FAFC;
+      background-color: #F4FBF9;
       border-radius: 12px;
       padding: 20px;
       font-size: 17px;
@@ -451,17 +452,17 @@
 
     <!-- 1. 시작 화면 -->
     <div id="start-screen">
-      <span class="lesson-badge">2026년 11월 14일 안식일 교과</span>
-      <h1 class="main-title">이제 이 말을 들을지어다!</h1>
+      <span class="lesson-badge">2026년 11월 21일 안식일 교과 (제8과)</span>
+      <h1 class="main-title">예언 기록의 해석</h1>
       <p class="sub-title">여호수아반(장년반) 성경 퀴즈</p>
       
       <div class="memory-verse-box">
-        <strong>📖 이번 주 기억절 (고린도전서 10:11)</strong>
-        “그들에게 일어난 이런 일은 본보기가 되고 또한 말세를 만난 우리를 깨우치기 위하여 기록되었느니라”
+        <strong>📖 이번 주 기억절 (누가복음 24:27)</strong>
+        “이에 모세와 모든 선지자의 글로 시작하여 모든 성경에 쓴바 자기에 관한 것을 자세히 설명하시니라”
       </div>
 
-      <div style="background-color: #FFF5F2; border: 1.5px solid #FED7D7; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px; line-height: 1.7;">
-        💡 <strong>안내:</strong> 이번 주 교과(제7과)는 선지자들의 경고를 거절했던 과거의 역사와 그에 담긴 교훈을 다룹니다. 총 11문제(OX, 기억절 단답형, 요일별 4지선다, 소감 나눔)로 구성되어 있습니다.
+      <div style="background-color: #E6FFFA; border: 1.5px solid #B2F5EA; padding: 18px; border-radius: 12px; margin-bottom: 24px; text-align: left; font-size: 16px; line-height: 1.7;">
+        💡 <strong>안내:</strong> 성도님들 반갑습니다! 이번 주 교과는 하나님의 예언 말씀을 바르게 깨닫기 위한 성경 해석의 원칙을 다룹니다. 총 11문제를 천천히 풀어보시며 은혜를 나누어 보세요.
       </div>
 
       <button class="action-button" onclick="startQuiz()">교과 퀴즈 시작하기 ▶</button>
@@ -485,7 +486,7 @@
       </div>
 
       <div id="options-container"></div>
-      <div id="inline-alert" class="inline-alert">정답을 입력해 주세요!</div>
+      <div id="inline-alert" class="inline-alert">답안을 입력해 주세요!</div>
 
       <div id="feedback-card" class="feedback-card">
         <div id="feedback-title" class="feedback-title"></div>
@@ -502,14 +503,14 @@
       <h2 class="main-title">수고 많으셨습니다! 🎉</h2>
       
       <div id="result-score" class="result-score">100점</div>
-      <div id="result-message" class="result-message">말씀에 대한 깊은 사모함이 아름답습니다!</div>
+      <div id="result-message" class="result-message">성경 해석의 지혜를 깊이 새기셨습니다!</div>
 
       <div class="result-details">
         • 총 문항수: <strong>11문제</strong><br>
         • 맞힌 문제: <strong id="correct-count" style="color: #2F855A;">11문제</strong><br>
         • 틀린 문제: <strong id="wrong-count" style="color: #C53030;">0문제</strong><br>
         <hr style="border: none; border-top: 1px dashed #CBD5E0; margin: 12px 0;">
-        📌 <strong>핵심 요약:</strong> 하나님께서는 백성을 살리시기 위해 때로는 듣기 불편한 책망의 기별도 끝까지 전하셨습니다. 과거 선조들의 불순종과 거절의 실수를 경계로 삼아, 우리 모두 말세를 만난 성도로서 하나님의 예언과 교훈의 말씀 앞에 겸손히 서기를 간절히 기도합니다.
+        📌 <strong>핵심 요약:</strong> 성경은 성경 자체가 가장 훌륭한 해설자입니다. 문맥과 역사적 배경을 살피며 겸손히 기도하는 마음으로 말씀을 탐구할 때, 모든 성경이 가리키는 구주 예수 그리스도를 더욱 밝히 만나게 됩니다.
       </div>
 
       <button class="action-button" onclick="restartQuiz()">처음부터 다시 풀기 🔄</button>
@@ -522,7 +523,15 @@
   </div>
 
   <script>
-    // 텍스트 정규화 (공백 및 특수기호 제거)
+    // 배경색 테마 배열
+    const themes = [
+      "linear-gradient(135deg, #EEF6F5 0%, #D5E8E4 100%)",
+      "linear-gradient(135deg, #EDF2F7 0%, #E2E8F0 100%)",
+      "linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%)",
+      "linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%)"
+    ];
+
+    // 띄어쓰기 및 특수기호 오차 허용 정규화 함수
     function normalize(text) {
       if (!text) return '';
       return text.toString().replace(/[\s\t\r\n\.,\?!~'"\(\)]/g, '').toLowerCase();
@@ -542,155 +551,155 @@
       document.body.style.fontSize = '19px';
     }
 
-    // 퀴즈 데이터 정의 (2026년 11월 14일 안식일 교과 제7과 기반)
+    // 퀴즈 데이터 (총 11문제)
     const questions = [
       {
         id: 1,
         type: "ox",
-        category: "핵심 요훈 확인 • OX 퀴즈",
-        question: "1번 (OX): 성경의 선지자들은 백성들이 듣기 좋아하는 평안의 말만 전하도록 부름받았으며, 듣기 거북한 심판과 회개의 기별은 전하지 않았다.",
+        category: "핵심 교훈 확인 • OX 문제",
+        question: "1번 (OX): 성경은 앞뒤 문맥이나 역사·문화적 배경을 살피지 않고, 한 구절만 따로 떼어내어 내 상황에 맞게 자유롭게 해석하는 것이 가장 좋은 방법이다.",
         options: ["O", "X"],
         answer: 1, // X
-        explanation: "선지자들은 사람들이 듣기 싫어하고 비난과 박해, 심지어 죽음의 위협이 따르는 상황 속에서도 하나님의 책망과 구원의 기별을 타협 없이 충실히 선포했습니다.",
-        scripture: "히브리서 11:32-38, 대하 36:15-16"
+        explanation: "성경의 메시지가 왜곡되는 가장 큰 이유는 문맥을 무시한 채 본문을 다루기 때문입니다. 역사적·문화적 배경과 전체 문맥, 병행 구절을 살피며 성경으로 성경을 해석해야 합니다.",
+        scripture: "누가복음 24:27, 디모데후서 3:16"
       },
       {
         id: 2,
         type: "fill",
-        category: "기억절 말씀 • 단답형",
-        question: "2번 (단답형): 이번 주 기억절(고전 10:11)의 빈칸에 들어갈 알맞은 단어(어구)를 적어 보세요.\n\n“그들에게 일어난 이런 일은 본보기가 되고 또한 말세를 만난 우리를 깨우치기 위하여 (          )니라”",
-        answer: "기록되었",
-        explanation: "과거 이스라엘 백성에게 일어난 모든 역사는 단순한 옛 이야기가 아니라 말세를 살아가는 우리를 깨우치기 위해 성경에 '기록되었느니라'고 바울은 경고합니다.",
-        scripture: "고린도전서 10:11"
+        category: "기억절 암송 • 단답형",
+        question: "2번 (단답형): 이번 주 기억절(눅 24:27)의 빈칸에 들어갈 알맞은 어구를 적어 보세요.\n\n“이에 모세와 모든 선지자의 글로 시작하여 모든 성경에 쓴바 (          )을 자세히 설명하시니라”",
+        answer: "자기에 관한 것",
+        explanation: "부활하신 예수님께서는 엠마오로 가던 두 제자에게 구약 성경 전체가 바로 구주이신 '자기에 관한 것'(메시아의 고난과 영광)을 기록한 말씀임을 자세히 풀어주셨습니다.",
+        scripture: "누가복음 24:27"
       },
       {
         id: 3,
         type: "mcq",
-        category: "일요일 교과 • 하나님의 사자를 향한 분노",
-        question: "3번 (일요일): 가나안 정탐 후 열 명의 정탐꾼이 불신과 두려움으로 백성의 용기를 꺾었을 때, 온 백성 앞에서 '우리가 곧 올라가서 그 땅을 취하자 능히 이기리라'며 하나님을 신뢰하자고 외친 신실한 지도자는 누구였습니까? (민 13:30)",
+        category: "일요일 교과 • 그 자체가 해설자인 성경",
+        question: "3번 (일요일): 마태복음 5장 17~18절에서 예수님께서 구약의 '율법이나 선지자'에 대해 말씀하신 바른 태도는 무엇입니까?",
         options: [
-          "고라",
-          "발람",
-          "갈렙",
-          "다단"
+          "구약의 가르침을 모두 폐지하고 새 법으로 대체하러 오셨다",
+          "율법의 일점일획도 없어지지 않고 율법을 완전하게 하려 오셨다",
+          "율법은 당시 유대인들에게만 적용되던 임시 규칙일 뿐이다",
+          "신약 시대에는 구약 성경을 더 이상 읽을 필요가 없다"
         ],
-        answer: 2,
-        explanation: "갈렙(과 여호수아)은 백성들의 불평을 멈추게 하고 하나님께서 기뻐하시면 그 땅을 주실 것이니 두려워 말고 반역하지 말자고 담대히 외쳤습니다.",
-        scripture: "민수기 13:30, 14:6-9"
+        answer: 1,
+        explanation: "예수님은 율법이나 선지자를 폐하러 오신 것이 아니라 그 속에 담긴 깊은 영적 의미를 드러내어 '완전하게 하려' 오셨다고 선포하셨습니다.",
+        scripture: "마태복음 5:17-18"
       },
       {
         id: 4,
         type: "mcq",
-        category: "월요일 교과 • 기별을 말살하다 (1)",
-        question: "4번 (월요일): 바룩이 기록한 예레미야의 예언 두루마리 책을 낭독해 들려주었을 때, 신하들의 만류에도 불구하고 칼로 두루마리를 베어 화롯불에 던져 불살라 버린 유다의 왕은 누구입니까? (렘 36:23-25)",
+        category: "월요일 교과 • 역사·문화적 배경",
+        question: "4번 (월요일): 사도 바울이 고린도전서 16장 20절에서 '거룩하게 입맞춤으로 서로 문안하라'고 권면한 말씀을 오늘날 우리 문화에 적용할 때 취해야 할 핵심 원칙은 무엇입니까?",
         options: [
-          "히스기야왕",
-          "여호야김왕",
-          "요시야왕",
-          "아사왕"
+          "시대와 나라에 상관없이 반드시 입맞춤으로만 인사해야 한다",
+          "고대 그리스 풍습이므로 오늘날 교인 간 인사는 생략해도 된다",
+          "악수나 따뜻한 인사 등 문화에 맞는 애정 어린 표현으로 한 가족임을 느끼게 해야 한다",
+          "친한 교인들끼리만 따로 모여 인사를 나누어야 한다"
         ],
-        answer: 1,
-        explanation: "여호야김왕은 하나님의 회개 촉구 기별을 멸시하며 면도칼로 두루마리를 베어 화롯불에 모두 태워버리는 오만함을 보였습니다.",
-        scripture: "예레미야 36:23-25"
+        answer: 2,
+        explanation: "당시 그리스 문화에서는 입맞춤이 자연스러운 인사였습니다. 오늘날에는 악수나 따뜻한 미소 등 우리 문화에 자연스러운 방식으로 성도들이 사랑받고 한 가족임을 느끼게 해야 합니다.",
+        scripture: "고린도전서 16:20"
       },
       {
         id: 5,
         type: "mcq",
-        category: "화요일 교과 • 기별을 말살하다 (2)",
-        question: "5번 (화요일): 유다 말기에 즉위하여 하나님의 입에서 나오는 말씀을 전하는 선지자 예레미야의 간곡한 권면 앞에서도 겸손하지 않고 목을 곧게 하다가 비극적인 멸망을 자초한 유다의 마지막 왕은 누구입니까? (대하 36:11-12)",
+        category: "화요일 교과 • 글의 맥락",
+        question: "5번 (화요일): 광야에서 예수님을 시험할 때 사탄이 시편 91편 11~12절을 인용하며 성전 꼭대기에서 뛰어내리라고 유혹한 수법은 무엇이었습니까? (마 4:1-11)",
         options: [
-          "시드기야왕",
-          "여호아하스왕",
-          "여호사밧왕",
-          "웃시야왕"
+          "성경 구절이 아예 존재하지 않는 거짓말을 지어냈다",
+          "성경 본문의 원래 문맥을 무시하고 의미를 비틀어 기만적으로 왜곡했다",
+          "구약 성경 전체의 역사적 연대를 잘못 계산했다",
+          "제자들의 증언을 인용하여 예수님을 협박했다"
         ],
-        answer: 0,
-        explanation: "시드기야왕은 선지자 예레미야가 여호와의 입에서 나오는 말씀을 전했음에도 그 앞에서 마음을 겸손히 낮추지 않았습니다.",
-        scripture: "역대하 36:11-12"
+        answer: 1,
+        explanation: "사탄은 하나님의 보호 약속이라는 시편 말씀의 앞뒤 문맥을 의도적으로 비틀어, 스스로 위험에 뛰어드는 무모한 시험까지 보호하신다는 식으로 곡해했습니다.",
+        scripture: "마태복음 4:5-7, 창세기 3:1-5"
       },
       {
         id: 6,
         type: "mcq",
-        category: "수요일 교과 • 위선",
-        question: "6번 (수요일): 예수님께서는 옛 선지자들의 무덤을 단장하면서 '우리가 조상 때에 있었더라면 선지자의 피를 흘리지 않았을 것'이라고 자부하면서도, 정작 참된 메시아를 죽이려 모의했던 서기관과 바리새인들을 무엇에 비유하여 질책하셨습니까? (마 23:27)",
+        category: "수요일 교과 • 본문의 뜻",
+        question: "6번 (수요일): 성경 본문의 참된 뜻을 바르게 해석하고자 하는 성실한 연구자가 반드시 겸비해야 할 가장 중요한 두 가지 태도는 무엇입니까?",
         options: [
-          "푸른 감람나무",
-          "회칠한 무덤",
-          "반석 위의 집",
-          "좋은 포도나무"
+          "자신감과 독단적 확신",
+          "철저함과 겸손함",
+          "빠른 속독과 암기력",
+          "비판적 시각과 의심"
         ],
         answer: 1,
-        explanation: "겉은 아름답게 보이지만 속에는 죽은 사람의 뼈와 온갖 더러운 것이 가득한 '회칠한 무덤'에 비유하시며 그들의 외식과 위선을 엄히 꾸짖으셨습니다.",
-        scripture: "마태복음 23:27-31"
+        explanation: "우리 중 누구도 진리를 단번에 다 알 수 없으므로, 단어와 문맥과 병행 구절을 살피는 '철저함'과 배우고자 하는 '겸손함'을 함께 갖추어야 합니다.",
+        scripture: "누가복음 10:25-28, 디모데후서 4:1-5"
       },
       {
         id: 7,
         type: "mcq",
-        category: "목요일 교과 • 우리를 일깨우려고",
-        question: "7번 (목요일): 사도 바울이 고린도전서 10장에서 광야의 이스라엘 조상들이 악을 즐겨 행하다 멸망당한 과거의 역사를 기록으로 남기신 목적을 경고하며 성도들에게 전한 권면은 무엇입니까? (고전 10:12)",
+        category: "목요일 교과 • 성경적인 주석",
+        question: "7번 (목요일): 사도행전 8장에서 에티오피아 내시가 병거 위에서 이사야서를 열심히 읽으면서도 뜻을 깨닫지 못했을 때, 성령의 인도로 다가가 말씀을 해설해 주고 침례를 베푼 제자는 누구입니까? (행 8:35-39)",
         options: [
-          "재물을 많이 쌓아두라",
-          "선 줄로 생각하는 자는 넘어질까 조심하라",
-          "세상의 풍조와 지혜를 널리 배우라",
-          "다수의 의견을 항상 따르라"
+          "베드로",
+          "바나바",
+          "빌립",
+          "스데반"
         ],
-        answer: 1,
-        explanation: "사도 바울은 과거의 뼈아픈 역사를 본보기로 삼아 영적 자만심에 빠지지 말고 '선 줄로 생각하는 자는 넘어질까 조심하라'고 권면했습니다.",
-        scripture: "고린도전서 10:6-12"
+        answer: 2,
+        explanation: "집사 빌립은 내시가 읽던 이사야 53장의 어린양 예언을 시작으로 예수 그리스도의 복음을 자세히 해설해 주어 내시가 기쁨으로 침례를 받게 인도했습니다.",
+        scripture: "사도행전 8:27-39"
       },
       {
         id: 8,
         type: "mcq",
         category: "금요일 교과 • 더 깊은 묵상을 위해",
-        question: "8번 (금요일): 엘렌 G. 화잇이 환상을 볼 때 나타났던 초자연적인 신체적 현상으로 맞지 않는 것은 무엇입니까? (제임스 화잇, 『일생의 사건들』)",
+        question: "8번 (금요일): 엘렌 G. 화잇의 저술을 바르게 읽고 적용하기 위한 지침으로 옳지 않은 것은 무엇입니까?",
         options: [
-          "환상 중에 주변의 일어나는 일들을 전혀 의식하지 못함",
-          "폐에 호흡이 멈추었으나 우아하고 자연스럽게 움직임",
-          "눈을 뜬 상태로 환상을 보았음",
-          "환상이 끝난 후 영구적으로 시력을 완전히 상실함"
+          "의심보다는 기도하는 마음과 열린 태도로 성령의 인도를 구한다",
+          "글이 기록된 본래의 시간과 장소, 역사·문학적 문맥을 살핀다",
+          "특정 주제와 관련된 글들을 두루 살피며 근본 원칙을 찾는다",
+          "문맥과 상관없이 한 문장만 발췌하여 다른 사람을 정죄하는 도구로 삼는다"
         ],
         answer: 3,
-        explanation: "엘렌 화잇은 환상이 끝난 직후 일시적으로 빛에 적응하느라 앞이 보이지 않는 현상을 겪었으나 영구적으로 시력이 손상되지는 않았습니다.",
-        scripture: "『일생의 사건들』 271-274"
+        explanation: "문맥 없이 짧은 문장만 끊어서 오용하면 큰 혼란과 오해를 낳습니다. 시간과 장소를 고려하고 전체 가르침 속에서 근본 원칙을 파악해야 합니다.",
+        scripture: "가려 뽑은 기별 1권, 44, 57"
       },
       {
         id: 9,
         type: "mcq",
-        category: "금요일 교과 • 더 깊은 묵상을 위해",
-        question: "9번 (금요일): 엘렌 G. 화잇은 하나님께서 자신에게 주신 엄숙한 경고와 책망의 기별을 전하는 자신의 사역에 대해 어떤 마음가짐으로 임한다고 고백했습니까? (교회증언 4권, 231-232)",
+        category: "안식일 서론 • 엠마오 도상의 제자들",
+        question: "9번 (안식일): 십자가 사건 이후 엠마오로 가던 두 제자가 깊은 실망에 빠져 있었던 주된 이유는 무엇입니까? (눅 24:21)",
         options: [
-          "사람들의 칭찬과 호감을 얻기 위해 스스로 선택한 일이다",
-          "내 의무는 사람을 기쁘게 함이 아니라 하나님 아버지의 뜻을 행하는 것이다",
-          "기별을 듣기 거절하는 이들을 즉시 정죄하고 징벌해야 한다",
-          "인간적인 감정에 따라 기별의 수위를 조절해야 한다"
+          "예수님께서 제자들을 전혀 사랑하지 않으셨다고 생각해서",
+          "유대 민족을 로마의 압제에서 해방시켜 줄 정치적 메시아만 기대했기 때문에",
+          "구약 성경의 예언을 한 번도 읽어본 적이 없었기 때문에",
+          "예루살렘 성전이 이미 무너졌다고 오해했기 때문에"
         ],
         answer: 1,
-        explanation: "화잇은 이 고된 사명이 칭찬받기 위한 것이 아니며, 사람들이 듣든지 아니 듣든지 성령의 지시대로 행하여 하나님 아버지의 뜻을 이루는 것이 본인의 사명이라고 진술했습니다.",
-        scripture: "교회증언 4권, 231-232"
+        explanation: "제자들은 고난받는 종에 대한 예언은 간과한 채, 로마로부터 이스라엘을 해방할 정치적 메시아로만 예언을 일면적으로 해석했기에 큰 실망을 겪었습니다.",
+        scripture: "누가복음 24:21-26"
       },
       {
         id: 10,
         type: "mcq",
-        category: "안식일 총결 • 연구 범위",
-        question: "10번 (안식일): 역대하 36장 15-16절에서 하나님께서 이른 아침부터 부지런히 사자들을 보내어 백성을 경고하신 근본적인 동기는 무엇이었습니까?",
+        category: "토요일(안식일) • 핵심 교훈 총정리",
+        question: "10번 (토요일): 이번 주 교과가 강조하는 올바른 예언 해석의 최종 검증 기준은 무엇입니까?",
         options: [
-          "유다 민족에게 무거운 세금을 부과하기 위하여",
-          "그의 백성과 그 거하시는 곳을 아끼셨으므로",
-          "바벨론 제국의 국력을 과시하기 위하여",
-          "선지자들의 지위를 높여주기 위하여"
+          "세상 학자들의 최신 유행 이론과 일치하는지 확인한다",
+          "내 개인적인 감정과 이익에 부합하는지 확인한다",
+          "모든 해석이 예수 그리스도와 성경 전체의 가르침에 일치하는지 확인한다",
+          "남들이 알지 못하는 독창적이고 신비로운 해석인지 확인한다"
         ],
-        answer: 1,
-        explanation: "“그의 백성과 그 거하시는 곳을 아끼셨으므로 그의 사자들을 그 백성에게 보내어 부지런히 이르셨으나”(대하 36:15) 백성을 향한 하나님의 깊은 긍휼과 사랑 때문이었습니다.",
-        scripture: "역대하 36:15-16"
+        answer: 2,
+        explanation: "성경의 모든 예언과 가르침의 중심은 예수 그리스도이십니다. 따라서 모든 성경 해석은 그리스도의 품성과 성경 전체의 통일된 가르침과 온전히 조화를 이루어야 합니다.",
+        scripture: "요한복음 5:39, 누가복음 24:44-45"
       },
       {
         id: 11,
         type: "any",
-        category: "말씀 나눔 • 삶의 고백",
-        question: "11번 (소감 나눔): 이번 주 교과를 묵상하며, 하나님의 책망과 교훈의 말씀 앞에 나는 어떤 마음가짐으로 서야 할지 느낀 점을 편안하게 나누어 주세요. (정성껏 작성해 주시면 모두 정답 처리됩니다)",
+        category: "말씀 나눔 • 삶의 적용",
+        question: "11번 (소감 나눔): 이번 주 '예언 기록의 해석' 교과를 공부하시면서 마음에 가장 와닿은 점이나, 앞으로 말씀을 대할 때 실천하고 싶은 다짐을 간단히 적어 주세요. (어떤 내용을 쓰셔도 모두 정답으로 인정됩니다)",
         answer: "",
-        explanation: "귀한 신앙의 고백을 나누어 주셔서 감사합니다. 과거의 실수를 본보기 삼아 늘 주님의 말씀 앞에 겸손히 엎드려 순종하는 복된 삶이 되시기를 기도합니다.",
-        scripture: "고린도전서 10:11-12"
+        explanation: "귀한 은혜의 나눔을 적어 주셔서 진심으로 감사합니다! 겸손하고 열린 마음으로 성경을 성경으로 깊이 탐구하여, 말씀 속에서 살아 계신 예수님을 날마다 만나는 여호수아반 성도님들이 되시기를 축복합니다.",
+        scripture: "시편 119:105"
       }
     ];
 
@@ -735,6 +744,9 @@
       answered = false;
       const currentQuiz = questions[currentQuestionIndex];
 
+      // 배경 테마 부드럽게 전환
+      document.body.style.background = themes[currentQuestionIndex % themes.length];
+
       // UI 업데이트
       currentQNum.textContent = `문제 ${currentQuestionIndex + 1} / ${questions.length}`;
       currentScoreText.textContent = `점수: ${score}점`;
@@ -776,7 +788,7 @@
         });
 
         optionsContainer.appendChild(optGrid);
-      } else if (currentQuiz.type === 'fill') {
+      } else if (currentQuiz.type === 'fill' || currentQuiz.type === 'short') {
         const inputWrap = document.createElement('div');
         inputWrap.className = 'input-box-container';
 
@@ -784,7 +796,7 @@
         input.type = 'text';
         input.id = 'fill-input';
         input.className = 'quiz-input';
-        input.placeholder = '정답 단어를 입력하세요 (예: 기록되었)';
+        input.placeholder = '정답을 입력해 주세요';
         input.onkeypress = (e) => { if (e.key === 'Enter') submitFillAnswer(); };
 
         const submitBtn = document.createElement('button');
@@ -804,7 +816,7 @@
         const textarea = document.createElement('textarea');
         textarea.id = 'any-textarea';
         textarea.className = 'quiz-textarea';
-        textarea.placeholder = '이곳에 이번 주 교과를 배우며 느낀 점이나 마음에 품은 생각을 편안하게 적어 보세요...';
+        textarea.placeholder = '이곳에 이번 주 교과를 공부하며 느낀 점을 편안하게 적어 보세요...';
 
         const submitBtn = document.createElement('button');
         submitBtn.className = 'submit-answer-btn';
@@ -847,7 +859,7 @@
       const val = input.value.trim();
 
       if (!val) {
-        inlineAlert.textContent = '답안을 입력해 주세요!';
+        inlineAlert.textContent = '정답을 입력해 주세요!';
         inlineAlert.style.display = 'block';
         input.focus();
         return;
@@ -860,8 +872,7 @@
       const userNorm = normalize(val);
       const targetNorm = normalize(currentQuiz.answer);
 
-      // "기록되었" 또는 "기록되었느니라" 등을 유연하게 허용
-      const isCorrect = userNorm.includes(targetNorm) || targetNorm.includes(userNorm);
+      const isCorrect = (userNorm === targetNorm) || userNorm.includes(targetNorm);
 
       if (isCorrect) {
         input.style.borderColor = '#38A169';
@@ -874,14 +885,14 @@
       processAnswer(isCorrect);
     }
 
-    // 서술형 소감 나눔 제출
+    // 서술형 소감 나눔 제출 (무조건 정답 처리)
     function submitAnyAnswer() {
       if (answered) return;
       const textarea = document.getElementById('any-textarea');
       const val = textarea.value.trim();
 
       if (!val) {
-        inlineAlert.textContent = '한 줄이라도 짧은 생각을 나누어 주세요!';
+        inlineAlert.textContent = '한 줄이라도 짧은 생각을 적어 주세요!';
         inlineAlert.style.display = 'block';
         textarea.focus();
         return;
@@ -939,19 +950,20 @@
     function showResult() {
       quizScreen.classList.add('hidden');
       resultScreen.classList.remove('hidden');
+      document.body.style.background = themes[0];
 
-      const finalScore = Math.min(score, 100);
+      const finalScore = (correctCount === questions.length) ? 100 : Math.min(score, 100);
       document.getElementById('result-score').textContent = `${finalScore}점`;
       document.getElementById('correct-count').textContent = `${correctCount}문제`;
       document.getElementById('wrong-count').textContent = `${questions.length - correctCount}문제`;
 
       const resultMsg = document.getElementById('result-message');
       if (finalScore === 100) {
-        resultMsg.textContent = '🌟 완벽합니다! 교과의 영적 교훈을 온전히 마음에 새기셨습니다.';
+        resultMsg.textContent = '🌟 완벽합니다! 성경 해석의 핵심 원리를 온전히 이해하셨습니다.';
       } else if (finalScore >= 75) {
-        resultMsg.textContent = '👏 훌륭합니다! 교과 내용을 아주 잘 이해하고 계십니다.';
+        resultMsg.textContent = '👏 훌륭합니다! 이번 주 교과 말씀을 아주 깊이 묵상하셨네요.';
       } else {
-        resultMsg.textContent = '🌱 수고 많으셨습니다! 말씀을 다시 한번 묵상해 보세요.';
+        resultMsg.textContent = '🌱 수고 많으셨습니다! 해설을 통해 말씀을 다시 한번 되새겨 보세요.';
       }
     }
 

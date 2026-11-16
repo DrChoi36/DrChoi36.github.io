@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (7과: 진흙으로 만든 그릇)</title>
+  <title>유년반 교과 퀴즈 (8과: 하나님의 건축가 느헤미야)</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #fdf6ec; /* 부드럽고 따뜻한 도자기/점토 테마 */
+      background: #f5f3ff; /* 8과 테마: 성벽과 승리를 상징하는 보라빛 라벤더 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,7 +19,7 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #b45309; /* 정성껏 빚은 테라코타 도자기 색상 */
+      background-color: #7c3aed; /* 든든하고 지혜로운 보라색 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
@@ -29,21 +29,20 @@
       border: none; border-radius: 12px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
       box-shadow: 0 3px 0 #ddd;
-      transition: all 0.2s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #fef3c7; }
+    button:hover { background-color: #ede9fe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #b45309; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #7c3aed; width: 70%; text-align: center; margin-bottom: 20px; 
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #b45309;
+      border: 5px solid #7c3aed;
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
@@ -57,8 +56,8 @@
 
   <div id="quiz-container">
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 7과</h2>
-      <p style="font-size: 20px;">진흙으로 만든 그릇 (토기장이의 사랑)</p>
+      <h2>유년반 성경퀴즈 8과</h2>
+      <p style="font-size: 20px;">하나님의 건축가 느헤미야 (성벽 재건)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
@@ -75,7 +74,7 @@
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 7과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 8과</div>
 
   <script>
     'use strict';
@@ -83,47 +82,42 @@
     const questions = [
       { 
         type: 'ox',   
-        question: '토기장이는 그릇을 만들다가 모양이 일그러져도 진흙을 버리지 않고, 다시 반죽하여 더 아름답고 유용한 그릇으로 고쳐 만들었어요.', 
+        question: '느헤미야는 적들이 성벽 짓는 일을 방해하고 위협할 때도 포기하지 않고 하나님께 기도하며 백성들을 격려했어요.', 
         answer: 'O',
-        comment: '맞아요! 토기장이는 실수로 망가진 진흙도 포기하지 않고 정성껏 다시 빚어 멋진 그릇으로 완성했어요!' 
+        comment: '맞아요! 느헤미야는 어려운 순간마다 하나님께 기도하며 백성들에게 용기를 불어넣어 주었어요!' 
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "여호와여,... 우리는 (   )이요 주는 토기장이시니 우리는 다 주의 손으로 지으신 것이니이다" (이사야 64:8)', 
-        answer: '진흙',
-        comment: '하나님은 우리를 지으신 최고의 토기장이시며, 우리는 하나님의 손에 안긴 부드러운 진흙이에요!' 
+        question: '기억절: "내 하나님의 선한 (   )이 나를 도우시므로" (느헤미야 2:8)', 
+        answer: '손',
+        comment: '하나님의 선한 손이 도와주실 때 우리는 어떤 어려운 일도 훌륭하게 해낼 수 있어요!' 
       },
       { 
         type: 'mcq',  
-        question: '하나님께서는 선지자 예레미야에게 중요한 교훈을 가르쳐주시기 위해 누구의 집으로 보내셨나요?', 
-        options: ['A. 토기장이', 'B. 목수', 'C. 어부', 'D. 농부'], 
-        answer: 'A. 토기장이',
-        comment: '하나님께서는 진흙으로 아름다운 그릇을 정성껏 빚는 토기장이의 일터로 예레미야를 보내셨어요.' 
+        question: '느헤미야는 예루살렘으로 떠나기 전, 왕궁에서 어떤 중요한 일을 맡고 있었나요?', 
+        options: ['A. 왕에게 잔을 올리는 일', 'B. 왕의 말을 돌보는 일', 'C. 성문을 지키는 일', 'D. 왕의 옷을 만드는 일'], 
+        answer: 'A. 왕에게 잔을 올리는 일',
+        comment: '느헤미야는 왕 곁에서 잔을 올리는 신하로 일하면서 슬픈 표정을 본 왕에게 용기 내어 부탁을 드렸어요.' 
       },
       { 
         type: 'mcq',  
-        question: '토기장이가 일그러진 진흙을 다시 빚어 멋진 그릇으로 만드는 모습을 통해 우리가 배울 수 있는 교훈은 무엇인가요?', 
-        options: [
-          'A. 값비싼 그릇만 모아야 한다', 
-          'B. 하나님께서는 우리의 실수와 부족함을 아름답게 다듬어주신다', 
-          'C. 그릇은 누구나 한 번에 완벽하게 만든다', 
-          'D. 진흙은 모양이 망가지면 바로 버려야 한다'
-        ], 
-        answer: 'B. 하나님께서는 우리의 실수와 부족함을 아름답게 다듬어주신다',
-        comment: '하나님의 사랑의 손길 안에서 우리는 언제나 새롭고 유용한 사람으로 아름답게 자라갈 수 있어요!' 
+        question: '하나님의 도우심으로 느헤미야와 백성들이 한마음으로 일하여 무너진 성벽을 며칠 만에 모두 완성했나요?', 
+        options: ['A. 7일', 'B. 30일', 'C. 52일', 'D. 100일'], 
+        answer: 'C. 52일',
+        comment: '모두가 한 손에는 무기를 들고 한 손으로 열심히 일한 결과, 단 52일 만에 튼튼한 성벽을 완성했어요!' 
       },
       { 
         type: 'short',
-        question: '토기장이가 진흙을 얹어놓고 발로 페달을 밟아 빙글빙글 돌리며 그릇을 빚던 둥근 바퀴 기구의 이름은 무엇일까요? (2글자)', 
-        answer: '녹로', 
-        comment: '토기장이는 회전하는 녹로 위에 진흙을 올려놓고 섬세한 손길로 예쁜 모양을 빚어냈어요.' 
+        question: '느헤미야가 왕의 허락을 받아 예루살렘에 가서 백성들과 함께 다시 튼튼하게 쌓아 올린 것은 무엇일까요? (2글자)', 
+        answer: '성벽', 
+        comment: '적들의 공격으로부터 하나님의 백성을 안전하게 지켜주는 예루살렘 성벽을 멋지게 다시 세웠답니다!' 
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#b45309', '#92400e', '#78350f', '#c2410c', '#9a3412'];
+    const themes = ['#7c3aed', '#6d28d9', '#5b21b6', '#4c1d95', '#65a30d'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -194,7 +188,7 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#b45309;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#5b21b6;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
         feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
@@ -210,7 +204,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#78350f';
+      nextBtn.style.backgroundColor = '#4c1d95';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -227,9 +221,9 @@
       let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🏺</div>
-        <p>우리 어린이의 7과 점수는</p>
-        <p><span style="color:#b45309; font-size:45px;">${score} / ${questions.length}</span></p>
+        <div style="font-size: 60px; margin: 20px 0;">🏰</div>
+        <p>우리 어린이의 8과 점수는</p>
+        <p><span style="color:#7c3aed; font-size:45px;">${score} / ${questions.length}</span></p>
         <p style="font-weight:bold;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;
@@ -241,4 +235,3 @@
     }
   </script>
 </body>
-</html>

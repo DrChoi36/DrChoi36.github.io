@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>유년반 교과 퀴즈 (8과: 하나님의 건축가 느헤미야)</title>
+  <title>유년반 교과 퀴즈 (9과: 미래로 돌아가다)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
     
     body { 
       margin: 0; padding: 0; 
       font-family: 'Comic Sans MS', 'Comic Neue', sans-serif; 
-      background: #f5f3ff; /* 8과 테마: 성벽과 승리를 상징하는 보라빛 라벤더 */
+      background: #eff6ff; /* 9과 테마: 하나님의 신실한 약속과 하늘의 소망을 상징하는 맑은 블루 */
       display: flex; justify-content: center; align-items: center; 
       min-height: 100vh; font-size: 24px; 
     }
@@ -19,105 +19,118 @@
 
     .question-box, .input-box { 
       padding: 30px; border-radius: 15px; color: #fff; 
-      background-color: #7c3aed; /* 든든하고 지혜로운 보라색 */
+      background-color: #2563eb; /* 신뢰와 약속을 상징하는 따뜻한 블루 */
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       line-height: 1.5;
+      transition: background-color 0.3s ease;
     }
 
     button { 
       margin: 10px; padding: 15px 30px; font-size: 22px; 
       border: none; border-radius: 12px; cursor: pointer; 
       background-color: #fff; color: #333; font-weight: bold;
-      box-shadow: 0 3px 0 #ddd;
+      box-shadow: 0 3px 0 #cbd5e1;
+      transition: all 0.15s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #ede9fe; }
+    button:hover { background-color: #dbeafe; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     input[type="text"] { 
       padding: 12px; font-size: 24px; border-radius: 10px; 
-      border: 2px solid #7c3aed; width: 70%; text-align: center; margin-bottom: 20px; 
+      border: 2px solid #2563eb; width: 70%; text-align: center; margin-bottom: 20px; 
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
     }
 
     #result { 
       font-size: 28px; margin-top: 30px; color: #333; 
       background: #fff; padding: 30px; border-radius: 20px; 
-      border: 5px solid #7c3aed;
+      border: 5px solid #2563eb;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
     }
     #feedback { min-height: 40px; margin-top: 20px; font-size: 28px; font-weight: bold; }
 
     #footer {
       position: fixed; bottom: 10px; left: 0; width: 100%;
-      text-align: center; font-size: 14px; color: #94a3b8; pointer-events: none;
+      text-align: center; font-size: 14px; color: #64748b; pointer-events: none;
     }
   </style>
 </head>
 <body>
 
   <div id="quiz-container">
+    <!-- 이름 입력 영역 -->
     <div id="name-input-area" class="input-box">
-      <h2>유년반 성경퀴즈 8과</h2>
-      <p style="font-size: 20px;">하나님의 건축가 느헤미야 (성벽 재건)</p>
+      <h2>유년반 성경퀴즈 9과</h2>
+      <p style="font-size: 20px;">미래로 돌아가다 (하나님은 약속을 지키세요)</p>
       <p>이름을 입력하고 시작하세요!</p>
       <input type="text" id="name-input" placeholder="예: 최재희" />
       <br>
       <button id="start-btn">퀴즈 시작 ▶</button>
     </div>
 
+    <!-- 퀴즈 진행 영역 -->
     <div id="quiz-area" style="display:none;">
-      <div id="question-number" style="font-size: 20px; color: #555; margin-bottom: 10px;"></div>
+      <div id="question-number" style="font-size: 20px; color: #475569; margin-bottom: 10px; font-weight: bold;"></div>
       <div id="question-text" class="question-box"></div>
       <div id="answer-area" style="margin-top: 20px;"></div>
       <div id="feedback"></div>
     </div>
 
+    <!-- 결과 출력 영역 -->
     <div id="result" style="display:none;"></div>
   </div>
 
-  <div id="footer">Distributed by Dr. Choi | 유년반 교과 8과</div>
+  <div id="footer">Distributed by Dr. Choi | 유년반 교과 9과</div>
 
   <script>
     'use strict';
 
+    // 9과: 미래로 돌아가다 (하나님은 약속을 지키세요) 퀴즈 데이터
     const questions = [
       { 
         type: 'ox',   
-        question: '느헤미야는 적들이 성벽 짓는 일을 방해하고 위협할 때도 포기하지 않고 하나님께 기도하며 백성들을 격려했어요.', 
+        question: '우혁이는 여동생 보라에게 내일 방과 후에 자전거 타는 법을 가르쳐주겠다고 약속했지만, 친구와 놀기 위해 그 약속을 지키지 않았어요.', 
         answer: 'O',
-        comment: '맞아요! 느헤미야는 어려운 순간마다 하나님께 기도하며 백성들에게 용기를 불어넣어 주었어요!' 
+        comment: '사람은 때때로 약속을 잊거나 어기기도 하지만, 하나님께서는 한 번 하신 약속을 절대 깨뜨리지 않고 모두 지키신답니다!' 
       }, 
       { 
         type: 'fill', 
-        question: '기억절: "내 하나님의 선한 (   )이 나를 도우시므로" (느헤미야 2:8)', 
-        answer: '손',
-        comment: '하나님의 선한 손이 도와주실 때 우리는 어떤 어려운 일도 훌륭하게 해낼 수 있어요!' 
+        question: '기억절: "너희의 하나님 여호와께서 너희에게 대하여 말씀하신 모든 선한 말씀이 하나도 틀리지 아니하고 다 너희에게 (   )" (여호수아 23:14)', 
+        answer: '응하여',
+        comment: '하나님께서 성경에 말씀하신 모든 선한 약속은 하나도 빠짐없이 모두 그대로 이루어졌어요!' 
       },
       { 
         type: 'mcq',  
-        question: '느헤미야는 예루살렘으로 떠나기 전, 왕궁에서 어떤 중요한 일을 맡고 있었나요?', 
-        options: ['A. 왕에게 잔을 올리는 일', 'B. 왕의 말을 돌보는 일', 'C. 성문을 지키는 일', 'D. 왕의 옷을 만드는 일'], 
-        answer: 'A. 왕에게 잔을 올리는 일',
-        comment: '느헤미야는 왕 곁에서 잔을 올리는 신하로 일하면서 슬픈 표정을 본 왕에게 용기 내어 부탁을 드렸어요.' 
+        question: '선지자 미가의 예언대로, 이스라엘을 다스릴 왕이신 예수님께서 태어나신 곳은 어디인가요?', 
+        options: ['A. 예루살렘', 'B. 베들레헴', 'C. 나사렛', 'D. 갈릴리'], 
+        answer: 'B. 베들레헴',
+        comment: '선지자 미가가 예언한 지 700년 후에 아기 예수님께서 약속대로 정확히 베들레헴에서 태어나셨어요!' 
       },
       { 
         type: 'mcq',  
-        question: '하나님의 도우심으로 느헤미야와 백성들이 한마음으로 일하여 무너진 성벽을 며칠 만에 모두 완성했나요?', 
-        options: ['A. 7일', 'B. 30일', 'C. 52일', 'D. 100일'], 
-        answer: 'C. 52일',
-        comment: '모두가 한 손에는 무기를 들고 한 손으로 열심히 일한 결과, 단 52일 만에 튼튼한 성벽을 완성했어요!' 
+        question: '천사들이 전해준 아기 예수님의 이름으로, "하나님께서 우리와 함께 계시다"라는 뜻을 가진 이름은 무엇인가요?', 
+        options: ['A. 임마누엘', 'B. 여호수아', 'C. 미가', 'D. 엘리야'], 
+        answer: 'A. 임마누엘',
+        comment: '임마누엘은 "하나님께서 우리와 함께 계시다"라는 뜻으로, 우리를 죄에서 구원하시기 위해 오신 예수님의 이름이에요!' 
       },
       { 
         type: 'short',
-        question: '느헤미야가 왕의 허락을 받아 예루살렘에 가서 백성들과 함께 다시 튼튼하게 쌓아 올린 것은 무엇일까요? (2글자)', 
-        answer: '성벽', 
-        comment: '적들의 공격으로부터 하나님의 백성을 안전하게 지켜주는 예루살렘 성벽을 멋지게 다시 세웠답니다!' 
+        question: '예수님께서는 하늘로 올라가신 후 우리를 데리러 다시 오겠다고 약속하셨어요. 하나님께서는 우리에게 하신 (  )을/를 반드시 지키시는 분이에요! (2글자)', 
+        answer: '약속', 
+        comment: '성경의 모든 예언을 이루신 하나님께서는 예수님께서 다시 오신다는 마지막 약속도 반드시 지키실 거예요!' 
       }
     ];
 
     let current = 0;
     let score = 0;
     let participantName = '';
-    const themes = ['#7c3aed', '#6d28d9', '#5b21b6', '#4c1d95', '#65a30d'];
+    // 문제 번호에 따라 은은하게 변하는 블루/인디고 계열 테마 색상
+    const themes = ['#2563eb', '#1d4ed8', '#3b82f6', '#4f46e5', '#0284c7'];
 
     const nameInputArea = document.getElementById('name-input-area');
     const nameInput = document.getElementById('name-input');
@@ -132,6 +145,7 @@
     startBtn.addEventListener('click', startGame);
     nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') startGame(); });
 
+    // 퀴즈 시작 함수
     function startGame() {
       const nameVal = nameInput.value.trim();
       if (!nameVal) { alert("이름을 꼭 알려주세요!"); return; }
@@ -141,6 +155,7 @@
       showQuestion();
     }
 
+    // 현재 문제 화면 렌더링 함수
     function showQuestion() {
       feedbackEl.textContent = '';
       const q = questions[current];
@@ -150,7 +165,8 @@
       answerAreaEl.innerHTML = '';
 
       if (q.type === 'ox') {
-        createBtn('O'); createBtn('X');
+        createBtn('O'); 
+        createBtn('X');
       } else if (q.type === 'mcq') {
         q.options.forEach(opt => createBtn(opt));
       } else {
@@ -158,15 +174,18 @@
         input.type = 'text';
         input.placeholder = '정답을 적어보세요';
         answerAreaEl.appendChild(input);
+
         const submitBtn = document.createElement('button');
         submitBtn.textContent = '정답 확인';
         submitBtn.onclick = () => checkAnswer(input.value);
         answerAreaEl.appendChild(submitBtn);
+
         input.focus();
-        input.onkeydown = (e) => { if(e.key === 'Enter') checkAnswer(input.value); };
+        input.onkeydown = (e) => { if (e.key === 'Enter') checkAnswer(input.value); };
       }
     }
 
+    // 선택지 버튼 생성 헬퍼 함수
     function createBtn(text) {
       const btn = document.createElement('button');
       btn.textContent = text;
@@ -174,8 +193,9 @@
       answerAreaEl.appendChild(btn);
     }
 
+    // 정답 확인 및 피드백 출력 함수
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return;
+      if (answerAreaEl.querySelector('.next-btn') || feedbackEl.querySelector('.next-btn')) return;
       const q = questions[current];
       let isCorrect = false;
 
@@ -188,23 +208,24 @@
       }
 
       if (isCorrect) {
-        feedbackEl.innerHTML = "<span style='color:#5b21b6;'>우와! 정말 잘했어요! ⭕</span>";
+        feedbackEl.innerHTML = "<span style='color:#1d4ed8;'>우와! 정말 잘했어요! ⭕</span>";
         score++;
       } else {
-        feedbackEl.innerHTML = `<span style='color:#991b1b;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
+        feedbackEl.innerHTML = `<span style='color:#b91c1c;'>조금 아쉬워요! 정답은 [${q.answer}] 입니다. ❌</span>`;
       }
       
       const commentDiv = document.createElement('div');
       commentDiv.style.fontSize = '18px';
       commentDiv.style.color = '#334155';
-      commentDiv.style.marginTop = '10px';
+      commentDiv.style.marginTop = '12px';
+      commentDiv.style.lineHeight = '1.5';
       commentDiv.textContent = q.comment;
       feedbackEl.appendChild(commentDiv);
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'next-btn';
       nextBtn.textContent = (current === questions.length - 1) ? '결과 보기' : '다음 문제 ▶';
-      nextBtn.style.backgroundColor = '#4c1d95';
+      nextBtn.style.backgroundColor = '#1e40af';
       nextBtn.style.color = '#fff';
       nextBtn.style.marginTop = '20px';
       nextBtn.onclick = () => {
@@ -215,23 +236,28 @@
       feedbackEl.appendChild(nextBtn);
     }
 
+    // 최종 결과 화면 출력 함수
     function showResult() {
       quizArea.style.display = 'none';
       resultEl.style.display = 'block';
-      let message = score === questions.length ? "대단해요! 최고의 성경 박사님이군요!" : "정말 수고했어요! 다음 과도 즐겁게 공부해요!";
+      let message = score === questions.length 
+        ? "대단해요! 하나님의 약속을 굳게 믿는 최고의 성경 박사님이군요!" 
+        : "정말 수고했어요! 약속을 꼭 지키시는 하나님과 함께 다음 과도 즐겁게 공부해요!";
       resultEl.innerHTML = `
         <h2>축하해요, ${participantName} 어린이!</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🏰</div>
-        <p>우리 어린이의 8과 점수는</p>
-        <p><span style="color:#7c3aed; font-size:45px;">${score} / ${questions.length}</span></p>
-        <p style="font-weight:bold;">${message}</p>
+        <div style="font-size: 64px; margin: 20px 0;">🌈</div>
+        <p>우리 어린이의 9과 점수는</p>
+        <p><span style="color:#2563eb; font-size:45px; font-weight:bold;">${score} / ${questions.length}</span></p>
+        <p style="font-weight:bold; font-size:22px; line-height:1.4;">${message}</p>
         <button onclick="location.reload()">한 번 더 풀기</button>
       `;
     }
 
+    // 문자열 정규화 함수 (공백 및 특수문자 제거)
     function normalize(str) {
       if (!str) return '';
       return str.replace(/[\s\p{P}\p{S}]/gu, '').toLowerCase();
     }
   </script>
 </body>
+</html>

@@ -44,8 +44,8 @@
       transition: all 0.15s ease;
     }
     button:active { transform: translateY(3px); box-shadow: none; }
-    button:hover { background-color: #dbeafe; }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    button:hover:not(:disabled) { background-color: #dbeafe; }
+    button:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
     .mcq-btn {
       display: block;
@@ -59,6 +59,10 @@
       padding: 12px; font-size: 22px; border-radius: 10px; 
       border: 2px solid #2563eb; width: 70%; text-align: center; margin-bottom: 15px; 
       outline: none;
+    }
+    input[type="text"]:disabled {
+      background-color: #f1f5f9;
+      color: #475569;
     }
 
     #result { 
@@ -84,7 +88,7 @@
       <h2 style="margin: 5px 0 10px;">제9과 성경 퀴즈</h2>
       <p style="font-size: 19px; color: #dbeafe; margin-top: 0;">하나님께 영광을 돌림 (느헤미야 13장)</p>
       <p style="font-size: 20px;">이름을 입력하고 시작하세요!</p>
-      <input type="text" id="name-input" placeholder="예: 김소망" />
+      <input type="text" id="name-input" placeholder="예: 김진서" />
       <br>
       <button id="start-btn" style="background-color: #fbbf24; color: #1e3a8a; box-shadow: 0 3px 0 #d97706;">퀴즈 시작 ▶</button>
     </div>
@@ -151,6 +155,7 @@
     let current = 0;
     let score = 0;
     let participantName = '';
+    let isAnswered = false; // 중복 채점 방지 플래그
     const themes = ['#1d4ed8', '#0369a1', '#0f766e', '#1e40af', '#4338ca', '#b45309'];
 
     const nameInputArea = document.getElementById('name-input-area');
@@ -176,6 +181,7 @@
     }
 
     function showQuestion() {
+      isAnswered = false; // 새 문제가 나올 때마다 초기화
       feedbackEl.textContent = '';
       const q = questions[current];
       questionNumberEl.textContent = `문제 ${current + 1} / ${questions.length}`;
@@ -214,7 +220,12 @@
     }
 
     function checkAnswer(userAns) {
-      if(answerAreaEl.querySelector('.next-btn')) return;
+      if (isAnswered) return; // 이미 채점된 문제라면 즉시 종료 (연타 방지)
+      isAnswered = true;
+
+      // 채점 즉시 기존 버튼 및 입력창 비활성화
+      answerAreaEl.querySelectorAll('button, input').forEach(el => el.disabled = true);
+
       const q = questions[current];
       let isCorrect = false;
 
@@ -279,3 +290,4 @@
     }
   </script>
 </body>
+</html>
